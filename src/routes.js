@@ -78,30 +78,30 @@ const routes = [
         path: "/dashboards/default",
         component: DashboardsDefault,
       },
-      {
-        name: "Car Interface",
-        layout: "/admin",
-        path: "/dashboards/car-interface",
-        component: DashboardsCarInterface,
-      },
-      {
-        name: "Smart Home",
-        layout: "/admin",
-        path: "/dashboards/smart-home",
-        component: DashboardsSmartHome,
-      },
-      {
-        name: "RTL",
-        layout: "/rtl",
-        path: "/dashboards/rtl",
-        component: DashboardsRTLDefault,
-      },
+      // {
+      //   name: "Car Interface",
+      //   layout: "/admin",
+      //   path: "/dashboards/car-interface",
+      //   component: DashboardsCarInterface,
+      // },
+      // {
+      //   name: "Smart Home",
+      //   layout: "/admin",
+      //   path: "/dashboards/smart-home",
+      //   component: DashboardsSmartHome,
+      // },
+      // {
+      //   name: "RTL",
+      //   layout: "/rtl",
+      //   path: "/dashboards/rtl",
+      //   component: DashboardsRTLDefault,
+      // },
     ],
   },
   // --- NFTs ---
   {
-    name: "NFTs",
-    path: "/nfts",
+    name: "Cards",
+    path: "/cards",
     icon: (
       <Icon
         as={MdOutlineShoppingCart}
@@ -112,31 +112,31 @@ const routes = [
     ),
     collapse: true,
     items: [
-      {
-        name: "Marketplace",
-        layout: "/admin",
-        path: "/nfts/marketplace",
-        component: NFTMarketplace,
-        secondary: true,
-      },
-      {
-        name: "Collection",
-        layout: "/admin",
-        path: "/nfts/collection",
-        component: NFTCollection,
-        secondary: true,
-      },
-      {
-        name: "NFT Page",
-        layout: "/admin",
-        path: "/nfts/page",
-        component: NFTPage,
-        secondary: true,
-      },
+      // {
+      //   name: "Marketplace",
+      //   layout: "/admin",
+      //   path: "/nfts/marketplace",
+      //   component: NFTMarketplace,
+      //   secondary: true,
+      // },
+      // {
+      //   name: "Collection",
+      //   layout: "/admin",
+      //   path: "/nfts/collection",
+      //   component: NFTCollection,
+      //   secondary: true,
+      // },
+      // {
+      //   name: "NFT Page",
+      //   layout: "/admin",
+      //   path: "/nfts/page",
+      //   component: NFTPage,
+      //   secondary: true,
+      // },
       {
         name: "Profile",
         layout: "/admin",
-        path: "/nfts/profile",
+        path: "/cards/card",
         component: NFTProfile,
         secondary: true,
       },
@@ -149,104 +149,104 @@ const routes = [
     icon: <Icon as={MdDashboard} width='20px' height='20px' color='inherit' />,
     collapse: true,
     items: [
-      {
-        name: "Account",
-        path: "/main/account",
-        collapse: true,
-        items: [
-          {
-            name: "Billing",
-            layout: "/admin",
-            path: "/main/account/billing",
-            exact: false,
-            component: AccountBilling,
-          },
-          {
-            name: "Application",
-            layout: "/admin",
-            path: "/main/account/application",
-            exact: false,
-            component: AccountApplications,
-          },
-          {
-            name: "Invoice",
-            layout: "/admin",
-            path: "/main/account/invoice",
-            exact: false,
-            component: AccountInvoice,
-          },
-          {
-            name: "Settings",
-            layout: "/admin",
-            path: "/main/account/settings",
-            exact: false,
-            component: AccountSettings,
-          },
-          {
-            name: "All Courses",
-            layout: "/admin",
-            path: "/main/account/all-courses",
-            exact: false,
-            component: AccountAllCourses,
-          },
-          {
-            name: "Course Page",
-            layout: "/admin",
-            path: "/main/account/course-page",
-            exact: false,
-            component: AccountCoursePage,
-          },
-        ],
-      },
-      {
-        name: "Ecommerce",
-        path: "/main/users",
-        collapse: true,
-        items: [
-          {
-            name: "New Product",
-            layout: "/admin",
-            path: "/main/ecommerce/new-prodcut",
-            exact: false,
-            component: EcommerceNewProduct,
-          },
-          {
-            name: "Product Settings",
-            layout: "/admin",
-            path: "/main/ecommerce/settings",
-            exact: false,
-            component: EcommerceProductSettings,
-          },
-          {
-            name: "Product Page",
-            layout: "/admin",
-            path: "/main/ecommerce/page-example",
-            exact: false,
-            component: EcommerceProductPage,
-          },
-          {
-            name: "Order List",
-            layout: "/admin",
-            path: "/main/ecommerce/order-list",
-            exact: false,
-            component: EcommerceOrderList,
-          },
-          {
-            name: "Order Details",
-            layout: "/admin",
-            path: "/main/ecommerce/order-details",
-            exact: false,
-            component: EcommerceOrderDetails,
-          },
-          {
-            name: "Referrals",
-            layout: "/admin",
-            path: "/main/ecommerce/referrals",
-            exact: false,
-            component: EcommerceReferrals,
-          },
-        ],
-      },
+      // {
+      //   name: "Account",
+      //   path: "/main/account",
+      //   collapse: true,
+      //   items: [
+      //     // {
+      //     //   name: "Billing",
+      //     //   layout: "/admin",
+      //     //   path: "/main/account/billing",
+      //     //   exact: false,
+      //     //   component: AccountBilling,
+      //     // },
+      //     {
+      //       name: "Application",
+      //       layout: "/admin",
+      //       path: "/main/account/application",
+      //       exact: false,
+      //       component: AccountApplications,
+      //     },
+      //     // {
+      //     //   name: "Invoice",
+      //     //   layout: "/admin",
+      //     //   path: "/main/account/invoice",
+      //     //   exact: false,
+      //     //   component: AccountInvoice,
+      //     // },
+      //     {
+      //       name: "Settings",
+      //       layout: "/admin",
+      //       path: "/main/account/settings",
+      //       exact: false,
+      //       component: AccountSettings,
+      //     },
+      //     // {
+      //     //   name: "All Courses",
+      //     //   layout: "/admin",
+      //     //   path: "/main/account/all-courses",
+      //     //   exact: false,
+      //     //   component: AccountAllCourses,
+      //     // },
+      //     // {
+      //     //   name: "Course Page",
+      //     //   layout: "/admin",
+      //     //   path: "/main/account/course-page",
+      //     //   exact: false,
+      //     //   component: AccountCoursePage,
+      //     // },
+      //   ],
+      // },
+      // {
+      //   name: "Ecommerce",
+      //   path: "/main/users",
+      //   collapse: true,
+      //   items: [
+      //     {
+      //       name: "New Product",
+      //       layout: "/admin",
+      //       path: "/main/ecommerce/new-prodcut",
+      //       exact: false,
+      //       component: EcommerceNewProduct,
+      //     },
+      //     {
+      //       name: "Product Settings",
+      //       layout: "/admin",
+      //       path: "/main/ecommerce/settings",
+      //       exact: false,
+      //       component: EcommerceProductSettings,
+      //     },
+      //     {
+      //       name: "Product Page",
+      //       layout: "/admin",
+      //       path: "/main/ecommerce/page-example",
+      //       exact: false,
+      //       component: EcommerceProductPage,
+      //     },
+      //     {
+      //       name: "Order List",
+      //       layout: "/admin",
+      //       path: "/main/ecommerce/order-list",
+      //       exact: false,
+      //       component: EcommerceOrderList,
+      //     },
+      //     {
+      //       name: "Order Details",
+      //       layout: "/admin",
+      //       path: "/main/ecommerce/order-details",
+      //       exact: false,
+      //       component: EcommerceOrderDetails,
+      //     },
+      //     {
+      //       name: "Referrals",
+      //       layout: "/admin",
+      //       path: "/main/ecommerce/referrals",
+      //       exact: false,
+      //       component: EcommerceReferrals,
+      //     },
+      //   ],
+      // },
       {
         name: "Users",
         path: "/main/users",
@@ -275,34 +275,34 @@ const routes = [
           },
         ],
       },
-      {
-        name: "Applications",
-        path: "/main/applications",
-        collapse: true,
-        items: [
-          {
-            name: "Kanban",
-            layout: "/admin",
-            path: "/main/applications/kanban",
-            exact: false,
-            component: ApplicationsKanban,
-          },
-          {
-            name: "Data Tables",
-            layout: "/admin",
-            path: "/main/applications/data-tables",
-            exact: false,
-            component: ApplicationsDataTables,
-          },
-          {
-            name: "Calendar",
-            layout: "/admin",
-            path: "/main/applications/calendar",
-            exact: false,
-            component: ApplicationsCalendar,
-          },
-        ],
-      },
+      // {
+      //   name: "Applications",
+      //   path: "/main/applications",
+      //   collapse: true,
+      //   items: [
+      //     // {
+      //     //   name: "Kanban",
+      //     //   layout: "/admin",
+      //     //   path: "/main/applications/kanban",
+      //     //   exact: false,
+      //     //   component: ApplicationsKanban,
+      //     // },
+      //     {
+      //       name: "Data Tables",
+      //       layout: "/admin",
+      //       path: "/main/applications/data-tables",
+      //       exact: false,
+      //       component: ApplicationsDataTables,
+      //     },
+      //     {
+      //       name: "Calendar",
+      //       layout: "/admin",
+      //       path: "/main/applications/calendar",
+      //       exact: false,
+      //       component: ApplicationsCalendar,
+      //     },
+      //   ],
+      // },
       {
         name: "Profile",
         path: "/main/profile",
@@ -322,13 +322,13 @@ const routes = [
             exact: false,
             component: ProfileSettings,
           },
-          {
-            name: "News Feed",
-            layout: "/admin",
-            path: "/main/profile/newsfeed",
-            exact: false,
-            component: ProfileNewsfeed,
-          },
+          // {
+          //   name: "News Feed",
+          //   layout: "/admin",
+          //   path: "/main/profile/newsfeed",
+          //   exact: false,
+          //   component: ProfileNewsfeed,
+          // },
         ],
       },
       {
@@ -343,13 +343,13 @@ const routes = [
             exact: false,
             component: OthersNotifications,
           },
-          {
-            name: "Pricing",
-            layout: "/auth",
-            path: "/main/others/pricing",
-            exact: false,
-            component: OthersPricing,
-          },
+          // {
+          //   name: "Pricing",
+          //   layout: "/auth",
+          //   path: "/main/others/pricing",
+          //   exact: false,
+          //   component: OthersPricing,
+          // },
           {
             name: "404",
             layout: "/admin",
@@ -383,15 +383,15 @@ const routes = [
             ),
             component: SignInDefault,
           },
-          {
-            name: "Centered",
-            layout: "/auth",
-            path: "/sign-in/centered",
-            icon: (
-              <Icon as={MdHome} width='16px' height='16px' color='inherit' />
-            ),
-            component: SignInCentered,
-          },
+          // {
+          //   name: "Centered",
+          //   layout: "/auth",
+          //   path: "/sign-in/centered",
+          //   icon: (
+          //     <Icon as={MdHome} width='16px' height='16px' color='inherit' />
+          //   ),
+          //   component: SignInCentered,
+          // },
         ],
       },
       // --- Sign Up ---
@@ -409,15 +409,15 @@ const routes = [
             ),
             component: SignUpDefault,
           },
-          {
-            name: "Centered",
-            layout: "/auth",
-            path: "/sign-up/centered",
-            icon: (
-              <Icon as={MdHome} width='16px' height='16px' color='inherit' />
-            ),
-            component: SignUpCentered,
-          },
+          // {
+          //   name: "Centered",
+          //   layout: "/auth",
+          //   path: "/sign-up/centered",
+          //   icon: (
+          //     <Icon as={MdHome} width='16px' height='16px' color='inherit' />
+          //   ),
+          //   component: SignUpCentered,
+          // },
         ],
       },
       // --- Verification ---
@@ -435,15 +435,15 @@ const routes = [
             ),
             component: VerificationDefault,
           },
-          {
-            name: "Centered",
-            layout: "/auth",
-            path: "/verification/centered",
-            icon: (
-              <Icon as={MdHome} width='16px' height='16px' color='inherit' />
-            ),
-            component: VerificationCentered,
-          },
+          // {
+          //   name: "Centered",
+          //   layout: "/auth",
+          //   path: "/verification/centered",
+          //   icon: (
+          //     <Icon as={MdHome} width='16px' height='16px' color='inherit' />
+          //   ),
+          //   component: VerificationCentered,
+          // },
         ],
       },
       // --- Lock ---
@@ -461,15 +461,15 @@ const routes = [
             ),
             component: LockDefault,
           },
-          {
-            name: "Centered",
-            layout: "/auth",
-            path: "/lock/centered",
-            icon: (
-              <Icon as={MdHome} width='16px' height='16px' color='inherit' />
-            ),
-            component: LockCentered,
-          },
+          // {
+          //   name: "Centered",
+          //   layout: "/auth",
+          //   path: "/lock/centered",
+          //   icon: (
+          //     <Icon as={MdHome} width='16px' height='16px' color='inherit' />
+          //   ),
+          //   component: LockCentered,
+          // },
         ],
       },
       // --- Forgot Password ---
@@ -487,15 +487,15 @@ const routes = [
             ),
             component: ForgotPasswordDefault,
           },
-          {
-            name: "Centered",
-            layout: "/auth",
-            path: "/forgot-password/centered",
-            icon: (
-              <Icon as={MdHome} width='16px' height='16px' color='inherit' />
-            ),
-            component: ForgotPasswordCentered,
-          },
+          // {
+          //   name: "Centered",
+          //   layout: "/auth",
+          //   path: "/forgot-password/centered",
+          //   icon: (
+          //     <Icon as={MdHome} width='16px' height='16px' color='inherit' />
+          //   ),
+          //   component: ForgotPasswordCentered,
+          // },
         ],
       },
     ],
