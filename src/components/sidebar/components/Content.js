@@ -39,7 +39,7 @@ function SidebarContent(props) {
         pe={{ md: "16px", "2xl": "0px" }}
         mt='60px'
         borderRadius='30px'>
-        <SidebarCard />
+        {/*<SidebarCard />*/}
       </Box>
       <Flex mt='75px' mb='56px' justifyContent='center' alignItems='center'>
         <Avatar h='48px' w='48px' src={avatar4} me='20px' />
