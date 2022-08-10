@@ -20,46 +20,23 @@ export default function Settings() {
       <Card>
         <Flex direction='column' mb='40px' ms='10px'>
           <Text fontSize='xl' color={textColorPrimary} fontWeight='bold'>
-            Account Settings
-          </Text>
-          <Text fontSize='md' color={textColorSecondary}>
-            Here you can change user account information
+            Card Info
           </Text>
         </Flex>
         <SimpleGrid
           columns={{ sm: 1, md: 2 }}
           spacing={{ base: "20px", xl: "20px" }}>
-          <InputField
-            mb='25px'
-            me='30px'
-            id='username'
-            label='Username'
-            placeholder='@john123'
-          />
-          <InputField
-            mb='25px'
-            id='email'
-            label='Email Address'
-            placeholder='mail@simmmple.com'
-          />
-          <InputField
-            mb='25px'
-            me='30px'
-            id='first_name'
-            label='First Name'
-            placeholder='John'
-          />
+
           <InputField
             mb='25px'
             id='last_name'
-            label='Last Name'
-            placeholder='Doe'
+            label='Full Name'
+            placeholder='John kehas'
           />
         </SimpleGrid>
-        <InputField id='job' label='Job' placeholder='Web Developer' />
         <TextField
           id='about'
-          label='About Me'
+          label='Bio'
           h='100px'
           placeholder='Tell something about yourself in 150 characters!'
         />
