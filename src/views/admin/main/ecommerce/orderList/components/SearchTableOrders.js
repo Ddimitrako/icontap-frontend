@@ -86,12 +86,6 @@ function SearchTable2(props) {
           w='100%'
           px='22px'
           mb='36px'>
-          <SearchBar
-            onChange={(e) => setGlobalFilter(e.target.value)}
-            h='44px'
-            w={{ lg: "390px" }}
-            borderRadius='16px'
-          />
         </Flex>
         <Table {...getTableProps()} variant='simple' color='gray.500' mb='24px'>
           <Thead>

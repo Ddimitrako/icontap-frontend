@@ -83,7 +83,6 @@ export default function Collection() {
         </Flex>
       </Box>
       <Flex w='100%'>
-        <SearchBar />
         <Select
           fontSize='sm'
           id='edit_product'

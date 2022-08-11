@@ -45,7 +45,7 @@ function SidebarContent(props) {
         <Avatar h='48px' w='48px' src={avatar4} me='20px' />
         <Box>
           <Text color={textColor} fontSize='md' fontWeight='700'>
-            Adela Parkson
+            John Kehas
           </Text>
           <Text color='secondaryGray.600' fontSize='sm' fontWeight='400'>
             Product Designer

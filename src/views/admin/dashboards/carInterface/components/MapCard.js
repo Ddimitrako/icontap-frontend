@@ -51,12 +51,6 @@ export default function YourTransfers(props) {
         w={{ base: "100%", md: "calc(100% - 40px)" }}
         h='calc(100% - 40px)'
         zIndex='1'>
-        <SearchBar
-          w={{ base: "100%", md: "292px" }}
-          placeholder='Search your next destination'
-          background={inputBg}
-          mb='auto'
-        />
         <Flex
           w='100%'
           mt={{ base: "12px", md: "0px" }}

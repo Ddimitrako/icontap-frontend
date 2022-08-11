@@ -15,7 +15,7 @@ export default function Profile(props) {
         <Avatar src={profileAvatar} h='87px' w='87px' me='20px' />
         <Flex direction='column'>
           <Text color={textColorPrimary} fontWeight='bold' fontSize='2xl'>
-            Adela Parkson
+            John Kehas
           </Text>
           <Text mt='1px' color={textColorSecondary} fontSize='md'>
             adela@simmmple.com

@@ -370,7 +370,6 @@ export default function Collection() {
         </TabList>
         <HSeparator mb='30px' bg={paleGray} mt='0px' />
         <Flex w='100%'>
-          <SearchBar />
           <Select
             fontSize='sm'
             id='edit_product'
