@@ -157,20 +157,7 @@ export default function Collection() {
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
       <Box mb='20px' display={{ base: "block", lg: "grid" }}>
-        <Flex flexDirection='column'>
-          <Banner
-            image={NftBanner3}
-            profile={AvatarSimmmple}
-            wallet='7MVqsRijvkNBhXSCLSKP2Gpc8HsGVqR7iWnLpZynz8DK'
-            address='simmmple.web'
-            name='Simmmple'
-            date='Joined 17 Nov 2019'
-            floor={0.56}
-            volume={33.8}
-            owners={4.6}
-            items={28}
-          />
-        </Flex>
+
       </Box>
       <Tabs variant='soft-rounded' colorScheme='brandTabs'>
         <TabList
