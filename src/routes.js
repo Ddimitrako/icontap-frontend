@@ -266,13 +266,13 @@ const routes = [
             exact: false,
             component: UsersOverview,
           },
-          {
-            name: "Users Reports",
-            layout: "/admin",
-            path: "/main/users/users-reports",
-            exact: false,
-            component: UsersReports,
-          },
+          // {
+          //   name: "Users Reports",
+          //   layout: "/admin",
+          //   path: "/main/users/users-reports",
+          //   exact: false,
+          //   component: UsersReports,
+          // },
         ],
       },
       // {
