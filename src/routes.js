@@ -110,6 +110,21 @@ const routes = [
         ),
 
     },
+    {
+        name: "Card Settings",
+        layout: "/admin",
+        path: "/nfts/page",
+        component: NFTPage,
+        secondary: true,
+        icon: (
+            <Icon
+                as={MdHome}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+      },
     // --- Main pages ---
 
 
@@ -173,23 +188,23 @@ const routes = [
     //     },
     //   ],
     // },
+    // {
+    //     name: "Profile Overview",
+    //     layout: "/admin",
+    //     path: "/main/profile/overview",
+    //     exact: false,
+    //     component: ProfileOverview,
+    //     icon: (
+    //         <Icon
+    //             as={MdHome}
+    //             width='20px'
+    //             height='20px'
+    //             color='inherit'
+    //         />
+    //     ),
+    // },
     {
-        name: "Profile Overview",
-        layout: "/admin",
-        path: "/main/profile/overview",
-        exact: false,
-        component: ProfileOverview,
-        icon: (
-            <Icon
-                as={MdHome}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-    },
-    {
-        name: "Profile Settings",
+        name: "Profile",
         layout: "/admin",
         path: "/main/profile/settings",
         exact: false,
