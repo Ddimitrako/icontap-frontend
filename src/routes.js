@@ -421,31 +421,31 @@ const routes = [
         ],
       },
       // --- Verification ---
-      {
-        name: "Verification",
-        path: "/verification",
-        collapse: true,
-        items: [
-          {
-            name: "Default",
-            layout: "/auth",
-            path: "/verification/default",
-            icon: (
-              <Icon as={MdHome} width='16px' height='16px' color='inherit' />
-            ),
-            component: VerificationDefault,
-          },
-          // {
-          //   name: "Centered",
-          //   layout: "/auth",
-          //   path: "/verification/centered",
-          //   icon: (
-          //     <Icon as={MdHome} width='16px' height='16px' color='inherit' />
-          //   ),
-          //   component: VerificationCentered,
-          // },
-        ],
-      },
+      // {
+      //   name: "Verification",
+      //   path: "/verification",
+      //   collapse: true,
+      //   items: [
+      //     {
+      //       name: "Default",
+      //       layout: "/auth",
+      //       path: "/verification/default",
+      //       icon: (
+      //         <Icon as={MdHome} width='16px' height='16px' color='inherit' />
+      //       ),
+      //       component: VerificationDefault,
+      //     },
+      //     // {
+      //     //   name: "Centered",
+      //     //   layout: "/auth",
+      //     //   path: "/verification/centered",
+      //     //   icon: (
+      //     //     <Icon as={MdHome} width='16px' height='16px' color='inherit' />
+      //     //   ),
+      //     //   component: VerificationCentered,
+      //     // },
+      //   ],
+      // },
       // --- Lock ---
       {
         name: "Lock",
