@@ -49,7 +49,7 @@ export default function OverallRevenue(props) {
               fontSize='sm'
               fontWeight='500'
               mt='4px'>
-              Overall Revenue
+              Overall Profile Views Per Month
             </Text>
           </Flex>
           <Flex align='center'>
