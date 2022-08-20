@@ -34,63 +34,63 @@ export default function Notifications(props) {
         fontSize='sm'
         mb='20px'
         id='2'
-        label='Item comment notifications'
+        label='Instagram'
       />
       <SwitchField
         reversed={true}
         fontSize='sm'
         mb='20px'
         id='3'
-        label='Buyer review notifications'
+        label='Facebook'
       />
       <SwitchField
         reversed={true}
         fontSize='sm'
         mb='20px'
         id='4'
-        label='Rating reminders notifications'
+        label='Linked In'
       />
       <SwitchField
         reversed={true}
         fontSize='sm'
         mb='20px'
         id='5'
-        label='Meetups near you notifications'
+        label='CV'
       />
       <SwitchField
         reversed={true}
         fontSize='sm'
         mb='20px'
         id='6'
-        label='Company news notifications'
+        label='Gmail'
       />
       <SwitchField
         reversed={true}
         fontSize='sm'
         mb='20px'
         id='7'
-        label='New launches and projects'
+        label='Email'
       />
       <SwitchField
         reversed={true}
         fontSize='sm'
         mb='20px'
         id='8'
-        label='Monthly product changes'
+        label='Tinder'
       />
       <SwitchField
         reversed={true}
         fontSize='sm'
         mb='20px'
         id='9'
-        label='Subscribe to newsletter'
+        label='Telephone'
       />
       <SwitchField
         reversed={true}
         fontSize='sm'
         mb='20px'
         id='10'
-        label='Email me when someone follows me'
+        label='Website'
       />
     </Card>
   );
