@@ -44,7 +44,7 @@ import Banner from "views/admin/nfts/profile/components/Banner";
 import NFT from "components/card/NFT";
 import { SearchBar } from "views/admin/nfts/profile/components/Search";
 import { HSeparator } from "components/separator/Separator";
-
+import YourCard from "views/admin/main/account/billing/components/YourCard";
 // Assets
 import Nft2 from "assets/img/nfts/Nft2.png";
 import Nft4 from "assets/img/nfts/Nft4.png";
@@ -60,15 +60,26 @@ import Avatar4 from "assets/img/avatars/avatar4.png";
 import {
   MdDashboard,
   MdApps,
+  MdAddCircle,
   MdOutlineCollections,
   MdFormatPaint,
   MdAccessTime,
   MdOutlineLocalOffer,
 } from "react-icons/md";
 import { IoMdHeartEmpty } from "react-icons/io";
-export default function Collection() {
+export default function Collection(props) {
+  const { ...rest } = props;
   let [tabState, setTabState] = useState("collected");
-
+  const bgButton = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
+  const bgHover = useColorModeValue(
+    { bg: "secondaryGray.400" },
+    { bg: "whiteAlpha.50" }
+  );
+  const bgFocus = useColorModeValue(
+    { bg: "secondaryGray.300" },
+    { bg: "whiteAlpha.100" }
+  );
+  const iconColor = useColorModeValue("brand.500", "white");
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const buttonBg = useColorModeValue("transparent", "navy.800");
   const hoverButton = useColorModeValue(
@@ -81,75 +92,10 @@ export default function Collection() {
   );
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
   let panelExample = (
+
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
-      <NFT
-        name='Swipe Circles'
-        author='By Peter Will'
-        bidders={[
-          Avatar1,
-          Avatar2,
-          Avatar3,
-          Avatar4,
-          Avatar1,
-          Avatar1,
-          Avatar1,
-          Avatar1,
-        ]}
-        image={Nft4}
-        currentBid='0.91 ETH'
-        download='#'
-      />
-      <NFT
-        name='Colorful Heaven'
-        author='By Mark Benjamin'
-        bidders={[
-          Avatar1,
-          Avatar2,
-          Avatar3,
-          Avatar4,
-          Avatar1,
-          Avatar1,
-          Avatar1,
-          Avatar1,
-        ]}
-        image={Nft5}
-        currentBid='0.91 ETH'
-        download='#'
-      />
-      <NFT
-        name='3D Cubes Art'
-        author='By Manny Gates'
-        bidders={[
-          Avatar1,
-          Avatar2,
-          Avatar3,
-          Avatar4,
-          Avatar1,
-          Avatar1,
-          Avatar1,
-          Avatar1,
-        ]}
-        image={Nft6}
-        currentBid='0.91 ETH'
-        download='#'
-      />
-      <NFT
-        name='ETH AI Brain'
-        author='By Nick Wilson'
-        bidders={[
-          Avatar1,
-          Avatar2,
-          Avatar3,
-          Avatar4,
-          Avatar1,
-          Avatar1,
-          Avatar1,
-          Avatar1,
-        ]}
-        image={Nft2}
-        currentBid='0.91 ETH'
-        download='#'
-      />
+        <YourCard></YourCard>
+        <YourCard></YourCard>
     </SimpleGrid>
   );
   // Chakra Color Mode
@@ -160,216 +106,9 @@ export default function Collection() {
 
       </Box>
       <Tabs variant='soft-rounded' colorScheme='brandTabs'>
-        <TabList
-          mx={{ base: "10px", lg: "30px" }}
-          overflowX={{ sm: "scroll", lg: "unset" }}>
-          <Flex justify={{ base: "start", md: "center" }} w='100%'>
-            <Tab
-              pb='0px'
-              flexDirection='column'
-              onClick={function () {
-                setTabState("collected");
-              }}
-              me='50px'
-              bg='unset'
-              _selected={{
-                bg: "none",
-              }}
-              _focus={{ border: "none" }}
-              minW='max-content'>
-              <Flex align='center'>
-                <Icon
-                  color={textColor}
-                  as={MdOutlineCollections}
-                  w='20px'
-                  h='20px'
-                  me='8px'
-                />
-                <Text
-                  color={textColor}
-                  fontSize='lg'
-                  fontWeight='500'
-                  me='12px'>
-                  Collected
-                </Text>
-                <Text color='secondaryGray.600' fontSize='md' fontWeight='400'>
-                  0
-                </Text>
-              </Flex>
-              <Box
-                height='4px'
-                w='100%'
-                transition='0.1s linear'
-                bg={tabState === "collected" ? "brand.500" : "transparent"}
-                mt='15px'
-                borderRadius='30px'
-              />
-            </Tab>
-            <Tab
-              onClick={function () {
-                setTabState("created");
-              }}
-              pb='0px'
-              me='50px'
-              bg='unset'
-              _selected={{
-                bg: "none",
-              }}
-              _focus={{ border: "none" }}
-              minW='max-content'
-              flexDirection='column'>
-              <Flex align='center'>
-                <Icon
-                  color={textColor}
-                  as={MdFormatPaint}
-                  w='20px'
-                  h='20px'
-                  me='8px'
-                />
-                <Text
-                  color={textColor}
-                  fontSize='lg'
-                  fontWeight='500'
-                  me='12px'>
-                  Created
-                </Text>
-                <Text color='secondaryGray.600' fontSize='md' fontWeight='400'>
-                  4
-                </Text>
-              </Flex>
-              <Box
-                height='4px'
-                w='100%'
-                transition='0.1s linear'
-                bg={tabState === "created" ? "brand.500" : "transparent"}
-                mt='15px'
-                borderRadius='30px'
-              />
-            </Tab>
-            <Tab
-              pb='0px'
-              flexDirection='column'
-              onClick={function () {
-                setTabState("favorited");
-              }}
-              me='50px'
-              bg='unset'
-              _selected={{
-                bg: "none",
-              }}
-              _focus={{ border: "none" }}
-              minW='max-content'>
-              <Flex align='center'>
-                <Icon
-                  color={textColor}
-                  as={IoMdHeartEmpty}
-                  w='20px'
-                  h='20px'
-                  me='8px'
-                />
-                <Text
-                  color={textColor}
-                  fontSize='lg'
-                  fontWeight='500'
-                  me='12px'>
-                  Favorited
-                </Text>
-                <Text color='secondaryGray.600' fontSize='md' fontWeight='400'>
-                  12
-                </Text>
-              </Flex>
-              <Box
-                height='4px'
-                w='100%'
-                transition='0.1s linear'
-                bg={tabState === "favorited" ? "brand.500" : "transparent"}
-                mt='15px'
-                borderRadius='30px'
-              />
-            </Tab>
-            <Tab
-              pb='0px'
-              flexDirection='column'
-              onClick={function () {
-                setTabState("activity");
-              }}
-              me='50px'
-              bg='unset'
-              _selected={{
-                bg: "none",
-              }}
-              _focus={{ border: "none" }}
-              minW='max-content'>
-              <Flex align='center'>
-                <Icon
-                  color={textColor}
-                  as={MdAccessTime}
-                  w='20px'
-                  h='20px'
-                  me='8px'
-                />
-                <Text
-                  color={textColor}
-                  fontSize='lg'
-                  fontWeight='500'
-                  me='12px'>
-                  Activity
-                </Text>
-              </Flex>
-              <Box
-                height='4px'
-                w='100%'
-                transition='0.1s linear'
-                bg={tabState === "activity" ? "brand.500" : "transparent"}
-                mt='15px'
-                borderRadius='30px'
-              />
-            </Tab>
-            <Tab
-              pb='0px'
-              flexDirection='column'
-              onClick={function () {
-                setTabState("offers");
-              }}
-              me='50px'
-              bg='unset'
-              _selected={{
-                bg: "none",
-              }}
-              _focus={{ border: "none" }}
-              minW='max-content'>
-              <Flex align='center'>
-                <Icon
-                  color={textColor}
-                  as={MdOutlineLocalOffer}
-                  w='20px'
-                  h='20px'
-                  me='8px'
-                />
-                <Text
-                  color={textColor}
-                  fontSize='lg'
-                  fontWeight='500'
-                  me='12px'>
-                  Offers
-                </Text>
-                <Text color='secondaryGray.600' fontSize='md' fontWeight='400'>
-                  7
-                </Text>
-              </Flex>
-              <Box
-                height='4px'
-                w='100%'
-                transition='0.1s linear'
-                bg={tabState === "offers" ? "brand.500" : "transparent"}
-                mt='15px'
-                borderRadius='30px'
-              />
-            </Tab>
-          </Flex>
-        </TabList>
+
         <HSeparator mb='30px' bg={paleGray} mt='0px' />
-        <Flex w='100%'>
+        <Flex w='30%'>
           <Select
             fontSize='sm'
             id='edit_product'
@@ -378,19 +117,12 @@ export default function Collection() {
             maxh='44px'
             me='20px'
             defaultValue='single'>
-            <option value='single'>Single Items</option>
-            <option value='multiple'>Multiple Items</option>
+            <option value='multiple'>All Card</option>
+            <option value='single'>Business Card</option>
+            <option value='multiple'>Personal Card</option>
+
           </Select>
-          <Select
-            fontSize='sm'
-            variant='main'
-            h='44px'
-            maxh='44px'
-            me='20px'
-            defaultValue='low_to_high'>
-            <option value='low_to_high'>Low to high</option>
-            <option value='high_to_low'>High to low</option>
-          </Select>
+
           <Button
             me='20px'
             bg={buttonBg}
@@ -423,15 +155,30 @@ export default function Collection() {
             <Icon color={textColor} as={MdApps} />
           </Button>
         </Flex>
+
         <Text
           mt='25px'
           mb='36px'
           color={textColor}
           fontSize='2xl'
           ms='24px'
-          fontWeight='700'>
-          4 Results
+          fontWeight='700'>Your Cards
         </Text>
+        <Button
+          align='center'
+          justifyContent='center'
+          bg={bgButton}
+          _hover={bgHover}
+          _focus={bgFocus}
+          _active={bgFocus}
+          w='37px'
+          h='37px'
+          lineHeight='100%'
+          borderRadius='10px'
+          {...rest}>
+          <Icon as={MdAddCircle} color={iconColor} w='24px' h='24px' />
+        </Button>
+
         <TabPanels>
           <TabPanel px='0px'>{panelExample}</TabPanel>
           <TabPanel px='0px'>{panelExample}</TabPanel>

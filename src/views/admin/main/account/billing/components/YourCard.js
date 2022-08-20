@@ -63,7 +63,7 @@ export default function YourCard(props) {
   );
   const textColor = useColorModeValue("secondaryGray.900", "white");
   return (
-    <Card {...rest} p='34px'>
+    <Card {...rest} p='44px'>
       <Flex justify='space-between' mb='25px' align='center'>
         <Text
           color={textColor}
@@ -72,31 +72,15 @@ export default function YourCard(props) {
           lineHeight='100%'>
           Your Card
         </Text>
-        <Button
-          align='center'
-          justifyContent='center'
-          bg={bgButton}
-          _hover={bgHover}
-          _focus={bgFocus}
-          _active={bgFocus}
-          w='37px'
-          h='37px'
-          lineHeight='100%'
-          borderRadius='10px'
-          {...rest}>
-          <Icon as={MdAddCircle} color={iconColor} w='24px' h='24px' />
-        </Button>
+
       </Flex>
       <Tabs>
         <TabPanels mb='20px'>
           <TabPanel p='0px'>
-            <Mastercard number='7812 XXXX XXXX XXXX' cvv='09X' exp='05/24' />
+            <Mastercard number='Front' cvv='09X' exp='05/24' />
           </TabPanel>
           <TabPanel p='0px'>
-            <Mastercard number='1275 XXXX XXXX XXXX' cvv='12X' exp='02/23' />
-          </TabPanel>
-          <TabPanel p='0px'>
-            <Mastercard number='2371 XXXX XXXX XXXX' cvv='73X' exp='01/27' />
+            <Mastercard number='Back' cvv='12X' exp='02/23' />
           </TabPanel>
         </TabPanels>
         <TabList
@@ -151,87 +135,12 @@ export default function YourCard(props) {
                 borderRadius='50%'
               />
             </Tab>
-            <Tab
-              p='0px'
-              flexDirection='column'
-              onClick={function () {
-                setTabState("card3");
-              }}
-              bg='unset'
-              _selected={{
-                bg: "none",
-                border: "none",
-              }}
-              _focus={{ border: "none" }}
-              border='0px solid transparent !important'
-              _active={{ bg: "none" }}
-              minW='max-content'>
-              <Box
-                w='8px'
-                height='8px'
-                transition='0.1s linear'
-                bg={tabState === "card3" ? "brand.500" : "secondaryGray.500"}
-                borderRadius='50%'
-              />
-            </Tab>
+
           </Flex>
         </TabList>
       </Tabs>
-      <Flex
-        direction='column'
-        bg={boxBg}
-        p='16px 20px'
-        borderRadius='14px'
-        mb='38px'>
-        <Text fontSize='sm' fontWeight='700' color={textColor}>
-          Use for added security online
-        </Text>
-        <Text fontSize='sm' fontWeight='500' color='secondaryGray.600'>
-          The card number is refreshed automatically after each use. Each number
-          cand be used only once.
-        </Text>
-      </Flex>
+
       <Flex justify='space-between' w='100%'>
-        <Flex
-          direction='column'
-          align='center'
-          me={{ base: "16px", md: "0px", "2xl": "36px" }}>
-          <IconButton
-            borderRadius='50%'
-            bg={bgIconButton}
-            _hover={bgIconHover}
-            _active={bgIconFocus}
-            _focus={bgIconFocus}
-            w='56px'
-            h='56px'
-            mb='5px'
-            boxShadow={shadow}
-            icon={<Icon as={MdCached} color={iconColor} w='24px' h='24px' />}
-          />
-          <Text fontSize='sm' fontWeight='500' color={textColor}>
-            Transfer
-          </Text>
-        </Flex>
-        <Flex
-          direction='column'
-          align='center'
-          me={{ base: "16px", md: "0px", "2xl": "36px" }}>
-          <IconButton
-            borderRadius='50%'
-            bg={bgIconButton}
-            _hover={bgIconHover}
-            _active={bgIconFocus}
-            _focus={bgIconFocus}
-            w='56px'
-            h='56px'
-            mb='5px'
-            boxShadow={shadow}
-            icon={<Icon as={MdAdd} color={yellowIcon} w='24px' h='24px' />}
-          />
-          <Text fontSize='sm' fontWeight='500' color={textColor}>
-            Top Up
-          </Text>
-        </Flex>
         <Flex
           direction='column'
           align='center'
@@ -251,7 +160,7 @@ export default function YourCard(props) {
             }
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
-            Pay Bills
+            Edit Card
           </Text>
         </Flex>
         <Flex direction='column' align='center'>
@@ -268,7 +177,7 @@ export default function YourCard(props) {
             icon={<Icon as={MdMoreHoriz} color={redIcon} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
-            More
+           Disable Card
           </Text>
         </Flex>
       </Flex>
