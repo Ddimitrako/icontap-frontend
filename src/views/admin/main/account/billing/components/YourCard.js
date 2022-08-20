@@ -25,6 +25,9 @@ import {
   MdCached,
   MdAdd,
   MdAttachMoney,
+    MdEditNote,
+    MdDisabledVisible,
+    MdEdit,
   MdMoreHoriz,
 } from "react-icons/md";
 
@@ -156,7 +159,7 @@ export default function YourCard(props) {
             mb='5px'
             boxShadow={shadow}
             icon={
-              <Icon as={MdAttachMoney} color={greenIcon} w='24px' h='24px' />
+              <Icon as={MdEdit} color={greenIcon} w='24px' h='24px' />
             }
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
@@ -174,7 +177,7 @@ export default function YourCard(props) {
             h='56px'
             mb='5px'
             boxShadow={shadow}
-            icon={<Icon as={MdMoreHoriz} color={redIcon} w='24px' h='24px' />}
+            icon={<Icon as={MdDisabledVisible} color={redIcon} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
            Disable Card
