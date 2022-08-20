@@ -61,7 +61,7 @@ function MostVisitedTable(props) {
             fontSize='lg'
             fontWeight='700'
             lineHeight='100%'>
-            Most Visited Pages
+            Most Visited Urls
           </Text>
           <Button
             bg={boxBg}
