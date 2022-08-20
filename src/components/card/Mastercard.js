@@ -21,7 +21,7 @@ export default function Banner(props) {
       bgSize='cover'
       boxShadow='0px 32px 41px -18px rgba(242, 134, 134, 0.4)'
       alignSelf='center'
-      w={{ base: "100%", md: "60%", xl: "99%" }}
+      w={{ base: "100%", md: "60%", xl: "80%" }}
       bgPosition='10%'
       mx='auto'
       p='20px'
@@ -29,7 +29,7 @@ export default function Banner(props) {
       <Flex direction='column' color='white' h='100%' w='100%'>
         <Flex justify='space-between' align='center' mb='37px'>
           <Text fontSize='2xl' fontWeight='bold'>
-            Glassy.
+            Icontap Logo.
           </Text>
           <Icon as={RiMastercardFill} w='48px' h='auto' color='white' />
         </Flex>
@@ -42,16 +42,7 @@ export default function Banner(props) {
           </Box>
           <Flex mt='14px'>
             <Flex direction='column' me='34px'>
-              <Text fontSize='xs'>VALID THRU</Text>
-              <Text fontSize='sm' fontWeight='500'>
-                {exp}
-              </Text>
-            </Flex>
-            <Flex direction='column'>
-              <Text fontSize='xs'>CVV</Text>
-              <Text fontSize='sm' fontWeight='500'>
-                {cvv}
-              </Text>
+              <Text fontSize='xs'>DIMITRIS DIMITRAKOPOULOS</Text>
             </Flex>
           </Flex>
         </Flex>
