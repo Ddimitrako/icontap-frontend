@@ -24,13 +24,13 @@
 import { Box, Flex, SimpleGrid } from "@chakra-ui/react";
 // Assets
 import banner from "assets/img/auth/banner.png";
-import profile from "assets/img/crm/vbz.png";
+import profile from "assets/img/avatars/memberIcon.png";
 import React from "react";
 // Custom components
 import Info from "views/admin/main/profile/settings/components/Info";
 import Password from "views/admin/main/profile/settings/components/Password";
 import Profile from "views/admin/main/profile/settings/components/Profile";
-import Socials from "views/admin/main/profile/settings/components/Socials";
+import Delete from "../../account/settings/components/Delete";
 
 export default function Settings() {
   return (
@@ -46,8 +46,8 @@ export default function Settings() {
         </Flex>
         {/* Column Right */}
         <Flex direction='column'>
-          <Socials />
           <Password />
+          <Delete/>
         </Flex>
       </SimpleGrid>
     </Box>

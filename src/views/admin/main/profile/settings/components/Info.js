@@ -3,7 +3,7 @@ import {
   Button,
   Flex,
   FormControl,
-  SimpleGrid,
+  SimpleGrid, Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -15,40 +15,100 @@ export default function Settings() {
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "secondaryGray.600";
+  const textColor = useColorModeValue("secondaryGray.900", "white");
   return (
     <FormControl>
-      <Card>
-        <Flex direction='column' mb='40px' ms='10px'>
-          <Text fontSize='xl' color={textColorPrimary} fontWeight='bold'>
-            Card Info
-          </Text>
-        </Flex>
-        <SimpleGrid
-          columns={{ sm: 1, md: 2 }}
-          spacing={{ base: "20px", xl: "20px" }}>
+      <Card mb='20px' pb='50px'>
+                <Flex direction='column' mb='40px' ms='10px'>
+                    <Text fontSize='xl' color={textColorPrimary} fontWeight='bold'>
+                        Personal Profile Info
+                    </Text>
+                    <Text fontSize='md' color={textColorSecondary}>
+                        Here you can set your personal info
+                    </Text>
+                </Flex>
+                <SimpleGrid columns={{base: "1", md: "2"}} gap='20px'>
+                    <InputField
+                        mb='0px'
+                        id='first'
+                        placeholder='eg. Esthera'
+                        label='First Name'
+                    />
+                    <InputField
+                        mb='0px'
+                        id='last'
+                        placeholder='eg. Peterson'
+                        label='Last Name'
+                    />
+                    <InputField
+                        mb='0px'
+                        id='Company'
+                        placeholder='eg. Simmmple'
+                        label='Company'
+                    />
+                    <InputField
+                        mb='0px'
+                        id='Email'
+                        placeholder='eg. hello@simmmple.com'
+                        label='Email Address'
+                    />
+                </SimpleGrid>
 
-          <InputField
-            mb='25px'
-            id='last_name'
-            label='Full Name'
-            placeholder='John kehas'
-          />
-        </SimpleGrid>
-        <TextField
-          id='about'
-          label='Bio'
-          h='100px'
-          placeholder='Tell something about yourself in 150 characters!'
-        />
-        <Button
-          variant='brand'
-          minW='183px'
-          fontSize='sm'
-          fontWeight='500'
-          ms='auto'>
-          Save changes
-        </Button>
-      </Card>
+                    <Text color={textColor} fontSize='2xl' fontWeight='700' mb='20px'>
+                        Address
+                    </Text>
+                    <Flex direction='column' w='100%'>
+                        <Stack direction='column' spacing='20px' mb='20px'>
+                            <InputField
+                                mb='0px'
+                                id='add1'
+                                placeholder='eg. Main Street 203'
+                                label='Address Line 1'
+                            />
+                            <InputField
+                                mb='0px'
+                                id='add2'
+                                placeholder='eg. Apartment, Floor'
+                                label='Address Line 2'
+                            />
+                            <SimpleGrid columns={{base: "1", md: "2"}} gap='20px'>
+                                <InputField
+                                    mb='0px'
+                                    id='city'
+                                    placeholder='eg. Miami'
+                                    label='City'
+                                />
+                                <SimpleGrid columns={{base: "1", md: "2"}} gap='20px'>
+                                    <InputField
+                                        mb='0px'
+                                        id='add2'
+                                        placeholder='Florida'
+                                        label='State'
+                                    />
+                                    <InputField
+                                        mb='0px'
+                                        id='zip'
+                                        placeholder='eg. Apartment, Floor'
+                                        label='ZIP'
+                                    />
+                                </SimpleGrid>
+                            </SimpleGrid>
+                        </Stack>
+                    </Flex>
+                    <Flex justify='space-between' mt='24px'>
+                        <Button
+                            variant='darkBrand'
+                            fontSize='sm'
+                            borderRadius='16px'
+                            w={{base: "128px", md: "148px"}}
+                            h='46px'
+                            ms='auto'
+                            onClick={() => {
+                            }}>
+                            Save changes
+                        </Button>
+                    </Flex>
+            </Card>
     </FormControl>
   );
 }
