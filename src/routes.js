@@ -128,21 +128,21 @@ const routes = [
     // --- Main pages ---
 
 
-    {
-        name: "New User",
-        layout: "/admin",
-        path: "/main/users/new-user",
-
-        component: UserNew,
-        icon: (
-            <Icon
-                as={MdHome}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-    },
+    // {
+    //     name: "New User",
+    //     layout: "/admin",
+    //     path: "/main/users/new-user",
+    //
+    //     component: UserNew,
+    //     icon: (
+    //         <Icon
+    //             as={MdHome}
+    //             width='20px'
+    //             height='20px'
+    //             color='inherit'
+    //         />
+    //     ),
+    // },
     {
         name: "Users Overview",
         layout: "/admin",
