@@ -14,6 +14,7 @@ import {
   Tab,
   TabPanel,
   useColorModeValue,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 // Custom components
@@ -30,6 +31,7 @@ import {
     MdEdit,
   MdMoreHoriz,
 } from "react-icons/md";
+import EditCardModal from "./EditCardModal/EditCardModal";
 
 export default function YourCard(props) {
   const { ...rest } = props;
@@ -65,6 +67,10 @@ export default function YourCard(props) {
     "unset"
   );
   const textColor = useColorModeValue("secondaryGray.900", "white");
+
+  //Modal Handlers
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <Card {...rest} p='44px'>
       <Flex justify='space-between' mb='25px' align='center'>
@@ -147,7 +153,10 @@ export default function YourCard(props) {
         <Flex
           direction='column'
           align='center'
-          me={{ base: "16px", md: "0px", "2xl": "36px" }}>
+          me={{ base: "16px", md: "0px", "2xl": "36px" }}
+          onClick={onOpen}
+          >
+          <EditCardModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
           <IconButton
             borderRadius='50%'
             bg={bgIconButton}
