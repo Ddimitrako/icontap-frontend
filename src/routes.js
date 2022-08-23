@@ -34,7 +34,7 @@ import UsersReports from "views/admin/main/users/reports";
 
 import ProfileSettings from "views/admin/main/profile/settings";
 import ProfileOverview from "views/admin/main/profile/overview";
-import ProfileNewsfeed from "views/admin/main/profile/newsfeed";
+
 import ApplicationsDataTables from "views/admin/main/applications/dataTables";
 import ApplicationsCalendar from "views/admin/main/applications/calendar";
 
