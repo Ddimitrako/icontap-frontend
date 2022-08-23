@@ -172,7 +172,7 @@ function SearchTable2(props) {
                           fontSize='md'
                           fontWeight='500'
                           id={cell.value}>
-                          Edit user
+                          Edit user card
                         </Text>
                       );
                     }

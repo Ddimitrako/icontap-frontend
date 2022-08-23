@@ -73,8 +73,8 @@ export default function UsersOverview() {
               6 May - 7 May
             </Text>
           }
-          name='Click Events'
-          value='1753'
+          name='Total Companies Number'
+          value='17'
         />
         <MiniStatistics
           endContent={
@@ -94,7 +94,7 @@ export default function UsersOverview() {
               </Select>
             </Flex>
           }
-          name='Company'
+          name='Current Company'
           value='Moderna'
         />
         <MiniStatistics
@@ -103,12 +103,12 @@ export default function UsersOverview() {
               w='56px'
               h='56px'
               bg='linear-gradient(90deg, #4481EB 0%, #04BEFE 100%)'
-              icon={<Icon w='28px' h='28px' as={MdThumbUp} color='white' />}
+              icon={<Icon w='28px' h='28px' as={MdPerson} color='white' />}
             />
           }
           endContent={<Image src={FakeLineGraph} />}
-          name='Likes'
-          value='154'
+          name='Current Company Users'
+          value='9'
         />
       </SimpleGrid>
         <SearchTableUsers
