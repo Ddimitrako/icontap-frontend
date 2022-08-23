@@ -15,7 +15,7 @@ import DashboardsCarInterface from "views/admin/dashboards/carInterface";
 import DashboardsSmartHome from "views/admin/dashboards/smartHome";
 
 // NFT Imports
-import NFTMarketplace from "views/admin/nfts/marketplace";
+
 import NFTPage from "views/admin/nfts/page";
 import NFTCollection from "views/admin/nfts/collection";
 import NFTProfile from "views/admin/nfts/profile";
