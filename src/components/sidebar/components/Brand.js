@@ -6,7 +6,7 @@ import {Flex, Image, useColorModeValue} from "@chakra-ui/react";
 // Custom components
 import { IcontapLogo } from "components/icons/Icons";
 import { HSeparator } from "components/separator/Separator";
-import logo from "assets/img/logo/logo.png";
+import logo from "assets/img/logo/logo.svg";
 export function SidebarBrand() {
   //   Chakra color mode
   let logoColor = useColorModeValue("navy.700", "white");
