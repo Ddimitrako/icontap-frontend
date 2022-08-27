@@ -18,6 +18,47 @@ import EditProfileAddContent from "./EditProfileAddContent";
 
 //The container modal
 
+export const CustomEditBox=({caption, value, onChange})=><div className="jss530" style={{ minHeight: '50px', maxHeight: '50px', maxWidth:'80%', margin:'20px auto' }}>
+    <div className="MuiInputBase-root jss532 MuiInputBase-fullWidth MuiInputBase-marginDense">
+        <input onChange={(e) => { onChange(e.target.value) }} value={value} name={caption} placeholder={caption} type="text" aria-label="search here" className="MuiInputBase-input jss533 MuiInputBase-inputMarginDense" style={{ lineHeight: '130%', height: '100%' }} />
+    </div>
+</div>
+
+export const SocialButton=()=>{
+
+    const selectSocialSize = 30;
+
+    const SelectImgButton = ({ styles }) => <div
+        style={{
+            width: `${selectSocialSize}px`,
+            height: `${selectSocialSize}px`,
+            right: `-${selectSocialSize/4}px`,
+            top: `-${selectSocialSize/4}px`,
+            position: 'absolute',
+            backgroundColor: 'white',
+            borderRadius: `${selectSocialSize}px`,
+            cursor: 'pointer',
+            backgroundImage: 'url(/static/media/edit.svg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: '60%',
+            boxShadow: '4px 4px 10px grey',
+            ...styles
+        }}
+    >
+    </div>
+
+    return <div style={{
+        width:'90px',
+        height:'90px',
+        borderRadius:'20px',
+        backgroundColor:'green',
+        position:'relative'
+    }}>
+        <SelectImgButton />
+    </div>
+}
+
 export default function EditCardModal(props) {
     
     const [page, setPage]=useState('EditProfileAddContent');
