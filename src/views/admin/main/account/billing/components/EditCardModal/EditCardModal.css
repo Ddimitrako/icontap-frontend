@@ -77,3 +77,244 @@ body {
     -webkit-tap-highlight-color: transparent;
     outline: none;
 }
+
+.jss488 {
+    top: 30px;
+    left: 30px;
+    color: #4F4F4F;
+    cursor: pointer;
+    display: flex;
+    position: absolute;
+    font-size: 12px;
+    align-items: center;
+    font-weight: 500;
+}
+
+.jss489 {
+    width: 540px;
+    display: flex;
+    padding: 82px 0px 0px 60px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.jss497 {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.jss498 {
+    width: 66px;
+    height: 66px;
+    margin-right: 18px;
+}
+
+.jss499 {
+    display: flex;
+    flex-direction: column;
+}
+
+.jss499 > div:first-child {
+    color: #4F4F4F;
+    font-size: 13px;
+    letter-spacing: -0.02em;
+    padding-bottom: 10px;
+}
+
+.jss499 > div:last-child {
+    color: #29AEF8;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.jss500 {
+    width: 100%;
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+}
+
+.jss502 {
+    color: #000000;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 18px;
+    padding-bottom: 10px;
+}
+
+.jss527 {
+    width: fit-content;
+}
+
+.jss521 {
+    height: fit-content;
+    position: relative;
+}
+
+.jss521 input {
+    display: none;
+}
+
+.jss530 {
+    display: flex;
+    padding: 13px 24px;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #F7F7F7;
+}
+
+.jss532 {
+    font-size: 13px;
+}
+
+.MuiInputBase-inputMarginDense {
+    padding-top: 3px;
+}
+
+.MuiInputBase-input {
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    border: 0;
+    height: 1.1876em;
+    margin: 0;
+    display: block;
+    padding: 6px 0 7px;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    animation-name: mui-auto-fill-cancel;
+    letter-spacing: inherit;
+    animation-duration: 10ms;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.jss540 {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.jss540 > a {
+    width: 110px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
+.jss540 > a > svg {
+    width: 13px;
+    height: auto;
+    margin-left: .5rem;
+}
+
+.jss541 {
+    font-size: 13px;
+    color:rgb(205, 205, 205);
+    font-weight: 600;
+}
+
+.jss541-ready{
+    cursor: pointer;
+    color:rgb(41, 174, 248);
+}
+
+p, pre {
+    margin: 0;
+}
+
+.jss550 {
+    width: 100%;
+    display: flex;
+    position: relative;
+    padding-top: 12px;
+    padding-bottom: 40px;
+    justify-content: flex-end;
+}
+
+.MuiButton-text {
+    padding: 6px 8px;
+}
+
+.MuiButton-root {
+    color: rgba(0, 0, 0, 0.87);
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    min-width: 64px;
+    box-sizing: border-box;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: 500;
+    line-height: 1.75;
+    border-radius: 10px;
+    text-transform: none;
+}
+
+.MuiButtonBase-root {
+    color: inherit;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    display: inline-flex;
+    outline: 0;
+    padding: 0;
+    position: relative;
+    align-items: center;
+    user-select: none;
+    border-radius: 0;
+    vertical-align: middle;
+    -moz-appearance: none;
+    justify-content: center;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.MuiButton-contained.Mui-disabled {
+    color: rgba(0, 0, 0, 0.26);
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.MuiButton-root.Mui-disabled {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+.MuiButtonBase-root.Mui-disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+.MuiButton-contained {
+    color: rgba(0, 0, 0, 0.87);
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    background-color: #e0e0e0;
+}
+
+.MuiButton-containedPrimary {
+    color: #fff;
+    background-color: #212121;
+}
+
+.jss560 {
+    width: 110px;
+    border: 1px solid #E0E0E0;
+    height: 40px;
+    border-radius: 100px;
+}
+
+.jss565 {
+    width: 165px;
+    height: 40px;
+    position: relative;
+    font-size: 13px;
+    box-shadow: none;
+    font-weight: 600;
+    margin-left: 15px;
+    border-radius: 100px;
+}
