@@ -60,8 +60,8 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles }) => {
         backgroundRepeat: 'no-repeat',
         backgroundSize: '110%',
         backgroundImage: `url(/static/media/social/${imgUrl})`,
-        float:'left',
-        margin:'20px',
+        float: 'left',
+        margin: '20px',
         ...styles
     }}>
         <SelectImgButton />
@@ -78,10 +78,18 @@ export default function EditCardModal(props) {
 
     const [currSocial, setcurrSocial] = useState();
 
+    const [tempSocialData, settempSocialData] = useState();
+
     const pages = {
-        'EditProfileAddContent': <EditProfileAddContent {...props} setPage={setPage} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
-        'EditLink': <EditLink {...props} setPage={setPage} currSocial={currSocial} socials={socials} setsocials={setsocials} />
+        'EditProfileAddContent': <EditProfileAddContent {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
+        'EditLink': <EditLink {...props} setPage={setPage} currSocial={currSocial} tempSocialData={tempSocialData} socials={socials} setsocials={setsocials} />
     }
+
+    useEffect(()=>{
+        if(page=='EditProfileAddContent'){
+            settempSocialData(null);
+        }
+    },[page]);
 
     return <Modal size={'xl'} style={{ maxWidth: '1000px' }} isOpen={props.isOpen} onClose={props.onClose} isCentered>
         <ModalOverlay

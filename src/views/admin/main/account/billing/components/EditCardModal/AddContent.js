@@ -14,29 +14,53 @@ export default function AddContent(props) {
         { title: 'Email', imgUrl: 'email.png', url: 'www.email.com' },
     ];
 
-    const SocialDefault = ({ title, imgUrl, url }) => <div style={{
-        backgroundColor: 'gray',
-        margin:'20px',
-        float: 'left',
-        padding: '10px'
-    }}>
-        <div style={{
-            width: '50px',
-            height: '50px',
-            marginRight: '10px',
-            float: 'left',
-            backgroundImage: `url(/static/media/social/${imgUrl})`,
-            boxShadow: '4px 4px 10px grey',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '110%',
-        }}></div>
+    const SocialDefault = ({ title, imgUrl, url }) => {
 
-        <span style={{ float: 'left' }}>{title}</span>
-    </div>
+        function insertSocial() {
+            props.settempSocialData({ title: title, imgUrl: imgUrl, url: url });
+            props.setcurrSocial(undefined);
+            props.setPage('EditLink');
+        }
+
+        return <div style={{
+            backgroundColor: 'rgb(247, 247, 247)',
+            margin: '10px',
+            float: 'left',
+            padding: '20px',
+            borderRadius: '20px',
+            width: '240px'
+        }}>
+
+            <div style={{
+                width: '40px',
+                height: '40px',
+                marginRight: '10px',
+                float: 'left',
+                backgroundImage: `url(/static/media/social/${imgUrl})`,
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: '110%',
+                borderRadius: '5px'
+            }}></div>
+
+            <span style={{ float: 'left', lineHeight: '40px', fontWeight: 'bold' }}>{title}</span>
+
+            <button onClick={() => {
+                insertSocial();
+            }}
+
+                style={{
+                    backgroundColor: 'white',
+                    borderRadius: '10px',
+                    height: '30px',
+                    width: '50px',
+                    marginTop: '5px',
+                    float: 'right'
+                }}>+</button>
+        </div>
+    }
 
     return <div style={{ paddingBottom: '500px' }}>
-        <button onClick={() => { props.setPage('EditLink') }}>OK</button>
         <div className="jss356">
             <div className="jss357">
                 <span>
@@ -62,7 +86,7 @@ export default function AddContent(props) {
                 </div>
             </div>
         </div>
-        <div style={{overflow:'auto'}}>
+        <div style={{ overflow: 'auto' }}>
             {SocialDummies.map((social, index) => <SocialDefault title={social.title} imgUrl={social.imgUrl} url={social.url} />)}
         </div>
     </div>
