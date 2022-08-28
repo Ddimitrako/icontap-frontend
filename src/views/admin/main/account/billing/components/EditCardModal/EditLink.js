@@ -12,14 +12,16 @@ import {
 } from "@chakra-ui/react"
 
 import './EditCardModal.css';
+import { deepCopy } from "Helpers/Arrays";
 
 //The container modal
 
 export default function EditLink(props) {
 
+    console.log(props.socials, props.currSocial, props.socials[props.currSocial], props.socials[props.currSocial]?.url);
     const [ready, setReady]=useState(false);
-    const [url, setUrl]=useState('');
-    const [title, setTitle]=useState('');
+    const [url, setUrl]=useState(props.url??(props.socials[props.currSocial]?.url??''));
+    const [title, setTitle]=useState(props.title??(props.socials[props.currSocial]?.title??''));
 
     useEffect(()=>{
         
@@ -28,8 +30,35 @@ export default function EditLink(props) {
         let allReady=urlReady && titleReady;
         
         setReady(allReady);
-    
+
     },[url, title]);
+    
+    // useEffect(()=>{
+    //     console.log(props.currSocial);
+    //     console.log(props.socials);
+    //     console.log(props.socials[props.currSocial]);
+    //     // setUrl(props.socials[props.currSocial]?.url??'');
+    //     // setTitle(props.socials[props.currSocial]?.title??'');
+    // },[props.currSocial]);
+
+    function upsertSocials() {
+        let tempSocials=deepCopy(props.socials);
+        console.log(tempSocials);
+        console.log(props.currSocial);
+        let tempCurrSocialData={url:url, title:title, imgUrl:'airbnb.png'};
+        console.log(tempCurrSocialData);
+        
+        if(props.currSocial!==undefined){
+            tempSocials[props.currSocial]=tempCurrSocialData;
+        }else{
+            tempSocials.push(tempCurrSocialData);
+        }
+        
+        console.log(tempSocials);
+        
+        props.setsocials(tempSocials);
+        props.setPage('EditProfileAddContent');
+    }
 
     return <ModalContent style={{
         padding: '0',
@@ -95,14 +124,14 @@ export default function EditLink(props) {
             </a>
             </div>
 
-            <div className="jss550">
+            <div className="jss550" onClick={() => { props.setPage('EditProfileAddContent') }}>
                 <button className="MuiButtonBase-root MuiButton-root MuiButton-text jss560" tabIndex="0" type="button">
                 <span className="MuiButton-label">Cancel</span>
             <span className="MuiTouchRipple-root">
                 </span>
             </button>
             <button className={`MuiButtonBase-root MuiButton-root MuiButton-contained jss565 MuiButton-containedPrimary ${ready?'':'Mui-disabled'}`} tabIndex="-1" type="button" disabled="">
-                <span className="MuiButton-label">Add link</span>
+                <span className="MuiButton-label" onClick={upsertSocials}>{props.currSocial==undefined?'Add link':'Update link'}</span>
             </button>
             </div>
         </div>

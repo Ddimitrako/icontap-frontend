@@ -47,7 +47,6 @@ export default function EditProfile(props) {
 
     const calculateImageButtonPosition = () => {
         let result = (((avatarRadius * 2) / Math.sqrt(2)) - avatarRadius) / (Math.sqrt(2));
-        console.log(result);
         return (avatarRadius - result) + selectImgButtonRadius;
     }
 
@@ -69,8 +68,13 @@ export default function EditProfile(props) {
 
     </div>;
 
+    function insertSocial() {
+        props.setcurrSocial(undefined);
+        props.setPage('EditLink');
+    }
+
     return <div style={{
-        paddingBottom: '500px',
+        paddingBottom: '100px',
     }}>
 
         <Cover />
@@ -80,12 +84,31 @@ export default function EditProfile(props) {
 
         <div style={{
             width: '90%',
-            margin: '50px auto 20px auto'
+            margin: '50px auto 20px auto',
+            overflow:'auto'
         }}>
-
-            <SocialButton />
+            {props.socials.map((social, index) =>
+                <SocialButton imgUrl={social.imgUrl} styles={{}} onClick={() => {
+                    props.setcurrSocial(index);
+                    props.setPage('EditLink');
+                }} key={index} />
+            )}
 
         </div>
-
+        
+        <div style={{
+            width:'100%',
+            textAlign:'center'
+        }}>
+            <button
+            style={{
+                borderRadius:'10px',
+                padding:'15px 20px'
+            }}
+            className={`MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary`} tabIndex="-1" type="button" disabled="">
+                <span className="MuiButton-label" onClick={insertSocial}>+ Add links and Contact info</span>
+            </button>
+        </div>
+    
     </div>
 }

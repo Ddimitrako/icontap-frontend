@@ -5,7 +5,36 @@ import './EditCardModal.css';
 //The container modal
 
 export default function AddContent(props) {
-    
+
+    const SocialDummies = [
+        { title: 'Facebook', imgUrl: 'fb.png', url: 'www.fb.com' },
+        { title: 'Linkedin', imgUrl: 'linkedin.png', url: 'www.linkedin.com' },
+        { title: 'Instagram', imgUrl: 'instagram.png', url: 'www.instagram.com' },
+        { title: 'Airbnb', imgUrl: 'airbnb.png', url: 'www.airbnb.com' },
+        { title: 'Email', imgUrl: 'email.png', url: 'www.email.com' },
+    ];
+
+    const SocialDefault = ({ title, imgUrl, url }) => <div style={{
+        backgroundColor: 'gray',
+        margin:'20px',
+        float: 'left',
+        padding: '10px'
+    }}>
+        <div style={{
+            width: '50px',
+            height: '50px',
+            marginRight: '10px',
+            float: 'left',
+            backgroundImage: `url(/static/media/social/${imgUrl})`,
+            boxShadow: '4px 4px 10px grey',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '110%',
+        }}></div>
+
+        <span style={{ float: 'left' }}>{title}</span>
+    </div>
+
     return <div style={{ paddingBottom: '500px' }}>
         <button onClick={() => { props.setPage('EditLink') }}>OK</button>
         <div className="jss356">
@@ -32,6 +61,9 @@ export default function AddContent(props) {
                     </div>
                 </div>
             </div>
+        </div>
+        <div style={{overflow:'auto'}}>
+            {SocialDummies.map((social, index) => <SocialDefault title={social.title} imgUrl={social.imgUrl} url={social.url} />)}
         </div>
     </div>
 }
