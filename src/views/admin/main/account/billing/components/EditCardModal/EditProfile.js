@@ -10,9 +10,25 @@ export default function EditProfile(props) {
     const [name, setname] = useState('');
     const [bio, setbio] = useState('');
 
+    const [avatar, setavatar] = useState('/static/media/img.jpg');
+    const [cover, setcover] = useState('/static/media/img.jpg');
+
+    function readURL(input,setter) {
+        console.log(input, input.files);
+        if (input.target.files && input.target.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                console.log(e.target.result);
+                setter(e.target.result);
+            }
+
+            reader.readAsDataURL(input.target.files[0]);
+        }
+    }
     const selectImgButtonRadius = 30;
 
-    const SelectImgButton = ({ styles }) => <div
+    const SelectImgButton = ({ styles, setter }) => <label
         style={{
             width: `${selectImgButtonRadius * 2}px`,
             height: `${selectImgButtonRadius * 2}px`,
@@ -28,7 +44,9 @@ export default function EditProfile(props) {
             ...styles
         }}
     >
-    </div>
+        <input type="file" style={{ display: 'none' }} onChange={(e) => readURL(e,setter)} />
+
+    </label>
 
     const avatarRadius = 120;
 
@@ -37,9 +55,13 @@ export default function EditProfile(props) {
         height: `${avatarRadius * 2}px`,
         position: 'absolute',
         backgroundColor: 'blue',
+        background: 'white url(' + avatar + ') left top no-repeat',
         borderRadius: `${avatarRadius}px`,
         border: 'solid white 7px',
         boxShadow: '4px 4px 10px grey',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
         ...styles
     }}>
 
@@ -58,13 +80,18 @@ export default function EditProfile(props) {
             borderBottomRightRadius: '30px',
             borderBottomLeftRadius: '30px',
             marginBottom: `${avatarRadius + 50}px`,
-            position: 'relative'
+            background: 'white url(' + cover + ') left top no-repeat',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            position: 'relative',
+            boxShadow: '4px 4px 10px grey',
         }}
     >
 
-        <SelectImgButton styles={{ top: '20px', right: '20px' }} />
+        <SelectImgButton styles={{ top: '20px', right: '20px' }} setter={setcover} />
         <Avatar styles={{ bottom: `-${avatarRadius}px`, left: `calc(50% - ${avatarRadius}px)` }} />
-        <SelectImgButton styles={{ bottom: `-${calculateImageButtonPosition()}px`, right: `calc(50% - ${calculateImageButtonPosition()}px)` }} />
+        <SelectImgButton setter={setavatar} styles={{ bottom: `-${calculateImageButtonPosition()}px`, right: `calc(50% - ${calculateImageButtonPosition()}px)` }} />
 
     </div>;
 
@@ -85,7 +112,7 @@ export default function EditProfile(props) {
         <div style={{
             width: '90%',
             margin: '50px auto 20px auto',
-            overflow:'auto'
+            overflow: 'auto'
         }}>
             {props.socials.map((social, index) =>
                 <SocialButton imgUrl={social.imgUrl} styles={{}} onClick={() => {
@@ -95,20 +122,20 @@ export default function EditProfile(props) {
             )}
 
         </div>
-        
+
         <div style={{
-            width:'100%',
-            textAlign:'center'
+            width: '100%',
+            textAlign: 'center'
         }}>
             <button
-            style={{
-                borderRadius:'10px',
-                padding:'15px 20px'
-            }}
-            className={`MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary`} tabIndex="-1" type="button" disabled="">
-                <span className="MuiButton-label" onClick={insertSocial}>+ Add links and Contact info</span>
+                style={{
+                    borderRadius: '10px',
+                    padding: '15px 20px'
+                }}
+                className={`MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary`} tabIndex="-1" type="button" disabled="">
+                <span className="MuiButton-label" onClick={() => alert('API CALL')}>+ Add links and Contact info</span>
             </button>
         </div>
-    
+
     </div>
 }

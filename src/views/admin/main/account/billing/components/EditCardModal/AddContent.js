@@ -7,12 +7,15 @@ import './EditCardModal.css';
 export default function AddContent(props) {
 
     const SocialDummies = [
+        { title: 'Custom', imgUrl: 'custom.svg', url: 'www.example.com' },
         { title: 'Facebook', imgUrl: 'fb.png', url: 'www.fb.com' },
         { title: 'Linkedin', imgUrl: 'linkedin.png', url: 'www.linkedin.com' },
         { title: 'Instagram', imgUrl: 'instagram.png', url: 'www.instagram.com' },
         { title: 'Airbnb', imgUrl: 'airbnb.png', url: 'www.airbnb.com' },
         { title: 'Email', imgUrl: 'email.png', url: 'www.email.com' },
     ];
+
+    const [search, setsearch]=useState('');
 
     const SocialDefault = ({ title, imgUrl, url }) => {
 
@@ -81,13 +84,13 @@ export default function AddContent(props) {
                         </svg>
                     </div>
                     <div className="MuiInputBase-root jss370 MuiInputBase-fullWidth">
-                        <input placeholder="Search content..." type="text" aria-label="search here" className="MuiInputBase-input" defaultValue="" />
+                        <input value={search} onChange={(e)=>setsearch(e.target.value)} placeholder="Search content..."  type="text" aria-label="search here" className="MuiInputBase-input" />
                     </div>
                 </div>
             </div>
         </div>
         <div style={{ overflow: 'auto' }}>
-            {SocialDummies.map((social, index) => <SocialDefault title={social.title} imgUrl={social.imgUrl} url={social.url} />)}
+            {SocialDummies.filter((social)=>social.title.toLowerCase().includes(search.toLowerCase())).map((social, index) => <SocialDefault title={social.title} imgUrl={social.imgUrl} url={social.url} />)}
         </div>
     </div>
 }
