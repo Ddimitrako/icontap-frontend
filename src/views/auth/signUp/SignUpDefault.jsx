@@ -47,6 +47,7 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
+import { useState } from "react";
 
 function SignUp() {
   // Chakra color mode
@@ -67,6 +68,42 @@ function SignUp() {
   );
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+
+  const [loading, setloading]=useState(false);
+  
+  const axios = require('axios').default;
+
+  const [email, setemail]=useState('');
+  const [name, setname]=useState('');
+  const [lastname, setlastname]=useState('');
+  const [pass, setpass]=useState('');
+  const [cpass, setcpass]=useState('');
+
+  const data={
+    email:email,
+    name:name,
+    last_name:lastname,
+    password:pass,
+    c_password:cpass,
+  }
+
+  function postToApi() {
+    setloading(true);
+    axios({
+      method:'post',
+      url:`http://127.0.0.1:8000/api/register`,
+      data:data
+    }).then((response)=>{
+      console.log(response);
+      window.location.href='/#/auth/sign-in';
+    }).catch((err)=>{
+      console.log(err.response);
+    }).finally(()=>{
+      setloading(false);
+    })
+  }
+
+
   return (
     <DefaultAuth illustrationBackground={illustration} image={illustration}>
       <Flex
@@ -151,6 +188,8 @@ function SignUp() {
                   variant='auth'
                   mb='24px'
                   size='lg'
+                  onChange={(e)=>setname(e.target.value)}
+                  value={name}
                 />
               </Flex>
               <Flex direction='column'>
@@ -170,6 +209,8 @@ function SignUp() {
                   placeholder='Last name'
                   mb='24px'
                   size='lg'
+                  onChange={(e)=>setlastname(e.target.value)}
+                  value={lastname}
                 />
               </Flex>
             </SimpleGrid>
@@ -190,6 +231,8 @@ function SignUp() {
               placeholder='mail@simmmple.com'
               mb='24px'
               size='lg'
+              onChange={(e)=>setemail(e.target.value)}
+              value={email}
             />
             <FormLabel
               ms='4px'
@@ -210,6 +253,39 @@ function SignUp() {
                 mb='24px'
                 size='lg'
                 type={show ? "text" : "password"}
+                onChange={(e)=>setpass(e.target.value)}
+                value={pass}
+              />
+              <InputRightElement display='flex' alignItems='center' mt='4px'>
+                <Icon
+                  color={textColorSecondary}
+                  _hover={{ cursor: "pointer" }}
+                  as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
+                  onClick={handleClick}
+                />
+              </InputRightElement>
+            </InputGroup>
+            <FormLabel
+              ms='4px'
+              fontSize='sm'
+              fontWeight='500'
+              isRequired={true}
+              color={textColor}
+              display='flex'>
+              Repeat Password<Text color={brandStars}>*</Text>
+            </FormLabel>
+            <InputGroup size='md'>
+              <Input
+                isRequired={true}
+                variant='auth'
+                fontSize='sm'
+                ms={{ base: "0px", md: "4px" }}
+                placeholder='Min. 8 characters'
+                mb='24px'
+                size='lg'
+                type={show ? "text" : "password"}
+                onChange={(e)=>setcpass(e.target.value)}
+                value={cpass}
               />
               <InputRightElement display='flex' alignItems='center' mt='4px'>
                 <Icon
@@ -255,7 +331,12 @@ function SignUp() {
               fontWeight='500'
               w='100%'
               h='50'
-              mb='24px'>
+              mb='24px'
+              onClick={postToApi}  
+              isLoading={loading}
+              loadingText={'Please wait...'}
+            >
+
               Create my account
             </Button>
           </FormControl>

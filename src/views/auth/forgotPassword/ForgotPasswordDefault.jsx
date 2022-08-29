@@ -20,7 +20,7 @@
 
 */
 
-import React from "react";
+import React, { useState } from "react";
 
 // Chakra imports
 import {
@@ -46,6 +46,33 @@ function ForgotPassword() {
   const textColor = useColorModeValue("navy.700", "white");
   const textColorSecondary = "gray.400";
   const brandStars = useColorModeValue("brand.500", "brand.400");
+
+  const [email, setemail]=useState('');
+  
+  const [loading, setloading]=useState(false);
+  
+  const axios = require('axios').default;
+
+  const data={
+    email:email,
+  }
+
+  function postToApi() {
+    setloading(true);
+    axios({
+      method:'post',
+      url:`http://127.0.0.1:8000/api/forgot-password`,
+      data:data
+    }).then((response)=>{
+      console.log(response);
+      window.location.href='/#/auth/sign-in';
+    }).catch((err)=>{
+      console.log(err.response);
+    }).finally(()=>{
+      setloading(false);
+    })
+  }
+
   return (
     <DefaultAuth illustrationBackground={illustration} image={illustration}>
       <Flex
@@ -105,6 +132,8 @@ function ForgotPassword() {
               placeholder='mail@simmmple.com'
               mb='24px'
               size='lg'
+              onChange={(e)=>setemail(e.target.value)}
+              value={email}
             />
             <Button
               fontSize='sm'
@@ -112,7 +141,11 @@ function ForgotPassword() {
               fontWeight='500'
               w='100%'
               h='50'
-              mb='24px'>
+              mb='24px'
+              onClick={postToApi}  
+              isLoading={loading}
+              loadingText={'Please wait...'}
+              >
               Email password reset link
             </Button>
           </FormControl>
