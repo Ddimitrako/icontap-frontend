@@ -91,9 +91,9 @@ body {
 }
 
 .jss489 {
-    width: 540px;
+    width: 100%;
     display: flex;
-    padding: 82px 0px 0px 60px;
+    padding: 82px 60px 0px 60px;
     align-items: center;
     flex-direction: column;
 }
@@ -233,7 +233,7 @@ p, pre {
     position: relative;
     padding-top: 12px;
     padding-bottom: 40px;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .MuiButton-text {

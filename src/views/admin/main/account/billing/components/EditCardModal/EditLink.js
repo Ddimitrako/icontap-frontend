@@ -49,14 +49,14 @@ export default function EditLink(props) {
         console.log(tempSocials);
 
         props.setsocials(tempSocials);
-        props.setPage('EditProfileAddContent');
+        props.setPage('EditProfileContainer');
     }
     
     function deleteSocial() {
         let tempSocials = deepCopy(props.socials);
         tempSocials.splice(props.currSocial, 1);
         props.setsocials(tempSocials);
-        props.setPage('EditProfileAddContent');
+        props.setPage('EditProfileContainer');
     }
 
     return <ModalContent style={{
@@ -71,7 +71,7 @@ export default function EditLink(props) {
             </svg>
         </div>
 
-        <div className="jss488" onClick={() => { props.setPage('EditProfileAddContent') }}>
+        <div className="jss488" onClick={() => { props.setPage('EditProfileContainer') }}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 6L8 10L12 14" stroke="#828282" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 </path>
@@ -124,7 +124,7 @@ export default function EditLink(props) {
             </div>
 
             <div className="jss550">
-                <button onClick={() => { props.setPage('EditProfileAddContent') }} className="MuiButtonBase-root MuiButton-root MuiButton-text jss560" tabIndex="0" type="button">
+                <button onClick={() => { props.setPage('EditProfileContainer') }} className="MuiButtonBase-root MuiButton-root MuiButton-text jss560" tabIndex="0" type="button">
                     <span className="MuiButton-label">Cancel</span>
                     {/* <span className="MuiTouchRipple-root">
                     </span> */}

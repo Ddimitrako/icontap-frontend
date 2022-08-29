@@ -14,7 +14,8 @@ import {
 import './EditCardModal.css';
 import AddContent from "./AddContent";
 import EditLink from "./EditLink";
-import EditProfileAddContent from "./EditProfileAddContent";
+import EditProfileContainer from "./EditProfileContainer";
+import AddContentContainer from "./AddContentContainer";
 
 //The container modal
 
@@ -70,7 +71,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles }) => {
 
 export default function EditCardModal(props) {
 
-    const [page, setPage] = useState('EditProfileAddContent');
+    const [page, setPage] = useState('EditProfileContainer');
 
     const [socials, setsocials] = useState([
         { imgUrl: 'sms.png', title: 'SMS', url: 'smsTo:12345678' }
@@ -81,12 +82,13 @@ export default function EditCardModal(props) {
     const [tempSocialData, settempSocialData] = useState();
 
     const pages = {
-        'EditProfileAddContent': <EditProfileAddContent {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
+        'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
+        'AddContentContainer': <AddContentContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
         'EditLink': <EditLink {...props} setPage={setPage} currSocial={currSocial} tempSocialData={tempSocialData} socials={socials} setsocials={setsocials} />
     }
 
     useEffect(()=>{
-        if(page=='EditProfileAddContent'){
+        if(page=='EditProfileContainer'){
             settempSocialData(null);
         }
     },[page]);

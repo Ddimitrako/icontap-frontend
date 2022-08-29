@@ -17,7 +17,7 @@ import EditProfile from "./EditProfile";
 
 //The container modal
 
-export default function EditProfileAddContent(props) {
+export default function EditProfileContainer(props) {
     return <ModalContent style={{
         padding: '48px 45px 12px 45px',
         boxShadow: '0px 12px 40px rgb(0 0 0 / 20%)',
@@ -29,7 +29,6 @@ export default function EditProfileAddContent(props) {
 
         <div style={{ overflowX: 'auto' }}>
             <EditProfile {...props} />
-            <AddContent {...props} />
         </div>
 
     </ModalContent>

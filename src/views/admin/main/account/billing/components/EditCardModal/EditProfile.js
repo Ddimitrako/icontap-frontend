@@ -133,7 +133,7 @@ export default function EditProfile(props) {
                     padding: '15px 20px'
                 }}
                 className={`MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary`} tabIndex="-1" type="button" disabled="">
-                <span className="MuiButton-label" onClick={() => alert('API CALL')}>+ Add links and Contact info</span>
+                <span className="MuiButton-label" onClick={() => props.setPage('AddContentContainer') }>+ Add links and Contact info</span>
             </button>
         </div>
 
