@@ -242,7 +242,12 @@ export default function HeaderLinks(props) {
               _focus={{ bg: "none" }}
               color='red.400'
               borderRadius='8px'
-              px='14px'>
+              px='14px'
+              onClick={()=>{
+                localStorage.clear();
+                window.location.href='/#/auth/sign-in';
+              }}  
+              >
               <Text fontSize='sm'>Log out</Text>
             </MenuItem>
           </Flex>

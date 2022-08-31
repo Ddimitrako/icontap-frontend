@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
     Modal,
@@ -12,59 +12,92 @@ import {
 } from "@chakra-ui/react"
 
 import './EditCardModal.css';
+import AddContent from "./AddContent";
+import EditLink from "./EditLink";
+import EditProfileContainer from "./EditProfileContainer";
+import AddContentContainer from "./AddContentContainer";
 
 //The container modal
 
+export const CustomEditBox = ({ caption, value, onChange }) => <div className="jss530" style={{ minHeight: '50px', maxHeight: '50px', maxWidth: '80%', margin: '20px auto' }}>
+    <div className="MuiInputBase-root jss532 MuiInputBase-fullWidth MuiInputBase-marginDense">
+        <input onChange={(e) => { onChange(e.target.value) }} value={value} name={caption} placeholder={caption} type="text" aria-label="search here" className="MuiInputBase-input jss533 MuiInputBase-inputMarginDense" style={{ lineHeight: '130%', height: '100%' }} />
+    </div>
+</div>
+
+export const SocialButton = ({ imgUrl, bgColor, onClick, styles }) => {
+
+    const selectSocialSize = 30;
+
+    const SelectImgButton = ({ styles }) => <div
+        onClick={onClick}
+        style={{
+            width: `${selectSocialSize}px`,
+            height: `${selectSocialSize}px`,
+            right: `-${selectSocialSize / 4}px`,
+            top: `-${selectSocialSize / 4}px`,
+            position: 'absolute',
+            backgroundColor: 'white',
+            borderRadius: `${selectSocialSize}px`,
+            cursor: 'pointer',
+            backgroundImage: 'url(/static/media/edit.svg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: '60%',
+            boxShadow: '4px 4px 10px grey',
+            ...styles
+        }}
+    >
+    </div>
+
+    return <div style={{
+        width: '90px',
+        height: '90px',
+        borderRadius: '20px',
+        backgroundColor: bgColor,
+        position: 'relative',
+        boxShadow: '4px 4px 10px grey',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '110%',
+        backgroundImage: `url(/static/media/social/${imgUrl})`,
+        float: 'left',
+        margin: '20px',
+        ...styles
+    }}>
+        <SelectImgButton />
+    </div>
+}
+
 export default function EditCardModal(props) {
-    return <Modal size={'xl'} style={{width:'1000px'}} isOpen={props.isOpen} onClose={props.onClose} isCentered>
+
+    const [page, setPage] = useState('EditProfileContainer');
+
+    const [socials, setsocials] = useState([
+        { imgUrl: 'sms.png', title: 'SMS', url: 'smsTo:12345678' }
+    ]);
+
+    const [currSocial, setcurrSocial] = useState();
+
+    const [tempSocialData, settempSocialData] = useState();
+
+    const pages = {
+        'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
+        'AddContentContainer': <AddContentContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
+        'EditLink': <EditLink {...props} setPage={setPage} currSocial={currSocial} tempSocialData={tempSocialData} socials={socials} setsocials={setsocials} />
+    }
+
+    useEffect(()=>{
+        if(page=='EditProfileContainer'){
+            settempSocialData(null);
+        }
+    },[page]);
+
+    return <Modal size={'xl'} style={{ maxWidth: '1000px' }} isOpen={props.isOpen} onClose={props.onClose} isCentered>
         <ModalOverlay
             bg='blackAlpha.300'
             backdropFilter='blur(10px) hue-rotate(90deg)'
         />
-        <ModalContent style={{
-            padding:'48px 45px 12px 45px',
-            boxShadow:'0px 12px 40px rgb(0 0 0 / 20%)',
-            borderRadius:'30px'
-        }} maxW={'900px'} maxH={'660px'}>
-            <div style={{top:'30px', right:'30px', position:'absolute', cursor:'pointer'}} onClick={props.onClose}>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L8 8M15 15L8 8M8 8L15 1M8 8L1 15" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-            </div>
-            
-            <div className="jss356">
-                <div className="jss357">
-                    <span>
-                        Add content
-                    </span>
-                </div>
-                <div className="jss359">
-                    <div>
-                        <span className="jss358">
-                            Select from our wide variety of links and contact info below.
-                        </span>
-                    </div>
-                    <div className="jss369">
-                        <div className="jss371">
-                            <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
-                                <path d="M6.66667 11.3333C9.244 11.3333 11.3333 9.244 11.3333 6.66667C11.3333 4.08934 9.244 2 6.66667 2C4.08934 2 2 4.08934 2 6.66667C2 9.244 4.08934 11.3333 6.66667 11.3333Z" stroke="#828282" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M13.0911 13.0911L10 10" stroke="#828282" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                            </svg>
-                        </div>
-                        <div className="MuiInputBase-root jss370 MuiInputBase-fullWidth">
-                            <input placeholder="Search content..." type="text" aria-label="search here" className="MuiInputBase-input" defaultValue="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style={{overflowX:'auto'}}>
-                <div style={{paddingTop:'5000px'}}></div>
-            </div>
-            {/* <ModalFooter>
-                <Button colorScheme="brand" mr={3} onClick={props.onClose}>
-                    Close
-                </Button>
-                <Button variant="ghost">Secondary Action</Button>
-            </ModalFooter> */}
-        </ModalContent>
+        {pages[page]}
     </Modal>
 }

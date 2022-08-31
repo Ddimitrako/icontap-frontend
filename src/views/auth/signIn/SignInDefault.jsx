@@ -20,7 +20,7 @@
 
 */
 
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 // Chakra imports
 import {
@@ -65,6 +65,38 @@ function SignIn() {
     { bg: "whiteAlpha.200" }
   );
   const [show, setShow] = React.useState(false);
+
+  
+  const [loading, setloading]=useState(false);
+  
+  const axios = require('axios').default;
+
+  const [email, setemail]=useState('');
+  const [pass, setpass]=useState('');
+
+  
+  const data={
+    email:email,
+    password:pass
+  }
+
+  function postToApi() {
+    setloading(true);
+    axios({
+      method:'post',
+      url:`http://127.0.0.1:8000/api/login`,
+      data:data
+    }).then((response)=>{
+      console.log(response);
+      localStorage.setItem('token', response?.data?.data?.token);
+      window.location.href='/#/admin/dashboards/default';
+    }).catch((err)=>{
+      console.log(err.response);
+    }).finally(()=>{
+      setloading(false);
+    })
+  }
+
   const handleClick = () => setShow(!show);
   return (
     <DefaultAuth illustrationBackground={illustration} image={illustration}>
@@ -146,6 +178,8 @@ function SignIn() {
               mb='24px'
               fontWeight='500'
               size='lg'
+              onChange={(e)=>setemail(e.target.value)}
+              value={email}
             />
             <FormLabel
               ms='4px'
@@ -165,6 +199,8 @@ function SignIn() {
                 size='lg'
                 type={show ? "text" : "password"}
                 variant='auth'
+                onChange={(e)=>setpass(e.target.value)}
+                value={pass}
               />
               <InputRightElement display='flex' alignItems='center' mt='4px'>
                 <Icon
@@ -207,7 +243,11 @@ function SignIn() {
               fontWeight='500'
               w='100%'
               h='50'
-              mb='24px'>
+              mb='24px'
+              onClick={postToApi}  
+              isLoading={loading}
+              loadingText={'Please wait...'}
+              >
               Sign In
             </Button>
           </FormControl>
