@@ -16,9 +16,9 @@ import DashboardsSmartHome from "views/admin/dashboards/smartHome";
 
 // NFT Imports
 
-import NFTPage from "views/admin/nfts/page";
-import NFTCollection from "views/admin/nfts/collection";
-import NFTProfile from "views/admin/nfts/profile";
+import NFTPage from "views/admin/cards/cardProfile";
+
+import NFTProfile from "views/admin/cards/cardsList";
 
 // Main Imports
 import AccountBilling from "views/admin/main/account/billing";
@@ -95,7 +95,7 @@ const routes = [
     {
         name: "Cards",
         layout: "/admin",
-        path: "/cards/card",
+        path: "/cardsList/card",
         component: NFTProfile,
         secondary: true,
         icon: (
@@ -111,7 +111,7 @@ const routes = [
     {
         name: "Card Settings",
         layout: "/admin",
-        path: "/nfts/page",
+        path: "/cards/cardProfile",
         component: NFTPage,
         secondary: true,
         icon: (

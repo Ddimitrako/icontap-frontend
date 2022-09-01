@@ -40,17 +40,17 @@ import {
 } from "@chakra-ui/react";
 
 // Custom components
-import Banner from "views/admin/nfts/profile/components/Banner";
+import Banner from "views/admin/cards/cardsList/components/Banner";
 import NFT from "components/card/NFT";
-import { SearchBar } from "views/admin/nfts/profile/components/Search";
+import { SearchBar } from "views/admin/cards/cardsList/components/Search";
 import { HSeparator } from "components/separator/Separator";
 import YourCard from "views/admin/main/account/billing/components/YourCard";
 // Assets
-import Nft2 from "assets/img/nfts/Nft2.png";
-import Nft4 from "assets/img/nfts/Nft4.png";
-import Nft5 from "assets/img/nfts/Nft5.png";
-import Nft6 from "assets/img/nfts/Nft6.png";
-import NftBanner3 from "assets/img/nfts/NftBanner3.png";
+import Nft2 from "assets/img/cards/Nft2.png";
+import Nft4 from "assets/img/cards/Nft4.png";
+import Nft5 from "assets/img/cards/Nft5.png";
+import Nft6 from "assets/img/cards/Nft6.png";
+import NftBanner3 from "assets/img/cards/NftBanner3.png";
 import AvatarSimmmple from "assets/img/avatars/avatarSimmmple.png";
 import Avatar1 from "assets/img/avatars/avatar1.png";
 import Avatar2 from "assets/img/avatars/avatar2.png";
