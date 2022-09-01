@@ -21,7 +21,7 @@
 */
 
 import React, { useState } from "react";
-
+import {AddNewCard} from "./components/AddNewCard";
 // Chakra imports
 import {
   Box,
@@ -68,18 +68,7 @@ import {
 } from "react-icons/md";
 import { IoMdHeartEmpty } from "react-icons/io";
 export default function Collection(props) {
-  const { ...rest } = props;
-  let [tabState, setTabState] = useState("collected");
-  const bgButton = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
-  const bgHover = useColorModeValue(
-    { bg: "secondaryGray.400" },
-    { bg: "whiteAlpha.50" }
-  );
-  const bgFocus = useColorModeValue(
-    { bg: "secondaryGray.300" },
-    { bg: "whiteAlpha.100" }
-  );
-  const iconColor = useColorModeValue("brand.500", "white");
+
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const buttonBg = useColorModeValue("transparent", "navy.800");
   const hoverButton = useColorModeValue(
@@ -164,21 +153,7 @@ export default function Collection(props) {
           ms='24px'
           fontWeight='700'>Your Cards
         </Text>
-        <Button
-          align='center'
-          justifyContent='center'
-          bg={bgButton}
-          _hover={bgHover}
-          _focus={bgFocus}
-          _active={bgFocus}
-          w='37px'
-          h='37px'
-          lineHeight='100%'
-          borderRadius='10px'
-          {...rest}>
-          <Icon as={MdAddCircle} color={iconColor} w='24px' h='24px' />
-        </Button>
-
+        <AddNewCard/>
         <TabPanels>
           <TabPanel px='0px'>{panelExample}</TabPanel>
           <TabPanel px='0px'>{panelExample}</TabPanel>
