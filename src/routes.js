@@ -10,8 +10,6 @@ import {
 import { AiOutlineIdcard,AiOutlineUser,AiOutlineTeam,AiTwotoneSetting } from "react-icons/ai";
 // Admin Imports
 import DashboardsDefault from "views/admin/dashboards/default";
-import DashboardsCarInterface from "views/admin/dashboards/carInterface";
-import DashboardsSmartHome from "views/admin/dashboards/smartHome";
 
 // NFT Imports
 
