@@ -20,7 +20,11 @@ export const columnsDataUsersOverview = [
     accessor: "type",
   },
   {
-    Header: "ACTIONS",
-    accessor: "actions",
+    Header: "ACTIONS1",
+    accessor: "actions1",
+  },
+    {
+    Header: "ACTIONS2",
+    accessor: "actions2",
   },
 ];

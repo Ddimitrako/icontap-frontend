@@ -170,17 +170,31 @@ function SearchTable2(props) {
                         <option value='Member'>Member</option>
                       </Select>
                       );
-                    } else if (cell.column.Header === "ACTIONS") {
+                    } else if (cell.column.Header === "ACTIONS1") {
                       data = (
-                        <Text
-                          cursor='pointer'
-                          color={brandColor}
-                          textDecoration='underline'
-                          fontSize='md'
-                          fontWeight='500'
-                          id={cell.value}>
-                          Edit user card
-                        </Text>
+                        // <Text
+                        //   cursor='pointer'
+                        //   color={brandColor}
+                        //   textDecoration='underline'
+                        //   fontSize='md'
+                        //   fontWeight='500'
+                        //   id={cell.value}>
+                        //   Edit user card
+                        // </Text>,
+                          <Button color={brandColor}>Edit User Cards</Button>
+                      );
+                    }else if (cell.column.Header === "ACTIONS2") {
+                      data = (
+                        // <Text
+                        //   cursor='pointer'
+                        //   color={brandColor}
+                        //   textDecoration='underline'
+                        //   fontSize='md'
+                        //   fontWeight='500'
+                        //   id={cell.value}>
+                        //   Edit user card
+                        // </Text>,
+                          <Button color={brandColor}>See user Insights</Button>
                       );
                     }
                     return (
