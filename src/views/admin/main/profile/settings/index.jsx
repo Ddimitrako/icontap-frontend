@@ -21,7 +21,7 @@
 */
 
 // Chakra imports
-import { Box, Flex, SimpleGrid } from "@chakra-ui/react";
+import {Box, Flex, Select, SimpleGrid, Text, useColorModeValue} from "@chakra-ui/react";
 // Assets
 import banner from "assets/img/auth/banner.png";
 import profile from "assets/img/avatars/memberIcon.png";
@@ -33,6 +33,8 @@ import Profile from "views/admin/main/profile/settings/components/Profile";
 import Delete from "../../account/settings/components/Delete";
 
 export default function Settings() {
+  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorSecondary = "secondaryGray.600";
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       <SimpleGrid
@@ -41,11 +43,30 @@ export default function Settings() {
         spacing={{ base: "20px", xl: "20px" }}>
         {/* Column Left */}
         <Flex direction='column'>
-          <Profile name='Vlad Mihalache' avatar={profile} banner={banner} />
+          {/*<Profile name='Vlad Mihalache' avatar={profile} banner={banner} />*/}
           <Info />
         </Flex>
         {/* Column Right */}
         <Flex direction='column'>
+          <Flex align='center' mx='auto' px='15px'>
+        <Text
+          me='4px'
+          color={textColorSecondary}
+          fontSize='sm'
+          fontWeight='400'
+          lineHeight='100%'>
+          Account type:
+        </Text>
+        <Text
+          id='user_type'
+          w='unset'
+          variant='transparent'
+          display='flex'
+          textColor={textColorPrimary}
+          color={textColorPrimary}
+          alignItems='center'>Member
+        </Text>
+      </Flex>
           <Password />
           <Delete/>
         </Flex>
