@@ -15,7 +15,7 @@ import {
   Text,
   Th,
   Thead,
-  Tr,
+  Tr,Select,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
@@ -159,9 +159,16 @@ function SearchTable2(props) {
                       );
                     } else if (cell.column.Header === "USER TYPE") {
                       data = (
-                        <Text color={textColor} fontSize='md' fontWeight='500'>
-                          {cell.value}
-                        </Text>
+                      <Select
+                        id='user_type'
+                        w='unset'
+                        variant='transparent'
+                        display='flex'
+                        alignItems='center'
+                        defaultValue={cell.value}>
+                        <option value='Administrator'>Administrator</option>
+                        <option value='Member'>Member</option>
+                      </Select>
                       );
                     } else if (cell.column.Header === "ACTIONS") {
                       data = (
