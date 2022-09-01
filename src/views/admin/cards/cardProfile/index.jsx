@@ -76,7 +76,7 @@ export default function Page() {
                 gap={{base: "20px", xl: "20px"}}
                 display={{base: "block", lg: "grid"}}>
                 <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'>
-                    <Banner image={Debit}/>
+
                     <FormControl>
       <Card>
         <Flex direction='column' mb='40px' ms='10px'>
@@ -122,22 +122,11 @@ export default function Page() {
                             "2xl": "1 / 3 / 2 / 4",
                         }}
                     />
-                    <Card px='0px' mb='20px' mt='66px'>
-                    </Card>
+
                 </Flex>
             </Grid>
-            <Text
-                mt='25px'
-                mb='36px'
-                color={textColor}
-                fontSize='2xl'
-                ms='24px'
-                fontWeight='700'>
-                More from this Collection
-            </Text>
-            <SimpleGrid columns={{base: 1, md: 2, xl: 4}} gap='20px'>
+            
 
-            </SimpleGrid>
 
             {/* Delete Product */}
         </Box>
