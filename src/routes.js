@@ -48,15 +48,13 @@ import OthersPricing from "views/admin/main/others/pricing";
 import OthersError from "views/admin/main/others/404";
 
 // Auth Imports
-import ForgotPasswordCentered from "views/auth/forgotPassword/ForgotPasswordCentered.jsx";
+
 import ForgotPasswordDefault from "views/auth/forgotPassword/ForgotPasswordDefault.jsx";
-import LockCentered from "views/auth/lock/LockCentered.jsx";
+
 import LockDefault from "views/auth/lock/LockDefault.jsx";
-import SignInCentered from "views/auth/signIn/SignInCentered.jsx";
 import SignInDefault from "views/auth/signIn/SignInDefault.jsx";
-import SignUpCentered from "views/auth/signUp/SignUpCentered.jsx";
 import SignUpDefault from "views/auth/signUp/SignUpDefault.jsx";
-import VerificationCentered from "views/auth/verification/VerificationCentered.jsx";
+
 import VerificationDefault from "views/auth/verification/VerificationDefault.jsx";
 
 const routes = [
