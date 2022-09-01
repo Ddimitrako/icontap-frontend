@@ -55,8 +55,7 @@ export default function Default() {
           <Flex gridArea={{ base: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
             <OverallRevenue />
           </Flex>
-          <Flex gridArea={{ base: "2 / 1 / 3 / 3", "2xl": "1 / 2 / 2 / 3" }}>
-          </Flex>
+
         </Grid>
         <Grid
           gap='20px'
@@ -69,19 +68,17 @@ export default function Default() {
             "2xl": "1fr",
           }}
           mb='20px'>
-
+          <Flex gridArea={{ md: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
+             <MostVisitedTable
+              tableData={tableDataMostVisited}
+              columnsData={tableColumnsMostVisited}
+            />
+          </Flex>
         </Grid>
         <Grid
           templateColumns={{ base: "repeat(2, 1fr)", "2xl": "350fr 720fr" }}
           gap='20px'
           display={{ base: "block", lg: "grid" }}>
-
-          <Flex gridArea={{ base: "2 / 1 / 3 / 3", "2xl": "1 / 2 / 2 / 3" }}>
-            <MostVisitedTable
-              tableData={tableDataMostVisited}
-              columnsData={tableColumnsMostVisited}
-            />
-          </Flex>
         </Grid>
       </Flex>
       <VSeparator
@@ -89,10 +86,7 @@ export default function Default() {
         bg={paleGray}
         display={{ base: "none", xl: "flex" }}
       />
-      <YourCard
-        maxW={{ base: "100%", xl: "400px" }}
-        maxH={{ base: "100%", xl: "1170px", "2xl": "100%" }}
-      />
+
       <Banner
           gridArea='1 / 1 / 2 / 2'
           banner={banner}
@@ -103,6 +97,10 @@ export default function Default() {
           followers='9.7k'
           following='274'
         />
+        <YourCard
+        maxW={{ base: "100%", xl: "400px" }}
+        maxH={{ base: "100%", xl: "1100px", "2xl": "100%" }}
+      />
     </Flex>
 
 

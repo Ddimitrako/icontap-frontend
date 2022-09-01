@@ -21,7 +21,8 @@
 */
 
 import React from "react";
-
+import iphone from "assets/img/cards/iphone.png";
+import CustomIframe from "./components/Iframe";
 // Chakra imports
 import {
     Box,
@@ -29,7 +30,7 @@ import {
     Grid,
     Text,
     useColorModeValue,
-    SimpleGrid, Button, FormControl,
+    SimpleGrid, Button, FormControl, Image,
 } from "@chakra-ui/react";
 
 // Custom components
@@ -40,17 +41,6 @@ import Description from "views/admin/cards/cardProfile/components/Description";
 import NFT from "components/card/NFT";
 import Card from "components/card/Card.js";
 
-// Assets
-import Nft2 from "assets/img/cards/Nft2.png";
-import Nft4 from "assets/img/cards/Nft4.png";
-import Nft5 from "assets/img/cards/Nft5.png";
-import Nft6 from "assets/img/cards/Nft6.png";
-import Debit from "assets/img/dashboards/Debit.png";
-import Avatar1 from "assets/img/avatars/avatar1.png";
-import Avatar2 from "assets/img/avatars/avatar2.png";
-import Avatar3 from "assets/img/avatars/avatar3.png";
-import Avatar4 from "assets/img/avatars/avatar4.png";
-import AvatarSimmmple from "assets/img/avatars/avatarSimmmple.png";
 import tableDataLastOffer from "views/admin/cards/cardProfile/variables/tableDataLastOffer.json";
 import {tableColumnsLastOffer} from "views/admin/cards/cardProfile/variables/tableColumnsLastOffer";
 import Notifications from "../../main/profile/overview/components/Notifications";
@@ -62,6 +52,9 @@ export default function Page() {
     const textColorSecondary = "secondaryGray.600";
     const textColor = useColorModeValue("secondaryGray.900", "white");
     // Chakra Color Mode
+
+
+
     return (
         <Box pt={{base: "180px", md: "80px", xl: "80px"}}>
             {/* Main Fields */}
@@ -78,54 +71,53 @@ export default function Page() {
                 <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'>
 
                     <FormControl>
-      <Card>
-        <Flex direction='column' mb='40px' ms='10px'>
-          <Text fontSize='xl' color={textColorPrimary} fontWeight='bold'>
-            Card Info
-          </Text>
-        </Flex>
-        <SimpleGrid
-          columns={{ sm: 1, md: 2 }}
-          spacing={{ base: "20px", xl: "20px" }}>
+                        <Card>
+                            <Flex direction='column' mb='40px' ms='10px'>
+                                <Text fontSize='xl' color={textColorPrimary} fontWeight='bold'>
+                                    Card Info
+                                </Text>
+                            </Flex>
+                            <SimpleGrid
+                                columns={{sm: 1, md: 2}}
+                                spacing={{base: "20px", xl: "20px"}}>
 
-          <InputField
-            mb='25px'
-            id='last_name'
-            label='Full Name'
-            placeholder='John kehas'
-          />
-        </SimpleGrid>
-        <TextField
-          id='about'
-          label='Bio'
-          h='100px'
-          placeholder='Tell something about yourself in 150 characters!'
-        />
-        <Button
-          variant='brand'
-          minW='183px'
-          fontSize='sm'
-          fontWeight='500'
-          ms='auto'>
-          Save changes
-        </Button>
-      </Card>
-    </FormControl>
+                                <InputField
+                                    mb='25px'
+                                    id='last_name'
+                                    label='Full Name'
+                                    placeholder='John kehas'
+                                />
+                            </SimpleGrid>
+                            <TextField
+                                id='about'
+                                label='Bio'
+                                h='100px'
+                                placeholder='Tell something about yourself in 150 characters!'
+                            />
+                            <Notifications
+                                used={25.6}
+                                total={50}
+                            />
+                            <Button
+                                variant='brand'
+                                minW='183px'
+                                fontSize='sm'
+                                fontWeight='500'
+                                ms='auto'>
+                                Save changes
+                            </Button>
+
+                        </Card>
+                    </FormControl>
                 </Flex>
-                <Flex flexDirection='column' gridArea='1 / 2 / 2 / 3' pt='60px'>
-                    <Notifications
-                        used={25.6}
-                        total={50}
-                        gridArea={{
-                            base: "3 / 1 / 4 / 2",
-                            lg: "2 / 1 / 3 / 3",
-                            "2xl": "1 / 3 / 2 / 4",
-                        }}
-                    />
+                <Flex flexDirection='column' gridArea='1 / 2 / 2 / 3' pt='10px'>
+                    {/*<Image src={iphone} w='60%' h='70%' borderRadius='10px'/>*/}
+                    <CustomIframe title='A custom made iframe'>
+
+      </CustomIframe>
 
                 </Flex>
             </Grid>
-            
 
 
             {/* Delete Product */}
