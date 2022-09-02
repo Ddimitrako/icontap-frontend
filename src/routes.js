@@ -66,25 +66,6 @@ const routes = [
         icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
         component: DashboardsDefault,
 
-        // {
-        //   name: "Car Interface",
-        //   layout: "/admin",
-        //   path: "/dashboards/car-interface",
-        //   component: DashboardsCarInterface,
-        // },
-        // {
-        //   name: "Smart Home",
-        //   layout: "/admin",
-        //   path: "/dashboards/smart-home",
-        //   component: DashboardsSmartHome,
-        // },
-        // {
-        //   name: "RTL",
-        //   layout: "/rtl",
-        //   path: "/dashboards/rtl",
-        //   component: DashboardsRTLDefault,
-        // },
-
     },
     // --- NFTs ---
     {
