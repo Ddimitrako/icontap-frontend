@@ -74,7 +74,7 @@ export default function Footer() {
           <Link
             fontWeight='500'
             color={textColor}
-            href='https://simmmple.com/terms-of-service'>
+            href='https://google.gr'>
             Terms of Use
           </Link>
         </ListItem>

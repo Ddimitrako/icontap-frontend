@@ -143,27 +143,27 @@ function SignUp() {
           mx={{ base: "auto", lg: "unset" }}
           me='auto'
           mb={{ base: "20px", md: "auto" }}>
-          <Button
-            fontSize='sm'
-            me='0px'
-            mb='26px'
-            py='15px'
-            h='50px'
-            borderRadius='16px'
-            bg={googleBg}
-            color={googleText}
-            fontWeight='500'
-            _hover={googleHover}
-            _active={googleActive}
-            _focus={googleActive}>
-            <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
-            Sign up with Google
-          </Button>
+          {/*<Button*/}
+          {/*  fontSize='sm'*/}
+          {/*  me='0px'*/}
+          {/*  mb='26px'*/}
+          {/*  py='15px'*/}
+          {/*  h='50px'*/}
+          {/*  borderRadius='16px'*/}
+          {/*  bg={googleBg}*/}
+          {/*  color={googleText}*/}
+          {/*  fontWeight='500'*/}
+          {/*  _hover={googleHover}*/}
+          {/*  _active={googleActive}*/}
+          {/*  _focus={googleActive}>*/}
+          {/*  <Icon as={FcGoogle} w='20px' h='20px' me='10px' />*/}
+          {/*  Sign up with Google*/}
+          {/*</Button>*/}
           <Flex align='center' mb='25px'>
             <HSeparator />
-            <Text color={textColorSecondary} mx='14px'>
-              or
-            </Text>
+            {/*<Text color={textColorSecondary} mx='14px'>*/}
+            {/*  or*/}
+            {/*</Text>*/}
             <HSeparator />
           </Flex>
           <FormControl>
@@ -312,7 +312,7 @@ function SignUp() {
                   fontSize='sm'>
                   By creating an account means you agree to the{" "}
                   <Link
-                    href='https://simmmple.com/terms-of-service'
+                    href='https://google.gr'
                     fontWeight='500'>
                     Terms and Conditions,
                   </Link>{" "}
