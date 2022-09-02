@@ -12,8 +12,8 @@ const CustomIframe = () => {
 
         <div>
             <div id="wrapper">
-                <div className="phone view_1" id="phone_1" style={{width:400,height:650}}>
-                    <iframe src="https://poplme.co/7BRzvEfO" id="frame_1"></iframe>
+                <div className="phone view_1" id="phone_1" style={{width:300,height:560,overflow:'hidden'}}>
+                    <iframe className='iframe' src="https://poplme.co/7BRzvEfO" id="frame_1"  ></iframe>
                 </div>
             </div>
             <div id="controls">

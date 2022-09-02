@@ -6,8 +6,8 @@
   /*Basic Phone styling*/
 
   .phone {
-    border: 40px solid #ddd;
-    border-width: 55px 7px;
+    border: 30px solid #ddd;
+    border-width: 15px 7px;
     border-radius: 40px;
     margin: 50px auto;
     overflow: hidden;
@@ -21,7 +21,15 @@
   }
   /*Different Perspectives*/
 
+.phone.view_1 {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    box-shadow: -3px 3px 0 #BBB, -6px 6px 0 #BBB, -9px 9px 0 #BBB, -12px 12px 0 #BBB, -14px 10px 20px #666;
+  }
 
+  .phone.view_2 {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    box-shadow: 5px 1px 0 #BBB, 9px 2px 0 #BBB, 12px 3px 0 #BBB, 15px 4px 0 #BBB, 0 7px 20px #999;
+  }
 
   .phone.view_3 {
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
@@ -86,3 +94,7 @@
       transform: scale(0.4, 0.4);
     }
   }
+
+  .iframe {
+    overflow-y: hidden;
+}
