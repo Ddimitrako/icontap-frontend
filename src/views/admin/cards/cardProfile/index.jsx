@@ -19,9 +19,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-
+import {Link} from 'react-router-dom';
+import {MdBuild, MdCall, MdPreview} from "react-icons/md";
+import {Stack, HStack, VStack} from '@chakra-ui/react';
 import React from "react";
-import iphone from "assets/img/cards/iphone.png";
 import CustomIframe from "./components/Iframe";
 // Chakra imports
 import {
@@ -52,7 +53,6 @@ export default function Page() {
     const textColorSecondary = "secondaryGray.600";
     const textColor = useColorModeValue("secondaryGray.900", "white");
     // Chakra Color Mode
-
 
 
     return (
@@ -98,24 +98,27 @@ export default function Page() {
                                 used={25.6}
                                 total={50}
                             />
-                            <Button
-                                variant='brand'
-                                minW='183px'
-                                fontSize='sm'
-                                fontWeight='500'
-                                ms='auto'>
-                                Save changes
-                            </Button>
+
 
                         </Card>
                     </FormControl>
                 </Flex>
-                <Flex flexDirection='column' gridArea='1 / 2 / 2 / 3' pt='10px'>
+                <Flex flexDirection='column' alignItems='center' pt='10px'>
+
                     {/*<Image src={iphone} w='60%' h='70%' borderRadius='10px'/>*/}
                     <CustomIframe title='A custom made iframe'>
 
-      </CustomIframe>
+                    </CustomIframe>
 
+                    <Stack direction='row' spacing={4}>
+
+                        <Button onClick={() => {
+                            window.open("https://poplme.co/7BRzvEfO", "_blank");
+                        }} rightIcon={<MdPreview/>} colorScheme='blue' variant='outline'>
+                            View Profile
+                        </Button>
+
+                    </Stack>
                 </Flex>
             </Grid>
 
