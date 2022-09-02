@@ -19,8 +19,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-
-import React, { useState } from "react";
 import {AddNewCard} from "./components/AddNewCard";
 // Chakra imports
 import {
@@ -38,7 +36,7 @@ import {
   Tab,
   TabPanel,
 } from "@chakra-ui/react";
-
+import IcontapCard from "./components/Card";
 // Custom components
 import Banner from "views/admin/cards/cardsList/components/Banner";
 import NFT from "components/card/NFT";
@@ -83,8 +81,8 @@ export default function Collection(props) {
   let panelExample = (
 
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
-        <YourCard></YourCard>
-        <YourCard></YourCard>
+        <IcontapCard/>
+        <IcontapCard/>
     </SimpleGrid>
   );
   // Chakra Color Mode
@@ -155,10 +153,6 @@ export default function Collection(props) {
         </Text>
         <AddNewCard/>
         <TabPanels>
-          <TabPanel px='0px'>{panelExample}</TabPanel>
-          <TabPanel px='0px'>{panelExample}</TabPanel>
-          <TabPanel px='0px'>{panelExample}</TabPanel>
-          <TabPanel px='0px'>{panelExample}</TabPanel>
           <TabPanel px='0px'>{panelExample}</TabPanel>
         </TabPanels>
       </Tabs>

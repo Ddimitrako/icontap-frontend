@@ -31,9 +31,9 @@ import {
     MdEdit,
   MdMoreHoriz,
 } from "react-icons/md";
-import EditCardModal from "./EditCardModal/EditCardModal";
+import EditCardModal from "../../../main/account/billing/components/EditCardModal/EditCardModal";
 
-export default function YourCard(props) {
+export default function IcontapCard(props) {
   const { ...rest } = props;
 
   let [tabState, setTabState] = useState("card1");
