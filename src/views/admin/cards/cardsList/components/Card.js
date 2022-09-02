@@ -5,6 +5,7 @@ import {
   Flex,
   Box,
   Button,
+    Image,
   IconButton,
   Icon,
   Text,
@@ -21,6 +22,8 @@ import {
 import Card from "components/card/Card.js";
 import Mastercard from "components/card/Mastercard";
 // Assets
+import whitecard from "assets/img/cards/white-card.png";
+import blackCard from "assets/img/cards/black-card.png";
 import {
   MdAddCircle,
   MdCached,
@@ -86,10 +89,10 @@ export default function IcontapCard(props) {
       <Tabs>
         <TabPanels mb='20px'>
           <TabPanel p='0px'>
-            <Mastercard number='Front' cvv='09X' exp='05/24' />
+            <Image src={whitecard}/>
           </TabPanel>
           <TabPanel p='0px'>
-            <Mastercard number='Back' cvv='12X' exp='02/23' />
+            <Image src={blackCard}/>
           </TabPanel>
         </TabPanels>
         <TabList
