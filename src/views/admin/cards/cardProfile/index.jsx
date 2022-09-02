@@ -92,26 +92,18 @@ export default function Page() {
                                 id='about'
                                 label='Bio'
                                 h='100px'
-                                placeholder='Tell something about yourself in 150 characters!'
+                                placeholder='Tell something about yourself!'
                             />
                             <Notifications
                                 used={25.6}
                                 total={50}
                             />
-
-
                         </Card>
                     </FormControl>
                 </Flex>
                 <Flex flexDirection='column' alignItems='center' pt='10px'>
-
-                    {/*<Image src={iphone} w='60%' h='70%' borderRadius='10px'/>*/}
-                    <CustomIframe title='A custom made iframe'>
-
-                    </CustomIframe>
-
+                    <CustomIframe/>
                     <Stack direction='row' spacing={4}>
-
                         <Button onClick={() => {
                             window.open("https://poplme.co/7BRzvEfO", "_blank");
                         }} rightIcon={<MdPreview/>} colorScheme='blue' variant='outline'>
