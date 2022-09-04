@@ -6,36 +6,16 @@ import routes from "routes.js";
 import { Box } from "@chakra-ui/react";
 // Layout components
 import { SidebarContext } from "contexts/SidebarContext";
+import SignIn from "views/auth/signIn/SignInDefault";
+import SignUp from "views/auth/signUp/SignUpDefault";
+import ForgotPassword from "views/auth/forgotPassword/ForgotPasswordDefault";
 
 // Custom Chakra theme
 export default function Auth() {
   // states and functions
   const [toggleSidebar, setToggleSidebar] = useState(false);
   // functions for changing the states from components
-  const getRoute = () => {
-    return window.location.pathname !== "/auth/full-screen-maps";
-  };
-  const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
-      if (prop.layout === "/auth") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      }
-      if (prop.collapse) {
-        return getRoutes(prop.items);
-      }
-      if (prop.category) {
-        return getRoutes(prop.items);
-      } else {
-        return null;
-      }
-    });
-  };
+  
   return (
     <>
       <Box>
@@ -54,10 +34,22 @@ export default function Auth() {
             transitionDuration='.2s, .2s, .35s'
             transitionProperty='top, bottom, width'
             transitionTimingFunction='linear, linear, ease'>
-            {getRoute() ? (
               <Box mx='auto' minH='100vh'>
                 <Switch>
-                  {getRoutes(routes)}
+
+                  <Route path="/auth/sign-in">
+                    <SignIn />
+                  </Route>
+
+                  
+                  <Route path="/auth/sign-up">
+                    <SignUp />
+                  </Route>
+                  
+                  <Route path="/auth/forgot-password">
+                    <ForgotPassword />
+                  </Route>
+
                   <Redirect
                     from='/auth'
                     to='/auth/sign-in/default
@@ -65,7 +57,6 @@ export default function Auth() {
                   />
                 </Switch>
               </Box>
-            ) : null}
           </Box>
         </SidebarContext.Provider>
       </Box>

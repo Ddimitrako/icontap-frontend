@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { CustomEditBox, SocialButton } from "./EditCardModal";
+import { useDisclosure } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import AddContentContainer from "./AddContentContainer";
+import EditCardModal, { CustomEditBox, SocialButton } from "./EditCardModal";
 
 import './EditCardModal.css';
+import EditLink from "./EditLink";
 
 //The container modal
 
@@ -13,7 +16,7 @@ export default function EditProfile(props) {
     const [avatar, setavatar] = useState('/static/media/img.jpg');
     const [cover, setcover] = useState('/static/media/img.jpg');
 
-    function readURL(input,setter) {
+    function readURL(input, setter) {
         console.log(input, input.files);
         if (input.target.files && input.target.files[0]) {
             var reader = new FileReader();
@@ -44,7 +47,7 @@ export default function EditProfile(props) {
             ...styles
         }}
     >
-        <input type="file" style={{ display: 'none' }} onChange={(e) => readURL(e,setter)} />
+        <input type="file" style={{ display: 'none' }} onChange={(e) => readURL(e, setter)} />
 
     </label>
 
@@ -96,9 +99,34 @@ export default function EditProfile(props) {
     </div>;
 
     function insertSocial() {
-        props.setcurrSocial(undefined);
-        props.setPage('EditLink');
+        setcurrSocial(undefined);
+        setPage('EditLink');
     }
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    useEffect(()=>{
+        if(!isOpen){
+            settempSocialData(null);
+        }
+    },[isOpen]);
+
+    const [page, setPage] = useState('AddContentContainer');
+
+    const [socials, setsocials] = useState([
+        { imgUrl: 'sms.png', title: 'SMS', url: 'smsTo:12345678' }
+    ]);
+
+    const [currSocial, setcurrSocial] = useState();
+
+    const [tempSocialData, settempSocialData] = useState();
+
+    const pages = {
+        // 'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
+        'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
+        'EditLink': <EditLink setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socials={socials} setsocials={setsocials} />
+    }
+
 
     return <div style={{
         paddingBottom: '100px',
@@ -114,10 +142,11 @@ export default function EditProfile(props) {
             margin: '50px auto 20px auto',
             overflow: 'auto'
         }}>
-            {props.socials.map((social, index) =>
+            {socials?.map((social, index) =>
                 <SocialButton imgUrl={social.imgUrl} styles={{}} onClick={() => {
-                    props.setcurrSocial(index);
-                    props.setPage('EditLink');
+                    setcurrSocial(index);
+                    setPage('EditLink');
+                    onOpen();
                 }} key={index} />
             )}
 
@@ -127,13 +156,18 @@ export default function EditProfile(props) {
             width: '100%',
             textAlign: 'center'
         }}>
+            <EditCardModal pages={pages} page={page} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
             <button
                 style={{
                     borderRadius: '10px',
                     padding: '15px 20px'
                 }}
+                onClick={() => {
+                    setPage('AddContentContainer');
+                    onOpen();
+                }}
                 className={`MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary`} tabIndex="-1" type="button" disabled="">
-                <span className="MuiButton-label" onClick={() => props.setPage('AddContentContainer') }>+ Add links and Contact info</span>
+                <span className="MuiButton-label">+ Add links and Contact info</span>
             </button>
         </div>
 

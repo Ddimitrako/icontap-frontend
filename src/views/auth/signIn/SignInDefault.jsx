@@ -46,6 +46,7 @@ import illustration from "assets/img/auth/auth.png";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
+import { logIn } from "Helpers/Auth";
 
 function SignIn() {
   // Chakra color mode
@@ -88,7 +89,7 @@ function SignIn() {
       data:data
     }).then((response)=>{
       console.log(response);
-      localStorage.setItem('token', response?.data?.data?.token);
+      logIn(response?.data?.data?.token);
       window.location.href='/#/admin/dashboards/default';
     }).catch((err)=>{
       console.log(err.response);

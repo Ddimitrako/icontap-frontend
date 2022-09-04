@@ -84,21 +84,21 @@ const routes = [
         ),
 
     },
-    {
-        name: "Card Settings",
-        layout: "/admin",
-        path: "/cards/cardProfile",
-        component: NFTPage,
-        secondary: true,
-        icon: (
-            <Icon
-                as={AiTwotoneSetting}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-      },
+    // {
+    //     name: "Card Settings",
+    //     layout: "/admin",
+    //     path: "/cards/cardProfile",
+    //     component: NFTPage,
+    //     secondary: true,
+    //     icon: (
+    //         <Icon
+    //             as={AiTwotoneSetting}
+    //             width='20px'
+    //             height='20px'
+    //             color='inherit'
+    //         />
+    //     ),
+    //   },
     // --- Main pages ---
 
 
@@ -117,21 +117,21 @@ const routes = [
     //         />
     //     ),
     // },
-    {
-        name: "Users Overview",
-        layout: "/admin",
-        path: "/main/users/users-overview",
+    // {
+    //     name: "Users Overview",
+    //     layout: "/admin",
+    //     path: "/main/users/users-overview",
 
-        component: UsersOverview,
-        icon: (
-            <Icon
-                as={AiOutlineTeam}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-    },
+    //     component: UsersOverview,
+    //     icon: (
+    //         <Icon
+    //             as={AiOutlineTeam}
+    //             width='20px'
+    //             height='20px'
+    //             color='inherit'
+    //         />
+    //     ),
+    // },
 
 
     // {
@@ -200,52 +200,52 @@ const routes = [
     //   component: ProfileNewsfeed,
     // },
 
-    {
-        name: "Others",
-        path: "/main/others",
-        collapse: true,
-        items: [
-            {
-                name: "Notifications",
-                layout: "/admin",
-                path: "/main/others/notifications",
-                exact: false,
-                component: OthersNotifications,
-            },
-            // {
-            //   name: "Pricing",
-            //   layout: "/auth",
-            //   path: "/main/others/pricing",
-            //   exact: false,
-            //   component: OthersPricing,
-            // },
-            {
-                name: "404",
-                layout: "/admin",
-                path: "/main/others/404",
-                exact: false,
-                component: OthersError,
-            },
-        ],
+    // {
+    //     name: "Others",
+    //     path: "/main/others",
+    //     collapse: true,
+    //     items: [
+    //         {
+    //             name: "Notifications",
+    //             layout: "/admin",
+    //             path: "/main/others/notifications",
+    //             exact: false,
+    //             component: OthersNotifications,
+    //         },
+    //         // {
+    //         //   name: "Pricing",
+    //         //   layout: "/auth",
+    //         //   path: "/main/others/pricing",
+    //         //   exact: false,
+    //         //   component: OthersPricing,
+    //         // },
+    //         {
+    //             name: "404",
+    //             layout: "/admin",
+    //             path: "/main/others/404",
+    //             exact: false,
+    //             component: OthersError,
+    //         },
+    //     ],
 
-    },
+    // },
     // --- Authentication ---
 
 
-    {
-        layout: "/auth",
-        name: "Sign In",
-        path: "/sign-in",
-        icon: (
-            <Icon
-                as={MdHome}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-        component: SignInDefault,
-    },
+    // {
+    //     layout: "/auth",
+    //     name: "Sign In",
+    //     path: "/sign-in",
+    //     icon: (
+    //         <Icon
+    //             as={MdHome}
+    //             width='20px'
+    //             height='20px'
+    //             color='inherit'
+    //         />
+    //     ),
+    //     component: SignInDefault,
+    // },
     // {
     //   name: "Centered",
     //   layout: "/auth",
@@ -258,21 +258,21 @@ const routes = [
 
     // --- Sign Up ---
 
-    {
-        name: "Sign Up",
-        path: "/sign-up",
-        layout: "/auth",
+    // {
+    //     name: "Sign Up",
+    //     path: "/sign-up",
+    //     layout: "/auth",
 
-        icon: (
-            <Icon
-                as={MdHome}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-        component: SignUpDefault,
-    },
+    //     icon: (
+    //         <Icon
+    //             as={MdHome}
+    //             width='20px'
+    //             height='20px'
+    //             color='inherit'
+    //         />
+    //     ),
+    //     component: SignUpDefault,
+    // },
     // {
     //   name: "Centered",
     //   layout: "/auth",
@@ -311,22 +311,22 @@ const routes = [
     //   ],
     // },
     // --- Lock ---
-    {
+    // {
 
-        name: "Lock",
-        path: "/lock",
-        layout: "/auth",
+    //     name: "Lock",
+    //     path: "/lock",
+    //     layout: "/auth",
 
-        icon: (
-            <Icon
-                as={MdHome}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-        component: LockDefault,
-    },
+    //     icon: (
+    //         <Icon
+    //             as={MdHome}
+    //             width='20px'
+    //             height='20px'
+    //             color='inherit'
+    //         />
+    //     ),
+    //     component: LockDefault,
+    // },
     // {
     //   name: "Centered",
     //   layout: "/auth",
@@ -338,21 +338,21 @@ const routes = [
     // },
 
     // --- Forgot Password ---
-    {
+    // {
 
-        name: "Forgot Password",
-        path: "/forgot-password",
-        layout: "/auth",
-        icon: (
-            <Icon
-                as={MdHome}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-        component: ForgotPasswordDefault,
-    },
+    //     name: "Forgot Password",
+    //     path: "/forgot-password",
+    //     layout: "/auth",
+    //     icon: (
+    //         <Icon
+    //             as={MdHome}
+    //             width='20px'
+    //             height='20px'
+    //             color='inherit'
+    //         />
+    //     ),
+    //     component: ForgotPasswordDefault,
+    // },
     // {
     //   name: "Centered",
     //   layout: "/auth",

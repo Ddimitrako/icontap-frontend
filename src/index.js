@@ -8,14 +8,24 @@ import AdminLayout from "layouts/admin";
 // Chakra imports
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "theme/theme";
+import { isAuth } from "Helpers/Auth";
+import { PrivateRoute } from "Helpers/Auth";
 
 ReactDOM.render(
   <ChakraProvider theme={theme}>
     <React.StrictMode>
       <HashRouter>
         <Switch>
-          <Route path={`/auth`} component={AuthLayout} />
-          <Route path={`/admin`} component={AdminLayout} />
+
+
+          <PrivateRoute path={`/auth`} isPublic={true}>
+            <Route path={`/auth`} component={AuthLayout} />
+          </PrivateRoute>
+
+          <PrivateRoute path={`/admin`} isPublic={false}>
+            <Route path={`/admin`} component={AdminLayout} />
+          </PrivateRoute>
+
           <Redirect from='/' to='/admin' />
         </Switch>
       </HashRouter>

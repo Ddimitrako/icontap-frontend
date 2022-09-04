@@ -90,7 +90,7 @@ export default function AddContent(props) {
             </div>
         </div>
         <div style={{ overflow: 'auto' }}>
-            {SocialDummies.filter((social)=>social.title.toLowerCase().includes(search.toLowerCase())).map((social, index) => <SocialDefault title={social.title} imgUrl={social.imgUrl} url={social.url} />)}
+            {SocialDummies.filter((social)=>social.title.toLowerCase().includes(search.toLowerCase())).map((social, index) => <SocialDefault title={social.title} imgUrl={social.imgUrl} url={social.url} key={index} />)}
         </div>
     </div>
 }

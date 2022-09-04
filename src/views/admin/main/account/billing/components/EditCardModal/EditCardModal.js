@@ -71,33 +71,11 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles }) => {
 
 export default function EditCardModal(props) {
 
-    const [page, setPage] = useState('EditProfileContainer');
-
-    const [socials, setsocials] = useState([
-        { imgUrl: 'sms.png', title: 'SMS', url: 'smsTo:12345678' }
-    ]);
-
-    const [currSocial, setcurrSocial] = useState();
-
-    const [tempSocialData, settempSocialData] = useState();
-
-    const pages = {
-        'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
-        'AddContentContainer': <AddContentContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
-        'EditLink': <EditLink {...props} setPage={setPage} currSocial={currSocial} tempSocialData={tempSocialData} socials={socials} setsocials={setsocials} />
-    }
-
-    useEffect(()=>{
-        if(page=='EditProfileContainer'){
-            settempSocialData(null);
-        }
-    },[page]);
-
     return <Modal size={'xl'} style={{ maxWidth: '1000px' }} isOpen={props.isOpen} onClose={props.onClose} isCentered>
         <ModalOverlay
             bg='blackAlpha.300'
             backdropFilter='blur(10px) hue-rotate(90deg)'
         />
-        {pages[page]}
+        {props.pages[props.page]}
     </Modal>
 }
