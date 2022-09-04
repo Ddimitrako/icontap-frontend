@@ -1,353 +1,377 @@
 import {
-  Avatar,
-  Button,
-  Flex,
-  Icon,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  Stack,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,Select,
-  useColorModeValue,
+    Avatar,
+    Button,
+    Flex,
+    Icon,
+    NumberDecrementStepper,
+    NumberIncrementStepper,
+    NumberInput,
+    NumberInputField,
+    NumberInputStepper,
+    Stack,
+    Table,
+    Tbody,
+    Td,
+    Text,
+    Th,
+    Thead,
+    Tr, Select,
+    useColorModeValue,
 } from "@chakra-ui/react";
-import { SearchBar } from "components/navbar/searchBar/SearchBar";
-import React, { useMemo } from "react";
-import { MdChevronRight, MdChevronLeft } from "react-icons/md";
+import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
-  useGlobalFilter,
-  usePagination,
-  useSortBy,
-  useTable,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    MenuItemOption,
+    MenuGroup,
+    MenuOptionGroup,
+    MenuIcon,
+    MenuCommand,
+    MenuDivider,
+} from "@chakra-ui/react";
+import {SearchBar} from "components/navbar/searchBar/SearchBar";
+import React, {useMemo} from "react";
+import {MdChevronRight, MdChevronLeft} from "react-icons/md";
+import {
+    useGlobalFilter,
+    usePagination,
+    useSortBy,
+    useTable,
 } from "react-table";
 
 function SearchTable2(props) {
-  const { columnsData, tableData } = props;
+    const {columnsData, tableData} = props;
 
-  const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
+    const columns = useMemo(() => columnsData, [columnsData]);
+    const data = useMemo(() => tableData, [tableData]);
 
-  const tableInstance = useTable(
-    {
-      columns,
-      data,
-    },
-    useGlobalFilter,
-    useSortBy,
-    usePagination,
+    const tableInstance = useTable(
+        {
+            columns,
+            data,
+        },
+        useGlobalFilter,
+        useSortBy,
+        usePagination,
+    );
 
-  );
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        page,
+        gotoPage,
+        pageCount,
+        prepareRow,
+        nextPage,
+        previousPage,
+        canNextPage,
+        canPreviousPage,
+        setGlobalFilter,
+        state,
+        setPageSize
+    } = tableInstance;
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    page,
-    gotoPage,
-    pageCount,
-    prepareRow,
-    nextPage,
-    previousPage,
-    canNextPage,
-    canPreviousPage,
-    setGlobalFilter,
-    state,
-    setPageSize
-  } = tableInstance;
+    const createPages = (count) => {
+        let arrPageCount = [];
 
-  const createPages = (count) => {
-    let arrPageCount = [];
+        for (let i = 1; i <= count; i++) {
+            arrPageCount.push(i);
+        }
 
-    for (let i = 1; i <= count; i++) {
-      arrPageCount.push(i);
-    }
+        return arrPageCount;
+    };
 
-    return arrPageCount;
-  };
+    const {pageIndex, pageSize} = state;
+    const textColor = useColorModeValue("secondaryGray.900", "white");
+    const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+    const brandColor = useColorModeValue("brand.500", "brand.400");
+    return (
+        <>
+            <Flex
+                direction='column'
+                w='100%'
+                overflowX={{sm: "scroll", lg: "hidden"}}>
+                <Flex
+                    align={{sm: "flex-start", lg: "flex-start"}}
+                    justify={{sm: "flex-start", lg: "flex-start"}}
+                    w='100%'
+                    px='22px'
+                    mb='36px'>
+                    <SearchBar
+                        onChange={(e) => setGlobalFilter(e.target.value)}
+                        h='44px'
+                        w={{lg: "390px"}}
+                        borderRadius='16px'
+                    />
+                    <Menu>
+                        <MenuButton as={Button} colorScheme='orange' rightIcon={<ChevronDownIcon/>}>
+                            Actions
+                        </MenuButton>
+                        <MenuList>
+                            <MenuItem>Create a company</MenuItem>
+                            <MenuItem>Create a user/s</MenuItem>
+                            <MenuItem>Delete selected user/s</MenuItem>
+                            <MenuItem>Assign card to selected user/s</MenuItem>
 
-  const { pageIndex, pageSize } = state;
-  const textColor = useColorModeValue("secondaryGray.900", "white");
-  const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
-  const brandColor = useColorModeValue("brand.500", "brand.400");
-  return (
-    <>
-      <Flex
-        direction='column'
-        w='100%'
-        overflowX={{ sm: "scroll", lg: "hidden" }}>
-        <Flex
-          align={{ sm: "flex-start", lg: "flex-start" }}
-          justify={{ sm: "flex-start", lg: "flex-start" }}
-          w='100%'
-          px='22px'
-          mb='36px'>
-          <SearchBar
-            onChange={(e) => setGlobalFilter(e.target.value)}
-            h='44px'
-            w={{ lg: "390px" }}
-            borderRadius='16px'
-          />
-        </Flex>
-        <Table {...getTableProps()} variant='simple' color='gray.500' mb='24px'>
-          <Thead>
-            {headerGroups.map((headerGroup, index) => (
-              <Tr {...headerGroup.getHeaderGroupProps()} key={index}>
-                {headerGroup.headers.map((column, index) => (
-                  <Th
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    pe='10px'
-                    key={index}
-                    borderColor={borderColor}>
-                    <Flex
-                      justify='space-between'
-                      align='center'
-                      fontSize={{ sm: "10px", lg: "12px" }}
-                      color='gray.400'>
-                      {column.render("Header")}
-                    </Flex>
-                  </Th>
-                ))}
-              </Tr>
-            ))}
-          </Thead>
-          <Tbody {...getTableBodyProps()}>
-            {page.map((row, index) => {
-              prepareRow(row);
-              return (
-                <Tr {...row.getRowProps()} key={index}>
-                  {row.cells.map((cell, index) => {
-                    let data = "";
-                    if (cell.column.Header === "USER NAME") {
-                      data = (
-                        <Flex align='center'>
-                          <Avatar
-                            src={cell.value[1]}
-                            h='60px'
-                            w='60px'
-                            me='10px'
-                          />
-                          <Text
-                            color={textColor}
-                            fontSize='md'
-                            fontWeight='500'>
-                            {cell.value[0]}
-                          </Text>
-                        </Flex>
-                      );
-                    } else if (cell.column.Header === "EMAIL") {
-                      data = (
-                        <Text color={textColor} fontSize='md' fontWeight='500'>
-                          {cell.value}
-                        </Text>
-                      );
-                    } else if (cell.column.Header === "USERNAME") {
-                      data = (
-                        <Text color={textColor} fontSize='md' fontWeight='500'>
-                          {cell.value}
-                        </Text>
-                      );
-                    } else if (cell.column.Header === "JOIN DATE") {
-                      data = (
-                        <Text color={textColor} fontSize='md' fontWeight='500'>
-                          {cell.value}
-                        </Text>
-                      );
-                    } else if (cell.column.Header === "USER TYPE") {
-                      data = (
-                      <Select
-                        id='user_type'
-                        w='unset'
-                        variant='transparent'
-                        display='flex'
-                        alignItems='center'
-                        defaultValue={cell.value}>
-                        <option value='Administrator'>Administrator</option>
-                        <option value='Member'>Member</option>
-                      </Select>
-                      );
-                    } else if (cell.column.Header === "ACTIONS1") {
-                      data = (
-                        // <Text
-                        //   cursor='pointer'
-                        //   color={brandColor}
-                        //   textDecoration='underline'
-                        //   fontSize='md'
-                        //   fontWeight='500'
-                        //   id={cell.value}>
-                        //   Edit user card
-                        // </Text>,
-                          <Button color={brandColor}>Edit User Cards</Button>
-                      );
-                    }else if (cell.column.Header === "ACTIONS2") {
-                      data = (
-                        // <Text
-                        //   cursor='pointer'
-                        //   color={brandColor}
-                        //   textDecoration='underline'
-                        //   fontSize='md'
-                        //   fontWeight='500'
-                        //   id={cell.value}>
-                        //   Edit user card
-                        // </Text>,
-                          <Button color={brandColor}>See user Insights</Button>
-                      );
-                    }
-                    return (
-                      <Td
-                        {...cell.getCellProps()}
-                        key={index}
-                        fontSize={{ sm: "14px" }}
-                        minW={{ sm: "150px", md: "200px", lg: "auto" }}
-                        borderColor={borderColor}>
-                        {data}
-                      </Td>
-                    );
-                  })}
-                </Tr>
-              );
-            })}
-          </Tbody>
-        </Table>
-        <Flex align='center'>
-            <Text
-              me='10px'
-              minW='max-content'
-              fontSize='sm'
-              color='gray.500'
-              fontWeight='normal'>
-              Show rows per page
-            </Text>
-            <Select
-              fontSize='sm'
-              w="10%"
-              variant='main'
-              value={pageSize}
-              onChange={(e) => setPageSize(Number(e.target.value))}>
-              <option value='6'>6</option>
-              <option value='7'>7</option>
-              <option value='8'>8</option>
-              <option value='9'>9</option>
-              <option value='10'>10</option>
-              <option value='25'>25</option>
-            </Select>
-          </Flex>
-        <Flex
-          direction={{ sm: "column", md: "row" }}
-          justify='space-between'
-          align='center'
-          w='100%'
-          px={{ md: "22px" }}>
-          <Text
-            fontSize='sm'
-            color='gray.500'
-            fontWeight='normal'
-            mb={{ sm: "24px", md: "0px" }}>
-            Showing {pageSize * pageIndex + 1} to{" "}
-            {pageSize * (pageIndex + 1) <= tableData.length
-              ? pageSize * (pageIndex + 1)
-              : tableData.length}{" "}
-            of {tableData.length} entries
-          </Text>
-          <Stack direction='row' alignSelf='flex-end' spacing='4px' ms='auto'>
-            <Button
-              variant='no-effects'
-              onClick={() => previousPage()}
-              transition='all .5s ease'
-              w='40px'
-              h='40px'
-              borderRadius='50%'
-              bg='transparent'
-              border='1px solid'
-              borderColor={useColorModeValue("gray.200", "white")}
-              display={
-                pageSize === 5 ? "none" : canPreviousPage ? "flex" : "none"
-              }
-              _hover={{
-                bg: "whiteAlpha.100",
-                opacity: "0.7",
-              }}>
-              <Icon as={MdChevronLeft} w='16px' h='16px' color={textColor} />
-            </Button>
-            {pageSize === 5 ? (
-              <NumberInput
-                max={pageCount - 1}
-                min={1}
-                w='75px'
-                mx='6px'
-                defaultValue='1'
-                onChange={(e) => gotoPage(e)}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper onClick={() => nextPage()} />
-                  <NumberDecrementStepper onClick={() => previousPage()} />
-                </NumberInputStepper>
-              </NumberInput>
-            ) : (
-              createPages(pageCount).map((pageNumber, index) => {
-                return (
-                  <Button
-                    variant='no-effects'
-                    transition='all .5s ease'
-                    onClick={() => gotoPage(pageNumber - 1)}
-                    w='40px'
-                    h='40px'
-                    borderRadius='50%'
-                    bg={
-                      pageNumber === pageIndex + 1 ? brandColor : "transparent"
-                    }
-                    border={
-                      pageNumber === pageIndex + 1
-                        ? "none"
-                        : "1px solid lightgray"
-                    }
-                    _hover={
-                      pageNumber === pageIndex + 1
-                        ? {
-                            opacity: "0.7",
-                          }
-                        : {
-                            bg: "whiteAlpha.100",
-                          }
-                    }
-                    key={index}>
+                        </MenuList>
+                    </Menu>
+                </Flex>
+                <Table {...getTableProps()} variant='simple' color='gray.500' mb='24px'>
+                    <Thead>
+                        {headerGroups.map((headerGroup, index) => (
+                            <Tr {...headerGroup.getHeaderGroupProps()} key={index}>
+                                {headerGroup.headers.map((column, index) => (
+                                    <Th
+                                        {...column.getHeaderProps(column.getSortByToggleProps())}
+                                        pe='10px'
+                                        key={index}
+                                        borderColor={borderColor}>
+                                        <Flex
+                                            justify='space-between'
+                                            align='center'
+                                            fontSize={{sm: "10px", lg: "12px"}}
+                                            color='gray.400'>
+                                            {column.render("Header")}
+                                        </Flex>
+                                    </Th>
+                                ))}
+                            </Tr>
+                        ))}
+                    </Thead>
+                    <Tbody {...getTableBodyProps()}>
+                        {page.map((row, index) => {
+                            prepareRow(row);
+                            return (
+                                <Tr {...row.getRowProps()} key={index}>
+                                    {row.cells.map((cell, index) => {
+                                        let data = "";
+                                        if (cell.column.Header === "USER NAME") {
+                                            data = (
+                                                <Flex align='center'>
+                                                    <Avatar
+                                                        src={cell.value[1]}
+                                                        h='60px'
+                                                        w='60px'
+                                                        me='10px'
+                                                    />
+                                                    <Text
+                                                        color={textColor}
+                                                        fontSize='md'
+                                                        fontWeight='500'>
+                                                        {cell.value[0]}
+                                                    </Text>
+                                                </Flex>
+                                            );
+                                        } else if (cell.column.Header === "EMAIL") {
+                                            data = (
+                                                <Text color={textColor} fontSize='md' fontWeight='500'>
+                                                    {cell.value}
+                                                </Text>
+                                            );
+                                        } else if (cell.column.Header === "USERNAME") {
+                                            data = (
+                                                <Text color={textColor} fontSize='md' fontWeight='500'>
+                                                    {cell.value}
+                                                </Text>
+                                            );
+                                        } else if (cell.column.Header === "JOIN DATE") {
+                                            data = (
+                                                <Text color={textColor} fontSize='md' fontWeight='500'>
+                                                    {cell.value}
+                                                </Text>
+                                            );
+                                        } else if (cell.column.Header === "USER TYPE") {
+                                            data = (
+                                                <Select
+                                                    id='user_type'
+                                                    w='unset'
+                                                    variant='transparent'
+                                                    display='flex'
+                                                    alignItems='center'
+                                                    defaultValue={cell.value}>
+                                                    <option value='Administrator'>Administrator</option>
+                                                    <option value='Member'>Member</option>
+                                                </Select>
+                                            );
+                                        } else if (cell.column.Header === "ACTIONS1") {
+                                            data = (
+                                                // <Text
+                                                //   cursor='pointer'
+                                                //   color={brandColor}
+                                                //   textDecoration='underline'
+                                                //   fontSize='md'
+                                                //   fontWeight='500'
+                                                //   id={cell.value}>
+                                                //   Edit user card
+                                                // </Text>,
+                                                <Button color={brandColor}>Edit User Cards</Button>
+                                            );
+                                        } else if (cell.column.Header === "ACTIONS2") {
+                                            data = (
+                                                // <Text
+                                                //   cursor='pointer'
+                                                //   color={brandColor}
+                                                //   textDecoration='underline'
+                                                //   fontSize='md'
+                                                //   fontWeight='500'
+                                                //   id={cell.value}>
+                                                //   Edit user card
+                                                // </Text>,
+                                                <Button color={brandColor}>See user Insights</Button>
+                                            );
+                                        }
+                                        return (
+                                            <Td
+                                                {...cell.getCellProps()}
+                                                key={index}
+                                                fontSize={{sm: "14px"}}
+                                                minW={{sm: "150px", md: "200px", lg: "auto"}}
+                                                borderColor={borderColor}>
+                                                {data}
+                                            </Td>
+                                        );
+                                    })}
+                                </Tr>
+                            );
+                        })}
+                    </Tbody>
+                </Table>
+                <Flex align='center'>
                     <Text
-                      fontSize='sm'
-                      color={pageNumber === pageIndex + 1 ? "#fff" : textColor}>
-                      {pageNumber}
+                        me='10px'
+                        minW='max-content'
+                        fontSize='sm'
+                        color='gray.500'
+                        fontWeight='normal'>
+                        Show rows per page
                     </Text>
-                  </Button>
-                );
-              })
-            )}
-            <Button
-              variant='no-effects'
-              onClick={() => nextPage()}
-              transition='all .5s ease'
-              w='40px'
-              h='40px'
-              borderRadius='50%'
-              bg='transparent'
-              border='1px solid'
-              borderColor={useColorModeValue("gray.200", "white")}
-              display={pageSize === 5 ? "none" : canNextPage ? "flex" : "none"}
-              _hover={{
-                bg: "whiteAlpha.100",
-                opacity: "0.7",
-              }}>
-              <Icon as={MdChevronRight} w='16px' h='16px' color={textColor} />
-            </Button>
-          </Stack>
-        </Flex>
-      </Flex>
-    </>
-  );
+                    <Select
+                        fontSize='sm'
+                        w="10%"
+                        variant='main'
+                        value={pageSize}
+                        onChange={(e) => setPageSize(Number(e.target.value))}>
+                        <option value='6'>6</option>
+                        <option value='7'>7</option>
+                        <option value='8'>8</option>
+                        <option value='9'>9</option>
+                        <option value='10'>10</option>
+                        <option value='25'>25</option>
+                    </Select>
+                </Flex>
+                <Flex
+                    direction={{sm: "column", md: "row"}}
+                    justify='space-between'
+                    align='center'
+                    w='100%'
+                    px={{md: "22px"}}>
+                    <Text
+                        fontSize='sm'
+                        color='gray.500'
+                        fontWeight='normal'
+                        mb={{sm: "24px", md: "0px"}}>
+                        Showing {pageSize * pageIndex + 1} to{" "}
+                        {pageSize * (pageIndex + 1) <= tableData.length
+                            ? pageSize * (pageIndex + 1)
+                            : tableData.length}{" "}
+                        of {tableData.length} entries
+                    </Text>
+                    <Stack direction='row' alignSelf='flex-end' spacing='4px' ms='auto'>
+                        <Button
+                            variant='no-effects'
+                            onClick={() => previousPage()}
+                            transition='all .5s ease'
+                            w='40px'
+                            h='40px'
+                            borderRadius='50%'
+                            bg='transparent'
+                            border='1px solid'
+                            borderColor={useColorModeValue("gray.200", "white")}
+                            display={
+                                pageSize === 5 ? "none" : canPreviousPage ? "flex" : "none"
+                            }
+                            _hover={{
+                                bg: "whiteAlpha.100",
+                                opacity: "0.7",
+                            }}>
+                            <Icon as={MdChevronLeft} w='16px' h='16px' color={textColor}/>
+                        </Button>
+                        {pageSize === 5 ? (
+                            <NumberInput
+                                max={pageCount - 1}
+                                min={1}
+                                w='75px'
+                                mx='6px'
+                                defaultValue='1'
+                                onChange={(e) => gotoPage(e)}>
+                                <NumberInputField/>
+                                <NumberInputStepper>
+                                    <NumberIncrementStepper onClick={() => nextPage()}/>
+                                    <NumberDecrementStepper onClick={() => previousPage()}/>
+                                </NumberInputStepper>
+                            </NumberInput>
+                        ) : (
+                            createPages(pageCount).map((pageNumber, index) => {
+                                return (
+                                    <Button
+                                        variant='no-effects'
+                                        transition='all .5s ease'
+                                        onClick={() => gotoPage(pageNumber - 1)}
+                                        w='40px'
+                                        h='40px'
+                                        borderRadius='50%'
+                                        bg={
+                                            pageNumber === pageIndex + 1 ? brandColor : "transparent"
+                                        }
+                                        border={
+                                            pageNumber === pageIndex + 1
+                                                ? "none"
+                                                : "1px solid lightgray"
+                                        }
+                                        _hover={
+                                            pageNumber === pageIndex + 1
+                                                ? {
+                                                    opacity: "0.7",
+                                                }
+                                                : {
+                                                    bg: "whiteAlpha.100",
+                                                }
+                                        }
+                                        key={index}>
+                                        <Text
+                                            fontSize='sm'
+                                            color={pageNumber === pageIndex + 1 ? "#fff" : textColor}>
+                                            {pageNumber}
+                                        </Text>
+                                    </Button>
+                                );
+                            })
+                        )}
+                        <Button
+                            variant='no-effects'
+                            onClick={() => nextPage()}
+                            transition='all .5s ease'
+                            w='40px'
+                            h='40px'
+                            borderRadius='50%'
+                            bg='transparent'
+                            border='1px solid'
+                            borderColor={useColorModeValue("gray.200", "white")}
+                            display={pageSize === 5 ? "none" : canNextPage ? "flex" : "none"}
+                            _hover={{
+                                bg: "whiteAlpha.100",
+                                opacity: "0.7",
+                            }}>
+                            <Icon as={MdChevronRight} w='16px' h='16px' color={textColor}/>
+                        </Button>
+                    </Stack>
+                </Flex>
+            </Flex>
+        </>
+    );
 }
 
 export default SearchTable2;
