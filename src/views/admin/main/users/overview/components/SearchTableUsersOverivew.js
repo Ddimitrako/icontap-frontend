@@ -41,7 +41,8 @@ function SearchTable2(props) {
     },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
+
   );
 
   const {
@@ -58,6 +59,7 @@ function SearchTable2(props) {
     canPreviousPage,
     setGlobalFilter,
     state,
+    setPageSize
   } = tableInstance;
 
   const createPages = (count) => {
@@ -213,6 +215,29 @@ function SearchTable2(props) {
             })}
           </Tbody>
         </Table>
+        <Flex align='center'>
+            <Text
+              me='10px'
+              minW='max-content'
+              fontSize='sm'
+              color='gray.500'
+              fontWeight='normal'>
+              Show rows per page
+            </Text>
+            <Select
+              fontSize='sm'
+              w="10%"
+              variant='main'
+              value={pageSize}
+              onChange={(e) => setPageSize(Number(e.target.value))}>
+              <option value='6'>6</option>
+              <option value='7'>7</option>
+              <option value='8'>8</option>
+              <option value='9'>9</option>
+              <option value='10'>10</option>
+              <option value='25'>25</option>
+            </Select>
+          </Flex>
         <Flex
           direction={{ sm: "column", md: "row" }}
           justify='space-between'
