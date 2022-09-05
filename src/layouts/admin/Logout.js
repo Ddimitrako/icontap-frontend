@@ -28,9 +28,11 @@ export default function LogoutMid(props) {
             console.log(err.response);
             catchError(err);
         }).finally(() => {
-            window.location.href = '/auth/sign-in';
             setloading(false);
-        })
+        });
+ 
+        window.location.href = '/auth/sign-in';
+ 
     }
 
     useEffect(() => {
