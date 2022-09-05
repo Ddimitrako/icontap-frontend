@@ -16,9 +16,9 @@ import {
     Th,
     Thead,
     Tr, Select,
-    useColorModeValue,
+    useColorModeValue, Checkbox,
 } from "@chakra-ui/react";
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import {ChevronDownIcon} from '@chakra-ui/icons'
 import {
     Menu,
     MenuButton,
@@ -40,7 +40,7 @@ import {
     useSortBy,
     useTable,
 } from "react-table";
-
+import AdminActionsBtn from "./AdminActions";
 function SearchTable2(props) {
     const {columnsData, tableData} = props;
 
@@ -106,18 +106,7 @@ function SearchTable2(props) {
                         w={{lg: "390px"}}
                         borderRadius='16px'
                     />
-                    <Menu>
-                        <MenuButton as={Button} colorScheme='orange' rightIcon={<ChevronDownIcon/>}>
-                            Actions
-                        </MenuButton>
-                        <MenuList>
-                            <MenuItem>Create a company</MenuItem>
-                            <MenuItem>Create a user/s</MenuItem>
-                            <MenuItem>Delete selected user/s</MenuItem>
-                            <MenuItem>Assign card to selected user/s</MenuItem>
-
-                        </MenuList>
-                    </Menu>
+                    <AdminActionsBtn/>
                 </Flex>
                 <Table {...getTableProps()} variant='simple' color='gray.500' mb='24px'>
                     <Thead>
@@ -151,6 +140,11 @@ function SearchTable2(props) {
                                         if (cell.column.Header === "USER NAME") {
                                             data = (
                                                 <Flex align='center'>
+                                                    <Checkbox
+                                                        defaultChecked={0}
+                                                        colorScheme='brandScheme'
+                                                        me='10px'
+                                                    />
                                                     <Avatar
                                                         src={cell.value[1]}
                                                         h='60px'
