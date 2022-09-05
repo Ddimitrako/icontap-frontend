@@ -26,9 +26,11 @@ import { MdNotificationsNone, MdInfoOutline } from "react-icons/md";
 import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa";
 import routes from "routes.js";
+import { useHistory, useLocation } from "react-router-dom";
 export default function HeaderLinks(props) {
   const { secondary } = props;
   const { colorMode, toggleColorMode } = useColorMode();
+  const history=useHistory();
   // Chakra Color Mode
   const navbarIcon = useColorModeValue("gray.400", "white");
   let menuBg = useColorModeValue("white", "navy.800");
@@ -234,6 +236,9 @@ export default function HeaderLinks(props) {
               _hover={{ bg: "none" }}
               _focus={{ bg: "none" }}
               borderRadius='8px'
+              onClick={()=>{
+                history.push('/admin/main/profile/settings');
+              }}  
               px='14px'>
               <Text fontSize='sm'>Profile Settings</Text>
             </MenuItem>
@@ -244,8 +249,7 @@ export default function HeaderLinks(props) {
               borderRadius='8px'
               px='14px'
               onClick={()=>{
-                localStorage.clear();
-                window.location.href='/#/auth/sign-in';
+                history.push('/admin/logout');
               }}  
               >
               <Text fontSize='sm'>Log out</Text>

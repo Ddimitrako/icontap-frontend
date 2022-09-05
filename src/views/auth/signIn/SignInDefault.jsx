@@ -90,7 +90,7 @@ function SignIn() {
     }).then((response)=>{
       console.log(response);
       logIn(response?.data?.data?.token);
-      window.location.href='/#/admin/dashboards/default';
+      window.location.href='/admin/dashboards/default';
     }).catch((err)=>{
       console.log(err.response);
     }).finally(()=>{

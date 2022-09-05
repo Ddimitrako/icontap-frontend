@@ -9,6 +9,9 @@ import { SidebarContext } from "contexts/SidebarContext";
 import SignIn from "views/auth/signIn/SignInDefault";
 import SignUp from "views/auth/signUp/SignUpDefault";
 import ForgotPassword from "views/auth/forgotPassword/ForgotPasswordDefault";
+import VerifyEmail from "./VerifyEmail";
+import Settings from "views/admin/main/profile/settings/components/Password";
+import ResetPassword from "views/admin/main/profile/settings/components/ResetPassword";
 
 // Custom Chakra theme
 export default function Auth() {
@@ -46,8 +49,16 @@ export default function Auth() {
                     <SignUp />
                   </Route>
                   
+                  <Route path="/auth/verify">
+                    <VerifyEmail />
+                  </Route>
+                  
                   <Route path="/auth/forgot-password">
                     <ForgotPassword />
+                  </Route>
+
+                  <Route path="/services/reset-password/:token">
+                    <ResetPassword reset />
                   </Route>
 
                   <Redirect
