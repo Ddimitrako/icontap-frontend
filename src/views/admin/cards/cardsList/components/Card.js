@@ -35,11 +35,14 @@ import {
   MdMoreHoriz,
 } from "react-icons/md";
 import EditCardModal from "../../../main/account/billing/components/EditCardModal/EditCardModal";
+import { useHistory } from "react-router-dom";
 
 export default function IcontapCard(props) {
   const { ...rest } = props;
 
   let [tabState, setTabState] = useState("card1");
+  
+  const history = useHistory();
 
   // Chakra Color Mode
   const iconColor = useColorModeValue("brand.500", "white");
@@ -157,9 +160,11 @@ export default function IcontapCard(props) {
           direction='column'
           align='center'
           me={{ base: "16px", md: "0px", "2xl": "36px" }}
-          onClick={onOpen}
+          onClick={()=>{
+            history.push('/admin/cards/cardProfile');
+          }}
           >
-          <EditCardModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+          {/* <EditCardModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} /> */}
           <IconButton
             borderRadius='50%'
             bg={bgIconButton}

@@ -46,17 +46,17 @@ export default function EditLink(props) {
             tempSocials.push(tempCurrSocialData);
         }
 
-        console.log(tempSocials);
+        console.log(tempSocials,props);
 
         props.setsocials(tempSocials);
-        props.setPage('EditProfileContainer');
+        props.onClose();
     }
     
     function deleteSocial() {
         let tempSocials = deepCopy(props.socials);
         tempSocials.splice(props.currSocial, 1);
         props.setsocials(tempSocials);
-        props.setPage('EditProfileContainer');
+        props.onClose();
     }
 
     return <ModalContent style={{
@@ -124,7 +124,7 @@ export default function EditLink(props) {
             </div>
 
             <div className="jss550">
-                <button onClick={() => { props.setPage('EditProfileContainer') }} className="MuiButtonBase-root MuiButton-root MuiButton-text jss560" tabIndex="0" type="button">
+                <button onClick={() => { props.onClose(); }} className="MuiButtonBase-root MuiButton-root MuiButton-text jss560" tabIndex="0" type="button">
                     <span className="MuiButton-label">Cancel</span>
                     {/* <span className="MuiTouchRipple-root">
                     </span> */}

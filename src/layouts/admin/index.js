@@ -7,11 +7,17 @@ import Sidebar from "components/sidebar/Sidebar.js";
 import { SidebarContext } from "contexts/SidebarContext";
 import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import routes from "routes.js";
+import sidebarRoutes from "routes.js";
+import adminRoutes from "./adminRoutes.js"
 import "mapbox-gl/dist/mapbox-gl.css";
+import Page from "views/admin/cards/cardProfile";
+import EditCardModal2 from "views/admin/main/account/billing/components/EditCardModal/EditCardModal2";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
+
+  const routes=[...adminRoutes, ...sidebarRoutes];
+
   const { ...rest } = props;
   // states and functions
   const [fixed] = useState(false);
@@ -155,8 +161,11 @@ export default function Dashboard(props) {
               minH='100vh'
               pt='50px'>
               <Switch>
+
                 {getRoutes(routes)}
+
                 <Redirect from='/' to='/admin/dashboards/default' />
+
               </Switch>
             </Box>
           ) : null}

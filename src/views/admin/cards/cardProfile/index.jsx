@@ -47,6 +47,7 @@ import {tableColumnsLastOffer} from "views/admin/cards/cardProfile/variables/tab
 import Notifications from "../../main/profile/overview/components/Notifications";
 import InputField from "../../../../components/fields/InputField";
 import TextField from "../../../../components/fields/TextField";
+import EditProfile from 'views/admin/main/account/billing/components/EditCardModal/EditProfile';
 
 export default function Page() {
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -72,32 +73,7 @@ export default function Page() {
 
                     <FormControl>
                         <Card>
-                            <Flex direction='column' mb='40px' ms='10px'>
-                                <Text fontSize='xl' color={textColorPrimary} fontWeight='bold'>
-                                    Card Info
-                                </Text>
-                            </Flex>
-                            <SimpleGrid
-                                columns={{sm: 1, md: 2}}
-                                spacing={{base: "20px", xl: "20px"}}>
-
-                                <InputField
-                                    mb='25px'
-                                    id='last_name'
-                                    label='Full Name'
-                                    placeholder='John kehas'
-                                />
-                            </SimpleGrid>
-                            <TextField
-                                id='about'
-                                label='Bio'
-                                h='100px'
-                                placeholder='Tell something about yourself!'
-                            />
-                            <Notifications
-                                used={25.6}
-                                total={50}
-                            />
+                            <EditProfile />
                         </Card>
                     </FormControl>
                 </Flex>
