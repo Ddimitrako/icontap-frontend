@@ -95,7 +95,7 @@ function ForgotPassword() {
               Email<Text color={brandStars}>*</Text>
             </FormLabel>
             <Input
-              isRequired={true}
+              isrequired="true"
               variant='auth'
               fontSize='sm'
               type='email'

@@ -170,7 +170,7 @@ function SignIn() {
               Email<Text color={brandStars}>*</Text>
             </FormLabel>
             <Input
-              isRequired={true}
+              isrequired="true"
               variant='auth'
               fontSize='sm'
               ms={{ base: "0px", md: "0px" }}
@@ -187,13 +187,13 @@ function SignIn() {
               fontSize='sm'
               fontWeight='500'
               color={textColor}
-              isRequired={true}
+              isrequired="true"
               display='flex'>
               Password<Text color={brandStars}>*</Text>
             </FormLabel>
             <InputGroup size='md'>
               <Input
-                isRequired={true}
+                isrequired="true"
                 fontSize='sm'
                 placeholder='Min. 8 characters'
                 mb='24px'
