@@ -14,7 +14,7 @@ import InputField from "components/fields/InputField";
 import { catchError } from "Helpers/Auth";
 import { getAuth } from "Helpers/Auth";
 import React, { useState } from "react";
-
+var hostName = process.env.REACT_APP_HOSTNAME.toString()
 export default function Settings() {
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -42,7 +42,7 @@ export default function Settings() {
     localStorage.clear();
     axios({
       method: 'post',
-      url: `http://127.0.0.1:8000/api/change-password`,
+      url: hostName+`/api/change-password`,
       data:{
         "current_password": oldpsw,
         "new_password": newpsw,

@@ -48,7 +48,7 @@ import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { useState } from "react";
-
+var hostName = process.env.REACT_APP_HOSTNAME.toString()
 function SignUp() {
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");
@@ -91,7 +91,7 @@ function SignUp() {
     setloading(true);
     axios({
       method:'post',
-      url:`http://127.0.0.1:8000/api/register`,
+      url:hostName+`/api/register`,
       data:data
     }).then((response)=>{
       console.log(response);

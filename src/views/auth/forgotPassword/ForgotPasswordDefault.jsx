@@ -40,7 +40,7 @@ import DefaultAuth from "layouts/auth/types/Default";
 
 // Assets
 import illustration from "assets/img/auth/auth.png";
-
+var hostName = process.env.REACT_APP_HOSTNAME.toString()
 function ForgotPassword() {
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");
@@ -61,7 +61,7 @@ function ForgotPassword() {
     setloading(true);
     axios({
       method:'post',
-      url:`http://127.0.0.1:8000/api/forgot-password`,
+      url:hostName + `/api/forgot-password`,
       data:data
     }).then((response)=>{
       console.log(response);

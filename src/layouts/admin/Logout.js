@@ -2,7 +2,7 @@ import { catchError } from "Helpers/Auth";
 import { getAuth } from "Helpers/Auth";
 import React, { useEffect, useState } from "react";
 
-
+var hostName = process.env.REACT_APP_HOSTNAME.toString()
 export default function LogoutMid(props) {
 
     const [loading, setloading] = useState(false);
@@ -21,7 +21,7 @@ export default function LogoutMid(props) {
         localStorage.clear();
         axios({
             method: 'put',
-            url: `http://127.0.0.1:8000/api/me/logout`,
+            url: hostName + `/api/me/logout`,
         }).then((response) => {
             console.log(response);
         }).catch((err) => {
