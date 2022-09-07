@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react';
 // Chakra imports
 import {
   Flex,
@@ -184,7 +192,7 @@ export default function IcontapCard(props) {
           </Text>
         </Flex>
         <Flex direction='column' align='center'>
-          <IconButton
+          <IconButton onClick={onOpen}
             borderRadius='50%'
             bg={bgIconButton}
             _hover={bgIconHover}
@@ -199,6 +207,24 @@ export default function IcontapCard(props) {
           <Text fontSize='sm' fontWeight='500' color={textColor}>
            Disable Card
           </Text>
+
+          <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+          <Text>Are you sure you want to disable your card visibility?</Text>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Yes
+            </Button>
+            <Button variant='ghost'  onClick={onClose}>No</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
         </Flex>
       </Flex>
     </Card>
