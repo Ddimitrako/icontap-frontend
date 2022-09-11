@@ -15,31 +15,68 @@ import {catchError, getAuth} from "Helpers/Auth";
 import {Axios} from "axios";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import {useState, useEffect} from 'react';
+
 export default function Settings() {
+
     var hostName = process.env.REACT_APP_HOSTNAME.toString()
     // Chakra Color Mode
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
     const textColorSecondary = "secondaryGray.600";
     const textColor = useColorModeValue("secondaryGray.900", "white");
+    const your_token = getAuth();
 
+    const [firstName, setFirstName] = useState('eg. Esthera');
+    const [lastName, setLastName] = useState('eg. Peterson');
+    const [accountType, setAccountType] = useState('User');
+    const [email, setEmail] = useState('eg. hello@icontap.com');
+    const [company, setCompany] = useState('Moderna');
+    const [profession, setProfession] = useState('Electrical Engineer');
+    const [telephone, setTelephone] = useState('6977774171');
+    const [address , setAddress] = useState('V.Ougko 122');
+    const [city, setCity] = useState('Athens');
+    const [state, setState] = useState('Marousi');
+    const [zipCode, setzipCode] = useState('15244');
+
+    const firstNameChange = (event) => setFirstName(event.target.value)
+    const lastNameChange = (event) => setLastName(event.target.value)
+    const addressChange = (event) => setAddress(event.target.value)
+    const cityChange = (event) => setCity(event.target.value)
+    const stateChange = (event) => setState(event.target.value)
+    const zipCodeChange = (event) => setzipCode(event.target.value)
+    const professionChange = (event) => setProfession(event.target.value)
+    const telephoneChange = (event) => setTelephone(event.target.value)
 
     const config = {
         headers: {Authorization: `Bearer ${getAuth()}`}
 
     };
-    const { token } = useParams();
+    const {token} = useParams();
     const bodyParameters = {
         key: "value"
     };
+    useEffect(() => {
+        getUserProfileData() //call at initialization
+    }, []);
 
-    axios.get(
-        hostName + '/me',
-        bodyParameters,
-        config
-    ).then((response) => {
-        console.log(response)
-        }
-               ).catch(console.log);
+    function setNewUserProfileData(){
+        //axios post new data
+    }
+
+    function getUserProfileData() {
+        axios.get(
+            hostName + '/api/me',
+            bodyParameters,
+            config
+        ).then((response) => {
+                console.log(response.data.data)
+                setFirstName(response.data.data.name)
+                setLastName(response.data.data.last_name)
+                setEmail(response.data.data.email)
+                setAccountType(response.data.data.role.name)
+            }
+        ).catch(console.log);
+    }
 
     return (
         <FormControl>
@@ -52,30 +89,66 @@ export default function Settings() {
                         Here you can set your personal info
                     </Text>
                 </Flex>
+                <Flex align='center' mx='auto' px='15px'>
+                    <Text
+                        me='4px'
+                        color={textColorSecondary}
+                        fontSize='sm'
+                        fontWeight='400'
+                        lineHeight='100%'>
+                        Account type:
+                    </Text>
+                    <Text
+                        id='user_type'
+                        w='unset'
+                        variant='transparent'
+                        display='flex'
+                        textColor={textColorPrimary}
+                        color={textColorPrimary}
+                        alignItems='center'>{accountType}
+                    </Text>
+                </Flex>
                 <SimpleGrid columns={{base: "1", md: "2"}} gap='20px'>
                     <InputField
                         mb='0px'
-                        id='first'
-                        placeholder='eg. Esthera'
+                        id='firstName'
+                        placeholder={firstName}
                         label='First Name'
+                        onChange={firstNameChange}
                     />
                     <InputField
                         mb='0px'
-                        id='last'
-                        placeholder='eg. Peterson'
+                        id='lastName'
+                        placeholder={lastName}
                         label='Last Name'
+                        onChange={lastNameChange}
                     />
                     <InputField
+                        read
                         mb='0px'
                         id='Company'
-                        placeholder='eg. Simmmple'
+                        value={company}
                         label='Company'
                     />
                     <InputField
                         mb='0px'
                         id='Email'
-                        placeholder='eg. hello@simmmple.com'
+                        value={email}
                         label='Email Address'
+                    />
+                     <InputField
+                        mb='0px'
+                        id=''
+                        placeholder={profession}
+                        label='Profession'
+                        onChange={professionChange}
+                    />
+                    <InputField
+                        mb='0px'
+                        id=''
+                        placeholder={telephone}
+                        label='Telephone'
+                        onChange={telephoneChange}
                     />
                 </SimpleGrid>
 
@@ -87,34 +160,33 @@ export default function Settings() {
                         <InputField
                             mb='0px'
                             id='add1'
-                            placeholder='eg. Main Street 203'
-                            label='Address Line 1'
+                            placeholder={address}
+                            label='Address Line'
+                            onChange={addressChange}
                         />
-                        <InputField
-                            mb='0px'
-                            id='add2'
-                            placeholder='eg. Apartment, Floor'
-                            label='Address Line 2'
-                        />
+
                         <SimpleGrid columns={{base: "1", md: "2"}} gap='20px'>
                             <InputField
                                 mb='0px'
                                 id='city'
-                                placeholder='eg. Miami'
+                                placeholder={city}
                                 label='City'
+                                onChange={cityChange}
                             />
                             <SimpleGrid columns={{base: "1", md: "2"}} gap='20px'>
                                 <InputField
                                     mb='0px'
                                     id='add2'
-                                    placeholder='Florida'
+                                    placeholder={state}
                                     label='State'
+                                    onChange={stateChange}
                                 />
                                 <InputField
                                     mb='0px'
                                     id='zip'
-                                    placeholder='eg. Apartment, Floor'
+                                    placeholder={zipCode}
                                     label='ZIP'
+                                    onChange={zipCodeChange}
                                 />
                             </SimpleGrid>
                         </SimpleGrid>
@@ -128,7 +200,7 @@ export default function Settings() {
                         w={{base: "128px", md: "148px"}}
                         h='46px'
                         ms='auto'
-                        onClick={() => {
+                        onClick={() => { setNewUserProfileData()
                         }}>
                         Save changes
                     </Button>

@@ -48,25 +48,6 @@ export default function Settings() {
         </Flex>
         {/* Column Right */}
         <Flex direction='column'>
-          <Flex align='center' mx='auto' px='15px'>
-        <Text
-          me='4px'
-          color={textColorSecondary}
-          fontSize='sm'
-          fontWeight='400'
-          lineHeight='100%'>
-          Account type:
-        </Text>
-        <Text
-          id='user_type'
-          w='unset'
-          variant='transparent'
-          display='flex'
-          textColor={textColorPrimary}
-          color={textColorPrimary}
-          alignItems='center'>Member
-        </Text>
-      </Flex>
           <Password />
           <Delete/>
         </Flex>
