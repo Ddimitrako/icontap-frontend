@@ -70,12 +70,16 @@ export default function ResetPassword({ reset }) {
     }).then((response) => {
       console.log(response);
       setsuccess('Password changed succesfully');
+      setTimeout(() => {
+        window.location.href = '/auth/sign-in';
+        setloading(false);
+      }, 3000);
     }).catch((err) => {
       console.log(err.response);
       catchError(err);
       seterror("Error!")
-    }).finally(() => {
       setloading(false);
+    }).finally(() => {
     })
   }
 

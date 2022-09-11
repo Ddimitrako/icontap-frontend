@@ -117,21 +117,21 @@ const routes = [
     //         />
     //     ),
     // },
-    // {
-    //     name: "Users Overview",
-    //     layout: "/admin",
-    //     path: "/main/users/users-overview",
+    {
+        name: "Users Overview",
+        layout: "/admin",
+        path: "/main/users/users-overview",
 
-    //     component: UsersOverview,
-    //     icon: (
-    //         <Icon
-    //             as={AiOutlineTeam}
-    //             width='20px'
-    //             height='20px'
-    //             color='inherit'
-    //         />
-    //     ),
-    // },
+        component: UsersOverview,
+        icon: (
+            <Icon
+                as={AiOutlineTeam}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+    },
 
 
     // {
@@ -191,6 +191,8 @@ const routes = [
                 color='inherit'
             />
         ),
+        onlyRoute:true
+
     },
     // {
     //   name: "News Feed",
