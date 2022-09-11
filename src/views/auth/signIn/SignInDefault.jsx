@@ -47,7 +47,7 @@ import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { logIn } from "Helpers/Auth";
-
+var hostName = process.env.REACT_APP_HOSTNAME.toString()
 function SignIn() {
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");
@@ -85,7 +85,7 @@ function SignIn() {
     setloading(true);
     axios({
       method:'post',
-      url:`http://127.0.0.1:8000/api/login`,
+      url:hostName+`/api/login`,
       data:data
     }).then((response)=>{
       console.log(response);
@@ -170,7 +170,7 @@ function SignIn() {
               Email<Text color={brandStars}>*</Text>
             </FormLabel>
             <Input
-              isRequired={true}
+              isrequired="true"
               variant='auth'
               fontSize='sm'
               ms={{ base: "0px", md: "0px" }}
@@ -187,13 +187,13 @@ function SignIn() {
               fontSize='sm'
               fontWeight='500'
               color={textColor}
-              isRequired={true}
+              isrequired="true"
               display='flex'>
               Password<Text color={brandStars}>*</Text>
             </FormLabel>
             <InputGroup size='md'>
               <Input
-                isRequired={true}
+                isrequired="true"
                 fontSize='sm'
                 placeholder='Min. 8 characters'
                 mb='24px'

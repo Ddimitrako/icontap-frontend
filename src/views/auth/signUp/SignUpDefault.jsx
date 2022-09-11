@@ -48,7 +48,7 @@ import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { useState } from "react";
-
+var hostName = process.env.REACT_APP_HOSTNAME.toString()
 function SignUp() {
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");
@@ -91,7 +91,7 @@ function SignUp() {
     setloading(true);
     axios({
       method:'post',
-      url:`http://127.0.0.1:8000/api/register`,
+      url:hostName+`/api/register`,
       data:data
     }).then((response)=>{
       console.log(response);
@@ -181,7 +181,7 @@ function SignUp() {
                   First name<Text color={brandStars}>*</Text>
                 </FormLabel>
                 <Input
-                  isRequired={true}
+                  isrequired="true"
                   fontSize='sm'
                   ms={{ base: "0px", md: "4px" }}
                   placeholder='First name'
@@ -203,7 +203,7 @@ function SignUp() {
                   Last name<Text color={brandStars}>*</Text>
                 </FormLabel>
                 <Input
-                  isRequired={true}
+                  isrequired="true"
                   variant='auth'
                   fontSize='sm'
                   placeholder='Last name'
@@ -224,7 +224,7 @@ function SignUp() {
               Email<Text color={brandStars}>*</Text>
             </FormLabel>
             <Input
-              isRequired={true}
+              isrequired="true"
               variant='auth'
               fontSize='sm'
               type='email'
@@ -238,14 +238,14 @@ function SignUp() {
               ms='4px'
               fontSize='sm'
               fontWeight='500'
-              isRequired={true}
+              isrequired="true"
               color={textColor}
               display='flex'>
               Password<Text color={brandStars}>*</Text>
             </FormLabel>
             <InputGroup size='md'>
               <Input
-                isRequired={true}
+                isrequired="true"
                 variant='auth'
                 fontSize='sm'
                 ms={{ base: "0px", md: "4px" }}
@@ -269,14 +269,14 @@ function SignUp() {
               ms='4px'
               fontSize='sm'
               fontWeight='500'
-              isRequired={true}
+              isrequired="true"
               color={textColor}
               display='flex'>
               Repeat Password<Text color={brandStars}>*</Text>
             </FormLabel>
             <InputGroup size='md'>
               <Input
-                isRequired={true}
+                isrequired="true"
                 variant='auth'
                 fontSize='sm'
                 ms={{ base: "0px", md: "4px" }}

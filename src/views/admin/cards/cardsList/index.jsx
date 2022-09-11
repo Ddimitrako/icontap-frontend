@@ -103,10 +103,10 @@ export default function Collection(props) {
             h='44px'
             maxh='44px'
             me='20px'
-            defaultValue='single'>
-            <option value='multiple'>All Card</option>
-            <option value='single'>Business Card</option>
-            <option value='multiple'>Personal Card</option>
+            defaultValue='multiple'>
+            <option value='multiple'>All Cards</option>
+            <option value='single'>Business Cards</option>
+            <option value='multiple'>Personal Cards</option>
 
           </Select>
 

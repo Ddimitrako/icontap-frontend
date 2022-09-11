@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
-
+var hostName = process.env.REACT_APP_HOSTNAME.toString()
 export default function VerifyEmail(props) {
 
     const [loading, setloading]=useState(false);
@@ -21,7 +21,7 @@ export default function VerifyEmail(props) {
         // setloading(true);
         axios({
             method: 'get',
-            url: `http://127.0.0.1:8000/api/email/verify`,
+            url: hostName+`/api/email/verify`,
             params: {
                 expires:expires,
                 signature:signature,

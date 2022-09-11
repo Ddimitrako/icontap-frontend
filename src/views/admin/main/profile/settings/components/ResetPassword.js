@@ -21,7 +21,7 @@ import { useLocation, useParams } from "react-router-dom";
 import DefaultAuth from "layouts/auth/types/Default";
 
 import illustration from "assets/img/auth/auth.png";
-
+var hostName = process.env.REACT_APP_HOSTNAME.toString()
 export default function ResetPassword({ reset }) {
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -60,7 +60,7 @@ export default function ResetPassword({ reset }) {
     localStorage.clear();
     axios({
       method: 'post',
-      url: `http://127.0.0.1:8000/api/${reset ? 'reset' : 'change'}-password`,
+      url: hostName+`/api/${reset ? 'reset' : 'change'}-password`,
       data: {
         "token":token,
         "email":email,
