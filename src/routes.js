@@ -59,14 +59,14 @@ import VerificationDefault from "views/auth/verification/VerificationDefault.jsx
 
 const routes = [
     // --- Dashboards ---
-    {
-        name: "Main Dashboard",
-        layout: "/admin",
-        path: "/dashboards/default",
-        icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
-        component: DashboardsDefault,
-
-    },
+    // {
+    //     name: "Main Dashboard",
+    //     layout: "/admin",
+    //     path: "/dashboards/default",
+    //     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
+    //     component: DashboardsDefault,
+    //
+    // },
     // --- NFTs ---
     {
         name: "Cards",
@@ -117,21 +117,21 @@ const routes = [
     //         />
     //     ),
     // },
-    // {
-    //     name: "Users Overview",
-    //     layout: "/admin",
-    //     path: "/main/users/users-overview",
+    {
+        name: "Users Overview",
+        layout: "/admin",
+        path: "/main/users/users-overview",
 
-    //     component: UsersOverview,
-    //     icon: (
-    //         <Icon
-    //             as={AiOutlineTeam}
-    //             width='20px'
-    //             height='20px'
-    //             color='inherit'
-    //         />
-    //     ),
-    // },
+        component: UsersOverview,
+        icon: (
+            <Icon
+                as={AiOutlineTeam}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+    },
 
 
     // {
