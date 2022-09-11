@@ -45,7 +45,7 @@ export function AddNewCard() {
     const iconColor = useColorModeValue("brand.500", "white");
     return (
         <>
-            <text>Add a new Card</text>
+            <Text>Add a new Card</Text>
             <Button
                 onClick={onOpen}
                 align='center'
@@ -76,8 +76,18 @@ export function AddNewCard() {
                 <ModalContent>
                     <ModalHeader>Add your new Card </ModalHeader>
                     <ModalCloseButton/>
+
                     <ModalBody pb={16}>
-                        <text> Please add your card activation code here.</text>
+                        <text> Please add your card id here.</text>
+
+                        <FormControl>
+                            <Flex justify='center'>
+                                <Input size='lg' htmlSize={16} width='auto'/>
+                            </Flex>
+
+                        </FormControl>
+                        <hr></hr>
+                        <Text> Please add your card activation code here.</Text>
                         <Flex
                             zIndex='2'
                             direction='column'
@@ -88,6 +98,7 @@ export function AddNewCard() {
                             mx={{base: "auto", lg: "unset"}}
                             me='auto'
                             mb={{base: "20px", md: "auto"}}>
+
                             <FormControl>
                                 <Flex justify='center'>
                                     <PinInput mx='auto' otp>

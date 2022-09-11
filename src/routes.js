@@ -59,14 +59,14 @@ import VerificationDefault from "views/auth/verification/VerificationDefault.jsx
 
 const routes = [
     // --- Dashboards ---
-    {
-        name: "Main Dashboard",
-        layout: "/admin",
-        path: "/dashboards/default",
-        icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
-        component: DashboardsDefault,
-
-    },
+    // {
+    //     name: "Main Dashboard",
+    //     layout: "/admin",
+    //     path: "/dashboards/default",
+    //     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
+    //     component: DashboardsDefault,
+    //
+    // },
     // --- NFTs ---
     {
         name: "Cards",

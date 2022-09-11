@@ -38,7 +38,7 @@ import tableDataMostVisited from "views/admin/dashboards/default/variables/table
 import Banner from "../../main/profile/overview/components/Banner";
 import banner from "../../../../assets/img/auth/banner.png";
 import avatar from "../../../../assets/img/avatars/avatar4.png";
-
+import { getAuth } from "Helpers/Auth";
 export default function Default() {
   // Chakra Color Mode
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
