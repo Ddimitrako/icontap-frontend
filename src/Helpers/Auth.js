@@ -1,4 +1,10 @@
+import axios from "axios";
+import React from "react";
+import { createContext } from "react";
+import { useContext } from "react";
+import { useEffect } from "react";
 import { Redirect, Route } from "react-router-dom";
+import { hostName } from "./App";
 
 export function logIn(token) {
     localStorage.setItem('token', token);
@@ -43,4 +49,49 @@ export function catchError(error) {
         window.location.href = '/';
     }
 
+}
+
+export function SetupAxios() {
+    let token = getAuth();
+
+    if (isAuth() && token)
+        setAxiosAUthorizationHeader(token);
+
+    return null;
+
+}
+
+export function setAxiosAUthorizationHeader(token) {
+    
+    console.log(token);
+    axios.interceptors.request.use(function (config) {
+        console.log('INTERCEPT', token);
+        config.headers.Authorization = `Bearer ${token}`;
+        return config;
+    });
+}
+
+export const MeContext = React.createContext();
+
+export function GetMeFromApi() {
+
+    const [MeContextValue, setMeContextValue]=useContext(MeContext);
+    
+    useEffect(()=>{
+        axios({
+            method:'get',
+            url:`${hostName}/me`
+        }).then((response)=>{
+            console.log(response);
+            setMeContextValue(response.data.data);
+        }).catch((err)=>{
+            console.log(err.response);
+        })
+    },[]);
+
+    return <></>;
+}
+
+export function getMe() {
+    return JSON?.parse(localStorage.getItem('me'));
 }

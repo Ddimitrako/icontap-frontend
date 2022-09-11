@@ -12,6 +12,8 @@ export default function EditProfile(props) {
 
     const [name, setname] = useState('');
     const [bio, setbio] = useState('');
+    const [job, setjob] = useState('');
+    const [company, setcompany] = useState('');
 
     const [avatar, setavatar] = useState('/static/media/img.jpg');
     const [cover, setcover] = useState('/static/media/img.jpg');
@@ -136,6 +138,8 @@ export default function EditProfile(props) {
 
         <CustomEditBox caption={'Name'} value={name} onChange={setname} />
         <CustomEditBox caption={'Bio'} value={bio} onChange={setbio} />
+        <CustomEditBox caption={'Job title'} value={job} onChange={setjob} />
+        <CustomEditBox caption={'Company'} value={company} onChange={setcompany} />
 
         <div style={{
             width: '90%',

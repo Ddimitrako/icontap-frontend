@@ -12,6 +12,8 @@ import adminRoutes from "./adminRoutes.js"
 import "mapbox-gl/dist/mapbox-gl.css";
 import Page from "views/admin/cards/cardProfile";
 import EditCardModal2 from "views/admin/main/account/billing/components/EditCardModal/EditCardModal2";
+import { MeContext } from "Helpers/Auth.js";
+import { GetMeFromApi } from "Helpers/Auth.js";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
@@ -118,8 +120,13 @@ export default function Dashboard(props) {
   };
   document.documentElement.dir = "ltr";
   const { onOpen } = useDisclosure();
+
+  const [MeContextValue, setMeContextValue]=useState('');
+
   return (
     <Box>
+      <MeContext.Provider value={[MeContextValue, setMeContextValue]} >
+        <GetMeFromApi />
       <SidebarContext.Provider
         value={{
           toggleSidebar,
@@ -174,6 +181,7 @@ export default function Dashboard(props) {
           </Box>
         </Box>
       </SidebarContext.Provider>
+      </MeContext.Provider>
     </Box>
   );
 }

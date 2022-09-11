@@ -19,7 +19,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import {AddNewCard} from "./components/AddNewCard";
+import { AddNewCard } from "./components/AddNewCard";
 // Chakra imports
 import {
   Box,
@@ -54,6 +54,7 @@ import Avatar1 from "assets/img/avatars/avatar1.png";
 import Avatar2 from "assets/img/avatars/avatar2.png";
 import Avatar3 from "assets/img/avatars/avatar3.png";
 import Avatar4 from "assets/img/avatars/avatar4.png";
+import axios from "axios";
 
 import {
   MdDashboard,
@@ -65,6 +66,12 @@ import {
   MdOutlineLocalOffer,
 } from "react-icons/md";
 import { IoMdHeartEmpty } from "react-icons/io";
+import { useEffect } from "react";
+import { getMe } from "Helpers/Auth";
+import { useContext } from "react";
+import { MeContext } from "Helpers/Auth";
+import { useState } from "react";
+import { hostName } from "Helpers/App";
 export default function Collection(props) {
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -78,13 +85,32 @@ export default function Collection(props) {
     { bg: "whiteAlpha.200" }
   );
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
-  let panelExample = (
 
+  const [cards, setCards]=useState([]);
+
+  let panelCards = (
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
-        <IcontapCard/>
-        <IcontapCard/>
+      {cards.map((card, index)=>
+        <IcontapCard card={card} key={index} />
+      )}
     </SimpleGrid>
   );
+
+  const [Me, setMe]=useContext(MeContext);
+
+  useEffect(() => {
+    if(Me.id)
+    axios({
+      method:'get',
+      url:`${hostName}/user/${Me.id}/cards`
+    }).then((response)=>{
+      console.log(response);
+      setCards(response.data.data);
+    }).catch((err)=>{
+      console.log(err.response);
+    })
+  }, [Me]);
+
   // Chakra Color Mode
   return (
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
@@ -151,9 +177,9 @@ export default function Collection(props) {
           ms='24px'
           fontWeight='700'>Your Cards
         </Text>
-        <AddNewCard/>
+        <AddNewCard />
         <TabPanels>
-          <TabPanel px='0px'>{panelExample}</TabPanel>
+          <TabPanel px='0px'>{panelCards}</TabPanel>
         </TabPanels>
       </Tabs>
     </Box>
