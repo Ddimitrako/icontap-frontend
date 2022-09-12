@@ -60,7 +60,7 @@ export default function ResetPassword({ reset }) {
     localStorage.clear();
     axios({
       method: 'post',
-      url: hostName+`/api/${reset ? 'reset' : 'change'}-password`,
+      url: hostName+`/${reset ? 'reset' : 'change'}-password`,
       data: {
         "token":token,
         "email":email,

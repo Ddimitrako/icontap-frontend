@@ -21,7 +21,7 @@ export default function VerifyEmail(props) {
         // setloading(true);
         axios({
             method: 'get',
-            url: hostName+`/api/email/verify`,
+            url: hostName+`/email/verify`,
             params: {
                 expires:expires,
                 signature:signature,

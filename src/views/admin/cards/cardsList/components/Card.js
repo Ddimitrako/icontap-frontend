@@ -7,13 +7,17 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  FormControl,
+  Input,
+  PinInput,
+  PinInputField,
 } from '@chakra-ui/react';
 // Chakra imports
 import {
   Flex,
   Box,
   Button,
-    Image,
+  Image,
   IconButton,
   Icon,
   Text,
@@ -37,19 +41,25 @@ import {
   MdCached,
   MdAdd,
   MdAttachMoney,
-    MdEditNote,
-    MdDisabledVisible,
-    MdEdit,
+  MdEditNote,
+  MdDisabledVisible,
+  MdEdit,
   MdMoreHoriz,
+  MdCheckCircle,
 } from "react-icons/md";
 import EditCardModal from "../../../main/account/billing/components/EditCardModal/EditCardModal";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import { hostName } from "Helpers/App";
 
 export default function IcontapCard(props) {
-  const { ...rest } = props;
+  var clone = Object.assign({}, {a: 1, b: 2, c: 3});
+  delete clone.getcards;
+  const { ...rest } = clone;
 
   let [tabState, setTabState] = useState("card1");
-  
+
   const history = useHistory();
 
   // Chakra Color Mode
@@ -83,7 +93,211 @@ export default function IcontapCard(props) {
   const textColor = useColorModeValue("secondaryGray.900", "white");
 
   //Modal Handlers
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const activateModalDisclosure = useDisclosure();
+  const isActOpen=activateModalDisclosure.isOpen;
+  const onActOpen=activateModalDisclosure.onOpen;
+  const onActClose=activateModalDisclosure.onClose;
+  
+  // const textColor = useColorModeValue("navy.700", "white");
+  const textColorDetails = useColorModeValue("navy.700", "secondaryGray.600");
+  const textColorBrand = useColorModeValue("brand.500", "white");
+  const borderColor = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
+
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
+
+  const [pin1, setpin1]=useState(0);
+  const [pin2, setpin2]=useState(0);
+  const [pin3, setpin3]=useState(0);
+  const [pin4, setpin4]=useState(0);
+  const [pin5, setpin5]=useState(0);
+  const [pin6, setpin6]=useState(0);
+  const [activationCode, setactivationCode]=useState();
+  
+  const [loading, setloading]=useState(false);
+
+  useEffect(()=>{
+    // console.log(props.card);
+  },[]);
+
+  useEffect(()=>{
+    setactivationCode(`${pin1}${pin2}${pin3}${pin4}${pin5}${pin6}`);
+  },[pin1,pin2,pin3,pin4,pin5,pin6]);
+
+  function activateCard() {
+    setloading(true);
+    axios({
+      method:'put',
+      url:`${hostName}/card/${props.card.code}/activate`,
+      data:{
+        activation_code:activationCode
+      }
+    }).then((response)=>{
+      console.log(response);
+      props?.getcards();
+    }).catch((err)=>{
+      console.log(err.response);
+    });
+  }
+
+  const activateCardBtnModal = <Flex direction='column' align='center'>
+    <IconButton onClick={() => {
+      console.log(props.card);
+      console.log(props.card.activation_code);
+      onActOpen();
+    }}
+      borderRadius='50%'
+    bg={bgIconButton}
+    _hover={bgIconHover}
+    _active={bgIconFocus}
+    _focus={bgIconFocus}
+    w='56px'
+    h='56px'
+    mb='5px'
+    boxShadow={shadow}
+    icon={<Icon as={MdCheckCircle} color={greenIcon} w='24px' h='24px' />}
+  />
+  <Text fontSize='sm' fontWeight='500' color={textColor}>
+    Activate Card
+  </Text>
+
+  <Modal
+    initialFocusRef={initialRef}
+    finalFocusRef={finalRef}
+    isOpen={isActOpen}
+    onClose={onActClose}
+  >
+    <ModalOverlay />
+    <ModalContent>
+      <ModalHeader>Activate your Card </ModalHeader>
+      <ModalCloseButton />
+
+      <ModalBody pb={16}>
+        <Text> Card ID.</Text>
+
+        <FormControl>
+          <Flex justify='center'>
+            <Input size='lg' htmlSize={16} width='auto' value={props.card.code} readOnly />
+          </Flex>
+
+        </FormControl>
+        <hr></hr>
+        <Text> Please add your card activation code here.</Text>
+        <Flex
+          zIndex='2'
+          direction='column'
+          w={{ base: "100%", md: "395px" }}
+          maxW='100%'
+          background='transparent'
+          borderRadius='15px'
+          mx={{ base: "auto", lg: "unset" }}
+          me='auto'
+          mb={{ base: "20px", md: "auto" }}>
+
+          <FormControl>
+            <Flex justify='center'>
+              <PinInput mx='auto' otp>
+                <PinInputField
+                  onChange={(e)=>setpin1(e.target.value)}
+                  value={pin1}
+                  fontSize='36px'
+                  color={textColor}
+                  borderRadius='16px'
+                  borderColor={borderColor}
+                  h={{ base: "63px", md: "95px" }}
+                  w={{ base: "63px", md: "95px" }}
+                  me='10px'
+                />
+                <PinInputField
+                  onChange={(e)=>setpin2(e.target.value)}
+                  value={pin2}
+                  fontSize='36px'
+                  color={textColor}
+                  borderRadius='16px'
+                  borderColor={borderColor}
+                  h={{ base: "63px", md: "95px" }}
+                  w={{ base: "63px", md: "95px" }}
+                  me='10px'
+                />
+                <PinInputField
+                  onChange={(e)=>setpin3(e.target.value)}
+                  value={pin3}
+                  fontSize='36px'
+                  color={textColor}
+                  borderRadius='16px'
+                  borderColor={borderColor}
+                  h={{ base: "63px", md: "95px" }}
+                  w={{ base: "63px", md: "95px" }}
+                  me='10px'
+                />
+                <PinInputField
+                  onChange={(e)=>setpin4(e.target.value)}
+                  value={pin4}
+                  fontSize='36px'
+                  color={textColor}
+                  borderRadius='16px'
+                  borderColor={borderColor}
+                  h={{ base: "63px", md: "95px" }}
+                  w={{ base: "63px", md: "95px" }}
+                  me='10px'
+                />
+                <PinInputField
+                  onChange={(e)=>setpin5(e.target.value)}
+                  value={pin5}
+                  fontSize='36px'
+                  color={textColor}
+                  borderRadius='16px'
+                  borderColor={borderColor}
+                  h={{ base: "63px", md: "95px" }}
+                  w={{ base: "63px", md: "95px" }}
+                  me='10px'
+                />
+                <PinInputField
+                  onChange={(e)=>setpin6(e.target.value)}
+                  value={pin6}
+                  fontSize='36px'
+                  color={textColor}
+                  borderRadius='16px'
+                  borderColor={borderColor}
+                  h={{ base: "63px", md: "95px" }}
+                  w={{ base: "63px", md: "95px" }}
+                />
+              </PinInput>
+            </Flex>
+            <Button
+              onClick={activateCard}
+              isLoading={loading}
+              fontSize='14px'
+              variant='brand'
+              borderRadius='16px'
+              fontWeight='500'
+              w='100%'
+              h='50'
+              mb='24px'
+              mt='12px'>
+              Activate Card
+            </Button>
+          </FormControl>
+          <Text
+            color={textColorDetails}
+            fontWeight='400'
+            fontSize='14px'
+            mx={{ base: "auto", lg: "unset" }}
+            textAlign={{ base: "center", lg: "left" }}>
+            Haven't received it?
+            <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
+              Resend a new code
+            </Text>
+          </Text>
+        </Flex>
+      </ModalBody>
+      <ModalFooter>
+        <Button onClick={onActClose}>Cancel</Button>
+      </ModalFooter>
+    </ModalContent>
+  </Modal>
+</Flex>;
 
   return (
     <Card {...rest} p='44px'>
@@ -100,10 +314,10 @@ export default function IcontapCard(props) {
       <Tabs>
         <TabPanels mb='20px'>
           <TabPanel p='0px'>
-            <Image src={whitecard}/>
+            <Image src={whitecard} />
           </TabPanel>
           <TabPanel p='0px'>
-            <Image src={blackCard}/>
+            <Image src={blackCard} />
           </TabPanel>
         </TabPanels>
         <TabList
@@ -168,11 +382,10 @@ export default function IcontapCard(props) {
           direction='column'
           align='center'
           me={{ base: "16px", md: "0px", "2xl": "36px" }}
-          onClick={()=>{
+          onClick={() => {
             history.push('/admin/cards/cardProfile');
           }}
-          >
-          {/* <EditCardModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} /> */}
+        >
           <IconButton
             borderRadius='50%'
             bg={bgIconButton}
@@ -191,6 +404,7 @@ export default function IcontapCard(props) {
             Edit Card
           </Text>
         </Flex>
+        {!props.card.is_active?activateCardBtnModal:''}
         <Flex direction='column' align='center'>
           <IconButton onClick={onOpen}
             borderRadius='50%'
@@ -205,26 +419,26 @@ export default function IcontapCard(props) {
             icon={<Icon as={MdDisabledVisible} color={redIcon} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
-           Disable Card
+            Disable Card
           </Text>
 
           <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-          <Text>Are you sure you want to disable your card visibility?</Text>
-          </ModalBody>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Modal Title</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Text>Are you sure you want to disable your card visibility?</Text>
+              </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Yes
-            </Button>
-            <Button variant='ghost'  onClick={onClose}>No</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+              <ModalFooter>
+                <Button colorScheme='blue' mr={3} onClick={onClose}>
+                  Yes
+                </Button>
+                <Button variant='ghost' onClick={onClose}>No</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         </Flex>
       </Flex>
     </Card>

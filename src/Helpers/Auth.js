@@ -54,42 +54,65 @@ export function catchError(error) {
 export function SetupAxios() {
     let token = getAuth();
 
-    if (isAuth() && token)
+    if (isAuth() && token) {
+        setAxiosErrorInterceptor();
         setAxiosAUthorizationHeader(token);
+    }
 
     return null;
 
 }
 
 export function setAxiosAUthorizationHeader(token) {
-    
-    console.log(token);
+
     axios.interceptors.request.use(function (config) {
-        console.log('INTERCEPT', token);
+        console.log('INTERCEPT', config);
         config.headers.Authorization = `Bearer ${token}`;
         return config;
     });
+}
+
+export function setAxiosErrorInterceptor() {
+    axios.interceptors.response.use(function (response) {
+        return response;
+    }, function (error) {
+        if (error.response.status == 401) {
+            window.location.href = '/admin/logout';
+        }
+
+        if (error.response.status == 403) {
+            window.location.href = '/';
+        }
+    }
+    );
 }
 
 export const MeContext = React.createContext();
 
 export function GetMeFromApi() {
 
-    const [MeContextValue, setMeContextValue]=useContext(MeContext);
-    
-    useEffect(()=>{
-        axios({
-            method:'get',
-            url:`${hostName}/me`
-        }).then((response)=>{
-            console.log(response);
-            setMeContextValue(response.data.data);
-        }).catch((err)=>{
-            console.log(err.response);
-        })
-    },[]);
+    const [MeContextValue, setMeContextValue] = useContext(MeContext);
+
+    useEffect(() => {
+        let me = localStorage.getItem('me');
+        if (me) {
+            setMeContextValue(JSON?.parse(me));
+        } else {
+            axios({
+                method: 'get',
+                url: `${hostName}/me`
+            }).then((response) => {
+                console.log(response);
+                localStorage.setItem('me', JSON.stringify(response.data.data));
+                setMeContextValue(response.data.data);
+            }).catch((err) => {
+                console.log(err.response);
+            })
+        }
+    }, []);
 
     return <></>;
+
 }
 
 export function getMe() {

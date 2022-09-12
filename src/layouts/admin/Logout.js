@@ -21,7 +21,7 @@ export default function LogoutMid(props) {
         localStorage.clear();
         axios({
             method: 'put',
-            url: hostName + `/api/me/logout`,
+            url: hostName + `/me/logout`,
         }).then((response) => {
             console.log(response);
         }).catch((err) => {

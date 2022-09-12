@@ -74,6 +74,12 @@ import { useState } from "react";
 import { hostName } from "Helpers/App";
 export default function Collection(props) {
 
+  const [Me, setMe] = useContext(MeContext);
+
+  const [firstTime, setFirstTime] = useState(true);
+  const [loading, setloading] = useState(true);
+  const [loadingCreate, setloadingCreate] = useState(true);
+
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const buttonBg = useColorModeValue("transparent", "navy.800");
   const hoverButton = useColorModeValue(
@@ -86,30 +92,71 @@ export default function Collection(props) {
   );
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
 
-  const [cards, setCards]=useState([]);
+  const [cards, setCards] = useState([]);
 
   let panelCards = (
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
-      {cards.map((card, index)=>
-        <IcontapCard card={card} key={index} />
-      )}
+      {!loading ? cards.map((card, index) =>
+        <IcontapCard card={card} key={index} getcards={()=>getCards()} />
+      ) : <Button isLoading
+        loadingText="Please wait"
+        variant="transparent-with-icon"
+        spinnerPlacement="start"></Button>}
     </SimpleGrid>
   );
 
-  const [Me, setMe]=useContext(MeContext);
-
-  useEffect(() => {
-    if(Me.id)
+  function getCards() {
+    setloading(true);
     axios({
-      method:'get',
-      url:`${hostName}/user/${Me.id}/cards`
-    }).then((response)=>{
+      method: 'get',
+      url: `${hostName}/user/${Me.id}/cards`
+    }).then((response) => {
       console.log(response);
       setCards(response.data.data);
-    }).catch((err)=>{
+    }).catch((err) => {
+      console.log(err.response);
+    }).finally(() => {
+      setloading(false);
+      setloadingCreate(false);
+    })
+  }
+
+  useEffect(() => {
+    if (Me.id && firstTime) {
+      setFirstTime(false);
+      console.log(Me);
+      getCards();
+    }
+  }, [Me]);
+
+  function createCard() {
+    setloadingCreate(true);
+    axios({
+      method: 'post',
+      url: `${hostName}/card`,
+      data: {
+        "title": `Dummy card ${Math.random()}`,
+        "is_personal": true,
+        "owner": 1
+      }
+    }).then((response => {
+      console.log(response);
+      getCards();
+    })).catch((err) => {
       console.log(err.response);
     })
-  }, [Me]);
+  }
+
+  const bgButton = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
+  const bgHover = useColorModeValue(
+    { bg: "secondaryGray.400" },
+    { bg: "whiteAlpha.50" }
+  );
+  const bgFocus = useColorModeValue(
+    { bg: "secondaryGray.300" },
+    { bg: "whiteAlpha.100" }
+  );
+  const iconColor = useColorModeValue("brand.500", "white");
 
   // Chakra Color Mode
   return (
@@ -177,7 +224,26 @@ export default function Collection(props) {
           ms='24px'
           fontWeight='700'>Your Cards
         </Text>
-        <AddNewCard />
+
+        <Text>Add a new Card</Text>
+        <Button
+          onClick={createCard}
+          align='center'
+          justifyContent='center'
+          bg={bgButton}
+          _hover={bgHover}
+          _focus={bgFocus}
+          _active={bgFocus}
+          w='37px'
+          h='37px'
+          lineHeight='100%'
+          borderRadius='10px'
+          isLoading={loadingCreate}
+        >
+          <Icon as={MdAddCircle} color={iconColor} w='24px' h='24px' />
+
+        </Button>
+
         <TabPanels>
           <TabPanel px='0px'>{panelCards}</TabPanel>
         </TabPanels>
