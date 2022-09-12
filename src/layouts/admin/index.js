@@ -10,8 +10,8 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import sidebarRoutes from "routes.js";
 import adminRoutes from "./adminRoutes.js"
 import "mapbox-gl/dist/mapbox-gl.css";
-import Page from "views/admin/cards/cardProfile";
-import EditCardModal2 from "views/admin/main/account/billing/components/EditCardModal/EditCardModal2";
+import Page from "views/cards/cardProfile";
+import EditCardModal2 from "views/main/account/billing/components/EditCardModal/EditCardModal2";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
@@ -164,7 +164,7 @@ export default function Dashboard(props) {
 
                 {getRoutes(routes)}
 
-                <Redirect from='/' to='/admin/dashboards/cardsList/card' />
+                <Redirect from='/' to='/admin/cardsList/card' />
 
               </Switch>
             </Box>

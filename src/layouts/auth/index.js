@@ -10,8 +10,8 @@ import SignIn from "views/auth/signIn/SignInDefault";
 import SignUp from "views/auth/signUp/SignUpDefault";
 import ForgotPassword from "views/auth/forgotPassword/ForgotPasswordDefault";
 import VerifyEmail from "./VerifyEmail";
-import Settings from "views/admin/main/profile/settings/components/Password";
-import ResetPassword from "views/admin/main/profile/settings/components/ResetPassword";
+import Settings from "views/main/profile/settings/components/Password";
+import ResetPassword from "views/main/profile/settings/components/ResetPassword";
 
 // Custom Chakra theme
 export default function Auth() {

@@ -9,43 +9,43 @@ import {
 } from "react-icons/md";
 import { AiOutlineIdcard,AiOutlineUser,AiOutlineTeam,AiTwotoneSetting } from "react-icons/ai";
 // Admin Imports
-import DashboardsDefault from "views/admin/dashboards/default";
+import DashboardsDefault from "views/dashboards/default";
 
 // NFT Imports
 
-import NFTPage from "views/admin/cards/cardProfile";
+import NFTPage from "views/cards/cardProfile";
 
-import NFTProfile from "views/admin/cards/cardsList";
+import NFTProfile from "views/cards/cardsList";
 
 // Main Imports
-import AccountBilling from "views/admin/main/account/billing";
-import AccountApplications from "views/admin/main/account/application";
-import AccountInvoice from "views/admin/main/account/invoice";
-import AccountSettings from "views/admin/main/account/settings";
-import AccountAllCourses from "views/admin/main/account/courses";
-import AccountCoursePage from "views/admin/main/account/coursePage";
+import AccountBilling from "views/main/account/billing";
+import AccountApplications from "views/main/account/application";
+import AccountInvoice from "views/main/account/invoice";
+import AccountSettings from "views/main/account/settings";
+import AccountAllCourses from "views/main/account/courses";
+import AccountCoursePage from "views/main/account/coursePage";
 
-import UserNew from "views/admin/main/users/newUser";
-import UsersOverview from "views/admin/main/users/overview";
-import UsersReports from "views/admin/main/users/reports";
+import UserNew from "views/main/users/newUser";
+import UsersOverview from "views/main/users/overview";
+import UsersReports from "views/main/users/reports";
 
-import ProfileSettings from "views/admin/main/profile/settings";
-import ProfileOverview from "views/admin/main/profile/overview";
+import ProfileSettings from "views/main/profile/settings";
+import ProfileOverview from "views/main/profile/overview";
 
-import ApplicationsDataTables from "views/admin/main/applications/dataTables";
-import ApplicationsCalendar from "views/admin/main/applications/calendar";
+import ApplicationsDataTables from "views/main/applications/dataTables";
+import ApplicationsCalendar from "views/main/applications/calendar";
 
-import EcommerceNewProduct from "views/admin/main/ecommerce/newProduct";
-import EcommerceProductSettings from "views/admin/main/ecommerce/settingsProduct";
-import EcommerceProductPage from "views/admin/main/ecommerce/pageProduct";
-import EcommerceOrderList from "views/admin/main/ecommerce/orderList";
-import EcommerceOrderDetails from "views/admin/main/ecommerce/orderDetails";
-import EcommerceReferrals from "views/admin/main/ecommerce/referrals";
+import EcommerceNewProduct from "views/main/ecommerce/newProduct";
+import EcommerceProductSettings from "views/main/ecommerce/settingsProduct";
+import EcommerceProductPage from "views/main/ecommerce/pageProduct";
+import EcommerceOrderList from "views/main/ecommerce/orderList";
+import EcommerceOrderDetails from "views/main/ecommerce/orderDetails";
+import EcommerceReferrals from "views/main/ecommerce/referrals";
 
 // Others
-import OthersNotifications from "views/admin/main/others/notifications";
-import OthersPricing from "views/admin/main/others/pricing";
-import OthersError from "views/admin/main/others/404";
+import OthersNotifications from "views/main/others/notifications";
+import OthersPricing from "views/main/others/pricing";
+import OthersError from "views/main/others/404";
 
 // Auth Imports
 
@@ -156,7 +156,7 @@ const routes = [
     //     {
     //       name: "Calendar",
     //       layout: "/admin",
-    //       path: "/main/applications/calendar",
+    //       path: "/applications/calendar",
     //       exact: false,
     //       component: ApplicationsCalendar,
     //     },
@@ -165,7 +165,7 @@ const routes = [
     // {
     //     name: "Profile Overview",
     //     layout: "/admin",
-    //     path: "/main/profile/overview",
+    //     path: "/profile/overview",
     //     exact: false,
     //     component: ProfileOverview,
     //     icon: (
@@ -195,7 +195,7 @@ const routes = [
     // {
     //   name: "News Feed",
     //   layout: "/admin",
-    //   path: "/main/profile/newsfeed",
+    //   path: "/profile/newsfeed",
     //   exact: false,
     //   component: ProfileNewsfeed,
     // },

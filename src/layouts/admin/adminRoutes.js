@@ -2,7 +2,7 @@ import { Icon } from "@chakra-ui/react";
 import { AiOutlineIdcard } from "react-icons/ai";
 import LogoutMid from "./Logout";
 
-const { default: Page } = require("views/admin/cards/cardProfile");
+const { default: Page } = require("views/cards/cardProfile");
 
 const adminRoutes=[
     {
