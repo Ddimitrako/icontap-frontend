@@ -81,8 +81,8 @@ export default function Collection(props) {
   let panelExample = (
 
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
-        <IcontapCard/>
-        <IcontapCard/>
+        <IcontapCard title="Card 1"/>
+        <IcontapCard title="Card 2"/>
     </SimpleGrid>
   );
   // Chakra Color Mode

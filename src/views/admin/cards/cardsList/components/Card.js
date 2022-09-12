@@ -93,7 +93,7 @@ export default function IcontapCard(props) {
           fontSize='xl'
           fontWeight='700'
           lineHeight='100%'>
-          Your Card1
+          {props.title}
         </Text>
 
       </Flex>

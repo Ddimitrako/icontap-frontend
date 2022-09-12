@@ -30,14 +30,14 @@ export default function Settings() {
     const [firstName, setFirstName] = useState('eg. Esthera');
     const [lastName, setLastName] = useState('eg. Peterson');
     const [accountType, setAccountType] = useState('User');
-    const [email, setEmail] = useState('eg. hello@icontap.com');
-    const [company, setCompany] = useState('Moderna');
-    const [profession, setProfession] = useState('Electrical Engineer');
-    const [telephone, setTelephone] = useState('6977774171');
-    const [address, setAddress] = useState('V.Ougko 122');
-    const [city, setCity] = useState('Athens');
-    const [state, setState] = useState('Marousi');
-    const [zipCode, setzipCode] = useState('15244');
+    const [email, setEmail] = useState('--');
+    const [company, setCompany] = useState('--');
+    const [profession, setProfession] = useState('--');
+    const [telephone, setTelephone] = useState('--');
+    const [address, setAddress] = useState('--');
+    const [city, setCity] = useState('--');
+    const [state, setState] = useState('--');
+    const [zipCode, setzipCode] = useState('--');
 
     const firstNameChange = (event) => setFirstName(event.target.value)
     const lastNameChange = (event) => setLastName(event.target.value)
