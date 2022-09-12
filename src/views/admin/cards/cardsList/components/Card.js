@@ -52,6 +52,7 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { hostName } from "Helpers/App";
+import { hostNameStorage } from "Helpers/App";
 
 export default function IcontapCard(props) {
   var clone = Object.assign({}, {a: 1, b: 2, c: 3});
@@ -314,10 +315,10 @@ export default function IcontapCard(props) {
       <Tabs>
         <TabPanels mb='20px'>
           <TabPanel p='0px'>
-            <Image src={whitecard} />
+            <Image src={props?.card?.images?.img_profile?`${hostNameStorage}/${props?.card?.images?.img_profile}`:whitecard} />
           </TabPanel>
           <TabPanel p='0px'>
-            <Image src={blackCard} />
+            <Image src={props?.card?.images?.img_cover?`${hostNameStorage}/${props?.card?.images?.img_cover}`:blackCard} />
           </TabPanel>
         </TabPanels>
         <TabList
@@ -383,7 +384,7 @@ export default function IcontapCard(props) {
           align='center'
           me={{ base: "16px", md: "0px", "2xl": "36px" }}
           onClick={() => {
-            history.push('/admin/cards/cardProfile');
+            history.push(`/admin/cards/edit/${props.card.code}`);
           }}
         >
           <IconButton

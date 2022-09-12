@@ -141,7 +141,15 @@ export default function Collection(props) {
       }
     }).then((response => {
       console.log(response);
-      getCards();
+      axios({
+        method: 'post',
+        url: `${hostName}/card/${response.data.data.code}/profile`
+      }).then((response) => {
+        getCards();
+        console.log(response);
+      }).catch((err) => {
+        console.log(err.response);
+      })
     })).catch((err) => {
       console.log(err.response);
     })

@@ -56,6 +56,8 @@ import SignInDefault from "views/auth/signIn/SignInDefault.jsx";
 import SignUpDefault from "views/auth/signUp/SignUpDefault.jsx";
 
 import VerificationDefault from "views/auth/verification/VerificationDefault.jsx";
+import Page from "views/admin/cards/cardProfile";
+import LogoutMid from "layouts/admin/Logout";
 
 const routes = [
     // --- Dashboards ---
@@ -177,6 +179,22 @@ const routes = [
     //         />
     //     ),
     // },
+    {
+        name: "Edit Card",
+        layout: "/admin",
+        path: "/cards/edit/:cardId",
+        component: Page,
+        onlyRoute:true
+
+    },
+    {
+        name: "logout",
+        layout: "/admin",
+        path: "/logout",
+        component: LogoutMid,
+        onlyRoute:true
+
+    },
     {
         name: "Profile",
         layout: "/admin",
