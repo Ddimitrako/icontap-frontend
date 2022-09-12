@@ -136,13 +136,14 @@ export default function Settings() {
                             onChange={lastNameChange}
                         />
                         <InputField
-                            read
+                            readOnly
                             mb='0px'
                             id='Company'
                             value={company}
                             label='Company'
                         />
                         <InputField
+                            readOnly
                             mb='0px'
                             id='Email'
                             value={email}
