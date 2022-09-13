@@ -270,6 +270,7 @@ export default function EditProfile(props) {
             setcover({...cover, url:card?.images?.img_cover?`${hostNameStorage}/${card?.images?.img_cover}`:'/static/media/img.jpg'});
             setavatar({...avatar, url:card?.images?.img_profile?`${hostNameStorage}/${card?.images?.img_profile}`:'/static/media/img.jpg'});
             setsocials(parseProfileContents());
+            props.setCard(card);
         }
     }, [card]);
 
@@ -345,7 +346,7 @@ export default function EditProfile(props) {
         })
     }
 
-    return loading ?
+    const ProfileData= loading ?
         <Button isLoading
             loadingText="Please wait"
             variant="transparent-with-icon"
@@ -413,10 +414,9 @@ export default function EditProfile(props) {
                     onClick={updateProfile}>
                     Update
                 </Button>
-                <Button onClick={updateContents}>
-                    CONTENT
-                </Button>
             </div>
 
-        </div>
+        </div>;
+
+    return ProfileData;
 }

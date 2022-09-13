@@ -19,9 +19,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import {Link} from 'react-router-dom';
-import {MdBuild, MdCall, MdPreview} from "react-icons/md";
-import {Stack, HStack, VStack} from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import { MdBuild, MdCall, MdPreview } from "react-icons/md";
+import { Stack, HStack, VStack, FormLabel, Input, InputGroup, InputLeftAddon } from '@chakra-ui/react';
 import React from "react";
 import CustomIframe from "./components/Iframe";
 // Chakra imports
@@ -41,13 +41,16 @@ import Auction from "views/admin/cards/cardProfile/components/Auction";
 import Description from "views/admin/cards/cardProfile/components/Description";
 import NFT from "components/card/NFT";
 import Card from "components/card/Card.js";
-
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import tableDataLastOffer from "views/admin/cards/cardProfile/variables/tableDataLastOffer.json";
-import {tableColumnsLastOffer} from "views/admin/cards/cardProfile/variables/tableColumnsLastOffer";
+import { tableColumnsLastOffer } from "views/admin/cards/cardProfile/variables/tableColumnsLastOffer";
 import Notifications from "../../main/profile/overview/components/Notifications";
 import InputField from "../../../../components/fields/InputField";
 import TextField from "../../../../components/fields/TextField";
 import EditProfile from 'views/admin/main/account/billing/components/EditCardModal/EditProfile';
+import { useState } from 'react';
+import { hostNameStorage } from 'Helpers/App';
+import { CustomEditBox } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
 
 export default function Page() {
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -55,41 +58,57 @@ export default function Page() {
     const textColor = useColorModeValue("secondaryGray.900", "white");
     // Chakra Color Mode
 
+    const [card, setCard] = useState({});
 
     return (
-        <Box pt={{base: "180px", md: "80px", xl: "80px"}}>
+        <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
             {/* Main Fields */}
-            <Grid
-                mb='20px'
-                maxW='100%'
-                gridTemplateColumns={{
-                    base: "1fr",
-                    lg: "1fr 1fr",
-                    "2xl": "1fr 0.95fr",
-                }}
-                gap={{base: "20px", xl: "20px"}}
-                display={{base: "block", lg: "grid"}}>
-                <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'>
-
-                    <FormControl>
-                        <Card>
-                            <EditProfile />
-                        </Card>
-                    </FormControl>
-                </Flex>
-                <Flex flexDirection='column' alignItems='center' pt='10px'>
-                    <CustomIframe/>
-                    <Stack direction='row' spacing={4}>
-                        <Button onClick={() => {
-                            window.open("https://poplme.co/7BRzvEfO", "_blank");
-                        }} rightIcon={<MdPreview/>} colorScheme='blue' variant='outline'>
-                            View Profile
-                        </Button>
-
-                    </Stack>
-                </Flex>
-            </Grid>
-
+            <Tabs>
+                <TabList>
+                    <Tab>Profile</Tab>
+                    {card.code && <Tab>QR Code</Tab>}
+                </TabList>
+                <TabPanels>
+                    <TabPanel>
+                        <Grid
+                            mb='20px'
+                            maxW='100%'
+                            gridTemplateColumns={{
+                                base: "1fr",
+                                lg: "1fr 1fr",
+                                "2xl": "1fr 0.95fr",
+                            }}
+                            gap={{ base: "20px", xl: "20px" }}
+                            display={{ base: "block", lg: "grid" }}>
+                            <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'>
+                                <FormControl>
+                                    <Card>
+                                        <EditProfile setCard={setCard} />
+                                    </Card>
+                                </FormControl>
+                            </Flex>
+                            <Flex flexDirection='column' alignItems='center' pt='10px'>
+                                <CustomIframe />
+                                <Stack direction='row' spacing={4}>
+                                    <Button onClick={() => {
+                                        window.open("https://poplme.co/7BRzvEfO", "_blank");
+                                    }} rightIcon={<MdPreview />} colorScheme='blue' variant='outline'>
+                                        View Profile
+                                    </Button>
+                                </Stack>
+                            </Flex>
+                        </Grid>
+                    </TabPanel>
+                    {card.code && <TabPanel style={{ textAlign: 'center' }}>
+                        <Image style={{ margin: '0 auto' }} src={`${hostNameStorage}/${card?.qr_code}`} />
+                        <br />
+                        <InputGroup>
+                            <InputLeftAddon children='URL' />
+                            <Input value={`https://my.icontap.gr/card/${card.code}`} readOnly />
+                        </InputGroup>
+                    </TabPanel>}
+                </TabPanels>
+            </Tabs>
 
             {/* Delete Product */}
         </Box>
