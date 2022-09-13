@@ -19,15 +19,18 @@ import { ItemContent } from "components/menu/ItemContent";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { SidebarResponsive } from "components/sidebar/Sidebar";
 import PropTypes from "prop-types";
-import React from "react";
+import React, {useEffect, useState} from "react";
 // Assets
 import navImage from "assets/img/layout/Navbar.png";
 import { MdNotificationsNone, MdInfoOutline } from "react-icons/md";
 import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa";
 import routes from "routes.js";
-import { useHistory, useLocation } from "react-router-dom";
+import {useHistory, useLocation, useParams} from "react-router-dom";
+import axios from "axios";
+import {getAuth} from "../../Helpers/Auth";
 export default function HeaderLinks(props) {
+  var hostName = process.env.REACT_APP_HOSTNAME.toString()
   const { secondary } = props;
   const { colorMode, toggleColorMode } = useColorMode();
   const history=useHistory();
@@ -45,6 +48,33 @@ export default function HeaderLinks(props) {
     "14px 17px 40px 4px rgba(112, 144, 176, 0.06)"
   );
   const borderButton = useColorModeValue("secondaryGray.500", "whiteAlpha.200");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const config = {
+        headers: {Authorization: `Bearer ${getAuth()}`}
+
+    };
+
+  const bodyParameters = {
+        key: "value"
+    };
+
+  useEffect(() => {
+        getUserProfileData() //call at initialization
+    }, []);
+
+  function getUserProfileData() {
+        axios.get(
+            hostName + '/api/me',
+            bodyParameters,
+            config
+        ).then((response) => {
+                setFirstName(response.data.data.name)
+                setLastName(response.data.data.last_name)
+            }
+        ).catch(console.log);
+    }
+
   return (
     <Flex
       w={{ sm: "100%", md: "auto" }}
@@ -179,7 +209,7 @@ export default function HeaderLinks(props) {
           <Avatar
             _hover={{ cursor: "pointer" }}
             color='white'
-            name='John Kehas'
+            name={firstName+" "+lastName}
             bg='#11047A'
             size='sm'
             w='40px'
@@ -204,7 +234,7 @@ export default function HeaderLinks(props) {
               fontSize='sm'
               fontWeight='700'
               color={textColor}>
-              👋&nbsp; Hey, Adela
+              👋&nbsp; Hey, {firstName}
             </Text>
           </Flex>
           <Flex flexDirection='column' p='10px'>
@@ -226,7 +256,7 @@ export default function HeaderLinks(props) {
               px='14px'
               onClick={()=>{
                 history.push('/admin/logout');
-              }}  
+              }}
               >
               <Text fontSize='sm'>Log out</Text>
             </MenuItem>

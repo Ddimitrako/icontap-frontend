@@ -34,24 +34,24 @@ function SidebarContent(props) {
         </Box>
       </Stack>
 
-      <Box
-        ps='20px'
-        pe={{ md: "16px", "2xl": "0px" }}
-        mt='60px'
-        borderRadius='30px'>
-        {/*<SidebarCard />*/}
-      </Box>
-      <Flex mt='75px' mb='56px' justifyContent='center' alignItems='center'>
-        <Avatar h='48px' w='48px' src={avatar4} me='20px' />
-        <Box>
-          <Text color={textColor} fontSize='md' fontWeight='700'>
-            John Kehas
-          </Text>
-          <Text color='secondaryGray.600' fontSize='sm' fontWeight='400'>
-            Product Designer
-          </Text>
-        </Box>
-      </Flex>
+      {/*<Box*/}
+      {/*  ps='20px'*/}
+      {/*  pe={{ md: "16px", "2xl": "0px" }}*/}
+      {/*  mt='60px'*/}
+      {/*  borderRadius='30px'>*/}
+      {/*  /!*<SidebarCard />*!/*/}
+      {/*</Box>*/}
+      {/*<Flex mt='75px' mb='56px' justifyContent='center' alignItems='center'>*/}
+      {/*  <Avatar h='48px' w='48px' src={avatar4} me='20px' />*/}
+      {/*  <Box>*/}
+      {/*    <Text color={textColor} fontSize='md' fontWeight='700'>*/}
+      {/*      John Kehas2*/}
+      {/*    </Text>*/}
+      {/*    <Text color='secondaryGray.600' fontSize='sm' fontWeight='400'>*/}
+      {/*      Product Designer*/}
+      {/*    </Text>*/}
+      {/*  </Box>*/}
+      {/*</Flex>*/}
     </Flex>
   );
 }

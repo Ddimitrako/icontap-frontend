@@ -194,12 +194,14 @@ export default function EditProfile(props) {
 
     function getProfile() {
         setloading(true);
+        console.log('getProfile');
         axios({
             method: 'get',
             url: `${hostName}/card/${cardId}`
         }).then((response) => {
             console.log(response);
             setcard(response.data.data);
+            getContents();
         }).catch((err) => {
             console.log(err.response);
         }).finally(() => {
@@ -208,19 +210,34 @@ export default function EditProfile(props) {
     }
 
     const [contentloading, setcontentloading]=useState(true);
-
+    
+    function parseProfileContents() {
+        console.log('parsedSocials', card);
+        let parsedSocials=[];
+        card.content.forEach((c,i)=>{
+            console.log('1',c,i);
+            c={...c, imgUrl:c?.image, title:c.title, url:c.link};
+            console.log('2',c,i);
+            parsedSocials.push(c);
+        });
+        console.log('parsedSocials2', parsedSocials);
+        return parsedSocials;
+    }
+    
     function getContents() {
         setcontentloading(true);
+        console.log('getContents');
         axios({
             method: 'get',
             url: `${hostName}/contents`
         }).then((response) => {
             console.log(response);
             setsocialDefaults(parseContents(response.data.data));
+            console.log('prof');
+            // parseProfileContents();
+            setcontentloading(false);
         }).catch((err) => {
             console.log(err.response);
-        }).finally(() => {
-            setcontentloading(false);
         })
     }
 
@@ -238,7 +255,6 @@ export default function EditProfile(props) {
 
     useEffect(() => {
         getProfile();
-        getContents();
     }, []);
 
     const [TitleContextValue, setTitleContextValue] = useContext(TitleContext);
@@ -253,6 +269,8 @@ export default function EditProfile(props) {
             setTitleContextValue(card.title);
             setcover({...cover, url:`${hostNameStorage}/${card.images.img_cover}`});
             setavatar({...avatar, url:`${hostNameStorage}/${card.images.img_profile}`});
+            setsocials(parseProfileContents());
+
         }
     }, [card]);
 
@@ -263,7 +281,7 @@ export default function EditProfile(props) {
     const [updating, setUpdating] = useState(false);
 
     function updateContents() {
-
+        
         let parsedContents=socials.map((c,i)=>{return {
             "content_id": c.id,
             "image": c.imgUrl,
@@ -273,10 +291,11 @@ export default function EditProfile(props) {
             "is_active": true,
             "order":i
         }});
-        console.log("parseContents",parsedContents);
         
         setUpdating(true);
 
+        console.log('updateContents');
+        
         axios({
             method: 'post',
             url: `${hostName}/card/${card.code}/contents`,
@@ -309,8 +328,8 @@ export default function EditProfile(props) {
         formData.append('img_profile', avatar.blob);
         if(cover.blob)
         formData.append('img_cover', cover.blob);
-        console.log('avatar.blob', avatar.blob);
-        console.log('avatar.profile', avatar.profile);
+        
+        console.log('updateProfile');
         axios({
             method: 'post',
             url: `${hostName}/profile/${card.profile.id}`,
@@ -375,6 +394,7 @@ export default function EditProfile(props) {
                         onOpen();
                     }}
                     colorScheme="blackAlpha"
+                    isLoading={updating}
                     >
                     + Add links and Contact info
                 </Button>
@@ -392,7 +412,7 @@ export default function EditProfile(props) {
 
                     size='lg'
 
-                    isLoading={updating}
+                    isLoading={contentloading}
 
                     onClick={updateProfile}>
                     Update

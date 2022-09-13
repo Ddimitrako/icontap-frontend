@@ -79,7 +79,7 @@ export default function YourCard(props) {
           fontSize='xl'
           fontWeight='700'
           lineHeight='100%'>
-          Your Card1
+          Your Card2
         </Text>
 
       </Flex>
