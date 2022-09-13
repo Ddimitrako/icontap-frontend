@@ -49,12 +49,12 @@ export default function EditProfile(props) {
     }
 
     function readURL(input, setter) {
-        console.log(input, input.files);
+        // console.log(input, input.files);
         if (input.target.files && input.target.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                console.log(e.target.result);
+                // console.log(e.target.result);
                 var image = new Image();
                 image.onload = function (imageEvent) {
 
@@ -212,15 +212,15 @@ export default function EditProfile(props) {
     const [contentloading, setcontentloading]=useState(true);
     
     function parseProfileContents() {
-        console.log('parsedSocials', card);
+        // console.log('parsedSocials', card);
         let parsedSocials=[];
         card.content.forEach((c,i)=>{
-            console.log('1',c,i);
+            // console.log('1',c,i);
             c={...c, imgUrl:c?.image, title:c.title, url:c.link};
-            console.log('2',c,i);
+            // console.log('2',c,i);
             parsedSocials.push(c);
         });
-        console.log('parsedSocials2', parsedSocials);
+        // console.log('parsedSocials2', parsedSocials);
         return parsedSocials;
     }
     
@@ -233,7 +233,7 @@ export default function EditProfile(props) {
         }).then((response) => {
             console.log(response);
             setsocialDefaults(parseContents(response.data.data));
-            console.log('prof');
+            // console.log('prof');
             // parseProfileContents();
             setcontentloading(false);
         }).catch((err) => {
@@ -249,7 +249,7 @@ export default function EditProfile(props) {
                 contents.push(con);
             });
         });
-        console.log("contents", contents);
+        // console.log("contents", contents);
         return contents;
     }
 
@@ -261,22 +261,17 @@ export default function EditProfile(props) {
 
     useEffect(() => {
         if (card.profile) {
-            console.log(card);
+            // console.log(card);
             setname(card?.profile?.name ?? '');
             setbio(card?.profile?.bio ?? '');
             setjob(card?.profile?.job_title ?? '');
             setcompany(card?.profile?.company ?? '');
             setTitleContextValue(card.title);
-            setcover({...cover, url:`${hostNameStorage}/${card.images.img_cover}`});
-            setavatar({...avatar, url:`${hostNameStorage}/${card.images.img_profile}`});
+            setcover({...cover, url:card?.images?.img_cover?`${hostNameStorage}/${card?.images?.img_cover}`:'/static/media/img.jpg'});
+            setavatar({...avatar, url:card?.images?.img_profile?`${hostNameStorage}/${card?.images?.img_profile}`:'/static/media/img.jpg'});
             setsocials(parseProfileContents());
-
         }
     }, [card]);
-
-    useEffect(()=>{
-        console.log('cover', cover, avatar);
-    },[cover, avatar]);
 
     const [updating, setUpdating] = useState(false);
 
@@ -292,18 +287,19 @@ export default function EditProfile(props) {
             "order":i
         }});
         
-        setUpdating(true);
-
-        console.log('updateContents');
         
+        console.log('updateContents', parsedContents);
+        
+        setUpdating(true);
+        const payload={contents:parsedContents};
         axios({
             method: 'post',
             url: `${hostName}/card/${card.code}/contents`,
-            data: {contents:parsedContents},
-            // headers: {
-            //     'accept': 'application/json',
-            //     'Content-Type': 'multipart/form-data'
-            // }
+            data: payload,
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
         }).then((response) => {
             console.log(response);
         }).catch((err) => {
@@ -329,7 +325,7 @@ export default function EditProfile(props) {
         if(cover.blob)
         formData.append('img_cover', cover.blob);
         
-        console.log('updateProfile');
+        // console.log('updateProfile');
         axios({
             method: 'post',
             url: `${hostName}/profile/${card.profile.id}`,
@@ -339,11 +335,11 @@ export default function EditProfile(props) {
                 'Content-Type': 'multipart/form-data'
             }
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
         }).catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
         }).finally(() => {
-            console.log(formData);
+            // console.log(formData);
             setUpdating(false);
             getProfile();
         })
@@ -394,7 +390,7 @@ export default function EditProfile(props) {
                         onOpen();
                     }}
                     colorScheme="blackAlpha"
-                    isLoading={updating}
+                    isLoading={contentloading}
                     >
                     + Add links and Contact info
                 </Button>
@@ -412,10 +408,13 @@ export default function EditProfile(props) {
 
                     size='lg'
 
-                    isLoading={contentloading}
+                    isLoading={updating}
 
                     onClick={updateProfile}>
                     Update
+                </Button>
+                <Button onClick={updateContents}>
+                    CONTENT
                 </Button>
             </div>
 

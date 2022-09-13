@@ -47,13 +47,6 @@ export default function ResetPassword({ reset }) {
     console.log(email, token);
   }, []);
 
-  axios.interceptors.request.use(
-    config => {
-      config.headers.Authorization = `Bearer ${getAuth()}`;
-      return config;
-    }
-  );
-
   function postToApi() {
     setloading(true);
     setsuccess(null);

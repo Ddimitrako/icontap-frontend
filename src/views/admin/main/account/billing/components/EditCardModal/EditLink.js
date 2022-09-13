@@ -36,10 +36,10 @@ export default function EditLink(props) {
 
     function upsertSocials() {
         let tempSocials = deepCopy(props.socials);
-        console.log(tempSocials);
-        console.log(props.currSocial);
+        // console.log(tempSocials);
+        // console.log(props.currSocial);
         let tempCurrSocialData = {...props?.tempSocialData, url: url, title: title, imgUrl: imgUrl };
-        console.log(tempCurrSocialData);
+        // console.log(tempCurrSocialData);
 
         if (props.currSocial !== undefined) {
             tempSocials[props.currSocial] = tempCurrSocialData;
@@ -47,7 +47,7 @@ export default function EditLink(props) {
             tempSocials.push(tempCurrSocialData);
         }
 
-        console.log(tempSocials,props);
+        // console.log(tempSocials,props);
 
         props.setsocials(tempSocials);
         props.onClose();

@@ -66,7 +66,7 @@ export default function Settings() {
 
     function getUserProfileData() {
         axios.get(
-            hostName + '/api/me',
+            hostName + '/me',
             bodyParameters,
             config
         ).then((response) => {

@@ -29,13 +29,6 @@ export default function Settings() {
   const [error, seterror] = useState(null);
   const axios = require('axios').default;
 
-  axios.interceptors.request.use(
-    config => {
-      config.headers.Authorization = `Bearer ${getAuth()}`;
-      return config;
-    }
-  );
-
   function postToApi() {
     setloading(true);
     setsuccess(null);

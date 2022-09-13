@@ -66,8 +66,6 @@ export function SetupAxios() {
 export function setAxiosAUthorizationHeader(token) {
 
     axios.interceptors.request.use(function (config) {
-        console.log('INTERCEPT', config);
-        console.trace();
         config.headers.Authorization = `Bearer ${token}`;
         return config;
     });

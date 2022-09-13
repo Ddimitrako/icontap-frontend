@@ -59,21 +59,21 @@ export default function HeaderLinks(props) {
         key: "value"
     };
 
-  useEffect(() => {
-        getUserProfileData() //call at initialization
-    }, []);
+  // useEffect(() => {
+  //       getUserProfileData() //call at initialization
+  //   }, []);
 
-  function getUserProfileData() {
-        axios.get(
-            hostName + '/api/me',
-            bodyParameters,
-            config
-        ).then((response) => {
-                setFirstName(response.data.data.name)
-                setLastName(response.data.data.last_name)
-            }
-        ).catch(console.log);
-    }
+  // function getUserProfileData() {
+  //       axios.get(
+  //           hostName + '/me',
+  //           bodyParameters,
+  //           config
+  //       ).then((response) => {
+  //               setFirstName(response.data.data.name)
+  //               setLastName(response.data.data.last_name)
+  //           }
+  //       ).catch(console.log);
+  //   }
 
   return (
     <Flex
