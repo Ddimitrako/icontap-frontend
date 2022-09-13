@@ -16,6 +16,7 @@ import AddContent from "./AddContent";
 import EditLink from "./EditLink";
 import EditProfileContainer from "./EditProfileContainer";
 import AddContentContainer from "./AddContentContainer";
+import { hostNameStorage } from "Helpers/App";
 
 //The container modal
 
@@ -60,7 +61,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles }) => {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: '110%',
-        backgroundImage: `url(/static/media/social/${imgUrl})`,
+        backgroundImage: `url(${hostNameStorage}/${imgUrl})`,
         float: 'left',
         margin: '20px',
         ...styles

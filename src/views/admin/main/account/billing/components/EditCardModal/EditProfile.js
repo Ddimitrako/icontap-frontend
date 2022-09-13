@@ -60,7 +60,7 @@ export default function EditProfile(props) {
 
                     // Resize the image
                     var canvas = document.createElement('canvas'),
-                        max_size = 544,// TODO : pull max size from a site config
+                        max_size = 544,
                         width = image.width,
                         height = image.height;
                     if (width > height) {
@@ -83,11 +83,6 @@ export default function EditProfile(props) {
                         url:dataUrl,
                         blob:resizedImage
                     })
-                    // imageEvent.trigger({
-                    //     type: "imageResized",
-                    //     blob: resizedImage,
-                    //     url: dataUrl
-                    // });
                 }
                 image.src = e.target.result;
             }
@@ -179,17 +174,17 @@ export default function EditProfile(props) {
 
     const [page, setPage] = useState('AddContentContainer');
 
-    const [socials, setsocials] = useState([
-        { imgUrl: 'sms.png', title: 'SMS', url: 'smsTo:12345678' }
-    ]);
+    const [socials, setsocials] = useState([]);
 
     const [currSocial, setcurrSocial] = useState();
+    
+    const [socialDefaults, setsocialDefaults] = useState();
 
     const [tempSocialData, settempSocialData] = useState();
 
     const pages = {
         // 'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
-        'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
+        'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} />,
         'EditLink': <EditLink setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socials={socials} setsocials={setsocials} />
     }
 
@@ -212,8 +207,38 @@ export default function EditProfile(props) {
         })
     }
 
+    const [contentloading, setcontentloading]=useState(true);
+
+    function getContents() {
+        setcontentloading(true);
+        axios({
+            method: 'get',
+            url: `${hostName}/contents`
+        }).then((response) => {
+            console.log(response);
+            setsocialDefaults(parseContents(response.data.data));
+        }).catch((err) => {
+            console.log(err.response);
+        }).finally(() => {
+            setcontentloading(false);
+        })
+    }
+
+    function parseContents(categories) {
+        let contents = []
+        Object.keys(categories).forEach((c, i) => {
+            categories[c].forEach((con, i) => {
+                con={...con, imgUrl: con.image, title: con.name, url: ''}
+                contents.push(con);
+            });
+        });
+        console.log("contents", contents);
+        return contents;
+    }
+
     useEffect(() => {
         getProfile();
+        getContents();
     }, []);
 
     const [TitleContextValue, setTitleContextValue] = useContext(TitleContext);
@@ -237,20 +262,55 @@ export default function EditProfile(props) {
 
     const [updating, setUpdating] = useState(false);
 
+    function updateContents() {
+
+        let parsedContents=socials.map((c,i)=>{return {
+            "content_id": c.id,
+            "image": c.imgUrl,
+            "link": c.url,
+            "title": c.title,
+            "description": "",
+            "is_active": true,
+            "order":i
+        }});
+        console.log("parseContents",parsedContents);
+        
+        setUpdating(true);
+
+        axios({
+            method: 'post',
+            url: `${hostName}/card/${card.code}/contents`,
+            data: {contents:parsedContents},
+            // headers: {
+            //     'accept': 'application/json',
+            //     'Content-Type': 'multipart/form-data'
+            // }
+        }).then((response) => {
+            console.log(response);
+        }).catch((err) => {
+            console.log(err.response);
+        }).finally(() => {
+            setUpdating(false);
+            getProfile();
+        })
+    }
+
     function updateProfile() {
 
         setUpdating(true);
-
+        updateContents();
         const formData = new FormData();
         formData.append('name', name);
         formData.append('bio', bio);
         formData.append('company', company);
         formData.append('job_title', job);
 
+        if(avatar.blob)
         formData.append('img_profile', avatar.blob);
+        if(cover.blob)
         formData.append('img_cover', cover.blob);
-
-
+        console.log('avatar.blob', avatar.blob);
+        console.log('avatar.profile', avatar.profile);
         axios({
             method: 'post',
             url: `${hostName}/profile/${card.profile.id}`,
@@ -305,7 +365,7 @@ export default function EditProfile(props) {
                 textAlign: 'center'
             }}>
                 <EditCardModal pages={pages} page={page} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-                <button
+                <Button
                     style={{
                         borderRadius: '10px',
                         padding: '15px 20px'
@@ -314,9 +374,10 @@ export default function EditProfile(props) {
                         setPage('AddContentContainer');
                         onOpen();
                     }}
-                    className={`MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary`} tabIndex="-1" type="button" disabled="">
-                    <span className="MuiButton-label">+ Add links and Contact info</span>
-                </button>
+                    colorScheme="blackAlpha"
+                    >
+                    + Add links and Contact info
+                </Button>
             </div>
 
             <hr style={{ 'margin': '20px 0' }} />
