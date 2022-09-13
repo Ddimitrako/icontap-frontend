@@ -12,11 +12,14 @@ import adminRoutes from "./adminRoutes.js"
 import "mapbox-gl/dist/mapbox-gl.css";
 import Page from "views/admin/cards/cardProfile";
 import EditCardModal2 from "views/admin/main/account/billing/components/EditCardModal/EditCardModal2";
+import { MeContext } from "Helpers/Auth.js";
+import { GetMeFromApi } from "Helpers/Auth.js";
+import { TitleContext } from "Helpers/Context.js";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
 
-  const routes=[...adminRoutes, ...sidebarRoutes];
+  const routes=[ ...sidebarRoutes];
 
   const { ...rest } = props;
   // states and functions
@@ -118,8 +121,16 @@ export default function Dashboard(props) {
   };
   document.documentElement.dir = "ltr";
   const { onOpen } = useDisclosure();
+
+  const [MeContextValue, setMeContextValue]=useState('');
+  
+  const [TitleContextValue, setTitleContextValue]=useState('');
+
   return (
     <Box>
+      <MeContext.Provider value={[MeContextValue, setMeContextValue]} >
+        <GetMeFromApi />
+      <TitleContext.Provider value={[TitleContextValue, setTitleContextValue]}>
       <SidebarContext.Provider
         value={{
           toggleSidebar,
@@ -144,7 +155,8 @@ export default function Dashboard(props) {
               <Navbar
                 onOpen={onOpen}
                 logoText={"Icontap"}
-                brandText={getActiveRoute(routes)}
+                // brandText={'getActiveRoute(routes)'}
+                brandText={TitleContextValue}
                 secondary={getActiveNavbar(routes)}
                 message={getActiveNavbarText(routes)}
                 fixed={fixed}
@@ -174,6 +186,8 @@ export default function Dashboard(props) {
           </Box>
         </Box>
       </SidebarContext.Provider>
+      </TitleContext.Provider>
+      </MeContext.Provider>
     </Box>
   );
 }

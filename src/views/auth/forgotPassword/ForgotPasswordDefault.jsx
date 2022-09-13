@@ -61,7 +61,7 @@ function ForgotPassword() {
     setloading(true);
     axios({
       method:'post',
-      url:hostName + `/api/forgot-password`,
+      url:hostName + `/forgot-password`,
       data:data
     }).then((response)=>{
       console.log(response);

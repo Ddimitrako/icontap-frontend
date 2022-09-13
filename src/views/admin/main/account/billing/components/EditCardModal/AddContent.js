@@ -1,3 +1,4 @@
+import { hostNameStorage } from "Helpers/App";
 import React, { useState } from "react";
 
 import './EditCardModal.css';
@@ -5,7 +6,7 @@ import './EditCardModal.css';
 //The container modal
 
 export default function AddContent(props) {
-
+    console.log(props);
     const SocialDummies = [
         { title: 'Custom', imgUrl: 'custom.svg', url: 'www.example.com' },
         { title: 'Facebook', imgUrl: 'fb.png', url: 'www.fb.com' },
@@ -17,10 +18,10 @@ export default function AddContent(props) {
 
     const [search, setsearch]=useState('');
 
-    const SocialDefault = ({ title, imgUrl, url }) => {
+    const SocialDefault = ({ social }) => {
 
         function insertSocial() {
-            props.settempSocialData({ title: title, imgUrl: imgUrl, url: url });
+            props.settempSocialData(social);
             props.setcurrSocial(undefined);
             props.setPage('EditLink');
         }
@@ -39,14 +40,14 @@ export default function AddContent(props) {
                 height: '40px',
                 marginRight: '10px',
                 float: 'left',
-                backgroundImage: `url(/static/media/social/${imgUrl})`,
+                backgroundImage: `url(${hostNameStorage}/${social.imgUrl})`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: '110%',
                 borderRadius: '5px'
             }}></div>
 
-            <span style={{ float: 'left', lineHeight: '40px', fontWeight: 'bold' }}>{title}</span>
+            <span style={{ float: 'left', lineHeight: '40px', fontWeight: 'bold' }}>{social.title}</span>
 
             <button onClick={() => {
                 insertSocial();
@@ -90,7 +91,7 @@ export default function AddContent(props) {
             </div>
         </div>
         <div style={{ overflow: 'auto' }}>
-            {SocialDummies.filter((social)=>social.title.toLowerCase().includes(search.toLowerCase())).map((social, index) => <SocialDefault title={social.title} imgUrl={social.imgUrl} url={social.url} key={index} />)}
+            {props?.socialDefaults?.filter((social)=>social.title.toLowerCase().includes(search.toLowerCase())).map((social, index) => <SocialDefault social={social} key={index} />)}
         </div>
     </div>
 }

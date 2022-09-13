@@ -60,7 +60,7 @@ export default function ResetPassword({ reset }) {
     localStorage.clear();
     axios({
       method: 'post',
-      url: hostName+`/api/${reset ? 'reset' : 'change'}-password`,
+      url: hostName+`/${reset ? 'reset' : 'change'}-password`,
       data: {
         "token":token,
         "email":email,
@@ -70,12 +70,16 @@ export default function ResetPassword({ reset }) {
     }).then((response) => {
       console.log(response);
       setsuccess('Password changed succesfully');
+      setTimeout(() => {
+        window.location.href = '/auth/sign-in';
+        setloading(false);
+      }, 3000);
     }).catch((err) => {
       console.log(err.response);
       catchError(err);
       seterror("Error!")
-    }).finally(() => {
       setloading(false);
+    }).finally(() => {
     })
   }
 

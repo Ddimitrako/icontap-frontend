@@ -85,7 +85,7 @@ function SignIn() {
     setloading(true);
     axios({
       method:'post',
-      url:hostName+`/api/login`,
+      url:hostName+`/login`,
       data:data
     }).then((response)=>{
       console.log(response);

@@ -42,7 +42,7 @@ export default function Settings() {
     localStorage.clear();
     axios({
       method: 'post',
-      url: hostName+`/api/change-password`,
+      url: hostName+`/change-password`,
       data:{
         "current_password": oldpsw,
         "new_password": newpsw,

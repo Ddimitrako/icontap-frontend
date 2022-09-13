@@ -13,6 +13,7 @@ import {
 
 import './EditCardModal.css';
 import { deepCopy } from "Helpers/Arrays";
+import { hostNameStorage } from "Helpers/App";
 
 //The container modal
 
@@ -37,7 +38,7 @@ export default function EditLink(props) {
         let tempSocials = deepCopy(props.socials);
         console.log(tempSocials);
         console.log(props.currSocial);
-        let tempCurrSocialData = { url: url, title: title, imgUrl: imgUrl };
+        let tempCurrSocialData = {...props?.tempSocialData, url: url, title: title, imgUrl: imgUrl };
         console.log(tempCurrSocialData);
 
         if (props.currSocial !== undefined) {
@@ -84,7 +85,7 @@ export default function EditLink(props) {
                 <div className="jss521 jss527">
                     <input type="file" />
                     <div>
-                        <img className="jss498" alt="link" src={`/static/media/social/${imgUrl}`} style={{ borderRadius: '10px', objectFit: 'cover' }} />
+                        <img className="jss498" alt="link" src={`${hostNameStorage}/${imgUrl}`} style={{ borderRadius: '10px', objectFit: 'cover' }} />
                     </div>
                 </div>
                 <div>
@@ -96,7 +97,7 @@ export default function EditLink(props) {
 
             <div className="jss500">
                 <div data-testid="link-url" className="jss501">
-                    <span className="jss502">Link URL</span>
+                    <span className="jss502">Link Title</span>
                     <div className="jss530" style={{ minHeight: '50px', maxHeight: '50px' }}>
                         <div className="MuiInputBase-root jss532 MuiInputBase-fullWidth MuiInputBase-marginDense">
                             <input onChange={(e) => { setTitle(e.target.value) }} value={title} name="title" placeholder="URL" type="text" aria-label="search here" className="MuiInputBase-input jss533 MuiInputBase-inputMarginDense" style={{ lineHeight: '130%', height: '100%' }} />
@@ -104,7 +105,7 @@ export default function EditLink(props) {
                     </div>
                 </div>
                 <div data-testid="link-title" className="jss501">
-                    <span className="jss502">Link title</span>
+                    <span className="jss502">Link url</span>
                     <div className="jss530" style={{ minHeight: '50px', maxHeight: '50px' }}>
                         <div className="MuiInputBase-root jss532 MuiInputBase-fullWidth MuiInputBase-marginDense">
                             <input onChange={(e) => { setUrl(e.target.value) }} value={url} name="title" placeholder="Text" type="text" aria-label="search here" className="MuiInputBase-input jss533 MuiInputBase-inputMarginDense" style={{ lineHeight: '130%', height: '100%' }} />

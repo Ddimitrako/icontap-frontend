@@ -8,37 +8,14 @@ import AdminLayout from "layouts/admin";
 // Chakra imports
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "theme/theme";
-import { isAuth } from "Helpers/Auth";
 import { PrivateRoute } from "Helpers/Auth";
-import { getAuth } from "Helpers/Auth";
+import { SetupAxios } from "Helpers/Auth";
 
-const axios = require('axios').default;
-
-if (isAuth()) {
-  axios.interceptors.request.use(
-    config => {
-      config.headers.Authorization = `Bearer ${getAuth()}`;
-      return config;
-    }
-  );
-
-  axios.interceptors.request.use(function (response) {
-    return response;
-  }, function (error) {
-    if (error.response.status == 401) {
-      window.location.href = '/admin/logout';
-    }
-
-    if (error.response.status == 403) {
-      window.location.href = '/';
-    }
-  }
-  );
-}
 ReactDOM.render(
   <ChakraProvider theme={theme}>
     <React.StrictMode>
       <BrowserRouter>
+        <SetupAxios />
         <Switch>
 
           <PrivateRoute path={`/auth`} isPublic={true}>

@@ -91,7 +91,7 @@ function SignUp() {
     setloading(true);
     axios({
       method:'post',
-      url:hostName+`/api/register`,
+      url:hostName+`/register`,
       data:data
     }).then((response)=>{
       console.log(response);
