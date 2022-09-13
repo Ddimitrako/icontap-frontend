@@ -99,7 +99,7 @@ export default function IcontapCard(props) {
   const isActOpen=activateModalDisclosure.isOpen;
   const onActOpen=activateModalDisclosure.onOpen;
   const onActClose=activateModalDisclosure.onClose;
-  
+
   // const textColor = useColorModeValue("navy.700", "white");
   const textColorDetails = useColorModeValue("navy.700", "secondaryGray.600");
   const textColorBrand = useColorModeValue("brand.500", "white");
@@ -115,7 +115,7 @@ export default function IcontapCard(props) {
   const [pin5, setpin5]=useState(0);
   const [pin6, setpin6]=useState(0);
   const [activationCode, setactivationCode]=useState();
-  
+
   const [loading, setloading]=useState(false);
 
   useEffect(()=>{
