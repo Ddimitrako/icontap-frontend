@@ -59,6 +59,9 @@ export default function Page() {
     // Chakra Color Mode
 
     const [card, setCard] = useState({});
+    
+    const [avatar, setavatar] = useState({url:'/static/media/img.jpg'});
+    const [cover, setcover] = useState({url:'/static/media/img.jpg'});
 
     return (
         <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
@@ -83,12 +86,12 @@ export default function Page() {
                             <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'>
                                 <FormControl>
                                     <Card>
-                                        <EditProfile setCard={setCard} />
+                                        <EditProfile setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
                                     </Card>
                                 </FormControl>
                             </Flex>
                             <Flex flexDirection='column' alignItems='center' pt='10px'>
-                                <CustomIframe />
+                                <CustomIframe card={card} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
                                 <Stack direction='row' spacing={4}>
                                     <Button onClick={() => {
                                         window.open("https://poplme.co/7BRzvEfO", "_blank");

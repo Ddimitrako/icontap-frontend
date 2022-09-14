@@ -10,6 +10,7 @@ import { hostName } from "Helpers/App";
 import { useContext } from "react";
 import { TitleContext } from "Helpers/Context";
 import { hostNameStorage } from "Helpers/App";
+import Cover from "views/admin/cards/cardProfile/components/Cover";
 
 //The container modal
 
@@ -20,144 +21,6 @@ export default function EditProfile(props) {
     const [bio, setbio] = useState('');
     const [job, setjob] = useState('');
     const [company, setcompany] = useState('');
-
-    const [avatar, setavatar] = useState({url:'/static/media/img.jpg'});
-    const [cover, setcover] = useState({url:'/static/media/img.jpg'});
-
-    const dataURLToBlob = function (dataURL) {
-        var BASE64_MARKER = ';base64,';
-        if (dataURL.indexOf(BASE64_MARKER) == -1) {
-            var parts = dataURL.split(',');
-            var contentType = parts[0].split(':')[1];
-            var raw = parts[1];
-
-            return new Blob([raw], { type: contentType });
-        }
-
-        var parts = dataURL.split(BASE64_MARKER);
-        var contentType = parts[0].split(':')[1];
-        var raw = window.atob(parts[1]);
-        var rawLength = raw.length;
-
-        var uInt8Array = new Uint8Array(rawLength);
-
-        for (var i = 0; i < rawLength; ++i) {
-            uInt8Array[i] = raw.charCodeAt(i);
-        }
-
-        return new Blob([uInt8Array], { type: contentType });
-    }
-
-    function readURL(input, setter) {
-        // console.log(input, input.files);
-        if (input.target.files && input.target.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                // console.log(e.target.result);
-                var image = new Image();
-                image.onload = function (imageEvent) {
-
-                    // Resize the image
-                    var canvas = document.createElement('canvas'),
-                        max_size = 544,
-                        width = image.width,
-                        height = image.height;
-                    if (width > height) {
-                        if (width > max_size) {
-                            height *= max_size / width;
-                            width = max_size;
-                        }
-                    } else {
-                        if (height > max_size) {
-                            width *= max_size / height;
-                            height = max_size;
-                        }
-                    }
-                    canvas.width = width;
-                    canvas.height = height;
-                    canvas.getContext('2d').drawImage(image, 0, 0, width, height);
-                    var dataUrl = canvas.toDataURL('image/jpeg');
-                    var resizedImage = dataURLToBlob(dataUrl);
-                    setter({
-                        url:dataUrl,
-                        blob:resizedImage
-                    })
-                }
-                image.src = e.target.result;
-            }
-
-            reader.readAsDataURL(input.target.files[0]);
-        }
-    }
-    const selectImgButtonRadius = 30;
-
-    const SelectImgButton = ({ styles, setter }) => <label
-        style={{
-            width: `${selectImgButtonRadius * 2}px`,
-            height: `${selectImgButtonRadius * 2}px`,
-            position: 'absolute',
-            backgroundColor: 'white',
-            borderRadius: `${selectImgButtonRadius * 2}px`,
-            cursor: 'pointer',
-            backgroundImage: 'url(/static/media/CameraFill.svg)',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: '60%',
-            boxShadow: '4px 4px 10px grey',
-            ...styles
-        }}
-    >
-        <input type="file" style={{ display: 'none' }} onChange={(e) => readURL(e, setter)} />
-
-    </label>
-
-    const avatarRadius = 120;
-
-    const Avatar = ({ styles }) => <div style={{
-        width: `${avatarRadius * 2}px`,
-        height: `${avatarRadius * 2}px`,
-        position: 'absolute',
-        backgroundColor: 'blue',
-        background: 'white url(' + avatar.url + ') left top no-repeat',
-        borderRadius: `${avatarRadius}px`,
-        border: 'solid white 7px',
-        boxShadow: '4px 4px 10px grey',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        ...styles
-    }}>
-
-    </div>
-
-    const calculateImageButtonPosition = () => {
-        let result = (((avatarRadius * 2) / Math.sqrt(2)) - avatarRadius) / (Math.sqrt(2));
-        return (avatarRadius - result) + selectImgButtonRadius;
-    }
-
-    const Cover = () => <div
-        style={{
-            minHeight: '300px',
-            backgroundColor: 'red',
-            paddingRight: '50px',
-            borderBottomRightRadius: '30px',
-            borderBottomLeftRadius: '30px',
-            marginBottom: `${avatarRadius + 50}px`,
-            background: 'white url(' + cover.url + ') left top no-repeat',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            position: 'relative',
-            boxShadow: '4px 4px 10px grey',
-        }}
-    >
-
-        <SelectImgButton styles={{ top: '20px', right: '20px' }} setter={setcover} />
-        <Avatar styles={{ bottom: `-${avatarRadius}px`, left: `calc(50% - ${avatarRadius}px)` }} />
-        <SelectImgButton setter={setavatar} styles={{ bottom: `-${calculateImageButtonPosition()}px`, right: `calc(50% - ${calculateImageButtonPosition()}px)` }} />
-
-    </div>;
 
     function insertSocial() {
         setcurrSocial(undefined);
@@ -267,8 +130,8 @@ export default function EditProfile(props) {
             setjob(card?.profile?.job_title ?? '');
             setcompany(card?.profile?.company ?? '');
             setTitleContextValue(card.title);
-            setcover({...cover, url:card?.images?.img_cover?`${hostNameStorage}/${card?.images?.img_cover}`:'/static/media/img.jpg'});
-            setavatar({...avatar, url:card?.images?.img_profile?`${hostNameStorage}/${card?.images?.img_profile}`:'/static/media/img.jpg'});
+            props.setcover({...props.cover, url:card?.images?.img_cover?`${hostNameStorage}/${card?.images?.img_cover}`:'/static/media/img.jpg'});
+            props.setavatar({...props.avatar, url:card?.images?.img_profile?`${hostNameStorage}/${card?.images?.img_profile}`:'/static/media/img.jpg'});
             setsocials(parseProfileContents());
             props.setCard(card);
         }
@@ -321,10 +184,10 @@ export default function EditProfile(props) {
         formData.append('company', company);
         formData.append('job_title', job);
 
-        if(avatar.blob)
-        formData.append('img_profile', avatar.blob);
-        if(cover.blob)
-        formData.append('img_cover', cover.blob);
+        if(props.avatar.blob)
+        formData.append('img_profile', props.avatar.blob);
+        if(props.cover.blob)
+        formData.append('img_cover', props.cover.blob);
         
         // console.log('updateProfile');
         axios({
@@ -354,7 +217,7 @@ export default function EditProfile(props) {
         : <div style={{
             paddingBottom: '100px',
         }}>
-            <Cover />
+            <Cover avatarRadius={120} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} editable />
 
             <Stack spacing={3}>
                 <FormLabel>Name</FormLabel>
