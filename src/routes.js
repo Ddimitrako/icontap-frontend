@@ -164,21 +164,21 @@ const routes = [
     //     },
     //   ],
     // },
-    {
-        name: "Profile Overview",
-        layout: "/admin",
-        path: "/main/profile/overview",
-        exact: false,
-        component: ProfileOverview,
-        icon: (
-            <Icon
-                as={MdHome}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-    },
+    // {
+    //     name: "Profile Overview",
+    //     layout: "/admin",
+    //     path: "/main/profile/overview",
+    //     exact: false,
+    //     component: ProfileOverview,
+    //     icon: (
+    //         <Icon
+    //             as={MdHome}
+    //             width='20px'
+    //             height='20px'
+    //             color='inherit'
+    //         />
+    //     ),
+    // },
     {
         name: "Edit Card",
         layout: "/admin",
@@ -209,7 +209,7 @@ const routes = [
                 color='inherit'
             />
         ),
-        onlyRoute:true
+        onlyRoute:false
 
     },
     // {

@@ -11,14 +11,30 @@ import Card from "components/card/Card.js";
 import InputField from "components/fields/InputField";
 import TextField from "components/fields/TextField";
 import React from "react";
-import {catchError, getAuth} from "Helpers/Auth";
+import {catchError, getAuth, GetMeFromApi} from "Helpers/Auth";
 import {Axios} from "axios";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import {useState, useEffect} from 'react';
 import {Spinner} from '@chakra-ui/react'
 
-export default function Settings() {
+import {getMe} from "Helpers/Auth";
+
+export default function Settings({setShowAlert}) {
+//     const [state, setState] = useState({});
+//     useEffect(() => {
+//     myFunction();
+//     return () => {
+//       setState({}); // This worked for me
+//     };
+// }, []);
+//
+// const myFunction = () => {
+//     setState({
+//         name: 'Jhon',
+//         surname: 'Doe',
+//     })
+// }
 
     var hostName = process.env.REACT_APP_HOSTNAME.toString()
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -36,47 +52,51 @@ export default function Settings() {
     const [telephone, setTelephone] = useState('--');
     const [address, setAddress] = useState('--');
     const [city, setCity] = useState('--');
-    const [state, setState] = useState('--');
+    const [stateLocation, setStateLocation] = useState('--');
     const [zipCode, setzipCode] = useState('--');
 
     const firstNameChange = (event) => setFirstName(event.target.value)
     const lastNameChange = (event) => setLastName(event.target.value)
     const addressChange = (event) => setAddress(event.target.value)
     const cityChange = (event) => setCity(event.target.value)
-    const stateChange = (event) => setState(event.target.value)
+    const stateChange = (event) => setStateLocation(event.target.value)
     const zipCodeChange = (event) => setzipCode(event.target.value)
     const professionChange = (event) => setProfession(event.target.value)
     const telephoneChange = (event) => setTelephone(event.target.value)
 
-    const config = {
-        headers: {Authorization: `Bearer ${getAuth()}`}
 
-    };
-    const bodyParameters = {
-        key: "value"
-    };
     useEffect(() => {
-        getUserProfileData() //call at initialization
+
+        setFirstName(getMe().name)
+        setLastName(getMe().last_name)
+        setEmail(getMe().email)
+
+        setOpacity(1)
+        setShowSpinner(false)
     }, []);
 
+    const config = {
+        headers: {Authorization: `Bearer ${getAuth()}`}
+    };
+    const bodyParameters = {
+        "telephone": telephone,
+        "address": address,
+        "town": city,
+        "state": stateLocation,
+        "zip_code": zipCode
+    };
 
     function setNewUserProfileData() {
-        //axios post new data
-    }
-
-    function getUserProfileData() {
-        axios.get(
+        axios.put(
             hostName + '/me',
             bodyParameters,
             config
         ).then((response) => {
-                console.log(response.data.data)
-                setFirstName(response.data.data.name)
-                setLastName(response.data.data.last_name)
-                setEmail(response.data.data.email)
-                setAccountType(response.data.data.role.name)
-                setOpacity(1)
-                setShowSpinner(false)
+                console.log(response.status)
+                if (response.status==200){
+                    setShowAlert(true)
+                }
+                console.log(getMe())
             }
         ).catch(console.log);
     }
@@ -190,7 +210,7 @@ export default function Settings() {
                                     <InputField
                                         mb='0px'
                                         id='add2'
-                                        placeholder={state}
+                                        placeholder={stateLocation}
                                         label='State'
                                         onChange={stateChange}
                                     />

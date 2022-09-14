@@ -176,7 +176,7 @@ export default function Dashboard(props) {
 
                 {getRoutes(routes)}
 
-                <Redirect from='/' to='/admin/dashboards/cardsList/card' />
+                <Redirect from='/' to='/admin/cardsList/card' />
 
               </Switch>
             </Box>
