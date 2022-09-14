@@ -17,10 +17,6 @@ import Cover from "views/admin/cards/cardProfile/components/Cover";
 export default function EditProfile(props) {
 
     const [card, setcard] = useState({});
-    const [name, setname] = useState('');
-    const [bio, setbio] = useState('');
-    const [job, setjob] = useState('');
-    const [company, setcompany] = useState('');
 
     function insertSocial() {
         setcurrSocial(undefined);
@@ -125,10 +121,10 @@ export default function EditProfile(props) {
     useEffect(() => {
         if (card.profile) {
             // console.log(card);
-            setname(card?.profile?.name ?? '');
-            setbio(card?.profile?.bio ?? '');
-            setjob(card?.profile?.job_title ?? '');
-            setcompany(card?.profile?.company ?? '');
+            props.setname(card?.profile?.name ?? '');
+            props.setbio(card?.profile?.bio ?? '');
+            props.setjob(card?.profile?.job_title ?? '');
+            props.setcompany(card?.profile?.company ?? '');
             setTitleContextValue(card.title);
             props.setcover({...props.cover, url:card?.images?.img_cover?`${hostNameStorage}/${card?.images?.img_cover}`:'/static/media/img.jpg'});
             props.setavatar({...props.avatar, url:card?.images?.img_profile?`${hostNameStorage}/${card?.images?.img_profile}`:'/static/media/img.jpg'});
@@ -179,10 +175,10 @@ export default function EditProfile(props) {
         setUpdating(true);
         updateContents();
         const formData = new FormData();
-        formData.append('name', name);
-        formData.append('bio', bio);
-        formData.append('company', company);
-        formData.append('job_title', job);
+        formData.append('name', props.name);
+        formData.append('bio', props.bio);
+        formData.append('company', props.company);
+        formData.append('job_title', props.job);
 
         if(props.avatar.blob)
         formData.append('img_profile', props.avatar.blob);
@@ -221,16 +217,16 @@ export default function EditProfile(props) {
 
             <Stack spacing={3}>
                 <FormLabel>Name</FormLabel>
-                <Input variant='filled' caption={'Name'} value={name} onChange={(e) => setname(e.target.value)} />
+                <Input variant='filled' caption={'Name'} value={props.name} onChange={(e) => props.setname(e.target.value)} />
                 <FormHelperText>Type text.</FormHelperText>
                 <FormLabel>Bio</FormLabel>
-                <Textarea variant='filled' caption={'Bio'} value={bio} onChange={(e) => setbio(e.target.value)} />
+                <Textarea variant='filled' caption={'Bio'} value={props.bio} onChange={(e) => props.setbio(e.target.value)} />
                 <FormHelperText>Type text.</FormHelperText>
                 <FormLabel>Job Title</FormLabel>
-                <Input variant='filled' caption={'Job title'} value={job} onChange={(e) => setjob(e.target.value)} />
+                <Input variant='filled' caption={'Job title'} value={props.job} onChange={(e) => props.setjob(e.target.value)} />
                 <FormHelperText>Type text.</FormHelperText>
                 <FormLabel>Company</FormLabel>
-                <Input variant='filled' caption={'Company'} value={company} onChange={(e) => setcompany(e.target.value)} />
+                <Input variant='filled' caption={'Company'} value={props.company} onChange={(e) => props.setcompany(e.target.value)} />
                 <FormHelperText>Type text.</FormHelperText>
             </Stack>
 

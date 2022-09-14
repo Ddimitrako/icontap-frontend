@@ -8,14 +8,14 @@ import './CSS/Iframe.css';
 import {useEffect} from 'react';
 import ProfileView from './ProfileView';
 
-const CustomIframe = ({card, avatar, setavatar, cover, setcover}) => {
+const CustomIframe = ({card, avatar, setavatar, cover, setcover, name, bio, job, company, socials}) => {
     return (
 
         <div>
             <div id="wrapper">
                 <div className="phone view_3" id="phone" style={{zoom: 1,width:350,height:650, overflowY:'auto'}}>
                     {/* <iframe className='iframe' src="https://poplme.co/7BRzvEfO" id="frame"  ></iframe> */}
-                    <ProfileView card={card} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
+                    <ProfileView name={name} bio={bio} job={job} company={company} card={card} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
                 </div>
             </div>
             <div id="controls">
