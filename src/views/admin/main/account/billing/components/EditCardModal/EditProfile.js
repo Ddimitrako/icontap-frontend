@@ -1,4 +1,4 @@
-import { Button, useDisclosure } from "@chakra-ui/react";
+import { Button, FormHelperText, FormLabel, Input, Stack, Textarea, useDisclosure } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AddContentContainer from "./AddContentContainer";
@@ -356,10 +356,20 @@ export default function EditProfile(props) {
         }}>
             <Cover />
 
-            <CustomEditBox caption={'Name'} value={name} onChange={setname} />
-            <CustomEditBox caption={'Bio'} value={bio} onChange={setbio} />
-            <CustomEditBox caption={'Job title'} value={job} onChange={setjob} />
-            <CustomEditBox caption={'Company'} value={company} onChange={setcompany} />
+            <Stack spacing={3}>
+                <FormLabel>Name</FormLabel>
+                <Input variant='filled' caption={'Name'} value={name} onChange={(e) => setname(e.target.value)} />
+                <FormHelperText>Type text.</FormHelperText>
+                <FormLabel>Bio</FormLabel>
+                <Textarea variant='filled' caption={'Bio'} value={bio} onChange={(e) => setbio(e.target.value)} />
+                <FormHelperText>Type text.</FormHelperText>
+                <FormLabel>Job Title</FormLabel>
+                <Input variant='filled' caption={'Job title'} value={job} onChange={(e) => setjob(e.target.value)} />
+                <FormHelperText>Type text.</FormHelperText>
+                <FormLabel>Company</FormLabel>
+                <Input variant='filled' caption={'Company'} value={company} onChange={(e) => setcompany(e.target.value)} />
+                <FormHelperText>Type text.</FormHelperText>
+            </Stack>
 
             <div style={{
                 width: '90%',
