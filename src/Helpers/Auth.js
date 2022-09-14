@@ -24,7 +24,7 @@ export function PrivateRoute({ children, ...rest }) {
         <Route
             {...rest}
             render={({ location }) =>
-                (auth != rest.isPublic) ? (
+                rest.availableToAll || (auth != rest.isPublic) ? (
                     children
                 ) : (
                     <Redirect

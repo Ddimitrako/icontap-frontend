@@ -12,6 +12,7 @@ import ForgotPassword from "views/auth/forgotPassword/ForgotPasswordDefault";
 import VerifyEmail from "./VerifyEmail";
 import Settings from "views/admin/main/profile/settings/components/Password";
 import ResetPassword from "views/admin/main/profile/settings/components/ResetPassword";
+import ShowCard from "./ShowCard";
 
 // Custom Chakra theme
 export default function Auth() {
@@ -42,6 +43,10 @@ export default function Auth() {
 
                   <Route path="/auth/sign-in">
                     <SignIn />
+                  </Route>
+
+                  <Route path="/card/:cardId">
+                    <ShowCard />
                   </Route>
 
                   
