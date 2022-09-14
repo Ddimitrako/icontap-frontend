@@ -33,7 +33,8 @@ export default function EditProfile(props) {
 
     const [page, setPage] = useState('AddContentContainer');
 
-    const [socials, setsocials] = useState([]);
+    const socials = props.socials;
+    const setsocials = props.setsocials;
 
     const [currSocial, setcurrSocial] = useState();
     
@@ -236,7 +237,7 @@ export default function EditProfile(props) {
                 overflow: 'auto'
             }}>
                 {socials?.map((social, index) =>
-                    <SocialButton imgUrl={social.imgUrl} styles={{}} onClick={() => {
+                    <SocialButton editable imgUrl={social.imgUrl} styles={{}} onClick={() => {
                         setcurrSocial(index);
                         setPage('EditLink');
                         onOpen();
