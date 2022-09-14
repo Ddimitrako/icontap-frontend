@@ -17,6 +17,7 @@ import EditLink from "./EditLink";
 import EditProfileContainer from "./EditProfileContainer";
 import AddContentContainer from "./AddContentContainer";
 import { hostNameStorage } from "Helpers/App";
+import { useHistory } from "react-router-dom";
 
 //The container modal
 
@@ -26,12 +27,17 @@ export const CustomEditBox = ({ caption, value, onChange }) => <div className="j
     </div>
 </div>
 
-export const SocialButton = ({ imgUrl, bgColor, onClick, styles }) => {
+export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url }) => {
 
     const selectSocialSize = 30;
 
+    const history=useHistory();
+
     const SelectImgButton = ({ styles }) => <div
+
+
         onClick={onClick}
+
         style={{
             width: `${selectSocialSize}px`,
             height: `${selectSocialSize}px`,
@@ -64,9 +70,13 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles }) => {
         backgroundImage: `url(${hostNameStorage}/${imgUrl})`,
         float: 'left',
         margin: '20px',
+        cursor: editable?'default':'pointer',
         ...styles
-    }}>
-        <SelectImgButton />
+    }}
+    
+    onClick={()=>{if(!editable) window.open(JSON.stringify(url)?.includes("http")?url:`http://${url}`, "_blank");}}
+    >
+        {editable && <SelectImgButton />}
     </div>
 }
 
