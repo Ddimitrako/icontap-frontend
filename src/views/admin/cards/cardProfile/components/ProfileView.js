@@ -1,4 +1,4 @@
-import { FormHelperText, FormLabel, Input, InputGroup, Stack, Textarea } from '@chakra-ui/react';
+import { Box, FormHelperText, FormLabel, Input, InputGroup, Stack, Textarea } from '@chakra-ui/react';
 import { hostNameStorage } from 'Helpers/App';
 import React from 'react'
 import { SocialButton } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
@@ -48,11 +48,13 @@ const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius=80, cover,
                 </InputGroup>
             </Stack>
 
+            <Box style={{overflow:'hidden', marginBottom:'50px'}}>
             {socials?.map((social, index) => {
                 console.log(social);
                 return <SocialButton imgUrl={social.imgUrl} url={social.link} key={index} />
             }
             )}
+            </Box>
         </>
     )
 }

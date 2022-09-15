@@ -136,8 +136,7 @@ export default function EditProfile(props) {
 
     const [updating, setUpdating] = useState(false);
 
-    function updateContents() {
-        
+    function updateContents(test=false) {
         let parsedContents=socials.map((c,i)=>{return {
             "content_id": c.id,
             "image": c.imgUrl,
@@ -148,6 +147,10 @@ export default function EditProfile(props) {
             "order":i
         }});
         
+        console.log('SOCIALS', parsedContents);
+
+        if(test)
+        return null;
         
         console.log('updateContents', parsedContents);
         
@@ -186,7 +189,8 @@ export default function EditProfile(props) {
         if(props.cover.blob)
         formData.append('img_cover', props.cover.blob);
         
-        // console.log('updateProfile');
+        console.log('updateProfile');
+        console.trace('updateProfile');
         axios({
             method: 'post',
             url: `${hostName}/profile/${card.profile.id}`,
@@ -284,6 +288,8 @@ export default function EditProfile(props) {
                     onClick={updateProfile}>
                     Update
                 </Button>
+
+                {/* <button onClick={()=>{updateContents(true)}}>CONTENTS</button> */}
             </div>
 
         </div>;

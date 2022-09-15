@@ -37,7 +37,7 @@ function readURL(input, setter) {
 
                 // Resize the image
                 var canvas = document.createElement('canvas'),
-                    max_size = 544,
+                    max_size = 1024,
                     width = image.width,
                     height = image.height;
                 if (width > height) {
@@ -114,7 +114,7 @@ const calculateImageButtonPosition = (avatarRadius) => {
 
 const Cover = ({avatar, setavatar, avatarRadius, cover, setcover, editable=false}) => <div
 style={{
-    minHeight: '300px',
+    minHeight: editable?'300px':'40%',
     paddingRight: '50px',
     borderBottomRightRadius: '30px',
     borderBottomLeftRadius: '30px',

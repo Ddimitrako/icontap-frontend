@@ -82,8 +82,8 @@ const ShowCard = () => {
                     :
                     <Box mx='5'>
                         <ProfileView avatarRadius={120} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={{ url: `${hostNameStorage}/${card.images.img_profile}` }} cover={{ url: `${hostNameStorage}/${card.images.img_cover}` }} socials={socials} />
+                        <Footer />
                     </Box>}
-                <Footer />
             </Flex>
         </Flex>
         // </DefaultAuth>

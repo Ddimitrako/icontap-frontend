@@ -51,6 +51,7 @@ import EditProfile from 'views/admin/main/account/billing/components/EditCardMod
 import { useState } from 'react';
 import { hostNameStorage } from 'Helpers/App';
 import { CustomEditBox } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
+import { frontAddress } from 'Helpers/App';
 
 export default function Page() {
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -101,7 +102,7 @@ export default function Page() {
                                 <CustomIframe socials={socials} setsocials={setsocials} name={name} bio={bio} job={job} company={company} card={card} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
                                 <Stack direction='row' spacing={4}>
                                     <Button onClick={() => {
-                                        window.open("https://poplme.co/7BRzvEfO", "_blank");
+                                        window.open(`${frontAddress}/card/${card.code}`, "_blank");
                                     }} rightIcon={<MdPreview />} colorScheme='blue' variant='outline'>
                                         View Profile
                                     </Button>
