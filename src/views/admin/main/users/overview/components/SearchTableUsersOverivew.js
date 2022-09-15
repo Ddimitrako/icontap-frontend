@@ -117,7 +117,7 @@ function UsersTable() {
                     <AdminActionsBtn />
         </Flex>
         <DataTable
-            title="User List"
+            title="Users List"
             columns={columns}
             data={data}
             selectableRows

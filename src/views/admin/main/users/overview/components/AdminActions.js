@@ -64,8 +64,8 @@ export default function AdminActionsBtn(props) {
                         </FormControl>
 
                         <FormControl mt={4}>
-                            <FormLabel>test</FormLabel>
-                            <Input placeholder='test'/>
+                            <FormLabel>Description</FormLabel>
+                            <Input placeholder='Description'/>
                         </FormControl>
                     </ModalBody>
 
@@ -97,11 +97,18 @@ export default function AdminActionsBtn(props) {
 
                         <FormControl mt={4}>
                             <FormLabel>Select Company to Asign User</FormLabel>
-                            <Select placeholder='Select Company to Asign User'>
+                            <Select >
                                 <option value='None'>None</option>
                                 <option value='Company1'>Company 1</option>
                                 <option value='Company2'>Company 2</option>
                                 <option value='Company3'>Company 3</option>
+                            </Select>
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Select User Type</FormLabel>
+                            <Select >
+                                <option value='user'>user</option>
+                                <option value='admin'>admin</option>
                             </Select>
                         </FormControl>
                     </ModalBody>
@@ -121,7 +128,7 @@ export default function AdminActionsBtn(props) {
                 <MenuList>
                     <MenuItem onClick={onOpenCompanyModal}>Create company</MenuItem>
                     <MenuItem onClick={onOpenUserModal}>Create user/s</MenuItem>
-                    <MenuItem>Delete selected user/s</MenuItem>
+                    <MenuItem>Deactivate selected user/s</MenuItem>
                     <MenuItem>Assign card to selected user/s</MenuItem>
 
                 </MenuList>

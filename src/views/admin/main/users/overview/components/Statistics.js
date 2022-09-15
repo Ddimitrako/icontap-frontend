@@ -31,7 +31,7 @@ import Usa from "../../../../../../assets/img/users/usa.png";
 import FakeLineGraph from "../../../../../../assets/img/users/FakeLineGraph.png";
 
 
-export default function AdminStatistics(props) {
+export default function AdminStatistics({totalActiveUsers,totalCompaniesNum,currentCompany,currentCompanyUsers}) {
 
     const textColorSecondary = "secondaryGray.600";
     const brandColor = useColorModeValue("brand.500", "white");
@@ -49,7 +49,7 @@ export default function AdminStatistics(props) {
                 />
             }
             name='Total Active Users'
-            value='25'
+            value={totalActiveUsers}
         />
         <MiniStatistics
             endContent={
@@ -61,11 +61,10 @@ export default function AdminStatistics(props) {
                     }}
                     me='10px'
                     mt='4px'>
-                    6 May - 7 May
                 </Text>
             }
             name='Total Companies Number'
-            value='17'
+            value={totalCompaniesNum}
         />
         <MiniStatistics
             endContent={
@@ -75,10 +74,8 @@ export default function AdminStatistics(props) {
                     </FormLabel>
                     <Select
                         id='company'
-                        variant='mini'
-                        mt='5px'
-                        me='0px'
-                        defaultValue='usa'>
+                        // defaultValue='usa'
+                    >
                         <option value='usa'>USA</option>
                         <option value='uk'>UK</option>
                         <option value='fra'>FRA</option>
@@ -86,7 +83,7 @@ export default function AdminStatistics(props) {
                 </Flex>
             }
             name='Current Company'
-            value='Moderna'
+            value={currentCompany}
         />
         <MiniStatistics
             startContent={
@@ -97,9 +94,9 @@ export default function AdminStatistics(props) {
                     icon={<Icon w='28px' h='28px' as={MdPerson} color='white'/>}
                 />
             }
-            endContent={<Image src={FakeLineGraph}/>}
+            // endContent={<Image src={FakeLineGraph}/>}
             name='Current Company Users'
-            value='9'
+            value={currentCompanyUsers}
         />
         </SimpleGrid>
 )
