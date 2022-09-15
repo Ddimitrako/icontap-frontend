@@ -28,7 +28,7 @@ import {
   useTable,
 } from "react-table";
 
-function SearchTable2(props) {
+function UsersTable(props) {
   const { columnsData, tableData } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -295,4 +295,4 @@ function SearchTable2(props) {
   );
 }
 
-export default SearchTable2;
+export default UsersTable;
