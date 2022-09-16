@@ -29,6 +29,7 @@ import routes from "routes.js";
 import {useHistory, useLocation, useParams} from "react-router-dom";
 import axios from "axios";
 import {getAuth} from "../../Helpers/Auth";
+import {getMe} from "../../Helpers/Auth";
 export default function HeaderLinks(props) {
   var hostName = process.env.REACT_APP_HOSTNAME.toString()
   const { secondary } = props;
@@ -48,32 +49,8 @@ export default function HeaderLinks(props) {
     "14px 17px 40px 4px rgba(112, 144, 176, 0.06)"
   );
   const borderButton = useColorModeValue("secondaryGray.500", "whiteAlpha.200");
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const config = {
-        headers: {Authorization: `Bearer ${getAuth()}`}
-
-    };
-
-  const bodyParameters = {
-        key: "value"
-    };
-
-  // useEffect(() => {
-  //       getUserProfileData() //call at initialization
-  //   }, []);
-
-  // function getUserProfileData() {
-  //       axios.get(
-  //           hostName + '/me',
-  //           bodyParameters,
-  //           config
-  //       ).then((response) => {
-  //               setFirstName(response.data.data.name)
-  //               setLastName(response.data.data.last_name)
-  //           }
-  //       ).catch(console.log);
-  //   }
+  const [firstName, setFirstName] = useState(getMe().name);
+  const [lastName, setLastName] = useState(getMe().last_name);
 
   return (
     <Flex
