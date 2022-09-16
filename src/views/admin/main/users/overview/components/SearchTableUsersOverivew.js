@@ -4,10 +4,16 @@ import React, {useState, useCallback, useMemo,} from 'react';
 import {Button} from "@chakra-ui/react";
 import differenceBy from 'lodash/differenceBy';
 import AdminActionsBtn from "./AdminActions";
+import {useEffect} from "react";
 const columns = [
     {
-        name: 'Username',
-        selector: row => row.username,
+        name: 'F.Name',
+        selector: row => row.name,
+        sortable: true,
+    },
+    {
+        name: 'L.Name',
+        selector: row => row.last_name,
         sortable: true,
     },
     {
@@ -22,7 +28,7 @@ const columns = [
     },
     {
         name: 'JOIN DATE',
-        selector: row => row.joinDate,
+        selector: row => row.created_at,
         sortable: true,
     },
     {
@@ -30,62 +36,41 @@ const columns = [
         selector: row => row.userType,
         sortable: true,
     },
+    {
+        name: 'Edit card/s',
+        selector: row => row.editCard,
+        sortable: false,
+    },{
+        name: 'Analytics',
+        selector: row => row.analytics,
+        sortable: false,
+    },
 ];
 
-const tableDataItems = [
-    {
-        id: 1,
-        username: 'Vlad Mihalache',
-        email: 'vald@emaai.com',
-        company:"moderna",
-        joinDate:"14-1-1994",
-        userType:"User"
-    },
-    {
-        id: 2,
-        username: 'Itoudis',
-        email: 'vald@emaai.com',
-        company:"moderna",
-        joinDate:"13-1-1994",
-        userType:"User"
-    },
-    {
-        id: 3,
-        username: 'Lostas kala',
-        email: 'vald@emaai.com',
-        company:"moderna",
-        joinDate:"10-1-1993",
-        userType:"User"
-    },
-    {
-        id: 4,
-        username: 'VDimitris Vlad',
-        email: 'vald@emaai.com',
-        company: "moderna",
-        joinDate: "1-1-1994",
-        userType: "User"
-    }
 
-]
 
 
 function UsersTable(props) {
-    const { testData1, testData2 } = props;
+    const { testData1, testData2 ,usersList} = props;
     const [selectedRows, setSelectedRows] = React.useState([]);
     const [toggleCleared, setToggleCleared] = React.useState(false);
-    const [data, setData] = React.useState(tableDataItems);
+    // const [data, setData] = React.useState(usersList);
 
     const handleRowSelected = React.useCallback(state => {
         setSelectedRows(state.selectedRows);
         console.log(state.selectedRows)
     }, []);
 
+    // useEffect(() => {
+    //     setData(usersList)
+    // }, [usersList]);
+
     const contextActions = React.useMemo(() => {
         const handleSelection = () => {
 
             if (window.confirm(`Are you sure you want to delete:\r ${selectedRows.map(r => r.title)}?`)) {
                 setToggleCleared(!toggleCleared);
-                setData(differenceBy(data, selectedRows, 'title'));
+                // setData(differenceBy(data, selectedRows, 'title'));
             }
         };
 
@@ -102,7 +87,7 @@ function UsersTable(props) {
             </Button>
                 </div>
         );
-    }, [data, selectedRows, toggleCleared]);
+    }, [ selectedRows, toggleCleared]);
 
 
     return (
@@ -111,7 +96,7 @@ function UsersTable(props) {
         <DataTable
             title="Users List"
             columns={columns}
-            data={data}
+            data={usersList}
             selectableRows
             contextActions={contextActions}
             onSelectedRowsChange={handleRowSelected}

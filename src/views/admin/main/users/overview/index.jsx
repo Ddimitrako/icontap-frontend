@@ -29,8 +29,44 @@ export default function UsersOverview() {
     const [companyName, setCompanyName] = useState("")
     const [companyDescript, setCompanyDescript] = useState("")
     const [companyLogo, setCompanyLogo] = useState("")
-    const [createCompanyBtn,setCreateCompanyBtn] = useState(false)
-
+    const [createCompanyBtn, setCreateCompanyBtn] = useState(false)
+    const [usersList, setUsersList] = useState([])
+//     const usersList2 = [
+//     {
+//         id: 1,
+//         username: 'Vlad Mihalache',
+//         email: 'vald@emaai.com',
+//         company:"moderna",
+//         joinDate:"14-1-1994",
+//         userType:"User"
+//     },
+//     {
+//         id: 2,
+//         username: 'Itoudis',
+//         email: 'vald@emaai.com',
+//         company:"moderna",
+//         joinDate:"13-1-1994",
+//         userType:"User"
+//     },
+//     {
+//         id: 3,
+//         username: 'Lostas kala',
+//         email: 'vald@emaai.com',
+//         company:"moderna",
+//         joinDate:"10-1-1993",
+//         userType:"User"
+//     },
+//     {
+//         id: 4,
+//         username: 'VDimitris Vlad',
+//         email: 'vald@emaai.com',
+//         company: "moderna",
+//         joinDate: "1-1-1994",
+//         userType: "User"
+//     }
+//
+//
+// ]
     const companyNameChange = (event) => setCompanyName(event.target.value)
     const companyDescrChange = (event) => setCompanyDescript(event.target.value)
 
@@ -39,6 +75,7 @@ export default function UsersOverview() {
         headers: {Authorization: `Bearer ${getAuth()}`}
     };
 
+    //####################################################################################
     function getCompanies() {
         axios.get(
             hostName + '/company',
@@ -61,23 +98,44 @@ export default function UsersOverview() {
             // "logo": companyLogo
         }
 
-
+//############################################################################################
     function CreateCompany() {
         axios.post(
             hostName + '/company',
-             companyInfo,
-                config
+            companyInfo,
+            config
         ).then((response) => {
-                console.log(response)
+                // console.log(response)
                 if (response.status == 200) {
-                    //Show green alert.
+                    ///Todo//Show green alert.
                 }
             }
         ).catch(console.log);
     }
 
+    //###############################################################################################
+    function getUsers() {
+        var usersArray = []
+        axios.get(
+            hostName + '/users',
+            config
+        ).then((response) => {
+                // && response.data.data.length > 0
+                if (response.status == 200) {
+                    // console.log(response.data.data)
+                    setUsersList((usersList) => [...usersList, response.data.data]);
+                }
+            }
+        ).catch(console.log);
+    }
+
+    // useEffect(() => {
+    //     console.log("test" + usersList[0])
+    // }, [usersList]);
+
     useEffect(() => {
         getCompanies()
+        getUsers()
 
     }, []);
 
@@ -89,6 +147,8 @@ export default function UsersOverview() {
             setCreateCompanyBtn(false)
         }
     }, [createCompanyBtn]);
+
+
     return (
         <Flex direction='column' pt={{sm: "125px", lg: "75px"}}>
             <Card px='0px'>
@@ -100,13 +160,14 @@ export default function UsersOverview() {
                     w='100%'
                     px='22px'
                     mb='36px'>
-                    <AdminActionsBtn setCreateCompanyBtn={setCreateCompanyBtn} companyNameChange={companyNameChange} companyDescrChange={companyDescrChange}
+                    <AdminActionsBtn setCreateCompanyBtn={setCreateCompanyBtn} companyNameChange={companyNameChange}
+                                     companyDescrChange={companyDescrChange}
                     />
                 </Flex>
                 <UsersTable
                     testData1={tableDataUsersOverview}
                     testData2={columnsDataUsersOverview}
-
+                    usersList={usersList[0]}
                 />
             </Card>
         </Flex>
