@@ -69,8 +69,8 @@ const tableDataItems = [
 ]
 
 
-function UsersTable() {
-
+function UsersTable(props) {
+    const { testData1, testData2 } = props;
     const [selectedRows, setSelectedRows] = React.useState([]);
     const [toggleCleared, setToggleCleared] = React.useState(false);
     const [data, setData] = React.useState(tableDataItems);
@@ -107,15 +107,7 @@ function UsersTable() {
 
     return (
         <div>
-        <Flex
-                    align={{sm: "flex-start", lg: "flex-start"}}
-                    justify={{sm: "flex-start", lg: "flex-start"}}
-                    w='100%'
-                    px='22px'
-                    mb='36px' >
 
-                    <AdminActionsBtn />
-        </Flex>
         <DataTable
             title="Users List"
             columns={columns}

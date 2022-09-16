@@ -1,5 +1,6 @@
 // Chakra imports
-import {Select,
+import {
+    Select,
     Box,
     useDisclosure,
     Button,
@@ -11,7 +12,7 @@ import {Select,
     Text,
     useColorModeValue
 } from "@chakra-ui/react";
-import React from "react";
+import React, {useEffect} from "react";
 import {ChevronDownIcon} from "@chakra-ui/icons";
 import {
     Modal, FormControl,
@@ -24,8 +25,8 @@ import {
 } from '@chakra-ui/react';
 
 
-export default function AdminActionsBtn(props) {
-    const {...rest} = props;
+export default function AdminActionsBtn({setCreateCompanyBtn,companyNameChange,companyDescrChange}) {
+
     const {
         isOpen: isOpenCompanyModal,
         onOpen: onOpenCompanyModal,
@@ -45,6 +46,7 @@ export default function AdminActionsBtn(props) {
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
     // Chakra Color Mode
+
     return (
         <>
             <Modal id='createCompany'
@@ -60,20 +62,27 @@ export default function AdminActionsBtn(props) {
                     <ModalBody pb={6}>
                         <FormControl>
                             <FormLabel>Company Name</FormLabel>
-                            <Input ref={initialRef} placeholder='Company Name'/>
+                            <Input ref={initialRef} placeholder='Company Name'
+                            onChange={companyNameChange}/>
                         </FormControl>
 
                         <FormControl mt={4}>
                             <FormLabel>Description</FormLabel>
-                            <Input placeholder='Description'/>
+                            <Input placeholder='Description' onChange={companyDescrChange}/>
                         </FormControl>
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3}>
+                        <Button colorScheme='blue' mr={3}
+                        onClick={(event) => {
+                            onCloseCompanyModal()
+                            setCreateCompanyBtn(true)
+                        }}>
                             Create
                         </Button>
-                        <Button onClick={onCloseCompanyModal}>Cancel</Button>
+                        <Button onClick={(event) => {
+                            onCloseCompanyModal()
+                        }}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
@@ -97,7 +106,7 @@ export default function AdminActionsBtn(props) {
 
                         <FormControl mt={4}>
                             <FormLabel>Select Company to Asign User</FormLabel>
-                            <Select >
+                            <Select>
                                 <option value='None'>None</option>
                                 <option value='Company1'>Company 1</option>
                                 <option value='Company2'>Company 2</option>
@@ -106,7 +115,7 @@ export default function AdminActionsBtn(props) {
                         </FormControl>
                         <FormControl mt={4}>
                             <FormLabel>Select User Type</FormLabel>
-                            <Select >
+                            <Select>
                                 <option value='user'>user</option>
                                 <option value='admin'>admin</option>
                             </Select>
