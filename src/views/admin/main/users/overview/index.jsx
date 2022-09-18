@@ -23,6 +23,8 @@ import AdminActionsBtn from "./components/AdminActions";
 
 export default function UsersOverview() {
     const [totalActiveUsers, setTotalActiveUsers] = useState(0)
+    const [usersList, setUsersList] = useState([])
+
     const [totalCompaniesNum, setTotalCompaniesNum] = useState(0)
     const [currentCompany, setCurrentCompany] = useState("")
     const [currentCompanyUsers, setCurrentCompanyUsers] = useState(0)
@@ -30,7 +32,9 @@ export default function UsersOverview() {
     const [companyDescript, setCompanyDescript] = useState("")
     const [companyLogo, setCompanyLogo] = useState("")
     const [createCompanyBtn, setCreateCompanyBtn] = useState(false)
-    const [usersList, setUsersList] = useState([])
+    const [companiesNamesUUIDsList, setCompaniesNamesUUIDsList] = useState([{}])
+    const [selectedCompany, setSelectedCompany] = useState(null)
+
 //     const usersList2 = [
 //     {
 //         id: 1,
@@ -82,10 +86,23 @@ export default function UsersOverview() {
             config
         ).then((response) => {
                 console.log(response)
+                let companiesNamesUUIDs = []
                 if (response.status == 200 && response.data.data.length > 0) {
-                    console.log(response.data.data.length)
+                    console.log(response.data.data)
                     setCurrentCompany(response.data.data[0].name)
                     setTotalCompaniesNum(response.data.data.length)
+
+                    //create a list with all companies names and UUID
+                    //etc companiesNamesUUIDs = [{"tesla","434-343-343"}]
+                    for (let i = 0; i < response.data.data.length; i++) {
+                        let companyObj = {};
+                        companyObj['name'] = response.data.data[i].name;
+                        companyObj['uuid'] = response.data.data[i].uuid;
+                        companiesNamesUUIDs.push(companyObj);
+                        console.log(companyObj);
+                    }
+                    setCompaniesNamesUUIDsList(companiesNamesUUIDs)
+
                 }
             }
         ).catch(console.log);
@@ -152,7 +169,7 @@ export default function UsersOverview() {
     return (
         <Flex direction='column' pt={{sm: "125px", lg: "75px"}}>
             <Card px='0px'>
-                <AdminStatistics totalActiveUsers={totalActiveUsers} totalCompaniesNum={totalCompaniesNum}
+                <AdminStatistics companiesList={companiesNamesUUIDsList} totalActiveUsers={totalActiveUsers} totalCompaniesNum={totalCompaniesNum}
                                  currentCompany={currentCompany} currentCompanyUsers={currentCompanyUsers}/>
                 <Flex
                     align={{sm: "flex-start", lg: "flex-start"}}
