@@ -66,9 +66,13 @@ export default function Settings({setShowAlert}) {
 
 
     useEffect(() => {
+         try {
+            setFirstName(getMe().name)
+            setLastName(getMe().last_name)
+        } catch (e) {
+            console.log('Error')
+        }
 
-        setFirstName(getMe().name)
-        setLastName(getMe().last_name)
         setEmail(getMe().email)
 
         setOpacity(1)
