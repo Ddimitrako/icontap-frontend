@@ -103,7 +103,10 @@ export default function AdminActionsBtn({setCreateCompanyBtn,companyNameChange,c
                             <FormLabel>User Name</FormLabel>
                             <Input ref={initialRef} placeholder='User Name'/>
                         </FormControl>
-
+                        <FormControl>
+                            <FormLabel>Password</FormLabel>
+                            <Input ref={initialRef} placeholder='Password'/>
+                        </FormControl>
                         <FormControl mt={4}>
                             <FormLabel>Select Company to Asign User</FormLabel>
                             <Select>

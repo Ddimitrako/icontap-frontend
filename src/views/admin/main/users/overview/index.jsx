@@ -1,5 +1,5 @@
 import {
-    Box,
+    Box, Button,
     Grid,
     useColorModeValue,
 } from "@chakra-ui/react";
@@ -22,7 +22,7 @@ import {hostName} from "../../../../../Helpers/App";
 import AdminActionsBtn from "./components/AdminActions";
 
 export default function UsersOverview() {
-    const [totalActiveUsers, setTotalActiveUsers] = useState(0)
+    const [totalUsers, setTotalUsers] = useState(0)
     const [usersList, setUsersList] = useState([])
 
     const [totalCompaniesNum, setTotalCompaniesNum] = useState(0)
@@ -33,7 +33,7 @@ export default function UsersOverview() {
     const [companyLogo, setCompanyLogo] = useState("")
     const [createCompanyBtn, setCreateCompanyBtn] = useState(false)
     const [companiesNamesUUIDsList, setCompaniesNamesUUIDsList] = useState([{}])
-    const [selectedCompany, setSelectedCompany] = useState(null)
+
 
 //     const usersList2 = [
 //     {
@@ -85,10 +85,10 @@ export default function UsersOverview() {
             hostName + '/company',
             config
         ).then((response) => {
-                console.log(response)
+                // console.log(response)
                 let companiesNamesUUIDs = []
                 if (response.status == 200 && response.data.data.length > 0) {
-                    console.log(response.data.data)
+                    // console.log(response.data.data)
                     setCurrentCompany(response.data.data[0].name)
                     setTotalCompaniesNum(response.data.data.length)
 
@@ -99,7 +99,7 @@ export default function UsersOverview() {
                         companyObj['name'] = response.data.data[i].name;
                         companyObj['uuid'] = response.data.data[i].uuid;
                         companiesNamesUUIDs.push(companyObj);
-                        console.log(companyObj);
+
                     }
                     setCompaniesNamesUUIDsList(companiesNamesUUIDs)
 
@@ -117,6 +117,7 @@ export default function UsersOverview() {
 
 //############################################################################################
     function CreateCompany() {
+        //TODO check if company already exists
         axios.post(
             hostName + '/company',
             companyInfo,
@@ -133,14 +134,23 @@ export default function UsersOverview() {
     //###############################################################################################
     function getUsers() {
         var usersArray = []
+
         axios.get(
             hostName + '/users',
             config
         ).then((response) => {
                 // && response.data.data.length > 0
                 if (response.status == 200) {
-                    // console.log(response.data.data)
+                    for (var key in response.data.data) {
+                    var obj = response.data.data[key];
+                          console.log(obj)
+                              //append buttons inside user object
+                            response.data.data[key]["editCard"] = <Button colorScheme='teal' variant='outline'>Edit Card</Button>;
+                            response.data.data[key]["analytics"] = <Button colorScheme='teal' variant='outline'>Analytics</Button>;
+                    }
+                     console.log(response.data.data)
                     setUsersList((usersList) => [...usersList, response.data.data]);
+                     setTotalUsers(response.data.data.length)
                 }
             }
         ).catch(console.log);
@@ -150,27 +160,32 @@ export default function UsersOverview() {
     //     console.log("test" + usersList[0])
     // }, [usersList]);
 
+    //First run
     useEffect(() => {
         getCompanies()
         getUsers()
 
     }, []);
-
+    //Admin Actions create company BTN pressed
     useEffect(() => {
         if (createCompanyBtn === true) {
-            console.log("companyName-->" + companyName)
-            console.log("companyDescr-->" + companyDescript)
+            // console.log("companyName-->" + companyName)
+            // console.log("companyDescr-->" + companyDescript)
             CreateCompany()
             setCreateCompanyBtn(false)
         }
     }, [createCompanyBtn]);
 
+    //  useEffect(() => {
+    //     getCompanyUsers()
+    //
+    // }, [currentCompany]);
 
     return (
         <Flex direction='column' pt={{sm: "125px", lg: "75px"}}>
             <Card px='0px'>
-                <AdminStatistics companiesList={companiesNamesUUIDsList} totalActiveUsers={totalActiveUsers} totalCompaniesNum={totalCompaniesNum}
-                                 currentCompany={currentCompany} currentCompanyUsers={currentCompanyUsers}/>
+                <AdminStatistics companiesList={companiesNamesUUIDsList} totalUsers={totalUsers} totalCompaniesNum={totalCompaniesNum}
+                  currentCompany={currentCompany} setCurrentCompany={setCurrentCompany} currentCompanyUsers={currentCompanyUsers}/>
                 <Flex
                     align={{sm: "flex-start", lg: "flex-start"}}
                     justify={{sm: "flex-start", lg: "flex-start"}}
