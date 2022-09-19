@@ -42,7 +42,11 @@ export default function AdminActionsBtn({setCreateCompanyBtn,companyNameChange,c
         onOpen: onOpenReportModal,
         onClose: onCloseReportModal
     } = useDisclosure()
-
+    const {
+        isOpen: isOpenAssignUserModal,
+        onOpen: onOpenAssignUserModal,
+        onClose: onCloseAssignUserModal
+    } = useDisclosure()
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
     // Chakra Color Mode
@@ -88,7 +92,7 @@ export default function AdminActionsBtn({setCreateCompanyBtn,companyNameChange,c
             </Modal>
 
 
-            <Modal id='createCompany'
+            <Modal id='createUser'
                    initialFocusRef={initialRef}
                    finalFocusRef={finalRef}
                    isOpen={isOpenUserModal}
@@ -132,6 +136,48 @@ export default function AdminActionsBtn({setCreateCompanyBtn,companyNameChange,c
                         <Button onClick={onCloseUserModal}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>
+
+
+
+            </Modal>
+            <Modal id='assignUser'
+
+                   isOpen={isOpenAssignUserModal}
+                   onClose={onCloseAssignUserModal}
+            >
+                <ModalOverlay/>
+                <ModalContent>
+                    <ModalHeader>Assign user/s to company</ModalHeader>
+                    <ModalCloseButton/>
+                    <ModalBody pb={6}>
+                        <FormControl mt={4}>
+                            <FormLabel>Select Company to Asign User</FormLabel>
+                            <Select>
+                                <option value='None'>None</option>
+                                <option value='Company1'>Company 1</option>
+                                <option value='Company2'>Company 2</option>
+                                <option value='Company3'>Company 3</option>
+                            </Select>
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Select User Type</FormLabel>
+                            <Select>
+                                <option value='user'>user</option>
+                                <option value='admin'>admin</option>
+                            </Select>
+                        </FormControl>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme='blue' mr={3}>
+                            Assign
+                        </Button>
+                        <Button onClick={onCloseAssignUserModal}>Cancel</Button>
+                    </ModalFooter>
+                </ModalContent>
+
+
+
             </Modal>
             <Menu>
                 <MenuButton as={Button} colorScheme='purple' rightIcon={<ChevronDownIcon/>}>
@@ -142,7 +188,7 @@ export default function AdminActionsBtn({setCreateCompanyBtn,companyNameChange,c
                     <MenuItem onClick={onOpenUserModal}>Create user/s</MenuItem>
                     <MenuItem>Deactivate selected user/s</MenuItem>
                     <MenuItem>Assign card to selected user/s</MenuItem>
-
+                    <MenuItem onClick={onOpenAssignUserModal}>Assign user/s to company</MenuItem>
                 </MenuList>
             </Menu>
         </>
