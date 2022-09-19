@@ -21,11 +21,11 @@ const columns = [
         selector: row => row.email,
         sortable: true,
     },
-    {
-        name: 'Company',
-        selector: row => row.company,
-        sortable: true,
-    },
+    // {
+    //     name: 'Company',
+    //     selector: row => row.company.name,
+    //     sortable: true,
+    // },
     {
         name: 'JOIN DATE',
         selector: row => row.created_at,
@@ -50,8 +50,9 @@ const columns = [
 
 
 
-function UsersTable(props) {
-    const { testData1, testData2 ,usersList} = props;
+function UsersTable({usersList}) {
+
+    const [pending, setPending] = React.useState(true);
     const [selectedRows, setSelectedRows] = React.useState([]);
     const [toggleCleared, setToggleCleared] = React.useState(false);
     // const [data, setData] = React.useState(usersList);
@@ -61,10 +62,13 @@ function UsersTable(props) {
         console.log(state.selectedRows)
     }, []);
 
-    // useEffect(() => {
-    //     setData(usersList)
-    // }, [usersList]);
+    useEffect(() => {
+        console.log("Data for Table"+usersList)
 
+    }, [usersList]);
+    React.useEffect(() => {
+
+	}, []);
     const contextActions = React.useMemo(() => {
         const handleSelection = () => {
 
@@ -76,13 +80,13 @@ function UsersTable(props) {
 
         return (
             <div>
-            <Button key="editcard" onClick={handleSelection} style={{backgroundColor: 'blueviolet'}} icon>
+            <Button key="editcard" onClick={handleSelection} style={{backgroundColor: 'blueviolet'}} >
                 Edit User Cards
             </Button>
-            <Button key="statistics" onClick={handleSelection} style={{backgroundColor: 'green'}} icon>
+            <Button key="statistics" onClick={handleSelection} style={{backgroundColor: 'green'}} >
                 View User Statistics
             </Button>
-            <Button key="delete" onClick={handleSelection} style={{backgroundColor: 'red'}} icon>
+            <Button key="delete" onClick={handleSelection} style={{backgroundColor: 'red'}} >
                 Delete
             </Button>
                 </div>
@@ -94,6 +98,7 @@ function UsersTable(props) {
         <div>
 
         <DataTable
+
             title="Users List"
             columns={columns}
             data={usersList}
@@ -102,6 +107,7 @@ function UsersTable(props) {
             onSelectedRowsChange={handleRowSelected}
             clearSelectedRows={toggleCleared}
             pagination
+            // progressPending={pending}
             defaultSortFieldId={1}
 
         /></div>

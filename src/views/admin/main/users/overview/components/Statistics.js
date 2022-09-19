@@ -44,7 +44,7 @@ export default function AdminStatistics({
     const brandColor = useColorModeValue("brand.500", "white");
     const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
     const listCompanies = companiesList.map(option => (
-                                <option key={option.uuid} value={option.name}>
+                                <option key={option.uuid} value={option.uuid}>
                                     {option.name}
                                 </option>
                             ));
@@ -54,7 +54,7 @@ export default function AdminStatistics({
     }, [companiesList]);
     return (
         <SimpleGrid columns={{base: 1, md: 2, xl: 4}} gap='20px' mb='20px'>
-            <MiniStatistics
+            <MiniStatistics key='1'
                 startContent={
                     <IconBox
                         w='56px'
@@ -66,7 +66,7 @@ export default function AdminStatistics({
                 name='Total  Users'
                 value={totalUsers}
             />
-            <MiniStatistics
+            <MiniStatistics key='2'
                 endContent={
                     <Text
                         color={textColorSecondary}
@@ -81,13 +81,16 @@ export default function AdminStatistics({
                 name='Total Companies Number'
                 value={totalCompaniesNum}
             />
-            <MiniStatistics
+            <MiniStatistics key='3'
                 endContent={
                     <Flex me='-16px'>
                         <FormLabel htmlFor='company'>
                             <Avatar src={Usa}/>
                         </FormLabel>
-                        <Select onChange={(e) => setCurrentCompany(e.target.key)}
+                        <Select onChange={(e) => {
+                            console.log(e.target)
+                            setCurrentCompany(e.target.value)
+                        }}
                             id='company'
                             // defaultValue='usa'
                         >
@@ -98,7 +101,7 @@ export default function AdminStatistics({
                 name='Current Company'
                 value={currentCompany}
             />
-            <MiniStatistics
+            <MiniStatistics key='4'
                 startContent={
                     <IconBox
                         w='56px'

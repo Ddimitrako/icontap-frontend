@@ -132,25 +132,32 @@ export default function UsersOverview() {
     }
 
     //###############################################################################################
-    function getUsers() {
+    function getUsers(currentCompanyUUID =null) {
+        let url = hostName + '/users';
+        if (currentCompanyUUID !=null && currentCompanyUUID !="") {
+            url = hostName + '/company/'+ currentCompanyUUID + '/users'
+        }
         var usersArray = []
-
         axios.get(
-            hostName + '/users',
+            url,
             config
         ).then((response) => {
                 // && response.data.data.length > 0
+                setUsersList([])
                 if (response.status == 200) {
                     for (var key in response.data.data) {
                     var obj = response.data.data[key];
-                          console.log(obj)
+                          // console.log(obj)
                               //append buttons inside user object
                             response.data.data[key]["editCard"] = <Button colorScheme='teal' variant='outline'>Edit Card</Button>;
                             response.data.data[key]["analytics"] = <Button colorScheme='teal' variant='outline'>Analytics</Button>;
                     }
                      console.log(response.data.data)
                     setUsersList((usersList) => [...usersList, response.data.data]);
-                     setTotalUsers(response.data.data.length)
+                    //check only the first time where is null
+                    if (currentCompanyUUID==null) {
+                        setTotalUsers(response.data.data.length)
+                    }
                 }
             }
         ).catch(console.log);
@@ -176,10 +183,10 @@ export default function UsersOverview() {
         }
     }, [createCompanyBtn]);
 
-    //  useEffect(() => {
-    //     getCompanyUsers()
-    //
-    // }, [currentCompany]);
+    useEffect(() => {
+        // console.log("currentCompany-->"+currentCompany)
+        getUsers(currentCompany);
+    }, [currentCompany]);
 
     return (
         <Flex direction='column' pt={{sm: "125px", lg: "75px"}}>
