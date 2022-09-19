@@ -10,8 +10,8 @@ import {
 import Card from "components/card/Card.js";
 import InputField from "components/fields/InputField";
 import TextField from "components/fields/TextField";
-import React from "react";
-import {catchError, getAuth, GetMeFromApi} from "Helpers/Auth";
+import React, {useContext} from "react";
+import {catchError, getAuth, GetMeFromApi, MeContext} from "Helpers/Auth";
 import {Axios} from "axios";
 import axios from "axios";
 import {useParams} from "react-router-dom";
@@ -19,6 +19,7 @@ import {useState, useEffect} from 'react';
 import {Spinner} from '@chakra-ui/react'
 
 import {getMe} from "Helpers/Auth";
+import {hostName} from "../../../../../../Helpers/App";
 
 export default function Settings({setShowAlert}) {
 //     const [state, setState] = useState({});
@@ -37,6 +38,8 @@ export default function Settings({setShowAlert}) {
 // }
 
     var hostName = process.env.REACT_APP_HOSTNAME.toString()
+    const [MeContextValue, setMeContextValue] = useContext(MeContext);
+
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
     const textColorSecondary = "secondaryGray.600";
     const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -66,9 +69,16 @@ export default function Settings({setShowAlert}) {
 
 
     useEffect(() => {
-         try {
+        try {
+            console.log(getMe())
             setFirstName(getMe().name)
             setLastName(getMe().last_name)
+            setProfession(getMe().data.profession)
+            setCity(getMe().data.town)
+            setTelephone(getMe().data.telephone)
+            setzipCode(getMe().data.zip_code)
+            setStateLocation(getMe().data.state)
+            setAddress(getMe().data.address)
         } catch (e) {
             console.log('Error')
         }
@@ -87,7 +97,8 @@ export default function Settings({setShowAlert}) {
         "address": address,
         "town": city,
         "state": stateLocation,
-        "zip_code": zipCode
+        "zip_code": zipCode,
+        "profession": profession
     };
 
     function setNewUserProfileData() {
@@ -96,11 +107,22 @@ export default function Settings({setShowAlert}) {
             bodyParameters,
             config
         ).then((response) => {
-                console.log(response.status)
-                if (response.status==200){
+                // console.log(response.status)
+                if (response.status == 200) {
+                    axios({
+                        method: 'get',
+                        url: `${hostName}/me`
+                    }).then((response) => {
+                        // console.log(response);
+                        localStorage.setItem('me', JSON.stringify(response.data.data));
+                        setMeContextValue(response.data.data);
+                    }).catch((err) => {
+                        console.log(err.response);
+                    })
                     setShowAlert(true)
+
                 }
-                console.log(getMe())
+                // console.log(getMe())
             }
         ).catch(console.log);
     }
@@ -175,14 +197,14 @@ export default function Settings({setShowAlert}) {
                         />
                         <InputField
                             mb='0px'
-                            id=''
+                            id='profession'
                             placeholder={profession}
                             label='Profession'
                             onChange={professionChange}
                         />
                         <InputField
                             mb='0px'
-                            id=''
+                            id='telephone'
                             placeholder={telephone}
                             label='Telephone'
                             onChange={telephoneChange}
