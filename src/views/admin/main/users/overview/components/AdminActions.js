@@ -28,7 +28,7 @@ import {getAuth} from "../../../../../../Helpers/Auth";
 import {Switch} from '@chakra-ui/react'
 import axios from "axios";
 import {hostName} from "../../../../../../Helpers/App";
-import {error} from "mapbox-gl/src/style-spec/util/result";
+
 
 export default function AdminActionsBtn({
                                             setCreateCompanyBtn,
