@@ -82,23 +82,34 @@ export default function AdminStatistics({
                 value={totalCompaniesNum}
             />
             <MiniStatistics key='3'
-                endContent={
-                    <Flex me='-16px'>
-                        <FormLabel htmlFor='company'>
-                            <Avatar src={Usa}/>
-                        </FormLabel>
-                        <Select onChange={(e) => {
-                            setCurrentCompany({name:companiesList[e.target.value].name,uuid:companiesList[e.target.value].uuid})
-                        }}
-                            id='company'
-                            // defaultValue='usa'
-                        >
-                            {listCompanies}
-                        </Select>
-                    </Flex>
-                }
-                name='Current Company'
-                value={currentCompany.name}
+                            endContent={
+                                <Flex me='-16px'>
+                                    <FormLabel htmlFor='company'>
+                                        <Avatar src={Usa}/>
+                                    </FormLabel>
+                                    <Select onChange={(e) => {
+                                        console.log(e.target.value)
+                                        if (e.target.value == "showAllUsers") {
+                                            setCurrentCompany("")
+                                        } else {
+                                            setCurrentCompany({
+                                                name: companiesList[e.target.value].name,
+                                                uuid: companiesList[e.target.value].uuid
+                                            })
+                                        }
+                                    }}
+                                            id='company'
+                                        // defaultValue='usa'
+                                    >
+                                        <option color={"green"} key='showAllUsers' value='showAllUsers'>
+                                            Show All Users
+                                        </option>
+                                        {listCompanies}
+                                    </Select>
+                                </Flex>
+                            }
+                            name='Current Company'
+                            value={currentCompany.name}
             />
             <MiniStatistics key='4'
                 startContent={
