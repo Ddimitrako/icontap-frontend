@@ -236,21 +236,7 @@ export default function EditProfile(props) {
             </Stack>
 
             <div style={{
-                width: '90%',
-                margin: '50px auto 20px auto',
-                overflow: 'auto'
-            }}>
-                {socials?.map((social, index) =>
-                    <SocialButton editable imgUrl={social.imgUrl} styles={{}} onClick={() => {
-                        setcurrSocial(index);
-                        setPage('EditLink');
-                        onOpen();
-                    }} key={index} />
-                )}
-
-            </div>
-
-            <div style={{
+                marginTop:'50px',
                 width: '100%',
                 textAlign: 'center'
             }}>
@@ -271,15 +257,25 @@ export default function EditProfile(props) {
                 </Button>
             </div>
 
+            <div style={{
+                width: '90%',
+                margin: '50px auto 20px auto',
+                overflow: 'auto'
+            }}>
+                {socials?.map((social, index) =>
+                    <SocialButton editable imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
+                        setcurrSocial(index);
+                        setPage('EditLink');
+                        onOpen();
+                    }} key={index} />
+                )}
+
+            </div>
+
             <hr style={{ 'margin': '20px 0' }} />
             <div style={{ textAlign: 'center' }}>
                 <Button
-                    style={{
-                        borderRadius: '10px',
-                        padding: '15px 20px'
-                    }}
-
-                    colorScheme='green'
+                    className="btn-custom-dark-background"
 
                     size='lg'
 

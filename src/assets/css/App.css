@@ -17,5 +17,6 @@ option {
 }
 
 .btn-custom-dark-background:hover{
-  box-shadow:#cdcdcd 10px 10px 10px;
+  /* box-shadow:#cdcdcd 10px 10px 10px; */
+  background-color: #565353 !important;
 }
