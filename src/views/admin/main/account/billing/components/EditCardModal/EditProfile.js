@@ -227,12 +227,12 @@ export default function EditProfile(props) {
                 <FormLabel>Bio</FormLabel>
                 <Textarea variant='filled' caption={'Bio'} value={props.bio} onChange={(e) => props.setbio(e.target.value)} />
                 <FormHelperText>Type text.</FormHelperText>
-                <FormLabel>Job Title</FormLabel>
+                {/* <FormLabel>Job Title</FormLabel>
                 <Input variant='filled' caption={'Job title'} value={props.job} onChange={(e) => props.setjob(e.target.value)} />
                 <FormHelperText>Type text.</FormHelperText>
                 <FormLabel>Company</FormLabel>
                 <Input variant='filled' caption={'Company'} value={props.company} onChange={(e) => props.setcompany(e.target.value)} />
-                <FormHelperText>Type text.</FormHelperText>
+                <FormHelperText>Type text.</FormHelperText> */}
             </Stack>
 
             <div style={{
@@ -256,15 +256,15 @@ export default function EditProfile(props) {
             }}>
                 <EditCardModal pages={pages} page={page} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
                 <Button
-                    style={{
-                        borderRadius: '10px',
-                        padding: '15px 20px'
-                    }}
+                    // style={{
+                    //     borderRadius: '10px',
+                    //     padding: '15px 20px'
+                    // }}
+                    className={'btn-custom-dark-background'}
                     onClick={() => {
                         setPage('AddContentContainer');
                         onOpen();
                     }}
-                    colorScheme="blackAlpha"
                     isLoading={contentloading}
                     >
                     + Add links and Contact info

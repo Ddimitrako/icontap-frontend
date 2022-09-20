@@ -78,9 +78,9 @@ export function setAxiosErrorInterceptor() {
         if (error.response.status == 401) {
             window.location.href = '/admin/logout';
         }
-
+        
         if (error.response.status == 403) {
-            window.location.href = '/';
+            window.location.href = '/admin/logout';
         }
     }
     );

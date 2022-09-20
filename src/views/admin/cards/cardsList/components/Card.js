@@ -301,7 +301,7 @@ export default function IcontapCard(props) {
 </Flex>;
 
   return (
-    <Card {...rest} p='44px'>
+    <Card {...rest} p='44px' style={{boxShadow:'#cdcdcd 10px 10px 10px'}}>
       <Flex justify='space-between' mb='25px' align='center'>
         <Text
           color={textColor}
