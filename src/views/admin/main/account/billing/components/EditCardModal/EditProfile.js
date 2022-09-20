@@ -281,6 +281,8 @@ export default function EditProfile(props) {
 
                     isLoading={updating}
 
+                    disabled={!(socials?.length>0) || !(props.name) || !(props.bio) }
+
                     onClick={updateProfile}>
                     Update
                 </Button>
