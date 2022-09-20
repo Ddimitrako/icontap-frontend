@@ -43,14 +43,14 @@ export default function AdminStatistics({
     const textColorSecondary = "secondaryGray.600";
     const brandColor = useColorModeValue("brand.500", "white");
     const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
-    const listCompanies = companiesList.map(option => (
-                                <option key={option.uuid} value={option.uuid}>
+    const listCompanies = companiesList.map((option, index) => (
+                                <option key={index}value={index}>
                                     {option.name}
                                 </option>
                             ));
 
     useEffect(() => {
-        // console.log(companiesList)
+        console.log(companiesList)
     }, [companiesList]);
     return (
         <SimpleGrid columns={{base: 1, md: 2, xl: 4}} gap='20px' mb='20px'>
@@ -88,8 +88,7 @@ export default function AdminStatistics({
                             <Avatar src={Usa}/>
                         </FormLabel>
                         <Select onChange={(e) => {
-                            console.log(e.target)
-                            setCurrentCompany(e.target.value)
+                            setCurrentCompany({name:companiesList[e.target.value].name,uuid:companiesList[e.target.value].uuid})
                         }}
                             id='company'
                             // defaultValue='usa'
@@ -99,7 +98,7 @@ export default function AdminStatistics({
                     </Flex>
                 }
                 name='Current Company'
-                value={currentCompany}
+                value={currentCompany.name}
             />
             <MiniStatistics key='4'
                 startContent={

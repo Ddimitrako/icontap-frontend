@@ -95,13 +95,13 @@ function UsersTable({usersList}) {
     return (
         <div>
 
-        <DataTable
+        <DataTable className="τεστ"
 
             title="Users List"
             columns={columns}
             data={usersList}
             selectableRows
-            contextActions={contextActions}
+            // contextActions={contextActions}
             onSelectedRowsChange={handleRowSelected}
             clearSelectedRows={toggleCleared}
             pagination

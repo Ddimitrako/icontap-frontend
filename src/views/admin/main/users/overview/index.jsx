@@ -89,7 +89,7 @@ export default function UsersOverview() {
                 let companiesNamesUUIDs = []
                 if (response.status == 200 && response.data.data.length > 0) {
                     // console.log(response.data.data)
-                    setCurrentCompany(response.data.data[0].name)
+                    // setCurrentCompany(response.data.data[0].name)
                     setTotalCompaniesNum(response.data.data.length)
 
                     //create a list with all companies names and UUID
@@ -163,10 +163,6 @@ export default function UsersOverview() {
         ).catch(console.log);
     }
 
-    // useEffect(() => {
-    //     console.log("test" + usersList[0])
-    // }, [usersList]);
-
     //First run
     useEffect(() => {
         getCompanies()
@@ -176,16 +172,15 @@ export default function UsersOverview() {
     //Admin Actions create company BTN pressed
     useEffect(() => {
         if (createCompanyBtn === true) {
-            // console.log("companyName-->" + companyName)
-            // console.log("companyDescr-->" + companyDescript)
             CreateCompany()
             setCreateCompanyBtn(false)
         }
     }, [createCompanyBtn]);
 
     useEffect(() => {
-        // console.log("currentCompany-->"+currentCompany)
-        getUsers(currentCompany);
+        // console.log("currentCompany-->"+currentCompany.name)
+        // console.log("currentCompany UUID-->"+currentCompany.uuid)
+        getUsers(currentCompany.uuid);
     }, [currentCompany]);
 
     return (
