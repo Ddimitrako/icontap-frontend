@@ -62,36 +62,34 @@ function UsersTable({usersList}) {
         console.log(state.selectedRows)
     }, []);
 
-    useEffect(() => {
-        console.log("Data for Table"+usersList)
 
-    }, [usersList]);
-    React.useEffect(() => {
+    // React.useEffect(() => {
+    //
+	// }, []);
+    // const contextActions = React.useMemo(() => {
 
-	}, []);
-    const contextActions = React.useMemo(() => {
-        const handleSelection = () => {
+        // const handleSelection = () => {
 
-            if (window.confirm(`Are you sure you want to delete:\r ${selectedRows.map(r => r.title)}?`)) {
-                setToggleCleared(!toggleCleared);
-                // setData(differenceBy(data, selectedRows, 'title'));
-            }
-        };
+            // if (window.confirm(`Are you sure you want to delete:\r ${selectedRows.map(r => r.title)}?`)) {
+            //     setToggleCleared(!toggleCleared);
+            //     // setData(differenceBy(data, selectedRows, 'title'));
+            // }
+        // };
 
-        return (
-            <div>
-            <Button key="editcard" onClick={handleSelection} style={{backgroundColor: 'blueviolet'}} >
-                Edit User Cards
-            </Button>
-            <Button key="statistics" onClick={handleSelection} style={{backgroundColor: 'green'}} >
-                View User Statistics
-            </Button>
-            <Button key="delete" onClick={handleSelection} style={{backgroundColor: 'red'}} >
-                Delete
-            </Button>
-                </div>
-        );
-    }, [ selectedRows, toggleCleared]);
+        // return (
+        //     <div>
+        //     <Button key="editcard" onClick={handleSelection} style={{backgroundColor: 'blueviolet'}} >
+        //         Edit User Cards
+        //     </Button>
+        //     <Button key="statistics" onClick={handleSelection} style={{backgroundColor: 'green'}} >
+        //         View User Statistics
+        //     </Button>
+        //     <Button key="delete" onClick={handleSelection} style={{backgroundColor: 'red'}} >
+        //         Delete
+        //     </Button>
+        //         </div>
+        // );
+    // }, [ selectedRows, toggleCleared]);
 
 
     return (
