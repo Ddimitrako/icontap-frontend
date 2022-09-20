@@ -167,7 +167,7 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
     }, []);
 
     return (
-        <>
+        <div style={{zIndex:2}}>
             <Modal id='createCompany'
                    initialFocusRef={initialRef}
                    finalFocusRef={finalRef}
@@ -343,6 +343,6 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
                     <MenuItem onClick={onOpenAssignUserModal}>Assign user/s to company</MenuItem>
                 </MenuList>
             </Menu>
-        </>
+        </div>
     );
 }
