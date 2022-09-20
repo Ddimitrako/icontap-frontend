@@ -1,4 +1,7 @@
 import {
+    Alert,
+    AlertDescription,
+    AlertIcon,
     Box, Button,
     Grid,
     useColorModeValue,
@@ -34,6 +37,8 @@ export default function UsersOverview() {
     const [createCompanyBtn, setCreateCompanyBtn] = useState(false)
     const [companiesNamesUUIDsList, setCompaniesNamesUUIDsList] = useState([{}])
 
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMessage, setAlertMessage] = useState("")
 
 //     const usersList2 = [
 //     {
@@ -108,6 +113,9 @@ export default function UsersOverview() {
         ).catch(console.log);
     }
 
+
+//############################################################################################
+
     const companyInfo =
         {
             "name": companyName,
@@ -115,7 +123,6 @@ export default function UsersOverview() {
             // "logo": companyLogo
         }
 
-//############################################################################################
     function CreateCompany() {
         //TODO check if company already exists
         axios.post(
@@ -123,19 +130,21 @@ export default function UsersOverview() {
             companyInfo,
             config
         ).then((response) => {
-                // console.log(response)
+                console.log(response)
                 if (response.status == 200) {
                     ///Todo//Show green alert.
                 }
+                setAlertMessage(response.data.message)
+                setShowAlert(true)
             }
         ).catch(console.log);
     }
 
     //###############################################################################################
-    function getUsers(currentCompanyUUID =null) {
+    function getUsers(currentCompanyUUID = null) {
         let url = hostName + '/users';
-        if (currentCompanyUUID !=null && currentCompanyUUID !="") {
-            url = hostName + '/company/'+ currentCompanyUUID + '/users'
+        if (currentCompanyUUID != null && currentCompanyUUID != "") {
+            url = hostName + '/company/' + currentCompanyUUID + '/users'
         }
         var usersArray = []
         axios.get(
@@ -146,16 +155,18 @@ export default function UsersOverview() {
                 setUsersList([])
                 if (response.status == 200) {
                     for (var key in response.data.data) {
-                    var obj = response.data.data[key];
-                          // console.log(obj)
-                              //append buttons inside user object
-                            response.data.data[key]["editCard"] = <Button colorScheme='teal' variant='outline'>Edit Card</Button>;
-                            response.data.data[key]["analytics"] = <Button colorScheme='teal' variant='outline'>Analytics</Button>;
+                        var obj = response.data.data[key];
+                        // console.log(obj)
+                        //append buttons inside user object
+                        response.data.data[key]["editCard"] =
+                            <Button colorScheme='teal' variant='outline'>Edit Card</Button>;
+                        response.data.data[key]["analytics"] =
+                            <Button colorScheme='teal' variant='outline'>Analytics</Button>;
                     }
-                     console.log(response.data.data)
+                    console.log(response.data.data)
                     setUsersList((usersList) => [...usersList, response.data.data]);
                     //check only the first time where is null
-                    if (currentCompanyUUID==null) {
+                    if (currentCompanyUUID == null) {
                         setTotalUsers(response.data.data.length)
                     }
                 }
@@ -183,11 +194,28 @@ export default function UsersOverview() {
         getUsers(currentCompany.uuid);
     }, [currentCompany]);
 
+    useEffect(() => {
+        const timeId = setTimeout(() => {
+            // After 3 seconds set the show value to false
+            setShowAlert(false)
+        }, 3000)
+        return () => {
+            clearTimeout(timeId)
+        }
+    }, [showAlert]);
+
+
     return (
         <Flex direction='column' pt={{sm: "125px", lg: "75px"}}>
             <Card px='0px'>
-                <AdminStatistics companiesList={companiesNamesUUIDsList} totalUsers={totalUsers} totalCompaniesNum={totalCompaniesNum}
-                  currentCompany={currentCompany} setCurrentCompany={setCurrentCompany} currentCompanyUsers={currentCompanyUsers}/>
+                {showAlert && <Alert status="success">
+                    <AlertIcon></AlertIcon>
+                    <AlertDescription>{alertMessage}</AlertDescription>
+                </Alert>}
+                <AdminStatistics companiesList={companiesNamesUUIDsList} totalUsers={totalUsers}
+                                 totalCompaniesNum={totalCompaniesNum}
+                                 currentCompany={currentCompany} setCurrentCompany={setCurrentCompany}
+                                 currentCompanyUsers={currentCompanyUsers}/>
                 <Flex
                     align={{sm: "flex-start", lg: "flex-start"}}
                     justify={{sm: "flex-start", lg: "flex-start"}}
@@ -195,7 +223,8 @@ export default function UsersOverview() {
                     px='22px'
                     mb='36px'>
                     <AdminActionsBtn setCreateCompanyBtn={setCreateCompanyBtn} companyNameChange={companyNameChange}
-                                     companyDescrChange={companyDescrChange}
+                                     companyDescrChange={companyDescrChange} setShowAlert={setShowAlert}
+                                     setAlertMessage={setAlertMessage}
                     />
                 </Flex>
                 <UsersTable

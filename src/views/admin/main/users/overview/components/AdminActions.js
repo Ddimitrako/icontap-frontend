@@ -28,8 +28,15 @@ import {getAuth} from "../../../../../../Helpers/Auth";
 import {Switch} from '@chakra-ui/react'
 import axios from "axios";
 import {hostName} from "../../../../../../Helpers/App";
+import {error} from "mapbox-gl/src/style-spec/util/result";
 
-export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange, companyDescrChange}) {
+export default function AdminActionsBtn({
+                                            setCreateCompanyBtn,
+                                            companyNameChange,
+                                            companyDescrChange,
+                                            setShowAlert,
+                                            setAlertMessage
+                                        }) {
 
     const {
         isOpen: isOpenCompanyModal,
@@ -110,8 +117,8 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
 
                     }
                     setCompaniesList(companiesNamesUUIDs)
-
                 }
+
             }
         ).catch(console.log);
     }
@@ -158,6 +165,9 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
                 if (response.status == 200) {
                     ///Todo//Show green alert when a user is created.
                 }
+                setAlertMessage(response.data.message)
+                setShowAlert(true)
+
             }
         ).catch(console.log);
     }
