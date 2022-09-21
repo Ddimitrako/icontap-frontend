@@ -258,8 +258,9 @@ export default function EditProfile(props) {
             </div>
 
             <div style={{
-                width: '90%',
-                margin: '50px auto 20px auto',
+                width: '80%',
+                margin: '0 auto',
+                marginTop:'50px',
                 overflow: 'auto'
             }}>
                 {socials?.map((social, index) =>

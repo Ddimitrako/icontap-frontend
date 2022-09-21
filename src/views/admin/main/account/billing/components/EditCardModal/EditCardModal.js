@@ -57,11 +57,17 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
     >
     </div>
 
-    return <div style={{width:'90px'}}>
+    return <div style={{
+        width: '33%',
+        padding: '20px',
+        float: 'left',
+    }}>
         <div style={{
-            width: '90px',
-            height: '90px',
-            borderRadius: '20px',
+            width: '100%',
+            // height: '90px',
+            paddingTop:'100%',
+            marginBottom: '10px',
+            borderRadius: '30px',
             backgroundColor: bgColor,
             position: 'relative',
             boxShadow: '4px 4px 10px grey',
@@ -69,9 +75,6 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100%',
             backgroundImage: `url(${hostNameStorage}/${imgUrl})`,
-            float: 'left',
-            margin: '20px',
-            marginBottom:'10px',
             cursor: editable ? 'default' : 'pointer',
             ...styles
         }}

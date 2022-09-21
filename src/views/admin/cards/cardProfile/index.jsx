@@ -52,6 +52,7 @@ import { useState } from 'react';
 import { hostNameStorage } from 'Helpers/App';
 import { CustomEditBox } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
 import { frontAddress } from 'Helpers/App';
+import { useEffect } from 'react';
 
 export default function Page() {
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -70,6 +71,66 @@ export default function Page() {
     const [company, setcompany] = useState('');
 
     const [socials, setsocials] = useState([]);
+
+    const socialDummys=[
+        {
+            "id": 19,
+            "name": "Linktree",
+            "image": "contents/linktree.svg",
+            "category_id": 2,
+            "created_at": "2022-09-20T16:53:21.000000Z",
+            "updated_at": "2022-09-20T16:53:21.000000Z",
+            "category": {
+                "id": 2,
+                "name": "Social media",
+                "created_at": "2022-09-20T16:53:20.000000Z",
+                "updated_at": "2022-09-20T16:53:20.000000Z"
+            },
+            "imgUrl": "contents/linktree.svg",
+            "title": "Linktree",
+            "url": "fdas"
+        },
+        {
+            "id": 31,
+            "name": "Tiktok",
+            "image": "contents/tiktok.svg",
+            "category_id": 2,
+            "created_at": "2022-09-20T16:53:21.000000Z",
+            "updated_at": "2022-09-20T16:53:21.000000Z",
+            "category": {
+                "id": 2,
+                "name": "Social media",
+                "created_at": "2022-09-20T16:53:20.000000Z",
+                "updated_at": "2022-09-20T16:53:20.000000Z"
+            },
+            "imgUrl": "contents/tiktok.svg",
+            "title": "Tiktok",
+            "url": "fdasds"
+        },
+        {
+            "id": 30,
+            "name": "Telegram",
+            "image": "contents/telegram.svg",
+            "category_id": 1,
+            "created_at": "2022-09-20T16:53:21.000000Z",
+            "updated_at": "2022-09-20T16:53:21.000000Z",
+            "category": {
+                "id": 1,
+                "name": "Contact info",
+                "created_at": "2022-09-20T16:53:20.000000Z",
+                "updated_at": "2022-09-20T16:53:20.000000Z"
+            },
+            "imgUrl": "contents/telegram.svg",
+            "title": "Telegram",
+            "url": "fdasfsd"
+        }
+    ];
+
+    useEffect(()=>{
+        if(!socials?.length!=0){
+            setsocials(socialDummys);
+        }
+    },[socials]);
 
     const profileIcon=<i class="fa-solid fa-user" style={{marginRight:'5px'}}></i>;
     const qrIcon=<i class="fa-solid fa-qrcode" style={{marginRight:'5px'}}></i>;
