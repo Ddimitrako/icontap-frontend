@@ -71,13 +71,16 @@ export default function Page() {
 
     const [socials, setsocials] = useState([]);
 
+    const profileIcon=<i class="fa-solid fa-user" style={{marginRight:'5px'}}></i>;
+    const qrIcon=<i class="fa-solid fa-qrcode" style={{marginRight:'5px'}}></i>;
+
     return (
         <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
             {/* Main Fields */}
             <Tabs>
-                <TabList>
-                    <Tab>Profile</Tab>
-                    {card.code && <Tab>QR Code</Tab>}
+                <TabList className='height-none' style={{border:'0', backgroundColor:'gray'}}>
+                    <Tab className='tab-custom'>{profileIcon} Profile</Tab>
+                    {card.code && <Tab className='tab-custom'>{qrIcon} QR Code</Tab>}
                 </TabList>
                 <TabPanels>
                     <TabPanel>

@@ -116,8 +116,8 @@ const Cover = ({avatar, setavatar, avatarRadius, cover, setcover, editable=false
 style={{
     minHeight: editable?'300px':'40%',
     paddingRight: '50px',
-    borderBottomRightRadius: '30px',
-    borderBottomLeftRadius: '30px',
+    borderBottomRightRadius: '0',
+    borderBottomLeftRadius: '0',
     marginBottom: `${avatarRadius + 50}px`,
     // background: 'white url(' + cover.url + ') center cover no-repeat',
     backgroundSize: 'cover',

@@ -16,6 +16,37 @@ option {
   padding: 15px 20px !important;
 }
 
+
+.custom-dark-background{
+  height: var(--chakra-sizes-12) !important;
+  font-size: var(--chakra-fontSizes-lg) !important;
+  background-color: #212121 !important;
+  color:white !important;
+  border-radius: 10px !important;
+  padding: 15px 20px !important;
+}
+
+.tab-custom{
+  padding: 5px !important;
+  width: 200px;
+  border-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-image: url("../../../public/static/media/tab.png") !important;
+  color: black !important;
+}
+
+.tab-custom[aria-selected=true]{
+  background-image: url("../../../public/static/media/tab-active.png") !important;
+  color: white !important;
+}
+
+.height-none{
+  height: initial !important;
+}
+
 .btn-custom-dark-background:hover{
   /* box-shadow:#cdcdcd 10px 10px 10px; */
   background-color: #565353 !important;
