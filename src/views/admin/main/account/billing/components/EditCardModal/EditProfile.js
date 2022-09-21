@@ -221,12 +221,8 @@ export default function EditProfile(props) {
             <Cover avatarRadius={100} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} editable />
 
             <Stack spacing={3}>
-                <FormLabel>Name</FormLabel>
-                <Input variant='filled' caption={'Name'} value={props.name} onChange={(e) => props.setname(e.target.value)} />
-                <FormHelperText>Type text.</FormHelperText>
-                <FormLabel>Bio</FormLabel>
-                <Textarea variant='filled' caption={'Bio'} value={props.bio} onChange={(e) => props.setbio(e.target.value)} />
-                <FormHelperText>Type text.</FormHelperText>
+                <Input variant='filled' backgroundColor={'#f7f7f7'}  placeholder={'Name'} caption={'Name'} value={props.name} onChange={(e) => props.setname(e.target.value)} />
+                <Textarea variant='filled' backgroundColor={'#f7f7f7'}  placeholder={'Bio'} caption={'Bio'} value={props.bio} onChange={(e) => props.setbio(e.target.value)} />
                 {/* <FormLabel>Job Title</FormLabel>
                 <Input variant='filled' caption={'Job title'} value={props.job} onChange={(e) => props.setjob(e.target.value)} />
                 <FormHelperText>Type text.</FormHelperText>

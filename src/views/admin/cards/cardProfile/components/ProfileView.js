@@ -11,19 +11,13 @@ const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius=70, cover,
 
             <Stack spacing={3}>
                 <InputGroup>
-                    <FormLabel>Name</FormLabel>
-                </InputGroup>
-                <InputGroup>
-                    <Input variant='filled' caption={'Name'} value={name} readOnly />
+                    <Input backgroundColor={'#f7f7f7'} variant='filled' placeholder='Name' caption={'Name'} value={name} readOnly />
                 </InputGroup>
                 {/* <InputGroup>
                     <FormHelperText>Type text.</FormHelperText>
                 </InputGroup> */}
                 <InputGroup>
-                    <FormLabel>Bio</FormLabel>
-                </InputGroup>
-                <InputGroup>
-                    <Textarea variant='filled' caption={'Bio'} resize={'none'} value={bio} readOnly />
+                    <Textarea backgroundColor={'#f7f7f7'} variant='filled' placeholder='Bio' caption={'Bio'} resize={'none'} value={bio} readOnly />
                 </InputGroup>
                 {/* <InputGroup>
                     <FormHelperText>Type text.</FormHelperText>
