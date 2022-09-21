@@ -218,7 +218,7 @@ export default function EditProfile(props) {
         : <div style={{
             paddingBottom: '100px',
         }}>
-            <Cover avatarRadius={120} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} editable />
+            <Cover avatarRadius={100} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} editable />
 
             <Stack spacing={3}>
                 <FormLabel>Name</FormLabel>

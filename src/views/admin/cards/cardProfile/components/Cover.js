@@ -114,7 +114,7 @@ const calculateImageButtonPosition = (avatarRadius) => {
 
 const Cover = ({avatar, setavatar, avatarRadius, cover, setcover, editable=false}) => <div
 style={{
-    minHeight: editable?'300px':'40%',
+    minHeight: editable?'250px':'30%',
     paddingRight: '50px',
     borderBottomRightRadius: '0',
     borderBottomLeftRadius: '0',

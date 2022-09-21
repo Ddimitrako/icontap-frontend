@@ -96,6 +96,9 @@ export default function Collection(props) {
 
   let panelCards = (
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
+      {!loading && !(cards?.length!=0) &&
+      <span>No available card physical card only link – click <a style={{fontWeight:'bold'}} href="https://icontap.gr/shop-2/">here</a> to buy </span>
+      }
       {!loading ? cards.map((card, index) =>
         <IcontapCard card={card} key={index} getcards={()=>getCards()} />
       ) : <Button isLoading

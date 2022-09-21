@@ -6,8 +6,12 @@ import {
     MdLock,
     MdOutlineShoppingCart,
     MdHome,
+    MdHistoryToggleOff,
+    MdPerson,
+    MdCreditCard,
+    MdSupervisorAccount,
 } from "react-icons/md";
-import { AiOutlineIdcard,AiOutlineUser,AiOutlineTeam,AiTwotoneSetting } from "react-icons/ai";
+import { AiOutlineIdcard,AiOutlineUser,AiOutlineTeam,AiTwotoneSetting, AiFillProfile, AiFillIdcard } from "react-icons/ai";
 // Admin Imports
 import DashboardsDefault from "views/admin/dashboards/default";
 
@@ -78,7 +82,7 @@ const routes = [
         secondary: true,
         icon: (
             <Icon
-                as={AiOutlineIdcard}
+                as={AiFillIdcard}
                 width='20px'
                 height='20px'
                 color='inherit'
@@ -127,7 +131,7 @@ const routes = [
         component: UsersOverview,
         icon: (
             <Icon
-                as={AiOutlineTeam}
+                as={MdSupervisorAccount}
                 width='20px'
                 height='20px'
                 color='inherit'
@@ -172,7 +176,7 @@ const routes = [
         component: ProfileOverview,
         icon: (
             <Icon
-                as={MdHome}
+                as={MdPerson}
                 width='20px'
                 height='20px'
                 color='inherit'

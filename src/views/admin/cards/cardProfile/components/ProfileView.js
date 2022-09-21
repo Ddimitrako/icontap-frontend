@@ -4,7 +4,7 @@ import React from 'react'
 import { SocialButton } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
 import Cover from './Cover';
 
-const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius=80, cover, setcover, name, bio, job, company, socials }) => {
+const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius=70, cover, setcover, name, bio, job, company, socials }) => {
     return (
         <>
             <Cover avatarRadius={avatarRadius} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} />
@@ -16,16 +16,16 @@ const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius=80, cover,
                 <InputGroup>
                     <Input variant='filled' caption={'Name'} value={name} readOnly />
                 </InputGroup>
-                <InputGroup>
+                {/* <InputGroup>
                     <FormHelperText>Type text.</FormHelperText>
-                </InputGroup>
+                </InputGroup> */}
                 <InputGroup>
                     <FormLabel>Bio</FormLabel>
                 </InputGroup>
                 <InputGroup>
                     <Textarea variant='filled' caption={'Bio'} resize={'none'} value={bio} readOnly />
                 </InputGroup>
-                <InputGroup>
+                {/* <InputGroup>
                     <FormHelperText>Type text.</FormHelperText>
                 </InputGroup>
                 <InputGroup>
@@ -45,13 +45,13 @@ const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius=80, cover,
                 </InputGroup>
                 <InputGroup>
                     <FormHelperText>Type text.</FormHelperText>
-                </InputGroup>
+                </InputGroup> */}
             </Stack>
 
             <Box style={{overflow:'hidden', marginBottom:'50px'}}>
             {socials?.map((social, index) => {
                 console.log(social);
-                return <SocialButton imgUrl={social.imgUrl} url={social.link} key={index} />
+                return <SocialButton imgUrl={social.imgUrl} url={social.link} title={social.title} key={index} />
             }
             )}
             </Box>

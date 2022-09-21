@@ -30,7 +30,8 @@ export const renderView = ({ style, ...props }) => {
   };
   return (
     <Box
-      me={{ base: "0px !important", lg: "-16px !important" }}
+      me={{ base: "0px !important", lg: "16px !important" }}
+      // me={{ base: "0px !important"}}
       style={{ ...style, ...viewStyle }}
       {...props}
     />

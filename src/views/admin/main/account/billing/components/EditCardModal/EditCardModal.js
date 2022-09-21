@@ -59,7 +59,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
 
     return <div style={{
         width: '33%',
-        padding: '20px',
+        padding: '5%',
         float: 'left',
     }}>
         <div style={{
@@ -67,7 +67,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
             // height: '90px',
             paddingTop:'100%',
             marginBottom: '10px',
-            borderRadius: '30px',
+            borderRadius: '30%',
             backgroundColor: bgColor,
             position: 'relative',
             boxShadow: '4px 4px 10px grey',
@@ -84,7 +84,8 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
             {editable && <SelectImgButton />}
         </div>
         <div style={{
-            margin:'0 20px'
+            width:'100%',
+            textAlign:'center'
         }}>{title}</div>
     </div>
 }
