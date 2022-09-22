@@ -7,9 +7,9 @@ import {
 import {Avatar, Flex, FormLabel, Icon, Image, Select, SimpleGrid, Text} from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, {useEffect, useState} from "react";
-import UsersTable from "views/admin/main/users/overview/components/SearchTableUsersOverivew";
-import {columnsDataUsersOverview} from "views/admin/main/users/overview/variables/columnsDataUsersOverview";
-import tableDataUsersOverview from "views/admin/main/users/overview/variables/tableDataUsersOverview.json";
+import UsersTable from "views/admin/main/users/adminOverview/components/SearchTableUsersOverivew";
+import {columnsDataUsersOverview} from "views/admin/main/users/companyOverview/variables/columnsDataUsersOverview";
+import tableDataUsersOverview from "views/admin/main/users/companyOverview/variables/tableDataUsersOverview.json";
 import MiniStatistics from "../../../../../components/card/MiniStatistics";
 import IconBox from "../../../../../components/icons/IconBox";
 import {MdPerson, MdThumbUp} from "react-icons/md";
@@ -21,7 +21,7 @@ import axios from "axios";
 import {hostName} from "../../../../../Helpers/App";
 import AdminActionsBtn from "./components/AdminActions";
 
-export default function UsersOverview() {
+export default function CompanyUsersOverview() {
     const [totalUsers, setTotalUsers] = useState(0)
     const [usersList, setUsersList] = useState([])
 

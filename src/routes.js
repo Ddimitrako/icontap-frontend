@@ -30,7 +30,8 @@ import AccountAllCourses from "views/admin/main/account/courses";
 import AccountCoursePage from "views/admin/main/account/coursePage";
 
 import UserNew from "views/admin/main/users/newUser";
-import UsersOverview from "views/admin/main/users/overview";
+import AdminUsersOverview from "views/admin/main/users/adminOverview";
+import CompanyUsersOverview from "views/admin/main/users/companyOverview";
 import UsersReports from "views/admin/main/users/reports";
 
 import ProfileSettings from "views/admin/main/profile/settings";
@@ -124,11 +125,11 @@ const routes = [
     //     ),
     // },
     {
-        name: "Users Overview",
+        name: "Admin Page",
         layout: "/admin",
-        path: "/main/users/users-overview",
+        path: "/main/users/admin-overview",
 
-        component: UsersOverview,
+        component: AdminUsersOverview,
         icon: (
             <Icon
                 as={MdSupervisorAccount}
@@ -138,7 +139,21 @@ const routes = [
             />
         ),
     },
+    {
+        name: "Users Overview",
+        layout: "/admin",
+        path: "/main/users/users-overview",
 
+        component: CompanyUsersOverview,
+        icon: (
+            <Icon
+                as={MdSupervisorAccount}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+    },
 
     // {
     //   name: "Applications",
