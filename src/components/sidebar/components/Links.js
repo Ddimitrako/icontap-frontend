@@ -29,6 +29,10 @@ export function SidebarLinks(props) {
   );
   let activeIcon = useColorModeValue("brand.500", "white");
 
+  activeColor='black';
+  inactiveColor='black';
+  activeIcon='black'; 
+
   const { routes } = props;
 
   // verifies if routeName is the one active (in browser input)
@@ -89,9 +93,9 @@ export function SidebarLinks(props) {
                           color={
                             activeRoute(route.path.toLowerCase())
                               ? activeColor
-                              : "secondaryGray.600"
+                              : inactiveColor
                           }
-                          fontWeight='500'
+                          fontWeight='900'
                           fontSize='md'>
                           {route.name}
                         </Text>
@@ -99,7 +103,7 @@ export function SidebarLinks(props) {
                     </HStack>
                     <AccordionIcon
                       ms='auto'
-                      color={"secondaryGray.600"}
+                      color={inactiveColor}
                       transform={route.icon ? null : "translateX(-70%)"}
                     />
                   </Flex>
@@ -117,14 +121,14 @@ export function SidebarLinks(props) {
                             ? activeColor
                             : inactiveColor
                         }
-                        fontWeight='500'
-                        fontSize='sm'>
+                        fontWeight='900'
+                        fontSize='md'>
                         {route.name}
                       </Text>
                     </HStack>
                     <AccordionIcon
                       ms='auto'
-                      color={"secondaryGray.600"}
+                      color={inactiveColor}
                       transform={null}
                     />
                   </Flex>
@@ -150,6 +154,7 @@ export function SidebarLinks(props) {
           <NavLink to={route.layout + route.path} key={key}>
             {route.icon ? (
               <Flex
+              className="custom-sidebar-link"
                 align='center'
                 justifyContent='space-between'
                 w='100%'
@@ -176,9 +181,11 @@ export function SidebarLinks(props) {
                       color={
                         activeRoute(route.path.toLowerCase())
                           ? activeColor
-                          : "secondaryGray.600"
+                          : inactiveColor
                       }
-                      fontWeight='500'>
+                      fontWeight='900'
+                      fontSize='md'
+                      >
                       {route.name}
                     </Text>
                   </Flex>
@@ -193,8 +200,8 @@ export function SidebarLinks(props) {
                         ? activeColor
                         : inactiveColor
                     }
-                    fontWeight='500'
-                    fontSize='sm'>
+                    fontWeight='900'
+                    fontSize='md'>
                     {route.name}
                   </Text>
                 </Flex>
@@ -226,7 +233,7 @@ export function SidebarLinks(props) {
               fontWeight={
                 activeRoute(route.path.toLowerCase()) ? "bold" : "normal"
               }
-              fontSize='sm'>
+              fontSize='md'>
               {route.name}
             </Text>
           </ListItem>

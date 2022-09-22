@@ -60,12 +60,16 @@ function Sidebar(props) {
         borderRadius={sidebarRadius}
         minH='100%'
         overflowX='hidden'
-        boxShadow={shadow}>
+        boxShadow={shadow}
+        className={'test'}
+        >
         <Scrollbars
           autoHide
           renderTrackVertical={renderTrack}
           renderThumbVertical={renderThumb}
-          renderView={renderView}>
+          renderView={renderView}
+          className='test2'
+          >
           <Content routes={routes} />
         </Scrollbars>
       </Box>

@@ -10,6 +10,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "theme/theme";
 import { PrivateRoute } from "Helpers/Auth";
 import { SetupAxios } from "Helpers/Auth";
+import ShowCard from "layouts/auth/ShowCard";
 
 ReactDOM.render(
   <ChakraProvider theme={theme}>
@@ -20,6 +21,10 @@ ReactDOM.render(
 
           <PrivateRoute path={`/auth`} isPublic={true}>
             <Route path={`/auth`} component={AuthLayout} />
+          </PrivateRoute>
+          
+          <PrivateRoute path="/card/:cardId" availableToAll >
+            <Route path={`/card`} component={AuthLayout} />
           </PrivateRoute>
 
           <PrivateRoute path={`/services`} isPublic={true}>

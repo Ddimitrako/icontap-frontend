@@ -24,7 +24,7 @@ export function PrivateRoute({ children, ...rest }) {
         <Route
             {...rest}
             render={({ location }) =>
-                (auth != rest.isPublic) ? (
+                rest.availableToAll || (auth != rest.isPublic) ? (
                     children
                 ) : (
                     <Redirect
@@ -78,9 +78,9 @@ export function setAxiosErrorInterceptor() {
         if (error.response.status == 401) {
             window.location.href = '/admin/logout';
         }
-
+        
         if (error.response.status == 403) {
-            window.location.href = '/';
+            window.location.href = '/admin/logout';
         }
     }
     );

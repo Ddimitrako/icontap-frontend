@@ -26,10 +26,11 @@ function SidebarContent(props) {
       minH='100%'
       height='max-content'
       pt='25px'
-      borderRadius='30px'>
+      borderRadius='30px'
+      >
       <Brand />
       <Stack direction='column' mb='auto' mt='8px'>
-        <Box ps='20px' pe={{ md: "16px", "2xl": "1px" }}>
+        <Box>
           <Links routes={routes} />
         </Box>
       </Stack>

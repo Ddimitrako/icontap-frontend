@@ -136,8 +136,7 @@ export default function EditProfile(props) {
 
     const [updating, setUpdating] = useState(false);
 
-    function updateContents() {
-        
+    function updateContents(test=false) {
         let parsedContents=socials.map((c,i)=>{return {
             "content_id": c.id,
             "image": c.imgUrl,
@@ -148,6 +147,10 @@ export default function EditProfile(props) {
             "order":i
         }});
         
+        console.log('SOCIALS', parsedContents);
+
+        if(test)
+        return null;
         
         console.log('updateContents', parsedContents);
         
@@ -186,7 +189,8 @@ export default function EditProfile(props) {
         if(props.cover.blob)
         formData.append('img_cover', props.cover.blob);
         
-        // console.log('updateProfile');
+        console.log('updateProfile');
+        console.trace('updateProfile');
         axios({
             method: 'post',
             url: `${hostName}/profile/${card.profile.id}`,
@@ -214,30 +218,49 @@ export default function EditProfile(props) {
         : <div style={{
             paddingBottom: '100px',
         }}>
-            <Cover avatarRadius={120} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} editable />
+            <Cover avatarRadius={100} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} editable />
 
             <Stack spacing={3}>
-                <FormLabel>Name</FormLabel>
-                <Input variant='filled' caption={'Name'} value={props.name} onChange={(e) => props.setname(e.target.value)} />
-                <FormHelperText>Type text.</FormHelperText>
-                <FormLabel>Bio</FormLabel>
-                <Textarea variant='filled' caption={'Bio'} value={props.bio} onChange={(e) => props.setbio(e.target.value)} />
-                <FormHelperText>Type text.</FormHelperText>
-                <FormLabel>Job Title</FormLabel>
+                <Input variant='filled' backgroundColor={'#f7f7f7'}  placeholder={'Name'} caption={'Name'} value={props.name} onChange={(e) => props.setname(e.target.value)} />
+                <Textarea variant='filled' backgroundColor={'#f7f7f7'}  placeholder={'Bio'} caption={'Bio'} value={props.bio} onChange={(e) => props.setbio(e.target.value)} />
+                {/* <FormLabel>Job Title</FormLabel>
                 <Input variant='filled' caption={'Job title'} value={props.job} onChange={(e) => props.setjob(e.target.value)} />
                 <FormHelperText>Type text.</FormHelperText>
                 <FormLabel>Company</FormLabel>
                 <Input variant='filled' caption={'Company'} value={props.company} onChange={(e) => props.setcompany(e.target.value)} />
-                <FormHelperText>Type text.</FormHelperText>
+                <FormHelperText>Type text.</FormHelperText> */}
             </Stack>
 
             <div style={{
-                width: '90%',
-                margin: '50px auto 20px auto',
+                marginTop:'50px',
+                width: '100%',
+                textAlign: 'center'
+            }}>
+                <EditCardModal pages={pages} page={page} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+                <Button
+                    // style={{
+                    //     borderRadius: '10px',
+                    //     padding: '15px 20px'
+                    // }}
+                    className={'btn-custom-dark-background'}
+                    onClick={() => {
+                        setPage('AddContentContainer');
+                        onOpen();
+                    }}
+                    isLoading={contentloading}
+                    >
+                    + Add links and Contact info
+                </Button>
+            </div>
+
+            <div style={{
+                width: '80%',
+                margin: '0 auto',
+                marginTop:'50px',
                 overflow: 'auto'
             }}>
                 {socials?.map((social, index) =>
-                    <SocialButton editable imgUrl={social.imgUrl} styles={{}} onClick={() => {
+                    <SocialButton editable imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
                         setcurrSocial(index);
                         setPage('EditLink');
                         onOpen();
@@ -246,44 +269,22 @@ export default function EditProfile(props) {
 
             </div>
 
-            <div style={{
-                width: '100%',
-                textAlign: 'center'
-            }}>
-                <EditCardModal pages={pages} page={page} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-                <Button
-                    style={{
-                        borderRadius: '10px',
-                        padding: '15px 20px'
-                    }}
-                    onClick={() => {
-                        setPage('AddContentContainer');
-                        onOpen();
-                    }}
-                    colorScheme="blackAlpha"
-                    isLoading={contentloading}
-                    >
-                    + Add links and Contact info
-                </Button>
-            </div>
-
             <hr style={{ 'margin': '20px 0' }} />
             <div style={{ textAlign: 'center' }}>
                 <Button
-                    style={{
-                        borderRadius: '10px',
-                        padding: '15px 20px'
-                    }}
-
-                    colorScheme='green'
+                    className="btn-custom-dark-background"
 
                     size='lg'
 
                     isLoading={updating}
 
+                    disabled={!(socials?.length>0) || !(props.name) || !(props.bio) }
+
                     onClick={updateProfile}>
                     Update
                 </Button>
+
+                {/* <button onClick={()=>{updateContents(true)}}>CONTENTS</button> */}
             </div>
 
         </div>;

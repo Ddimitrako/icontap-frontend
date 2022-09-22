@@ -6,3 +6,68 @@ body {
 option {
   color: black;
 }
+
+.btn-custom-dark-background{
+  height: var(--chakra-sizes-12) !important;
+  font-size: var(--chakra-fontSizes-lg) !important;
+  background-color: #212121 !important;
+  color:white !important;
+  border-radius: 10px !important;
+  padding: 15px 20px !important;
+}
+
+
+.custom-dark-background{
+  height: var(--chakra-sizes-12) !important;
+  font-size: var(--chakra-fontSizes-lg) !important;
+  background-color: #212121 !important;
+  color:white !important;
+  border-radius: 10px !important;
+  padding: 15px 20px !important;
+}
+
+.tab-custom{
+  padding: 5px !important;
+  width: 200px;
+  border-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-image: url("../../../public/static/media/tab.png") !important;
+  color: black !important;
+}
+
+.tab-custom[aria-selected=true]{
+  background-image: url("../../../public/static/media/tab-active.png") !important;
+  color: white !important;
+}
+
+.height-none{
+  height: initial !important;
+}
+
+.btn-custom-dark-background:hover{
+  /* box-shadow:#cdcdcd 10px 10px 10px; */
+  background-color: #565353 !important;
+}
+
+.custom-sidebar-link{
+  margin-bottom:10px !important;
+  padding: 5px 20px !important;
+  border-radius: 10px !important;
+}
+
+.custom-sidebar-link:hover{
+  background-color: #f4f4f4 !important;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll; 
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}

@@ -27,7 +27,7 @@ export const CustomEditBox = ({ caption, value, onChange }) => <div className="j
     </div>
 </div>
 
-export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url }) => {
+export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, title }) => {
 
     const selectSocialSize = 30;
 
@@ -58,25 +58,35 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url }
     </div>
 
     return <div style={{
-        width: '90px',
-        height: '90px',
-        borderRadius: '20px',
-        backgroundColor: bgColor,
-        position: 'relative',
-        boxShadow: '4px 4px 10px grey',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '110%',
-        backgroundImage: `url(${hostNameStorage}/${imgUrl})`,
+        width: '33%',
+        padding: '5%',
         float: 'left',
-        margin: '20px',
-        cursor: editable?'default':'pointer',
-        ...styles
-    }}
-    
-    onClick={()=>{if(!editable) window.open(JSON.stringify(url)?.includes("http")?url:`http://${url}`, "_blank");}}
-    >
-        {editable && <SelectImgButton />}
+    }}>
+        <div style={{
+            width: '100%',
+            // height: '90px',
+            paddingTop:'100%',
+            marginBottom: '10px',
+            borderRadius: '30%',
+            backgroundColor: bgColor,
+            position: 'relative',
+            boxShadow: '4px 4px 10px grey',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '100%',
+            backgroundImage: `url(${hostNameStorage}/${imgUrl})`,
+            cursor: editable ? 'default' : 'pointer',
+            ...styles
+        }}
+
+            onClick={() => { if (!editable) window.open(JSON.stringify(url)?.includes("http") ? url : `http://${url}`, "_blank"); }}
+        >
+            {editable && <SelectImgButton />}
+        </div>
+        <div style={{
+            width:'100%',
+            textAlign:'center'
+        }}>{title}</div>
     </div>
 }
 
