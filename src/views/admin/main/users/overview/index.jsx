@@ -33,7 +33,7 @@ export default function UsersOverview() {
     const [companyLogo, setCompanyLogo] = useState("")
     const [createCompanyBtn, setCreateCompanyBtn] = useState(false)
     const [companiesNamesUUIDsList, setCompaniesNamesUUIDsList] = useState([{}])
-
+    const [selectedUsers,setSelectedUsers] = useState([])
 
 //     const usersList2 = [
 //     {
@@ -182,7 +182,9 @@ export default function UsersOverview() {
         // console.log("currentCompany UUID-->"+currentCompany.uuid)
         getUsers(currentCompany.uuid);
     }, [currentCompany]);
-
+    // useEffect(() => {
+    //     console.log(selectedUsers)
+    // }, [selectedUsers]);
     return (
         <Flex direction='column' pt={{sm: "125px", lg: "75px"}}>
             <Card px='0px'>
@@ -195,13 +197,16 @@ export default function UsersOverview() {
                     px='22px'
                     mb='36px'>
                     <AdminActionsBtn setCreateCompanyBtn={setCreateCompanyBtn} companyNameChange={companyNameChange}
-                                     companyDescrChange={companyDescrChange}
+                                     companyDescrChange={companyDescrChange} setSelectedUsers={setSelectedUsers} selectedUsers = {selectedUsers}
                     />
                 </Flex>
                 <UsersTable
                     testData1={tableDataUsersOverview}
                     testData2={columnsDataUsersOverview}
                     usersList={usersList[0]}
+                    selectedUsers = {selectedUsers}
+                    setSelectedUsers = {setSelectedUsers}
+
                 />
             </Card>
         </Flex>

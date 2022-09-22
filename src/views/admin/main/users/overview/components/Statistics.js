@@ -50,7 +50,7 @@ export default function AdminStatistics({
                             ));
 
     useEffect(() => {
-        console.log(companiesList)
+        // console.log(companiesList)
     }, [companiesList]);
     return (
         <SimpleGrid columns={{base: 1, md: 2, xl: 4}} gap='20px' mb='20px'>
@@ -88,7 +88,7 @@ export default function AdminStatistics({
                                         <Avatar src={Usa}/>
                                     </FormLabel>
                                     <Select onChange={(e) => {
-                                        console.log(e.target.value)
+                                        // console.log(e.target.value)
                                         if (e.target.value == "showAllUsers") {
                                             setCurrentCompany("")
                                         } else {

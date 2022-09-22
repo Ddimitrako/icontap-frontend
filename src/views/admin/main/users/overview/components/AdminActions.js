@@ -29,7 +29,7 @@ import {Switch} from '@chakra-ui/react'
 import axios from "axios";
 import {hostName} from "../../../../../../Helpers/App";
 
-export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange, companyDescrChange}) {
+export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange, companyDescrChange,setSelectedUsers,selectedUsers}) {
 
     const {
         isOpen: isOpenCompanyModal,
@@ -162,9 +162,38 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
         ).catch(console.log);
     }
 
+    function AssignUsers() {
+            console.log("companyRole-->",companyRole)
+            let userslist = []
+            for (var key in selectedUsers) {
+                selectedUsers[key].company_role_id = companyRole
+                userslist.push(selectedUsers[key])
+            }
+            var obj = {"users": userslist}
+            setSelectedUsers(obj)
+
+            axios.post(
+                hostName + '/company/' + selectedCompany.uuid + '/users',
+                obj,
+                config
+            ).then((response) => {
+                    console.log(response)
+                    if (response.status == 200) {
+                        ///Todo//Show green alert when a user is assigned.
+                    }
+                }
+            ).catch(console.log);
+
+
+    }
+
     useEffect(() => {
         getCompanies()
     }, []);
+
+    useEffect(() => {
+        console.log(selectedUsers)
+    }, [selectedUsers]);
 
     return (
         <div style={{zIndex:2}}>
@@ -256,18 +285,21 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
 
                             <FormLabel>Select Company to Asign User</FormLabel>
 
-                            <Select value={'1'} onChange={(e) => {
-                                //Todo make it dynamic
-                                setCompanyUUID("f6ff2bbc-8731-49ec-9947-df282c80ef9d")
+                            <Select onChange={(e) => {
+                                setSelectedCompany({
+                                    name: companiesList[e.target.value].name,
+                                    uuid: companiesList[e.target.value].uuid
+                                })
                             }}
                                     id='company'
                             >
+                                <option value='None'> None</option>
                                 {listCompanies}
                             </Select>
                         </FormControl>
                         <FormControl mt={4}>
                             <FormLabel>Select Company User Type</FormLabel>
-                            <Select value={companyRole} onChange={(e) => {
+                            <Select defaultValue={companyRole} onChange={(e) => {
                                 setCompanyRole(e.target.value)
                             }}>
                                 <option value='2'>user</option>
@@ -278,6 +310,7 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
 
                     <ModalFooter>
                         <Button onClick={() => {
+
                             CreateUser()
                             onCloseUserModal()
                         }} colorScheme='blue' mr={3}>
@@ -302,19 +335,26 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
                         <FormControl mt={4}>
                             <FormLabel>Select Company to Assign User</FormLabel>
                             <Select onChange={(e) => {
+                                console.log(companiesList[e.target.value].name)
                                 setSelectedCompany({
                                     name: companiesList[e.target.value].name,
                                     uuid: companiesList[e.target.value].uuid
-                                })
+                                }
+
+                                )
                             }}
                                     id='company'
-                            >
+                            >   <option value='None'>None</option>
                                 {listCompanies}
                             </Select>
                         </FormControl>
                         <FormControl mt={4}>
-                            <FormLabel>Select User Type</FormLabel>
-                            <Select>
+                            <FormLabel>Select Company User Type</FormLabel>
+                            <Select defaultValue='2'
+                            onChange={(e) => {
+                                console.log(e.target.value)
+                                setCompanyRole(e.target.value)
+                            }}>
                                 <option value='2'>user</option>
                                 <option value='1'>admin</option>
                             </Select>
@@ -322,7 +362,15 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3}>
+                        <Button colorScheme='blue' mr={3} onClick={(e)=>{
+                                if (selectedCompany===undefined) {
+                                    alert("Please select a company");
+                                }else {
+                                    onCloseAssignUserModal()
+                                    AssignUsers()
+                                }
+
+                        }}>
                             Assign
                         </Button>
                         <Button onClick={onCloseAssignUserModal}>Cancel</Button>
@@ -340,7 +388,12 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
                     <MenuItem onClick={onOpenUserModal}>Create user/s</MenuItem>
                     <MenuItem>Deactivate selected user/s</MenuItem>
                     <MenuItem>Assign card to selected user/s</MenuItem>
-                    <MenuItem onClick={onOpenAssignUserModal}>Assign user/s to company</MenuItem>
+                    <MenuItem onClick={()=>{
+                        if (selectedUsers.length==0){
+                            alert("Please select one or more users");
+                        }else
+                        onOpenAssignUserModal()
+                    }}>Assign user/s to company</MenuItem>
                 </MenuList>
             </Menu>
         </div>

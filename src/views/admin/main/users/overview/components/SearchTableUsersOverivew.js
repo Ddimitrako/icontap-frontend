@@ -37,6 +37,11 @@ const columns = [
         sortable: true,
     },
     {
+        name: 'ACTIVE',
+        selector: row => row.is_active,
+        sortable: true,
+    },
+    {
         name: 'Edit card/s',
         selector: row => row.editCard,
         sortable: false,
@@ -50,7 +55,7 @@ const columns = [
 
 
 
-function UsersTable({usersList}) {
+function UsersTable({usersList,selectedUsers,setSelectedUsers}) {
 
     const [pending, setPending] = React.useState(true);
     const [selectedRows, setSelectedRows] = React.useState([]);
@@ -59,9 +64,21 @@ function UsersTable({usersList}) {
 
     const handleRowSelected = React.useCallback(state => {
         setSelectedRows(state.selectedRows);
-        console.log(state.selectedRows)
+        var userslist =[]
+        setSelectedUsers([])
+        state.selectedRows.map(({id})=>{
+            let obj = {user_id: id}
+            userslist.push(obj)
+
+        })
+        setSelectedUsers(userslist);
+
     }, []);
 
+    // useEffect(() => {
+    //     console.log(selectedUsers)
+    //
+    // }, [selectedUsers]);
 
     // React.useEffect(() => {
     //
