@@ -133,9 +133,12 @@ export default function AdminUsersOverview() {
         ).then((response) => {
                 console.log(response)
                 if (response.status == 200) {
-                    ///Todo//Show green alert.
+                    setAlertMessage("Company created successfully")
+                    getCompanies()
                 }
-                setAlertMessage(response.data.message)
+                else{
+                setAlertMessage("Company could not be created")
+                }
                 setShowAlert(true)
             }
         ).catch(console.log);
@@ -182,9 +185,14 @@ export default function AdminUsersOverview() {
 
     }, []);
     //Admin Actions create company BTN pressed
-    useEffect(() => {
+    useEffect( () => {
         if (createCompanyBtn === true) {
-            CreateCompany()
+            console.log(companyName)
+            if (companyName != "") {
+                CreateCompany()
+            } else {
+                window.alert("Company name is missing")
+            }
             setCreateCompanyBtn(false)
         }
     }, [createCompanyBtn]);

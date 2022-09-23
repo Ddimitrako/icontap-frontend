@@ -216,7 +216,7 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
 
                         <FormControl mt={4}>
                             <FormLabel>Description</FormLabel>
-                            <Input placeholder='Description' onChange={companyDescrChange}/>
+                            <Input defaultValue="" placeholder='Description' onChange={companyDescrChange}/>
                         </FormControl>
                     </ModalBody>
 
