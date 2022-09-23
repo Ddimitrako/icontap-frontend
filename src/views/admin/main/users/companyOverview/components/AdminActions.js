@@ -29,7 +29,16 @@ import {Switch} from '@chakra-ui/react'
 import axios from "axios";
 import {hostName} from "../../../../../../Helpers/App";
 
-export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange, companyDescrChange,setSelectedUsers,selectedUsers}) {
+
+export default function AdminActionsBtn({
+                                            setCreateCompanyBtn,
+                                            companyNameChange,
+                                            companyDescrChange,
+                                            setShowAlert,
+                                            setAlertMessage,
+                                            setSelectedUsers,
+                                            selectedUsers
+                                        }) {
 
     const {
         isOpen: isOpenCompanyModal,
@@ -110,8 +119,8 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
 
                     }
                     setCompaniesList(companiesNamesUUIDs)
-
                 }
+
             }
         ).catch(console.log);
     }
@@ -158,6 +167,9 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
                 if (response.status == 200) {
                     ///Todo//Show green alert when a user is created.
                 }
+                setAlertMessage(response.data.message)
+                setShowAlert(true)
+
             }
         ).catch(console.log);
     }
