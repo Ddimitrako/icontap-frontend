@@ -72,7 +72,7 @@ export default function Settings() {
                 {/* Column Right */}
                 <Flex direction='column'>
                     <Password/>
-                    <Delete/>
+                    {/*<Delete/>*/}
                 </Flex>
             </SimpleGrid>
         </Box>
