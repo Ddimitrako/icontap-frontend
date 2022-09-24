@@ -379,7 +379,7 @@ export default function IcontapCard(props) {
       </Tabs>
 
       <Flex justify='space-between' w='100%'>
-        <Flex
+        {props.card.is_active?<Flex
           direction='column'
           align='center'
           me={{ base: "16px", md: "0px", "2xl": "36px" }}
@@ -404,7 +404,7 @@ export default function IcontapCard(props) {
           <Text fontSize='sm' fontWeight='500' color={textColor}>
             Edit Card
           </Text>
-        </Flex>
+        </Flex>:''}
         {!props.card.is_active?activateCardBtnModal:''}
         <Flex direction='column' align='center'>
           <IconButton onClick={onOpen}

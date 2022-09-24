@@ -34,13 +34,13 @@ option {
   background-position: center !important;
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
-  background-image: url("../../../public/static/media/tab.png") !important;
-  color: black !important;
+  background-image: url("../../../public/static/media/tab-active.png") !important;
+  color: white !important;
 }
 
 .tab-custom[aria-selected=true]{
-  background-image: url("../../../public/static/media/tab-active.png") !important;
-  color: white !important;
+  background-image: url("../../../public/static/media/tab.png") !important;
+  color: black !important;
 }
 
 .height-none{

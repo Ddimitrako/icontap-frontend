@@ -56,13 +56,13 @@ const ShowCard = () => {
     // return <DefaultAuth noIllustration>
     //     
     return (
-        <Flex position='relative' h='max-content'>
+        <Flex position='relative' h='max-content' style={{ height: '100%', width: '100%' }}>
             <Flex
                 h={{
                     sm: "initial",
                     md: "unset",
                     lg: "100vh",
-                    xl: "97vh",
+                    xl: "100vh",
                 }}
                 w='100%'
                 maxW={{ md: "66%", lg: "1313px" }}
@@ -80,9 +80,11 @@ const ShowCard = () => {
                         spinnerPlacement="start">
                     </Button>
                     :
-                    <Box mx='5'>
-                        <ProfileView avatarRadius={120} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={{ url: `${hostNameStorage}/${card.images.img_profile}` }} cover={{ url: `${hostNameStorage}/${card.images.img_cover}` }} socials={socials} />
-                        <Footer />
+                    <Box mx='5' style={{
+                        height: '100%', maxWidth: '500px', margin: '0 auto',
+                        // boxShadow: '4px 4px 10px grey',
+                    }}>
+                        <ProfileView socialMaxW="80%" avatarRadius={90} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={{ url: `${hostNameStorage}/${card.images.img_profile}` }} cover={{ url: `${hostNameStorage}/${card.images.img_cover}` }} socials={socials} />
                     </Box>}
             </Flex>
         </Flex>
