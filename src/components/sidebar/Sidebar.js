@@ -63,7 +63,7 @@ function Sidebar(props) {
         boxShadow={shadow}
         className={'test'}
         >
-        <Scrollbars
+        {/* <Scrollbars
           autoHide
           renderTrackVertical={renderTrack}
           renderThumbVertical={renderThumb}
@@ -71,7 +71,8 @@ function Sidebar(props) {
           className='test2'
           >
           <Content routes={routes} />
-        </Scrollbars>
+        </Scrollbars> */}
+          <Content routes={routes} />
       </Box>
     </Box>
   );
