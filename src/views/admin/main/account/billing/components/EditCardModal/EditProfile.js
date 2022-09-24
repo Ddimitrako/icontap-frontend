@@ -236,7 +236,7 @@ export default function EditProfile(props) {
             <Stack spacing={3}>
                 <FormControl>
                     <FormLabel color={'#000000'}>Name</FormLabel>
-                    <Input borderColor={'none'} focusBorderColor='none' backgroundColor={'#f7f7f7'} placeholder={'Name'} caption={'Name'} value={props.name} onChange={(e) => props.setname(e.target.value)} />
+                    <Input focusBorderColor='none' backgroundColor={'#f7f7f7'} placeholder={'Name'} caption={'Name'} value={props.name} onChange={(e) => props.setname(e.target.value)} />
                 </FormControl>
                 <FormControl color={'#000000'}>
                     <FormLabel>Bio</FormLabel>
@@ -270,7 +270,8 @@ export default function EditProfile(props) {
                 overflow: 'auto'
             }}>
                 {socials?.map((social, index) =>
-                    { console.log(social);
+                    { 
+                        // console.log(social);
                     return <SocialButton editable blobUrl={social.imgUrl.blobUrl} imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
                         setcurrSocial(index);
                         settempSocialData(social);
@@ -290,14 +291,12 @@ export default function EditProfile(props) {
 
                     isLoading={updating}
 
-                    // disabled={!(socials?.length>0) || !(props.name) || !(props.bio) || !(props.avatar.blob) || !(props.cover.blob) }
                     style={{boxShadow:'0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)'}}
 
                     onClick={updateProfile}>
                     Update
                 </Button>
 
-                {/* <button onClick={()=>{updateContents(true)}}>CONTENTS</button> */}
             </div>
 
         </div>;

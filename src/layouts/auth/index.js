@@ -45,9 +45,9 @@ export default function Auth() {
                     <SignIn />
                   </Route>
 
-                  <Route path="/card/:cardId">
+                  {/* <Route path="/card/:cardId">
                     <ShowCard />
-                  </Route>
+                  </Route> */}
 
                   
                   <Route path="/auth/sign-up">
