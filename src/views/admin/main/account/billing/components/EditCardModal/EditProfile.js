@@ -1,4 +1,4 @@
-import { Button, FormHelperText, FormLabel, Input, Stack, Textarea, useDisclosure } from "@chakra-ui/react";
+import { Button, FormControl, FormHelperText, FormLabel, Input, Stack, Textarea, useDisclosure } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AddContentContainer from "./AddContentContainer";
@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { TitleContext } from "Helpers/Context";
 import { hostNameStorage } from "Helpers/App";
 import Cover from "views/admin/cards/cardProfile/components/Cover";
+import { arrOfObjToFormData } from "Helpers/Arrays";
 
 //The container modal
 
@@ -42,10 +43,12 @@ export default function EditProfile(props) {
 
     const [tempSocialData, settempSocialData] = useState();
 
+    const [oldSocials, setoldSocials] = useState([]);
+
     const pages = {
         // 'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
         'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} />,
-        'EditLink': <EditLink setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socials={socials} setsocials={setsocials} />
+        'EditLink': <EditLink setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socials={socials} setsocials={setsocials} oldsocials={oldSocials} setoldsocials={setoldSocials} />
     }
 
     let { cardId } = useParams();
@@ -54,12 +57,12 @@ export default function EditProfile(props) {
 
     function getProfile() {
         setloading(true);
-        console.log('getProfile');
+        // console.log('getProfile');
         axios({
             method: 'get',
             url: `${hostName}/card/${cardId}`
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             setcard(response.data.data);
             getContents();
         }).catch((err) => {
@@ -86,12 +89,12 @@ export default function EditProfile(props) {
     
     function getContents() {
         setcontentloading(true);
-        console.log('getContents');
+        // console.log('getContents');
         axios({
             method: 'get',
             url: `${hostName}/contents`
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             setsocialDefaults(parseContents(response.data.data));
             // console.log('prof');
             // parseProfileContents();
@@ -105,7 +108,7 @@ export default function EditProfile(props) {
         let contents = []
         Object.keys(categories).forEach((c, i) => {
             categories[c].forEach((con, i) => {
-                con={...con, imgUrl: con.image, title: con.name, url: ''}
+                con={...con, content_id:con.id, imgUrl: con.image, title: con.name, url: ''}
                 contents.push(con);
             });
         });
@@ -136,48 +139,60 @@ export default function EditProfile(props) {
 
     const [updating, setUpdating] = useState(false);
 
+    useEffect(()=>{
+        console.log('socialDefaults',socialDefaults);
+    },[socialDefaults]);
+
     function updateContents(test=false) {
-        let parsedContents=socials.map((c,i)=>{return {
-            "content_id": c.id,
-            "image": c.imgUrl,
+        let parsedContents=socials.map((c,i)=>{
+            console.log(c);
+            return {
+            "content_id": c.content_id,
+            "image": c.imgUrl?.blob??c.imgUrl,
             "link": c.url,
             "title": c.title,
             "description": "",
-            "is_active": true,
+            "is_active": 1,
             "order":i
         }});
         
-        console.log('SOCIALS', parsedContents);
+        console.log('SOCIALS', arrOfObjToFormData(parsedContents, 'content'));
 
-        if(test)
-        return null;
-        
-        console.log('updateContents', parsedContents);
-        
+        // console.log('updateContents', parsedContents);
+
         setUpdating(true);
-        const payload={contents:parsedContents};
+        
+        const formData = new FormData();
+        const formDataContents=arrOfObjToFormData(parsedContents, 'contents');
+        Object.keys(formDataContents).forEach((key, i)=>{
+            formData.append(key, formDataContents[key]);
+        });
+        if(oldSocials && oldSocials.length>0)
+            oldSocials.forEach((o,i)=>{
+                formData.append('old_contents[]', o);
+            });    
         axios({
             method: 'post',
             url: `${hostName}/card/${card.code}/contents`,
-            data: payload,
+            data: formData,
             headers: {
                 'accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             }
         }).then((response) => {
             console.log(response);
         }).catch((err) => {
             console.log(err.response);
         }).finally(() => {
+            setoldSocials([]);
             setUpdating(false);
             getProfile();
         })
     }
 
     function updateProfile() {
-
+        console.clear();
         setUpdating(true);
-        updateContents();
         const formData = new FormData();
         formData.append('name', props.name);
         formData.append('bio', props.bio);
@@ -189,8 +204,7 @@ export default function EditProfile(props) {
         if(props.cover.blob)
         formData.append('img_cover', props.cover.blob);
         
-        console.log('updateProfile');
-        console.trace('updateProfile');
+        // console.log('updateProfile');
         axios({
             method: 'post',
             url: `${hostName}/profile/${card.profile.id}`,
@@ -200,13 +214,12 @@ export default function EditProfile(props) {
                 'Content-Type': 'multipart/form-data'
             }
         }).then((response) => {
-            // console.log(response);
+            console.log(response);
+            updateContents();
         }).catch((err) => {
-            // console.log(err.response);
+            console.log(err.response);
         }).finally(() => {
-            // console.log(formData);
             setUpdating(false);
-            getProfile();
         })
     }
 
@@ -218,17 +231,17 @@ export default function EditProfile(props) {
         : <div style={{
             paddingBottom: '100px',
         }}>
-            <Cover avatarRadius={100} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} editable />
+            <Cover avatarRadius={80} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} editable />
 
             <Stack spacing={3}>
-                <Input variant='filled' backgroundColor={'#f7f7f7'}  placeholder={'Name'} caption={'Name'} value={props.name} onChange={(e) => props.setname(e.target.value)} />
-                <Textarea variant='filled' backgroundColor={'#f7f7f7'}  placeholder={'Bio'} caption={'Bio'} value={props.bio} onChange={(e) => props.setbio(e.target.value)} />
-                {/* <FormLabel>Job Title</FormLabel>
-                <Input variant='filled' caption={'Job title'} value={props.job} onChange={(e) => props.setjob(e.target.value)} />
-                <FormHelperText>Type text.</FormHelperText>
-                <FormLabel>Company</FormLabel>
-                <Input variant='filled' caption={'Company'} value={props.company} onChange={(e) => props.setcompany(e.target.value)} />
-                <FormHelperText>Type text.</FormHelperText> */}
+                <FormControl>
+                    <FormLabel color={'#000000'}>Name</FormLabel>
+                    <Input borderColor={'none'} focusBorderColor='none' backgroundColor={'#f7f7f7'} placeholder={'Name'} caption={'Name'} value={props.name} onChange={(e) => props.setname(e.target.value)} />
+                </FormControl>
+                <FormControl color={'#000000'}>
+                    <FormLabel>Bio</FormLabel>
+                    <Textarea focusBorderColor='none' backgroundColor={'#f7f7f7'} placeholder={'Bio'} caption={'Bio'} value={props.bio} onChange={(e) => props.setbio(e.target.value)} />
+                </FormControl>
             </Stack>
 
             <div style={{
@@ -238,16 +251,13 @@ export default function EditProfile(props) {
             }}>
                 <EditCardModal pages={pages} page={page} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
                 <Button
-                    // style={{
-                    //     borderRadius: '10px',
-                    //     padding: '15px 20px'
-                    // }}
                     className={'btn-custom-dark-background'}
                     onClick={() => {
                         setPage('AddContentContainer');
                         onOpen();
                     }}
                     isLoading={contentloading}
+                    style={{boxShadow:'0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)'}}
                     >
                     + Add links and Contact info
                 </Button>
@@ -260,11 +270,13 @@ export default function EditProfile(props) {
                 overflow: 'auto'
             }}>
                 {socials?.map((social, index) =>
-                    <SocialButton editable imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
+                    { console.log(social);
+                    return <SocialButton editable blobUrl={social.imgUrl.blobUrl} imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
                         setcurrSocial(index);
+                        settempSocialData(social);
                         setPage('EditLink');
                         onOpen();
-                    }} key={index} />
+                    }} key={index} />}
                 )}
 
             </div>
@@ -278,7 +290,8 @@ export default function EditProfile(props) {
 
                     isLoading={updating}
 
-                    disabled={!(socials?.length>0) || !(props.name) || !(props.bio) }
+                    // disabled={!(socials?.length>0) || !(props.name) || !(props.bio) || !(props.avatar.blob) || !(props.cover.blob) }
+                    style={{boxShadow:'0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)'}}
 
                     onClick={updateProfile}>
                     Update

@@ -1,12 +1,14 @@
+import { objectKeys } from "@chakra-ui/utils";
 import { hostNameStorage } from "Helpers/App";
-import React, { useState } from "react";
+import { isArray } from "lodash";
+import React, { useEffect, useState } from "react";
 
 import './EditCardModal.css';
 
 //The container modal
 
 export default function AddContent(props) {
-    console.log(props);
+    // console.log(props);
     const SocialDummies = [
         { title: 'Custom', imgUrl: 'custom.svg', url: 'www.example.com' },
         { title: 'Facebook', imgUrl: 'fb.png', url: 'www.fb.com' },
@@ -16,11 +18,26 @@ export default function AddContent(props) {
         { title: 'Email', imgUrl: 'email.png', url: 'www.email.com' },
     ];
 
-    const [search, setsearch]=useState('');
+    const [search, setsearch] = useState('');
+
+    const sectionizeSocials = (inputSocialDefaults) => {
+        let tempsocialDefaults = [];
+        inputSocialDefaults?.forEach((s, i) => {
+            if (!tempsocialDefaults[s.category.name] || !isArray(tempsocialDefaults[s.category.name])) {
+                tempsocialDefaults[s.category.name] = [];
+            }
+
+            tempsocialDefaults[s.category.name].push(s);
+        });
+
+        return tempsocialDefaults;
+    };
+
 
     const SocialDefault = ({ social }) => {
 
         function insertSocial() {
+            // console.log(social);
             props.settempSocialData(social);
             props.setcurrSocial(undefined);
             props.setPage('EditLink');
@@ -85,13 +102,25 @@ export default function AddContent(props) {
                         </svg>
                     </div>
                     <div className="MuiInputBase-root jss370 MuiInputBase-fullWidth">
-                        <input value={search} onChange={(e)=>setsearch(e.target.value)} placeholder="Search content..."  type="text" aria-label="search here" className="MuiInputBase-input" />
+                        <input value={search} onChange={(e) => setsearch(e.target.value)} placeholder="Search content..." type="text" aria-label="search here" className="MuiInputBase-input" />
                     </div>
                 </div>
             </div>
         </div>
         <div style={{ overflow: 'auto' }}>
-            {props?.socialDefaults?.filter((social)=>social.title.toLowerCase().includes(search.toLowerCase())).map((social, index) => <SocialDefault social={social} key={index} />)}
+            {Object.keys(sectionizeSocials(props.socialDefaults.filter((social) => social.title.toLowerCase().includes(search.toLowerCase())))).map((k, i) => <div key={i}>
+                <h5>
+                    {k}
+                </h5>
+                <hr />
+                <div style={{overflow:'hidden'}}>
+
+                    {sectionizeSocials(props.socialDefaults.filter((social) => social.title.toLowerCase().includes(search.toLowerCase())))[k]?.map((social, index) => {
+                        return <SocialDefault social={social} key={index} />;
+                    }
+                    )}
+                </div>
+            </div>)}
         </div>
     </div>
 }

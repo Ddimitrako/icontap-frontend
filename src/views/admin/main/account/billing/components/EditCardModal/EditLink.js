@@ -14,6 +14,7 @@ import {
 import './EditCardModal.css';
 import { deepCopy } from "Helpers/Arrays";
 import { hostNameStorage } from "Helpers/App";
+import { readURL } from "Helpers/Images";
 
 //The container modal
 
@@ -23,6 +24,10 @@ export default function EditLink(props) {
     const [url, setUrl] = useState(props?.tempSocialData?.url ?? (props.socials[props.currSocial]?.url ?? ''));
     const [title, setTitle] = useState(props?.tempSocialData?.title ?? (props.socials[props.currSocial]?.title ?? ''));
     const [imgUrl, setimgUrl] = useState(props?.tempSocialData?.imgUrl ?? (props.socials[props.currSocial]?.imgUrl ?? 'custom.svg'));
+
+    useEffect(()=>{
+        // console.log('props', props);
+    },[]);
 
     useEffect(() => {
 
@@ -36,10 +41,11 @@ export default function EditLink(props) {
 
     function upsertSocials() {
         let tempSocials = deepCopy(props.socials);
-        // console.log(tempSocials);
-        // console.log(props.currSocial);
-        let tempCurrSocialData = {...props?.tempSocialData, url: url, title: title, imgUrl: imgUrl };
-        // console.log(tempCurrSocialData);
+        console.log(tempSocials);
+        console.log(props?.tempSocialData);
+        console.log(props.currSocial);
+        let tempCurrSocialData = {...props?.tempSocialData, url: url, title: title, imgUrl: img?.blob?{blob:img.blob, blobUrl:img.url, url:imgUrl}:imgUrl };
+        console.log(tempCurrSocialData);
 
         if (props.currSocial !== undefined) {
             tempSocials[props.currSocial] = tempCurrSocialData;
@@ -54,11 +60,16 @@ export default function EditLink(props) {
     }
     
     function deleteSocial() {
+        console.log(props.currSocial, props.socials[props.currSocial]);
         let tempSocials = deepCopy(props.socials);
         tempSocials.splice(props.currSocial, 1);
         props.setsocials(tempSocials);
+        if(!(props.socials[props.currSocial].category || props.socials[props.currSocial].category_id))
+            props.setoldsocials([...props.oldsocials, props.socials[props.currSocial]?.id]);
         props.onClose();
     }
+
+    const [img, setimg]=useState();
 
     return <ModalContent style={{
         padding: '0',
@@ -85,12 +96,14 @@ export default function EditLink(props) {
                 <div className="jss521 jss527">
                     <input type="file" />
                     <div>
-                        <img className="jss498" alt="link" src={`${hostNameStorage}/${imgUrl}`} style={{ borderRadius: '10px', objectFit: 'cover' }} />
+                        <img className="jss498" alt="link" src={img?.url ?? `${hostNameStorage}/${imgUrl}`} style={{ borderRadius: '10px', objectFit: 'cover' }} />
                     </div>
                 </div>
                 <div>
                     <div className="jss499">
-                        <div style={{ maxWidth: '220px', paddingBottom: '10px' }}>Select photo here or drag and drop one in place of current</div>
+                        <label style={{ maxWidth: '220px', paddingBottom: '10px' }}>Select photo here or drag and drop one in place of current
+                            <input type="file" style={{ display: 'none' }} onChange={(e) => readURL(e, setimg)} />
+                        </label>
                     </div>
                 </div>
             </div>

@@ -5,3 +5,14 @@ export function deepCopy(arr) {
         return arr;
     }
 }
+
+export function arrOfObjToFormData(arr, prefix){
+    const formData={};
+    arr.forEach((item, i) => {
+        Object.keys(item).forEach((k,i2)=>{
+            formData[`${prefix}[${i}][${k}]`]= item[k];
+        })
+    });
+    console.log(formData);
+    return formData;
+}

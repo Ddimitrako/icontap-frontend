@@ -21,7 +21,7 @@
 */
 import { Link } from 'react-router-dom';
 import { MdBuild, MdCall, MdPreview } from "react-icons/md";
-import { Stack, HStack, VStack, FormLabel, Input, InputGroup, InputLeftAddon } from '@chakra-ui/react';
+import { Stack, HStack, VStack, FormLabel, Input, InputGroup, InputLeftAddon, Heading } from '@chakra-ui/react';
 import React from "react";
 import CustomIframe from "./components/Iframe";
 // Chakra imports
@@ -128,18 +128,18 @@ export default function Page() {
 
     useEffect(()=>{
         if(!socials?.length!=0){
-            setsocials(socialDummys);
+            // setsocials(socialDummys);
         }
     },[socials]);
 
-    const profileIcon=<i class="fa-solid fa-user" style={{marginRight:'5px'}}></i>;
-    const qrIcon=<i class="fa-solid fa-qrcode" style={{marginRight:'5px'}}></i>;
+    const profileIcon=<i className="fa-solid fa-user" style={{marginRight:'5px'}}></i>;
+    const qrIcon=<i className="fa-solid fa-qrcode" style={{marginRight:'5px'}}></i>;
 
     return (
         <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
             {/* Main Fields */}
             <Tabs>
-                <TabList className='height-none' style={{border:'0', backgroundColor:'gray'}}>
+                <TabList className='height-none' style={{border:'0', backgroundColor:'#f9f9f9'}}>
                     <Tab className='tab-custom'>{profileIcon} Profile</Tab>
                     {card.code && <Tab className='tab-custom'>{qrIcon} QR Code</Tab>}
                 </TabList>
@@ -163,11 +163,12 @@ export default function Page() {
                                 </FormControl>
                             </Flex>
                             <Flex flexDirection='column' alignItems='center' pt='10px'>
+                                <Heading color={'black'} size='sm'>Profile Live Preview</Heading>
                                 <CustomIframe socials={socials} setsocials={setsocials} name={name} bio={bio} job={job} company={company} card={card} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
                                 <Stack direction='row' spacing={4}>
                                     <Button onClick={() => {
                                         window.open(`${frontAddress}/card/${card.code}`, "_blank");
-                                    }} rightIcon={<MdPreview />} colorScheme='blue' variant='outline'>
+                                    }} rightIcon={<MdPreview />} colorScheme='black' variant='outline'>
                                         View Profile
                                     </Button>
                                 </Stack>
@@ -175,7 +176,7 @@ export default function Page() {
                         </Grid>
                     </TabPanel>
                     {card.code && <TabPanel style={{ textAlign: 'center' }}>
-                        <Image style={{ margin: '0 auto' }} src={`${hostNameStorage}/${card?.qr_code}`} />
+                        <Image style={{paddingTop:'50px', paddingRight:'20px', paddingLeft:'20px', paddingBottom:'100px', backgroundColor:'white', border:'none', borderRadius:'20px',boxShadow:'rgb(205 205 205) 10px 10px 10px' }} src={`${hostNameStorage}/${card?.qr_code}`} />
                         <br />
                         <InputGroup>
                             <InputLeftAddon children='URL' />

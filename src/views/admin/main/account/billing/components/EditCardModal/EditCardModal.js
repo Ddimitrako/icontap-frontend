@@ -27,7 +27,7 @@ export const CustomEditBox = ({ caption, value, onChange }) => <div className="j
     </div>
 </div>
 
-export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, title }) => {
+export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, title, blobUrl }) => {
 
     const selectSocialSize = 30;
 
@@ -74,7 +74,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100%',
-            backgroundImage: `url(${hostNameStorage}/${imgUrl})`,
+            backgroundImage: blobUrl?`url(${blobUrl})`:`url(${hostNameStorage}/${imgUrl})`,
             cursor: editable ? 'default' : 'pointer',
             ...styles
         }}
