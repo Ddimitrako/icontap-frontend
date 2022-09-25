@@ -24,11 +24,16 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 // Chakra imports
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
   Box,
   Button,
   Checkbox,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Icon,
@@ -79,6 +84,18 @@ function SignIn() {
 
   const [errors, seterrors]=useState({});
 
+  const errorMsgs={
+    USER_NOT_EXISTS:'This email does not belong to any user',
+    PASSWORD_INCORRECT:'The password is incorrect',
+    BLOCKED:'This account is blocked',
+  }
+
+  const DisplayError = () => Object.keys(errors).length>0?<Alert status='error' style={{marginBottom:'20px'}}>
+    <AlertIcon />
+    <AlertTitle>{errorMsgs[errors.message]}</AlertTitle>
+    <AlertDescription>{errors.data}</AlertDescription>
+  </Alert>:<></>;
+
   const data={
     email:email,
     password:pass
@@ -96,6 +113,7 @@ function SignIn() {
       window.location.href='/admin/cardsList/card';
     }).catch((err)=>{
       console.log(err.response);
+      seterrors({message:err.response.data.message, data:err.response.data.data});
     }).finally(()=>{
       setloading(false);
     })
@@ -162,6 +180,7 @@ function SignIn() {
             {/*</Text>*/}
             <HSeparator />
           </Flex>
+          <DisplayError />
           <FormControl>
             <FormLabel
               display='flex'
