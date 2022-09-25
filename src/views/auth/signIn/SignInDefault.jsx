@@ -35,7 +35,9 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  ListItem,
   Text,
+  UnorderedList,
   useColorModeValue,
 } from "@chakra-ui/react";
 // Custom components
@@ -75,7 +77,8 @@ function SignIn() {
   const [email, setemail]=useState('');
   const [pass, setpass]=useState('');
 
-  
+  const [errors, seterrors]=useState({});
+
   const data={
     email:email,
     password:pass
@@ -182,6 +185,7 @@ function SignIn() {
               onChange={(e)=>setemail(e.target.value)}
               value={email}
             />
+            {/* <DisplayError err='email' /> */}
             <FormLabel
               ms='4px'
               fontSize='sm'

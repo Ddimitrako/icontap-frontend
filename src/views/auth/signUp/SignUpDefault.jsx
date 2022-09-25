@@ -48,6 +48,7 @@ import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { useState } from "react";
+import { DisplayError } from "Helpers/Auth";
 var hostName = process.env.REACT_APP_HOSTNAME.toString()
 function SignUp() {
   // Chakra color mode
@@ -79,6 +80,8 @@ function SignUp() {
   const [pass, setpass]=useState('');
   const [cpass, setcpass]=useState('');
 
+  const [errors, seterrors]=useState({});
+
   const data={
     email:email,
     name:name,
@@ -87,7 +90,7 @@ function SignUp() {
     c_password:cpass,
   }
 
-  function postToApi() {
+  function postToApi(e) {
     setloading(true);
     axios({
       method:'post',
@@ -98,9 +101,13 @@ function SignUp() {
       window.location.href='/auth/sign-in';
     }).catch((err)=>{
       console.log(err.response);
+      console.log(err.response.data.data);
+      seterrors(err.response.data.data);
     }).finally(()=>{
       setloading(false);
     })
+    e.preventDefault();
+
   }
 
 
@@ -166,6 +173,8 @@ function SignUp() {
             {/*</Text>*/}
             <HSeparator />
           </Flex>
+
+          <form onSubmit={postToApi}>
           <FormControl>
             <SimpleGrid
               columns={{ base: "1", md: "2" }}
@@ -181,7 +190,9 @@ function SignUp() {
                   First name<Text color={brandStars}>*</Text>
                 </FormLabel>
                 <Input
-                  isrequired="true"
+                  isRequired
+                  isInvalid
+                  errorBorderColor='red.300'
                   fontSize='sm'
                   ms={{ base: "0px", md: "4px" }}
                   placeholder='First name'
@@ -191,6 +202,7 @@ function SignUp() {
                   onChange={(e)=>setname(e.target.value)}
                   value={name}
                 />
+              <DisplayError errors={errors?.name} />
               </Flex>
               <Flex direction='column'>
                 <FormLabel
@@ -203,7 +215,7 @@ function SignUp() {
                   Last name<Text color={brandStars}>*</Text>
                 </FormLabel>
                 <Input
-                  isrequired="true"
+                  isRequired
                   variant='auth'
                   fontSize='sm'
                   placeholder='Last name'
@@ -212,6 +224,7 @@ function SignUp() {
                   onChange={(e)=>setlastname(e.target.value)}
                   value={lastname}
                 />
+                <DisplayError errors={errors?.last_name} />
               </Flex>
             </SimpleGrid>
             <FormLabel
@@ -224,7 +237,7 @@ function SignUp() {
               Email<Text color={brandStars}>*</Text>
             </FormLabel>
             <Input
-              isrequired="true"
+              isRequired
               variant='auth'
               fontSize='sm'
               type='email'
@@ -234,18 +247,19 @@ function SignUp() {
               onChange={(e)=>setemail(e.target.value)}
               value={email}
             />
+            <DisplayError errors={errors?.email} />
             <FormLabel
               ms='4px'
               fontSize='sm'
               fontWeight='500'
-              isrequired="true"
+              isRequired
               color={textColor}
               display='flex'>
               Password<Text color={brandStars}>*</Text>
             </FormLabel>
             <InputGroup size='md'>
               <Input
-                isrequired="true"
+                isRequired
                 variant='auth'
                 fontSize='sm'
                 ms={{ base: "0px", md: "4px" }}
@@ -265,18 +279,19 @@ function SignUp() {
                 />
               </InputRightElement>
             </InputGroup>
+            <DisplayError errors={errors?.password} />
             <FormLabel
               ms='4px'
               fontSize='sm'
               fontWeight='500'
-              isrequired="true"
+              isRequired
               color={textColor}
               display='flex'>
               Repeat Password<Text color={brandStars}>*</Text>
             </FormLabel>
             <InputGroup size='md'>
               <Input
-                isrequired="true"
+                isRequired
                 variant='auth'
                 fontSize='sm'
                 ms={{ base: "0px", md: "4px" }}
@@ -296,6 +311,7 @@ function SignUp() {
                 />
               </InputRightElement>
             </InputGroup>
+            <DisplayError errors={errors?.c_password} />
             <Flex justifyContent='space-between' align='center' mb='24px'>
               <FormControl display='flex' alignItems='start'>
                 <Checkbox
@@ -332,7 +348,7 @@ function SignUp() {
               w='100%'
               h='50'
               mb='24px'
-              onClick={postToApi}  
+              type='submit'
               isLoading={loading}
               loadingText={'Please wait...'}
             >
@@ -340,6 +356,8 @@ function SignUp() {
               Create my account
             </Button>
           </FormControl>
+          </form>
+
           <Flex
             flexDirection='column'
             justifyContent='center'
