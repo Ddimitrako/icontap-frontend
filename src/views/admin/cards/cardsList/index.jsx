@@ -179,53 +179,53 @@ export default function Collection(props) {
       <Tabs variant='soft-rounded' colorScheme='brandTabs'>
 
         <HSeparator mb='30px' bg={paleGray} mt='0px' />
-        <Flex w='30%'>
-          <Select
-            fontSize='sm'
-            id='edit_product'
-            variant='main'
-            h='44px'
-            maxh='44px'
-            me='20px'
-            defaultValue='multiple'>
-            <option value='multiple'>All Cards</option>
-            <option value='single'>Business Cards</option>
-            <option value='multiple'>Personal Cards</option>
+        {/*<Flex w='30%'>*/}
+        {/*  <Select*/}
+        {/*    fontSize='sm'*/}
+        {/*    id='edit_product'*/}
+        {/*    variant='main'*/}
+        {/*    h='44px'*/}
+        {/*    maxh='44px'*/}
+        {/*    me='20px'*/}
+        {/*    defaultValue='multiple'>*/}
+        {/*    <option value='multiple'>All Cards</option>*/}
+        {/*    <option value='single'>Business Cards</option>*/}
+        {/*    <option value='multiple'>Personal Cards</option>*/}
 
-          </Select>
+        {/*  </Select>*/}
 
-          <Button
-            me='20px'
-            bg={buttonBg}
-            border='1px solid'
-            color='secondaryGray.600'
-            borderColor={useColorModeValue(
-              "secondaryGray.100",
-              "whiteAlpha.100"
-            )}
-            borderRadius='16px'
-            _placeholder={{ color: "secondaryGray.600" }}
-            _hover={hoverButton}
-            _active={activeButton}
-            _focus={activeButton}>
-            <Icon color={textColor} as={MdDashboard} />
-          </Button>
-          <Button
-            bg={buttonBg}
-            border='1px solid'
-            color='secondaryGray.600'
-            borderColor={useColorModeValue(
-              "secondaryGray.100",
-              "whiteAlpha.100"
-            )}
-            borderRadius='16px'
-            _placeholder={{ color: "secondaryGray.600" }}
-            _hover={hoverButton}
-            _active={activeButton}
-            _focus={activeButton}>
-            <Icon color={textColor} as={MdApps} />
-          </Button>
-        </Flex>
+        {/*  <Button*/}
+        {/*    me='20px'*/}
+        {/*    bg={buttonBg}*/}
+        {/*    border='1px solid'*/}
+        {/*    color='secondaryGray.600'*/}
+        {/*    borderColor={useColorModeValue(*/}
+        {/*      "secondaryGray.100",*/}
+        {/*      "whiteAlpha.100"*/}
+        {/*    )}*/}
+        {/*    borderRadius='16px'*/}
+        {/*    _placeholder={{ color: "secondaryGray.600" }}*/}
+        {/*    _hover={hoverButton}*/}
+        {/*    _active={activeButton}*/}
+        {/*    _focus={activeButton}>*/}
+        {/*    <Icon color={textColor} as={MdDashboard} />*/}
+        {/*  </Button>*/}
+        {/*  <Button*/}
+        {/*    bg={buttonBg}*/}
+        {/*    border='1px solid'*/}
+        {/*    color='secondaryGray.600'*/}
+        {/*    borderColor={useColorModeValue(*/}
+        {/*      "secondaryGray.100",*/}
+        {/*      "whiteAlpha.100"*/}
+        {/*    )}*/}
+        {/*    borderRadius='16px'*/}
+        {/*    _placeholder={{ color: "secondaryGray.600" }}*/}
+        {/*    _hover={hoverButton}*/}
+        {/*    _active={activeButton}*/}
+        {/*    _focus={activeButton}>*/}
+        {/*    <Icon color={textColor} as={MdApps} />*/}
+        {/*  </Button>*/}
+        {/*</Flex>*/}
 
         <Text
           mt='25px'
