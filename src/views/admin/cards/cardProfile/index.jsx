@@ -164,7 +164,7 @@ export default function Page() {
                             </Flex>
                             <Flex flexDirection='column' alignItems='center' pt='10px'>
                                 <Heading color={'black'} size='sm'>Profile Live Preview</Heading>
-                                <CustomIframe socials={socials} setsocials={setsocials} name={name} bio={bio} job={job} company={company} card={card} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
+                                {card && <CustomIframe socials={socials} card={card}/>}
                                 <Stack direction='row' spacing={4}>
                                     <Button onClick={() => {
                                         window.open(`${frontAddress}/card/${card.code}`, "_blank");

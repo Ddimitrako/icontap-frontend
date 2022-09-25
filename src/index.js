@@ -18,6 +18,7 @@ ReactDOM.render(
       <BrowserRouter>
         <SetupAxios />
         <Switch>
+          <Route path="/card/:cardId" component={ShowCard} />
 
           <PrivateRoute path={`/auth`} isPublic={true}>
             <Route path={`/auth`} component={AuthLayout} />

@@ -1,3 +1,4 @@
+import { ListItem, UnorderedList } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
 import { createContext } from "react";
@@ -117,3 +118,6 @@ export function GetMeFromApi() {
 export function getMe() {
     return JSON?.parse(localStorage.getItem('me'));
 }
+
+
+export const DisplayError=({errors})=>errors?.length>0?<UnorderedList style={{color:'red'}}>{errors.map((err, i)=><ListItem key={i}>{err}</ListItem>)}</UnorderedList>:<></>;

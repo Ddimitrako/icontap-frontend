@@ -4,15 +4,18 @@ import axios from "axios";
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { hostName } from 'Helpers/App';
-import { Box, Button, Flex } from '@chakra-ui/react';
+import { Box, Button, Flex, Stack, Text } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import DefaultAuth from "layouts/auth/types/Default";
 import illustration from "assets/img/auth/auth.png";
 import Footer from 'components/footer/FooterAdmin';
 import { hostNameStorage } from 'Helpers/App';
+import Cover from 'views/admin/cards/cardProfile/components/Cover';
+import { SocialButton } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
+import Profile from 'views/admin/main/account/settings/components/Profile';
 
 
-const ShowCard = () => {
+export const ShowCard = () => {
 
     const [loaded, setloaded] = useState(false);
     const [card, setcard] = useState({});
@@ -55,41 +58,24 @@ const ShowCard = () => {
 
     // return <DefaultAuth noIllustration>
     //     
-    return (
+    return (card?.profile?.name && socials?.length>0)?(
         <Flex position='relative' h='max-content' style={{ height: '100%', width: '100%' }}>
             <Flex
-                h={{
-                    sm: "initial",
-                    md: "unset",
-                    lg: "100vh",
-                    xl: "100vh",
-                }}
+                minH='100%'
+                h='auto'
                 w='100%'
-                maxW={{ md: "66%", lg: "1313px" }}
+                maxW={{ lg: "500px" }}
                 mx='auto'
-                pt={{ sm: "0", md: "0px" }}
-                px={{ lg: "30px", xl: "0px" }}
-                ps={{ xl: "70px" }}
-                justifyContent='start'
-                direction='column'>
-
-                {!loaded ?
-                    <Button isLoading
-                        loadingText="Please wait"
-                        variant="transparent-with-icon"
-                        spinnerPlacement="start">
-                    </Button>
-                    :
-                    <Box mx='5' style={{
-                        height: '100%', maxWidth: '500px', margin: '0 auto',
-                        // boxShadow: '4px 4px 10px grey',
-                    }}>
-                        <ProfileView socialMaxW="80%" avatarRadius={90} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={{ url: `${hostNameStorage}/${card.images.img_profile}` }} cover={{ url: `${hostNameStorage}/${card.images.img_cover}` }} socials={socials} />
-                    </Box>}
+                justifyContent='center'
+                direction='column'
+                boxShadow= '4px 4px 10px grey'
+                
+                >
+                <ProfileView card={card} socials={socials} />
             </Flex>
         </Flex>
         // </DefaultAuth>
-    )
+    ):<></>;
 }
 
 export default ShowCard;
