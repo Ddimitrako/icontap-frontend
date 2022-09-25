@@ -58,8 +58,9 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
     </div>
 
     return <div style={{
-        width: '33%',
-        padding: '5%',
+        width: '27%',
+        margin:'3%',
+        padding: '4%',
         float: 'left',
     }}>
         <div style={{

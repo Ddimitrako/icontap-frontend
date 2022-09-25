@@ -62,7 +62,7 @@ export default function EditProfile(props) {
             method: 'get',
             url: `${hostName}/card/${cardId}`
         }).then((response) => {
-            // console.log(response);
+            console.log(response);
             setcard(response.data.data);
             getContents();
         }).catch((err) => {
@@ -139,9 +139,9 @@ export default function EditProfile(props) {
 
     const [updating, setUpdating] = useState(false);
 
-    useEffect(()=>{
-        console.log('socialDefaults',socialDefaults);
-    },[socialDefaults]);
+    // useEffect(()=>{
+    //     console.log('socialDefaults',socialDefaults);
+    // },[socialDefaults]);
 
     function updateContents(test=false) {
         let parsedContents=socials.map((c,i)=>{

@@ -68,6 +68,8 @@ export const ShowCard = () => {
                 mx='auto'
                 justifyContent='center'
                 direction='column'
+                boxShadow= '4px 4px 10px grey'
+                
                 >
                 <ProfileView card={card} socials={socials} />
             </Flex>
