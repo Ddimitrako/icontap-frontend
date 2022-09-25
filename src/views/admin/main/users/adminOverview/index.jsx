@@ -41,6 +41,7 @@ export default function AdminUsersOverview() {
     const [showAlert, setShowAlert] = useState(false)
     const [alertMessage, setAlertMessage] = useState("")
 
+    const [refreshUsersTable, setRefreshUsersTable] = useState(false)
 //     const usersList2 = [
 //     {
 //         id: 1,
@@ -184,6 +185,14 @@ export default function AdminUsersOverview() {
         getUsers()
 
     }, []);
+
+    useEffect(() => {
+        if (refreshUsersTable==true){
+            setRefreshUsersTable(false)
+            getUsers()
+        }
+    }, [refreshUsersTable]);
+
     //Admin Actions create company BTN pressed
     useEffect( () => {
         if (createCompanyBtn === true) {
@@ -233,10 +242,12 @@ export default function AdminUsersOverview() {
                     w='100%'
                     px='22px'
                     mb='36px'>
-                    <AdminActionsBtn setCreateCompanyBtn={setCreateCompanyBtn} companyNameChange={companyNameChange}
+                    <AdminActionsBtn companiesList={companiesNamesUUIDsList} setCompaniesNamesUUIDsList={setCompaniesNamesUUIDsList} setCreateCompanyBtn={setCreateCompanyBtn} companyNameChange={companyNameChange}
                                      companyDescrChange={companyDescrChange} setSelectedUsers={setSelectedUsers} selectedUsers = {selectedUsers}
                                      setShowAlert={setShowAlert}
                                      setAlertMessage={setAlertMessage}
+                                     refreshUsersTable = {refreshUsersTable}
+                                     setRefreshUsersTable = {setRefreshUsersTable}
                     />
                 </Flex>
                 <UsersTable
@@ -245,7 +256,6 @@ export default function AdminUsersOverview() {
                     usersList={usersList[0]}
                     selectedUsers = {selectedUsers}
                     setSelectedUsers = {setSelectedUsers}
-
                 />
             </Card>
         </Flex>

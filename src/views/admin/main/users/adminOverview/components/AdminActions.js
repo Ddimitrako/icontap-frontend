@@ -29,7 +29,7 @@ import {Switch} from '@chakra-ui/react'
 import axios from "axios";
 import {hostName} from "../../../../../../Helpers/App";
 
-export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange, companyDescrChange,setSelectedUsers,selectedUsers}) {
+export default function AdminActionsBtn({companiesList,setCreateCompanyBtn, companyNameChange, companyDescrChange,setSelectedUsers,selectedUsers,refreshUsersTable,setRefreshUsersTable}) {
 
     const {
         isOpen: isOpenCompanyModal,
@@ -55,7 +55,7 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
     const finalRef = React.useRef(null)
     // Chakra Color Mode
 
-    const [companiesList, setCompaniesList] = useState([{}])
+
     const [selectedCompany, setSelectedCompany] = useState()
     const listCompanies = companiesList.map((option, index) => (
         <option key={index} value={index}>
@@ -89,32 +89,6 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
     const config = {
         headers: {Authorization: `Bearer ${getAuth()}`}
     };
-
-    function getCompanies() {
-        axios.get(
-            hostName + '/company',
-            config
-        ).then((response) => {
-                // console.log(response)
-                let companiesNamesUUIDs = []
-                if (response.status == 200 && response.data.data.length > 0) {
-                    // console.log(response.data.data)
-                    // setCurrentCompany(response.data.data[0].name)
-                    //create a list with all companies names and UUID
-                    //etc companiesNamesUUIDs = [{"tesla","434-343-343"}]
-                    for (let i = 0; i < response.data.data.length; i++) {
-                        let companyObj = {};
-                        companyObj['name'] = response.data.data[i].name;
-                        companyObj['uuid'] = response.data.data[i].uuid;
-                        companiesNamesUUIDs.push(companyObj);
-
-                    }
-                    setCompaniesList(companiesNamesUUIDs)
-
-                }
-            }
-        ).catch(console.log);
-    }
 
     const userDataCompany =
         {
@@ -157,6 +131,7 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
                 console.log(response)
                 if (response.status == 200) {
                     ///Todo//Show green alert when a user is created.
+                    setRefreshUsersTable(true)
                 }
             }
         ).catch(console.log);
@@ -180,6 +155,7 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
                     console.log(response)
                     if (response.status == 200) {
                         ///Todo//Show green alert when a user is assigned.
+
                     }
                 }
             ).catch(console.log);
@@ -187,9 +163,9 @@ export default function AdminActionsBtn({setCreateCompanyBtn, companyNameChange,
 
     }
 
-    useEffect(() => {
-        getCompanies()
-    }, []);
+    // useEffect(() => {
+    //     getCompanies()
+    // }, []);
 
     useEffect(() => {
         console.log(selectedUsers)

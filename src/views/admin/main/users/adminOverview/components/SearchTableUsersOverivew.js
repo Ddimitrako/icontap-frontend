@@ -55,7 +55,7 @@ const columns = [
 
 
 
-function UsersTable({usersList,selectedUsers,setSelectedUsers}) {
+function UsersTable({usersList,setSelectedUsers,refreshUsersTable,setRefreshUsersTable}) {
 
     const [pending, setPending] = React.useState(true);
     const [selectedRows, setSelectedRows] = React.useState([]);
@@ -75,10 +75,10 @@ function UsersTable({usersList,selectedUsers,setSelectedUsers}) {
 
     }, []);
 
-    // useEffect(() => {
-    //     console.log(selectedUsers)
-    //
-    // }, [selectedUsers]);
+
+
+    useEffect(() => {
+    }, [usersList]);
 
     // React.useEffect(() => {
     //
