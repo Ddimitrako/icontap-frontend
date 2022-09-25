@@ -29,7 +29,7 @@ import {Switch} from '@chakra-ui/react'
 import axios from "axios";
 import {hostName} from "../../../../../../Helpers/App";
 
-export default function AdminActionsBtn({companiesList,setCreateCompanyBtn, companyNameChange, companyDescrChange,setSelectedUsers,selectedUsers,refreshUsersTable,setRefreshUsersTable}) {
+export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompanyBtn, companyNameChange, companyDescrChange,setSelectedUsers,selectedUsers,refreshUsersTable,setRefreshUsersTable}) {
 
     const {
         isOpen: isOpenCompanyModal,
@@ -130,7 +130,7 @@ export default function AdminActionsBtn({companiesList,setCreateCompanyBtn, comp
         ).then((response) => {
                 console.log(response)
                 if (response.status == 200) {
-                    ///Todo//Show green alert when a user is created.
+                    setMyAlert({show:true,message:"User successfully created",status:"success"})
                     setRefreshUsersTable(true)
                 }
             }
@@ -154,7 +154,7 @@ export default function AdminActionsBtn({companiesList,setCreateCompanyBtn, comp
             ).then((response) => {
                     console.log(response)
                     if (response.status == 200) {
-                        ///Todo//Show green alert when a user is assigned.
+                        setMyAlert({show:true,message:"User successfully assigned to "+selectedCompany.name,status:"success"})
 
                     }
                 }

@@ -38,9 +38,9 @@ export default function AdminUsersOverview() {
     const [companiesNamesUUIDsList, setCompaniesNamesUUIDsList] = useState([{}])
     const [selectedUsers,setSelectedUsers] = useState([])
 
-    const [showAlert, setShowAlert] = useState(false)
-    const [alertMessage, setAlertMessage] = useState("")
-
+    // const [showAlert, setShowAlert] = useState(false)
+    // const [alertMessage, setMyAlertMessage] = useState("")
+    const [myAlert, setMyAlert] = useState({show:false, message:"",status:"success"})
     const [refreshUsersTable, setRefreshUsersTable] = useState(false)
 //     const usersList2 = [
 //     {
@@ -133,14 +133,14 @@ export default function AdminUsersOverview() {
             config
         ).then((response) => {
                 console.log(response)
-                if (response.status == 200) {
-                    setAlertMessage("Company created successfully")
+                if (response.status == 200) {                    
+                    setMyAlert({show:true,message: "Company created successfully",status: "success"})
                     getCompanies()
                 }
                 else{
-                setAlertMessage("Company could not be created")
+                setMyAlert({show:true,message: "Company could not be created",status: "error"})
                 }
-                setShowAlert(true)
+                
             }
         ).catch(console.log);
     }
@@ -217,20 +217,20 @@ export default function AdminUsersOverview() {
     useEffect(() => {
         const timeId = setTimeout(() => {
             // After 3 seconds set the show value to false
-            setShowAlert(false)
+            setMyAlert({show:false})
         }, 3000)
         return () => {
             clearTimeout(timeId)
         }
-    }, [showAlert]);
+    }, [myAlert.show]);
 
 
     return (
         <Flex direction='column' pt={{sm: "125px", lg: "75px"}}>
             <Card px='0px'>
-                {showAlert && <Alert status="success">
+                {myAlert.show && <Alert status="success">
                     <AlertIcon></AlertIcon>
-                    <AlertDescription>{alertMessage}</AlertDescription>
+                    <AlertDescription>{myAlert.message}</AlertDescription>
                 </Alert>}
                 <AdminStatistics companiesList={companiesNamesUUIDsList} totalUsers={totalUsers}
                                  totalCompaniesNum={totalCompaniesNum}
@@ -244,8 +244,7 @@ export default function AdminUsersOverview() {
                     mb='36px'>
                     <AdminActionsBtn companiesList={companiesNamesUUIDsList} setCompaniesNamesUUIDsList={setCompaniesNamesUUIDsList} setCreateCompanyBtn={setCreateCompanyBtn} companyNameChange={companyNameChange}
                                      companyDescrChange={companyDescrChange} setSelectedUsers={setSelectedUsers} selectedUsers = {selectedUsers}
-                                     setShowAlert={setShowAlert}
-                                     setAlertMessage={setAlertMessage}
+                                     setMyAlert={setMyAlert}                                     
                                      refreshUsersTable = {refreshUsersTable}
                                      setRefreshUsersTable = {setRefreshUsersTable}
                     />

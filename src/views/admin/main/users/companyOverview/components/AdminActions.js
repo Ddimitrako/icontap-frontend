@@ -35,7 +35,7 @@ export default function AdminActionsBtn({
                                             companyNameChange,
                                             companyDescrChange,
                                             setShowAlert,
-                                            setAlertMessage,
+                                            setMyAlertMessage,
                                             setSelectedUsers,
                                             selectedUsers
                                         }) {
@@ -167,7 +167,7 @@ export default function AdminActionsBtn({
                 if (response.status == 200) {
                     ///Todo//Show green alert when a user is created.
                 }
-                setAlertMessage(response.data.message)
+                setMyAlertMessage(response.data.message)
                 setShowAlert(true)
 
             }
