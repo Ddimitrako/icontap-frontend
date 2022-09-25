@@ -32,7 +32,7 @@ export default function AdminUsersOverview() {
     const [currentCompany, setCurrentCompany] = useState("")
     const [currentCompanyUsers, setCurrentCompanyUsers] = useState(0)
     const [companyName, setCompanyName] = useState("")
-    const [companyDescript, setCompanyDescript] = useState("")
+    const [companyDescript, setCompanyDescript] = useState("none")
     const [companyLogo, setCompanyLogo] = useState("")
     const [createCompanyBtn, setCreateCompanyBtn] = useState(false)
     const [companiesNamesUUIDsList, setCompaniesNamesUUIDsList] = useState([{}])
@@ -194,6 +194,8 @@ export default function AdminUsersOverview() {
                 window.alert("Company name is missing")
             }
             setCreateCompanyBtn(false)
+            setCompanyName("")
+            setCompanyDescript("none")
         }
     }, [createCompanyBtn]);
 
