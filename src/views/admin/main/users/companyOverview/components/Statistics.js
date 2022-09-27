@@ -27,7 +27,7 @@ import {
 import MiniStatistics from "../../../../../../components/card/MiniStatistics";
 import IconBox from "../../../../../../components/icons/IconBox";
 import {MdPerson} from "react-icons/md";
-import Usa from "../../../../../../assets/img/users/usa.png";
+import companies from "../../../../../../assets/img/users/companies.png";
 import FakeLineGraph from "../../../../../../assets/img/users/FakeLineGraph.png";
 
 
@@ -71,7 +71,7 @@ export default function AdminStatistics({
                             endContent={
                                 <Flex me='-16px'>
                                     <FormLabel htmlFor='company'>
-                                        <Avatar src={Usa}/>
+                                        <Avatar src={companies}/>
                                     </FormLabel>
                                     TESLA
                                 </Flex>
