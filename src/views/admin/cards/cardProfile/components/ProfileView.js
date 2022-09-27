@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { SocialButton } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
 import Cover from './Cover';
 
-// const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius = 70, cover, setcover, name, bio, job, company, socials, socialMaxW = '100%' }) => {
+// const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius = 70, cover, setcover, name, bio, job, company, socials && socials.length>0 && , socialMaxW = '100%' }) => {
 const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius = 70 }) => {
     
     useEffect(()=>{
@@ -23,7 +23,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
             position: 'relative',
             textAlign: 'center'
         }}>
-            <Cover minHeight={coverMinHeight} socialMaxW="60%" avatarRadius={avatarRadius} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={card.images.img_profile} cover={card.images.img_cover} socials={socials} />
+            <Cover minHeight={coverMinHeight} socialMaxW="60%" avatarRadius={avatarRadius} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={card?.images?.img_profile} cover={card?.images?.img_cover} socials={socials} />
             <Stack spacing={3}>
                 <Text focusBorderColor='none' style={{ width: '100%', textAlign: 'center', fontSize: '24px', fontWeight: '600' }}>{card.profile.name}</Text>
                 <Text focusBorderColor='none' style={{ width: '100%', textAlign: 'center' }}>{card.profile.bio}</Text>
@@ -44,7 +44,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                 display: 'inline-block',
                 height: 'auto'
             }}>
-                {socials?.map((social, index) => {
+                {socials && socials.length>0 && socials?.map((social, index) => {
                     return <SocialButton imgUrl={social.imgUrl} url={social.link} title={social.title} key={index} />
                 }
                 )}
@@ -84,7 +84,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
     //         </Stack>
 
     //         <Box style={{ overflow: 'hidden', marginBottom: '100px', marginTop: '50px', marginLeft: 'auto', marginRight: 'auto', maxWidth: socialMaxW }}>
-    //             {socials?.map((social, index) => {
+    //             {socials && socials.length>0 && ?.map((social, index) => {
     //                 console.log(social);
     //                 return <SocialButton imgUrl={social.imgUrl} url={social.link} title={social.title} key={index} />
     //             }
