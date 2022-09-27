@@ -6,28 +6,34 @@ import {
   Button,
   Flex,
   FormControl,
+  FormLabel,
+  Input,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import Card from "components/card/Card.js";
 import InputField from "components/fields/InputField";
+import { hostName } from "Helpers/App";
 import { catchError } from "Helpers/Auth";
+import { DisplayError } from "Helpers/Auth";
 import { getAuth } from "Helpers/Auth";
 import React, { useState } from "react";
-var hostName = process.env.REACT_APP_HOSTNAME.toString()
+import { useEffect } from "react";
+
 export default function Settings() {
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "secondaryGray.600";
 
-  const [oldpsw, setoldpsw] = useState();
-  const [newpsw, setnewpsw] = useState();
-  const [conf, setconf] = useState();
+  const [oldpsw, setoldpsw] = useState('');
+  const [newpsw, setnewpsw] = useState('');
+  const [conf, setconf] = useState('');
 
   const [loading, setloading] = useState(false);
   const [success, setsuccess] = useState(null);
   const [error, seterror] = useState(null);
   const axios = require('axios').default;
+  const [errors, seterrors]=useState({});
 
   function postToApi() {
     setloading(true);
@@ -35,8 +41,8 @@ export default function Settings() {
     localStorage.clear();
     axios({
       method: 'post',
-      url: hostName+`/change-password`,
-      data:{
+      url: hostName + `/change-password`,
+      data: {
         "current_password": oldpsw,
         "new_password": newpsw,
         "c_password": conf
@@ -45,13 +51,20 @@ export default function Settings() {
       console.log(response);
       setsuccess('Password changed succesfully');
     }).catch((err) => {
+      console.log(err);
       console.log(err.response);
       catchError(err);
-      seterror("Error!")
+      seterror("Error!");
+      seterrors(err.response.data.data);
     }).finally(() => {
       setloading(false);
     })
   }
+
+  useEffect(() => {
+    console.trace();
+    console.log('oldpsw', oldpsw);
+  }, [oldpsw]);
 
   return (
     <FormControl>
@@ -63,13 +76,13 @@ export default function Settings() {
           <Text fontSize='md' color={textColorSecondary}>
             Here you can set your new password
           </Text>
-          {success&&
+          {success &&
             <Alert status="success">
               <AlertIcon></AlertIcon>
               <AlertDescription>{success}</AlertDescription>
             </Alert>
           }
-          {error&&
+          {error &&
             <Alert status="error">
               <AlertIcon></AlertIcon>
               <AlertDescription>{error}</AlertDescription>
@@ -78,33 +91,75 @@ export default function Settings() {
         </Flex>
         <FormControl>
           <Flex flexDirection='column'>
-            <InputField
-              mb='25px'
-              id='old'
-              label='Old Password'
-              placeholder='@john123'
-              type="password"
+            <FormLabel
+              display='flex'
+              ms='4px'
+              fontSize='sm'
+              fontWeight='500'
+              color={'black'}
+              mb='8px'>
+              Old password<Text color={'blue'}>*</Text>
+            </FormLabel>
+            <Input
+              isRequired
+              isInvalid
+              errorBorderColor='red.300'
+              fontSize='sm'
+              ms={{ base: "0px", md: "4px" }}
+              placeholder='First name'
+              variant='auth'
+              mb='24px'
+              size='lg'
+              onChange={(e) => setoldpsw(e.target.value)}
               value={oldpsw}
-              onChange={(e)=>setoldpsw(e.target.value)}
             />
-            <InputField
-              mb='25px'
-              id='new'
-              label='New Password'
-              placeholder='@john123'
-              type="password"
+            <DisplayError errors={errors?.name} />
+            <FormLabel
+              display='flex'
+              ms='4px'
+              fontSize='sm'
+              fontWeight='500'
+              color={'black'}
+              mb='8px'>
+              New password<Text color={'blue'}>*</Text>
+            </FormLabel>
+            <Input
+              isRequired
+              isInvalid
+              errorBorderColor='red.300'
+              fontSize='sm'
+              ms={{ base: "0px", md: "4px" }}
+              placeholder='First name'
+              variant='auth'
+              mb='24px'
+              size='lg'
+              onChange={(e) => setnewpsw(e.target.value)}
               value={newpsw}
-              onChange={(e)=>setnewpsw(e.target.value)}
             />
-            <InputField
-              mb='25px'
-              id='confirm'
-              label='New Password Confirmation'
-              placeholder='@john123'
-              type="password"
+            <DisplayError errors={errors?.name} />
+            <FormLabel
+              display='flex'
+              ms='4px'
+              fontSize='sm'
+              fontWeight='500'
+              color={'black'}
+              mb='8px'>
+              Confirm new password<Text color={'blue'}>*</Text>
+            </FormLabel>
+            <Input
+              isRequired
+              isInvalid
+              errorBorderColor='red.300'
+              fontSize='sm'
+              ms={{ base: "0px", md: "4px" }}
+              placeholder='First name'
+              variant='auth'
+              mb='24px'
+              size='lg'
+              onChange={(e) => setconf(e.target.value)}
               value={conf}
-              onChange={(e)=>setconf(e.target.value)}
             />
+            <DisplayError errors={errors?.name} />
           </Flex>
         </FormControl>
         <Button
@@ -115,7 +170,7 @@ export default function Settings() {
           fontWeight='500'
           ms='auto'
           onClick={postToApi}
-          >
+        >
           Change Password
         </Button>
       </Card>

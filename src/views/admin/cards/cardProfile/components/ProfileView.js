@@ -8,7 +8,7 @@ import { SocialButton } from 'views/admin/main/account/billing/components/EditCa
 import Cover from './Cover';
 
 // const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius = 70, cover, setcover, name, bio, job, company, socials, socialMaxW = '100%' }) => {
-const ProfileView = ({ card, socials, hideFooter, coverMinHeight }) => {
+const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius = 70 }) => {
     return card?.profile ? (
         <Box style={{
             height: '100%', width: '100%',
@@ -17,7 +17,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight }) => {
             position: 'relative',
             textAlign: 'center'
         }}>
-            <Cover minHeight={coverMinHeight} socialMaxW="60%" avatarRadius={80} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={{ url: `${hostNameStorage}/${card.images.img_profile}` }} cover={{ url: `${hostNameStorage}/${card.images.img_cover}` }} socials={socials} />
+            <Cover minHeight={coverMinHeight} socialMaxW="60%" avatarRadius={avatarRadius} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={{ url: `${hostNameStorage}/${card.images.img_profile}` }} cover={{ url: `${hostNameStorage}/${card.images.img_cover}` }} socials={socials} />
             <Stack spacing={3}>
                 <Text focusBorderColor='none' style={{ width: '100%', textAlign: 'center', fontSize: '24px', fontWeight: '600' }}>{card.profile.name}</Text>
                 <Text focusBorderColor='none' style={{ width: '100%', textAlign: 'center' }}>{card.profile.bio}</Text>
@@ -28,8 +28,8 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight }) => {
                     marginBottom: '50px'
                 }}
             >
-            <a href={`${hostNameStorage}/${card.profile.vcard}`}
-                className={'btn-custom-dark-background'}
+                <a href={`${hostNameStorage}/${card.profile.vcard}`}
+                    className={'Icontap-black-btn'}
                 >Save Contract</a>
             </Box>
             <Box style={{
@@ -45,12 +45,24 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight }) => {
             </Box>
             <Box
                 style={{
-                    position: 'absolute',
-                    bottom: '0',
-                    left: '0'
+                    marginTop: '50px',
+                    marginBottom: '50px'
                 }}
             >
-                {!hideFooter && <Footer />}
+                <a href={`https://icontap.gr/shop-2/`}
+                    className={'Icontap-white-btn'}
+                >Buy your icontap</a>
+            </Box>
+            <Box
+                style={{
+                    position: 'absolute',
+                    bottom: '0',
+                    left: '0',
+                    textAlign:'center',
+                    width:'100%'
+                }}
+            >
+                {!hideFooter && <p className='Icontap-copyright'>Icontap © 2022</p>}
             </Box>
         </Box>
     ) : <></>;

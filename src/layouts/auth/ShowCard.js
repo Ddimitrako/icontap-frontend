@@ -64,14 +64,14 @@ export const ShowCard = () => {
                 minH='100%'
                 h='auto'
                 w='100%'
-                maxW={{ lg: "500px" }}
+                maxW="500px"
                 mx='auto'
                 justifyContent='center'
                 direction='column'
                 boxShadow= '4px 4px 10px grey'
                 
                 >
-                <ProfileView card={card} socials={socials} />
+                <ProfileView card={card} socials={socials} avatarRadius={80} />
             </Flex>
         </Flex>
         // </DefaultAuth>

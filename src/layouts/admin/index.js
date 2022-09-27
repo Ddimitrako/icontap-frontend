@@ -15,6 +15,7 @@ import EditCardModal2 from "views/admin/main/account/billing/components/EditCard
 import { MeContext } from "Helpers/Auth.js";
 import { GetMeFromApi } from "Helpers/Auth.js";
 import { TitleContext } from "Helpers/Context.js";
+import { hasRole } from "Helpers/Auth.js";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
@@ -99,14 +100,19 @@ export default function Dashboard(props) {
     return activeNavbar;
   };
   const getRoutes = (routes) => {
+    console.log('routes', routes);
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
+        let authorized=prop?.role?prop.role==hasRole(prop.role):true;
         return (
+          authorized?
           <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
+          path={prop.layout + prop.path}
+          component={prop.component}
+          key={key}
           />
+          :
+          <Redirect from={prop.layout + prop.path} to='/' />
         );
       }
       if (prop.collapse) {
@@ -125,6 +131,7 @@ export default function Dashboard(props) {
   const [MeContextValue, setMeContextValue]=useState('');
   
   const [TitleContextValue, setTitleContextValue]=useState('');
+
 
   return (
     <Box>

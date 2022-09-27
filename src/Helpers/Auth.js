@@ -94,21 +94,16 @@ export function GetMeFromApi() {
     const [MeContextValue, setMeContextValue] = useContext(MeContext);
 
     useEffect(() => {
-        let me = localStorage.getItem('me');
-        if (me) {
-            setMeContextValue(JSON?.parse(me));
-        } else {
-            axios({
-                method: 'get',
-                url: `${hostName}/me`
-            }).then((response) => {
-                console.log(response);
-                localStorage.setItem('me', JSON.stringify(response.data.data));
-                setMeContextValue(response.data.data);
-            }).catch((err) => {
-                console.log(err.response);
-            })
-        }
+        axios({
+            method: 'get',
+            url: `${hostName}/me`
+        }).then((response) => {
+            console.log(response);
+            localStorage.setItem('me', JSON.stringify(response.data.data));
+            setMeContextValue(response.data.data);
+        }).catch((err) => {
+            console.log(err.response);
+        })
     }, []);
 
     return <></>;
@@ -119,5 +114,8 @@ export function getMe() {
     return JSON?.parse(localStorage.getItem('me'));
 }
 
+export function hasRole(roleId) {
+    return getMe()?.role?.id==roleId;
+}
 
 export const DisplayError=({errors})=>errors?.length>0?<UnorderedList style={{color:'red'}}>{errors.map((err, i)=><ListItem key={i}>{err}</ListItem>)}</UnorderedList>:<></>;
