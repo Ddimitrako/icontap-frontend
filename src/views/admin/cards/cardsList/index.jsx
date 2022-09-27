@@ -140,7 +140,7 @@ export default function Collection(props) {
       data: {
         "title": `Dummy card ${Math.random()}`,
         "is_personal": true,
-        "owner": 1
+        "owner": getMe().id
       }
     }).then((response => {
       console.log(response);
