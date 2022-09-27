@@ -61,7 +61,7 @@ export const ShowCard = () => {
 
     // return <DefaultAuth noIllustration>
     //     
-    return (card?.profile?.name && socials?.length>0)?(
+    return (card)?(
         <Flex position='relative' h='max-content' style={{ height: '100%', width: '100%' }}>
             <Flex
                 minH='100%'
@@ -78,7 +78,7 @@ export const ShowCard = () => {
             </Flex>
         </Flex>
         // </DefaultAuth>
-    ):<></>;
+    ):<>asd</>;
 }
 
 export default ShowCard;
