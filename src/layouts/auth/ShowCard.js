@@ -30,8 +30,11 @@ export const ShowCard = () => {
             url: `${hostName}/card/${cardId}`
         }).then((response) => {
             console.log(response);
-            setcard(response.data.data);
-            setsocials(parseProfileContents(response.data.data));
+            let tempCard=response.data.data;
+            tempCard.images.img_profile={ url: `${hostNameStorage}/${tempCard.images.img_profile }`};
+            tempCard.images.img_cover={ url: `${hostNameStorage}/${tempCard.images.img_cover }`};
+            setcard(tempCard);
+            setsocials(parseProfileContents(tempCard));
         }).catch((err) => {
             console.log(err.response);
         }).finally(() => {

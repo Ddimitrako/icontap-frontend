@@ -137,6 +137,11 @@ export default function EditProfile(props) {
         }
     }, [card]);
 
+    useEffect(()=>{
+        console.log('props.name, props.bio', props.name, props.bio);
+        props.setCard({...card, profile:{name:props.name, bio:props.bio}, images:{img_cover:props.cover, img_profile:props.avatar}});
+    },[props.name, props.bio, props.avatar, props.cover]);
+
     const [updating, setUpdating] = useState(false);
 
     // useEffect(()=>{
