@@ -106,7 +106,7 @@ export default function Settings() {
               errorBorderColor='red.300'
               fontSize='sm'
               ms={{ base: "0px", md: "4px" }}
-              placeholder='First name'
+              placeholder='Old password'
               variant='auth'
               mb='24px'
               size='lg'
@@ -129,7 +129,7 @@ export default function Settings() {
               errorBorderColor='red.300'
               fontSize='sm'
               ms={{ base: "0px", md: "4px" }}
-              placeholder='First name'
+              placeholder='New password'
               variant='auth'
               mb='24px'
               size='lg'
@@ -152,7 +152,7 @@ export default function Settings() {
               errorBorderColor='red.300'
               fontSize='sm'
               ms={{ base: "0px", md: "4px" }}
-              placeholder='First name'
+              placeholder='New password'
               variant='auth'
               mb='24px'
               size='lg'
