@@ -8,7 +8,8 @@ services:
     ports:
     - 3000:3000
     networks:
-      - api-network
+      - icontap-backend_api-network
 networks:
-  api-network:
+  icontap-backend_api-network:
+          external: true
 
