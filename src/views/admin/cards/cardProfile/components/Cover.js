@@ -23,23 +23,39 @@ const SelectImgButton = ({ styles, setter }) => <label
 
 </label>
 
-const Avatar = ({ styles, avatar, avatarRadius }) => <div style={{
-    width: `${avatarRadius * 2}px`,
-    height: `${avatarRadius * 2}px`,
-    position: 'absolute',
-    // background: 'white url(' + avatar.url + ') center cover no-repeat',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:'white',
-    backgroundImage:'url(' + avatar?.url + ')',
-    backgroundPosition:'center',
-    borderRadius: `${avatarRadius}px`,
-    border: 'solid white 3px',
-    boxShadow: '4px 4px 10px grey',
-    ...styles
-}}>
+const Avatar = ({ styles, avatar, avatarRadius }) => (
+    <div style={{
+        position: 'absolute',
+        width: `${avatarRadius * 2}px`,
+        ...styles
+    }}>
+        <div style={{
+            position:'relative',
+            width:'100%',
+            paddingTop:'100%'
+        }}>
 
-</div>
+        <div style={{
+            top:'0',
+            left:'0',
+            bottom:'0',
+            right:'0',
+            position: 'absolute',
+            // background: 'white url(' + avatar.url + ') center cover no-repeat',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'white',
+            backgroundImage: 'url(' + avatar?.url + ')',
+            backgroundPosition: 'center',
+            borderRadius: `${avatarRadius}px`,
+            border: 'solid white 3px',
+            boxShadow: '4px 4px 10px grey',
+        }}>
+
+            </div>
+        </div>
+    </div>
+)
 
 const calculateImageButtonPosition = (avatarRadius) => {
     let result = (((avatarRadius * 2) / Math.sqrt(2)) - avatarRadius) / (Math.sqrt(2));

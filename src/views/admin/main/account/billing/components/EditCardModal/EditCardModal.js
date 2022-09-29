@@ -81,7 +81,8 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
         </div>
         <div style={{
             width:'100%',
-            textAlign:'center'
+            textAlign:'center',
+            whiteSpace: 'nowrap'
         }}>{title}</div>
     </div>
 }
