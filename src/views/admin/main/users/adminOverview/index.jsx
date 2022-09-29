@@ -105,6 +105,7 @@ export default function AdminUsersOverview() {
                         let companyObj = {};
                         companyObj['name'] = response.data.data[i].name;
                         companyObj['uuid'] = response.data.data[i].uuid;
+                        companyObj['users_count'] = response.data.data[i].users_count;
                         companiesNamesUUIDs.push(companyObj);
 
                     }

@@ -94,7 +94,8 @@ export default function AdminStatistics({
                                         } else {
                                             setCurrentCompany({
                                                 name: companiesList[e.target.value].name,
-                                                uuid: companiesList[e.target.value].uuid
+                                                uuid: companiesList[e.target.value].uuid,
+                                                users_count:companiesList[e.target.value].users_count
                                             })
                                         }
                                     }}
@@ -122,7 +123,7 @@ export default function AdminStatistics({
                 }
                 // endContent={<Image src={FakeLineGraph}/>}
                 name='Current Company Users'
-                value={currentCompanyUsers}
+                value={currentCompany.users_count}
             />
         </SimpleGrid>
     )
