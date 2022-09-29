@@ -114,7 +114,7 @@ export default function Collection(props) {
       method: 'get',
       url: `${hostName}/user/${Me.id}/cards`
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
       setCards(response.data.data);
     }).catch((err) => {
       console.log(err.response);
@@ -127,7 +127,7 @@ export default function Collection(props) {
   useEffect(() => {
     if (Me.id && firstTime) {
       setFirstTime(false);
-      console.log(Me);
+      // console.log(Me);
       getCards();
     }
   }, [Me]);

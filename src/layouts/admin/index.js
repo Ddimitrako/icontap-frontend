@@ -100,7 +100,7 @@ export default function Dashboard(props) {
     return activeNavbar;
   };
   const getRoutes = (routes) => {
-    console.log('routes', routes);
+    // console.log('routes', routes);
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         let authorized=prop?.role?prop.role==hasRole(prop.role):true;
@@ -112,7 +112,7 @@ export default function Dashboard(props) {
           key={key}
           />
           :
-          <Redirect from={prop.layout + prop.path} to='/' />
+          <Redirect from={prop.layout + prop.path} key={key} to='/' />
         );
       }
       if (prop.collapse) {

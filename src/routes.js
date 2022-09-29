@@ -138,6 +138,7 @@ const routes = [
                 color='inherit'
             />
         ),
+        role:1
     },
     {
         name: "Users Overview",

@@ -19,7 +19,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
         <Box style={{
             height: '100%', width: '100%',
             // boxShadow: '4px 4px 10px grey',
-            paddingBottom: '300px',
+            paddingBottom: hideFooter?'30px':'300px',
             position: 'relative',
             textAlign: 'center'
         }}>

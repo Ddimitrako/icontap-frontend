@@ -25,7 +25,7 @@ const CustomIframe = ({ card, avatar, setavatar, cover, setcover, name, bio, job
                     </Box> */}
                     <Flex
                         minH='100%'
-                        h='auto'
+                        h='max-content'
                         w='100%'
                         justifyContent='center'
                         direction='column'
