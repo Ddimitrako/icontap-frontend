@@ -315,10 +315,12 @@ export default function IcontapCard(props) {
       <Tabs>
         <TabPanels mb='20px'>
           <TabPanel p='0px'>
-            <Image src={props?.card?.images?.img_profile?`${hostNameStorage}/${props?.card?.images?.img_profile}`:whitecard} />
+            {/* <Image src={props?.card?.images?.img_profile?`${hostNameStorage}/${props?.card?.images?.img_profile}`:whitecard} /> */}
+            <Image src={whitecard} />
           </TabPanel>
           <TabPanel p='0px'>
-            <Image src={props?.card?.images?.img_cover?`${hostNameStorage}/${props?.card?.images?.img_cover}`:blackCard} />
+            {/* <Image src={props?.card?.images?.img_cover?`${hostNameStorage}/${props?.card?.images?.img_cover}`:blackCard} /> */}
+            <Image src={blackCard} />
           </TabPanel>
         </TabPanels>
         <TabList
