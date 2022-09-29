@@ -45,7 +45,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                 height: 'auto'
             }}>
                 {socials && socials.length>0 && socials?.map((social, index) => {
-                    return <SocialButton imgUrl={social.imgUrl} url={social.link} title={social.title} key={index} />
+                    return <SocialButton imgUrl={social.imgUrl} url={social.link} title={social.title} key={index} preview={hideFooter}/>
                 }
                 )}
             </Box>

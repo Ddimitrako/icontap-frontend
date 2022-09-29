@@ -27,7 +27,7 @@ export const CustomEditBox = ({ caption, value, onChange }) => <div className="j
     </div>
 </div>
 
-export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, title, blobUrl }) => {
+export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, title, blobUrl, preview=false }) => {
 
     const selectSocialSize = 30;
 
@@ -57,12 +57,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
     >
     </div>
 
-    return <div style={{
-        width: '27%',
-        margin:'3%',
-        padding: '4%',
-        float: 'left',
-    }}>
+    return <div className={preview?"social-button-preview":"social-button"}>
         <div style={{
             width: '100%',
             // height: '90px',

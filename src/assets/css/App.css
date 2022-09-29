@@ -3,6 +3,26 @@ body {
   font-family: "DM Sans", sans-serif;
 }
 
+.social-button{
+  width: 28%;
+  margin:2%;
+  padding: 3%;
+  float: left;
+}
+
+.social-button-preview{
+  width: 28%;
+  margin:2%;
+  padding: 1%;
+  float: left;
+}
+
+@media only screen and (max-width: 768px) {
+  .social-button{
+    padding: 1%;
+  }
+}
+
 option {
   color: black;
 }
