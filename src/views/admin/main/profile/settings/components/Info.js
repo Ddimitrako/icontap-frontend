@@ -93,6 +93,8 @@ export default function Settings({setShowAlert}) {
         headers: {Authorization: `Bearer ${getAuth()}`}
     };
     const bodyParameters = {
+        "name": firstName,
+        "last_name": lastName,
         "telephone": telephone,
         "address": address,
         "town": city,
