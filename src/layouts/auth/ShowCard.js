@@ -31,8 +31,10 @@ export const ShowCard = () => {
         }).then((response) => {
             console.log(response);
             let tempCard=response.data.data;
-            tempCard.images.img_profile={ url: `${hostNameStorage}/${tempCard.images.img_profile }`};
-            tempCard.images.img_cover={ url: `${hostNameStorage}/${tempCard.images.img_cover }`};
+            if(!tempCard?.images)
+                tempCard.images={};
+            tempCard.images.img_profile={ url: tempCard?.images?.img_profile?`${hostNameStorage}/${tempCard.images.img_profile }`:'/static/media/img.jpg'};
+            tempCard.images.img_cover={ url: tempCard?.images?.img_cover?`${hostNameStorage}/${tempCard.images.img_cover }`:'/static/media/img.jpg'};
             setcard(tempCard);
             setsocials(parseProfileContents(tempCard));
         }).catch((err) => {
@@ -78,7 +80,7 @@ export const ShowCard = () => {
             </Flex>
         </Flex>
         // </DefaultAuth>
-    ):<>asd</>;
+    ):<></>;
 }
 
 export default ShowCard;

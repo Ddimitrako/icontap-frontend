@@ -36,7 +36,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
             >
                 <a href={`${hostNameStorage}/${card.profile.vcard}`}
                     className={'Icontap-black-btn'}
-                >Save Contract</a>
+                >Save Contact</a>
             </Box>
             <Box style={{
                 width: '100%',
@@ -45,7 +45,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                 height: 'auto'
             }}>
                 {socials && socials.length>0 && socials?.map((social, index) => {
-                    return <SocialButton imgUrl={social.imgUrl} url={social.link} title={social.title} key={index} preview={hideFooter}/>
+                    return <SocialButton imgUrl={social.imgUrl} url={social.link} title={social.title} key={index} />
                 }
                 )}
             </Box>
