@@ -83,6 +83,8 @@ export function setAxiosErrorInterceptor() {
         if (error.response.status == 403) {
             window.location.href = '/admin/logout';
         }
+
+        return Promise.reject(error);
     }
     );
 }

@@ -15,7 +15,6 @@ import Card from "components/card/Card.js";
 import InputField from "components/fields/InputField";
 import { hostName } from "Helpers/App";
 import { catchError } from "Helpers/Auth";
-import { DisplayError } from "Helpers/Auth";
 import { getAuth } from "Helpers/Auth";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -33,14 +32,34 @@ export default function Settings() {
   const [success, setsuccess] = useState(null);
   const [error, seterror] = useState(null);
   const axios = require('axios').default;
-  const [errors, seterrors]=useState({});
+
+  const errorMsgs={
+    WRONG_PASSWORD:'The password is incorrect'
+  }
+
+  const ErrorDisplay = ({error}) => (
+    <>
+      <b>Errors!:</b>
+      <div>
+      {error?.data ?
+        <ul style={{listStyleType:'none'}}>
+          {Object.keys(error.data).map((key, i) =>
+            <li key={i}>{key} {error.data[key]}</li>
+            )}
+        </ul>
+        :
+        errorMsgs[error.message]
+      }
+      </div>
+    </>
+  )
 
   function postToApi() {
     setloading(true);
     setsuccess(null);
     localStorage.clear();
     axios({
-      method: 'post',
+      method: 'put',
       url: hostName + `/change-password`,
       data: {
         "current_password": oldpsw,
@@ -50,21 +69,16 @@ export default function Settings() {
     }).then((response) => {
       console.log(response);
       setsuccess('Password changed succesfully');
+      seterror(null);
     }).catch((err) => {
       console.log(err);
       console.log(err.response);
       catchError(err);
-      seterror("Error!");
-      seterrors(err.response.data.data);
+      seterror(<ErrorDisplay error={err.response.data} />);
     }).finally(() => {
       setloading(false);
     })
   }
-
-  useEffect(() => {
-    console.trace();
-    console.log('oldpsw', oldpsw);
-  }, [oldpsw]);
 
   return (
     <FormControl>
@@ -112,8 +126,8 @@ export default function Settings() {
               size='lg'
               onChange={(e) => setoldpsw(e.target.value)}
               value={oldpsw}
+              type='password'
             />
-            <DisplayError errors={errors?.name} />
             <FormLabel
               display='flex'
               ms='4px'
@@ -135,8 +149,8 @@ export default function Settings() {
               size='lg'
               onChange={(e) => setnewpsw(e.target.value)}
               value={newpsw}
+              type='password'
             />
-            <DisplayError errors={errors?.name} />
             <FormLabel
               display='flex'
               ms='4px'
@@ -149,6 +163,7 @@ export default function Settings() {
             <Input
               isRequired
               isInvalid
+              type='password'
               errorBorderColor='red.300'
               fontSize='sm'
               ms={{ base: "0px", md: "4px" }}
@@ -159,7 +174,6 @@ export default function Settings() {
               onChange={(e) => setconf(e.target.value)}
               value={conf}
             />
-            <DisplayError errors={errors?.name} />
           </Flex>
         </FormControl>
         <Button

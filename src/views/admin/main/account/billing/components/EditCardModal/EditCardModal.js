@@ -79,7 +79,9 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
         >
             {editable && <SelectImgButton />}
         </div>
-        <div style={{
+        <div 
+        className='social-label'
+        style={{
             width:'100%',
             textAlign:'center',
             whiteSpace: 'nowrap'

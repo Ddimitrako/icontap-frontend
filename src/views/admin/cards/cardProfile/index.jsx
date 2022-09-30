@@ -144,8 +144,8 @@ export default function Page() {
             {/* Main Fields */}
             <Tabs>
                 <TabList className='height-none' style={{border:'0', backgroundColor:'#f9f9f9'}}>
-                    <Tab className='tab-custom'>{profileIcon} Profile</Tab>
-                    {card.code && <Tab className='tab-custom'>{qrIcon} QR Code</Tab>}
+                    <Tab _focus={{ boxShadow: "none", }} className='tab-custom'>{profileIcon} Profile</Tab>
+                    {card.code && <Tab _focus={{ boxShadow: "none", }} className='tab-custom'>{qrIcon} QR Code</Tab>}
                 </TabList>
                 <TabPanels>
                     <TabPanel>
