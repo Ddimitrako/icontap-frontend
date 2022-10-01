@@ -40,6 +40,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
             </Box>
             <Box style={{
                 width: '100%',
+                maxWidth:'400px',
                 margin: '0 auto',
                 display: 'inline-block',
                 height: 'auto'

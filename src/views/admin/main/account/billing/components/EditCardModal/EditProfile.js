@@ -268,12 +268,9 @@ export default function EditProfile(props) {
                 </Button>
             </div>
 
-            <div style={{
-                width: '80%',
-                margin: '0 auto',
-                marginTop:'50px',
-                overflow: 'auto'
-            }}>
+            <div 
+                className='social-btn-container'
+            >
                 {socials?.map((social, index) =>
                     { 
                         // console.log(social);

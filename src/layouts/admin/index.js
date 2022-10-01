@@ -174,6 +174,7 @@ export default function Dashboard(props) {
 
           {getRoute() ? (
             <Box
+              className="main-page-container"
               mx='auto'
               p={{ base: "20px", md: "30px" }}
               pe='20px'

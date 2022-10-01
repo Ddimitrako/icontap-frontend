@@ -76,7 +76,7 @@ export const ShowCard = () => {
                 boxShadow= '4px 4px 10px grey'
                 
                 >
-                <ProfileView card={card} socials={socials} avatarRadius={80} />
+                <ProfileView card={card} socials={socials} avatarRadius={72} />
             </Flex>
         </Flex>
         // </DefaultAuth>

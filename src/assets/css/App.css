@@ -5,7 +5,7 @@ body {
 }
 
 .social-button{
-  width: 28%;
+  width: 29%;
   margin:2%;
   padding: 3%;
   float: left;
@@ -22,21 +22,6 @@ body {
   font-size: 1rem;
 }
 
-@media only screen and (max-width: 768px) {
-  .social-button{
-    padding: 1%;
-  }
-}
-
-@media only screen and (max-width: 300px) {
-  .social-label{
-    font-size: 5vmin;
-  }
-}
-
-option {
-  color: black;
-}
 
 .btn-custom-dark-background{
   height: var(--chakra-sizes-12) !important;
@@ -47,6 +32,65 @@ option {
   padding: 15px 20px !important;
 }
 
+.social-btn-container{
+  width: 80%;
+  margin: 0 auto;
+  margin-top:50px;
+  overflow: auto;
+}
+
+.custom-phone-iframe{
+  display: block;
+}
+
+@media only screen and (max-width: 500px) {
+  .social-button{
+    padding: 1%;
+  }
+  .btn-custom-dark-background {
+    font-size: 4vmin !important;
+  }
+
+  .edit-profile-container{
+    padding: 5px !important;
+  }
+
+.social-btn-container{
+  width: 100%;
+}
+
+.main-page-container{
+  /* -webkit-margin-start: auto; */
+    /* margin-inline-start: auto; */
+    /* -webkit-margin-end: auto; */
+    /* margin-inline-end: auto; */
+    padding: 5px !important;
+    -webkit-padding-end: 5px !important;
+    padding-inline-end: 5px !important;
+    padding-top: 0 !important;
+}
+
+}
+
+@media only screen and (max-width: 400px) {
+  
+  .social-label {
+    font-size: 5vmin;
+  }
+  
+}
+
+@media only screen and (max-width: 959px) {
+  
+  .custom-phone-iframe{
+    display: none;
+  }
+  
+}
+
+option {
+  color: black;
+}
 
 .custom-dark-background{
   height: var(--chakra-sizes-12) !important;

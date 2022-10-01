@@ -49,11 +49,11 @@ export default function AdminNavbar(props) {
   return (
     <Box
       position={navbarPosition}
-      boxShadow={navbarShadow}
-      bg={navbarBg}
+      // boxShadow={navbarShadow}
+      // bg={navbarBg}
       borderColor={navbarBorder}
       filter={navbarFilter}
-      backdropFilter={navbarBackdrop}
+      // backdropFilter={navbarBackdrop}
       backgroundPosition='center'
       backgroundSize='cover'
       borderRadius='16px'

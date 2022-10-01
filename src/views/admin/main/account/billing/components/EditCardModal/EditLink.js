@@ -83,13 +83,13 @@ export default function EditLink(props) {
             </svg>
         </div>
 
-        <div className="jss488" onClick={() => { props.setPage('EditProfileContainer') }}>
+        {/* <div className="jss488" onClick={() => { props.onClose();}}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 6L8 10L12 14" stroke="#828282" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 </path>
             </svg>
             <span>Back</span>
-        </div>
+        </div> */}
 
         <div className="jss489">
             <div className="jss497">

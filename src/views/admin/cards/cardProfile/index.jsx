@@ -161,7 +161,7 @@ export default function Page() {
                             display={{ base: "block", lg: "grid" }}>
                             <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'>
                                 <FormControl>
-                                    <Card>
+                                    <Card className='edit-profile-container'>
                                         <EditProfile socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
                                     </Card>
                                 </FormControl>
