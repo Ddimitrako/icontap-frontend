@@ -101,7 +101,7 @@ export default function EditLink(props) {
                 </div>
                 <div>
                     <div className="jss499">
-                        <label style={{ maxWidth: '220px', paddingBottom: '10px' }}>Select photo here
+                        <label style={{ maxWidth: '220px', paddingBottom: '10px', fontWeight:'bold', color:'#6e6ed1', cursor:'pointer' }}>Select photo here
                             <input type="file" style={{ display: 'none' }} onChange={(e) => readURL(e, setimg)} />
                         </label>
                     </div>
