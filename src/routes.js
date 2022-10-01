@@ -78,7 +78,7 @@ const routes = [
     {
         name: "Cards",
         layout: "/admin",
-        path: "/cardsList/card",
+        path: "/cardsList/card/:userId",
         component: NFTProfile,
         secondary: true,
         icon: (
@@ -89,6 +89,88 @@ const routes = [
                 color='inherit'
             />
         ),
+        onlyRoute:true,
+        role:1
+    },
+    {
+        name: "Cards",
+        layout: "/admin",
+        path: "/cardsList/card/",
+        component: NFTProfile,
+        secondary: true,
+        icon: (
+            <Icon
+                as={AiFillIdcard}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+
+    },
+    {
+        name: "Admin Page",
+        layout: "/admin",
+        path: "/main/users/admin-overview",
+
+        component: AdminUsersOverview,
+        icon: (
+            <Icon
+                as={MdSupervisorAccount}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+        role:1
+    },
+    {
+        name: "Users Overview",
+        layout: "/admin",
+        path: "/main/users/users-overview",
+
+        component: CompanyUsersOverview,
+        icon: (
+            <Icon
+                as={MdSupervisorAccount}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+        role:3
+    },
+    {
+        name: "Edit Card",
+        layout: "/admin",
+        path: "/cards/edit/:cardId",
+        component: Page,
+        onlyRoute:true
+
+    },
+    {
+        name: "logout",
+        layout: "/admin",
+        path: "/logout",
+        component: LogoutMid,
+        onlyRoute:true
+
+    },
+    {
+        name: "Profile",
+        layout: "/admin",
+        path: "/main/profile/settings",
+        exact: false,
+        component: ProfileSettings,
+        icon: (
+            <Icon
+                as={AiOutlineUser}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+        onlyRoute:false
 
     },
     // {
@@ -124,38 +206,7 @@ const routes = [
     //         />
     //     ),
     // },
-    {
-        name: "Admin Page",
-        layout: "/admin",
-        path: "/main/users/admin-overview",
-
-        component: AdminUsersOverview,
-        icon: (
-            <Icon
-                as={MdSupervisorAccount}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-        role:1
-    },
-    {
-        name: "Users Overview",
-        layout: "/admin",
-        path: "/main/users/users-overview",
-
-        component: CompanyUsersOverview,
-        icon: (
-            <Icon
-                as={MdSupervisorAccount}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-        role:3
-    },
+    
 
     // {
     //   name: "Applications",
@@ -200,39 +251,7 @@ const routes = [
     //         />
     //     ),
     // },
-    {
-        name: "Edit Card",
-        layout: "/admin",
-        path: "/cards/edit/:cardId",
-        component: Page,
-        onlyRoute:true
-
-    },
-    {
-        name: "logout",
-        layout: "/admin",
-        path: "/logout",
-        component: LogoutMid,
-        onlyRoute:true
-
-    },
-    {
-        name: "Profile",
-        layout: "/admin",
-        path: "/main/profile/settings",
-        exact: false,
-        component: ProfileSettings,
-        icon: (
-            <Icon
-                as={AiOutlineUser}
-                width='20px'
-                height='20px'
-                color='inherit'
-            />
-        ),
-        onlyRoute:false
-
-    },
+    
     // {
     //   name: "News Feed",
     //   layout: "/admin",

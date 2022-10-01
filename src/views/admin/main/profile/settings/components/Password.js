@@ -34,7 +34,8 @@ export default function Settings() {
   const axios = require('axios').default;
 
   const errorMsgs={
-    WRONG_PASSWORD:'The password is incorrect'
+    WRONG_PASSWORD:'The password is incorrect',
+    SAME_PASSWORD:'The password is the same'
   }
 
   const ErrorDisplay = ({error}) => (

@@ -72,6 +72,7 @@ import { useContext } from "react";
 import { MeContext } from "Helpers/Auth";
 import { useState } from "react";
 import { hostName } from "Helpers/App";
+import { useParams } from "react-router-dom";
 export default function Collection(props) {
 
   const [Me, setMe] = useContext(MeContext);
@@ -108,13 +109,17 @@ export default function Collection(props) {
     </SimpleGrid>
   );
 
+  let { userId } = useParams();
+  const statedUser=props?.history?.location?.state?.user;
+  const currUserId=userId??Me.id;
+
   function getCards() {
     setloading(true);
     axios({
       method: 'get',
-      url: `${hostName}/user/${Me.id}/cards`
+      url: `${hostName}/user/${currUserId}/cards`
     }).then((response) => {
-      // console.log(response);
+      console.log(response);
       setCards(response.data.data);
     }).catch((err) => {
       console.log(err.response);
@@ -233,7 +238,7 @@ export default function Collection(props) {
           color={textColor}
           fontSize='2xl'
           ms='24px'
-          fontWeight='700'>Your Cards
+          fontWeight='700'>{(statedUser && statedUser?.id!=Me.id)?`${statedUser?.name} ${statedUser?.last_name}'s`:'Your'} Cards
         </Text>
 
         <Text>Add a new Card</Text>
