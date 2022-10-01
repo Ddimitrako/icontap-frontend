@@ -15,7 +15,7 @@ const CustomIframe = ({ card, avatar, setavatar, cover, setcover, name, bio, job
         console.log('custom card', card);
     },[card]);
     return (
-        <div className='custom-phone-iframe'>
+        <div className='hide-under-959'>
             <div id="wrapper">
                 <Flex position='relative' className='phone hide-scrollbar' style={{ height: '650px', width: '350px', overflow:'auto'}}>
                 {/* <Flex className="phone view_3 hide-scrollbar" id="phone" style={{position:'relative', zoom: 1, width: 350, height: 650, overflow: 'auto' }}> */}

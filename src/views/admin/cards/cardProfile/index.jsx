@@ -167,7 +167,7 @@ export default function Page() {
                                 </FormControl>
                             </Flex>
                             <Flex flexDirection='column' alignItems='center' pt='10px'>
-                                <Heading color={'black'} size='sm'>Profile Live Preview</Heading>
+                                <Heading className='hide-under-959' color={'black'} size='sm'>Profile Live Preview</Heading>
                                 {card && <CustomIframe socials={socials} card={card}/>}
                                 <Stack direction='row' spacing={4}>
                                     <Button onClick={() => {
