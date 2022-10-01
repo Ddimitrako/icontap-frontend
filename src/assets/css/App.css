@@ -24,10 +24,32 @@ body {
 
 
 .btn-custom-dark-background{
-  height: var(--chakra-sizes-12) !important;
+  height: auto;
+  min-height: var(--chakra-sizes-12) !important;
   font-size: var(--chakra-fontSizes-lg) !important;
   background-color: #212121 !important;
   color:white !important;
+  border-radius: 10px !important;
+  padding: 15px 20px !important;
+}
+
+.btn-custom-danger-background{
+  height: auto;
+  min-height: var(--chakra-sizes-12) !important;
+  font-size: var(--chakra-fontSizes-lg) !important;
+  background-color: #c40303 !important;
+  color:white !important;
+  border-radius: 10px !important;
+  padding: 15px 20px !important;
+}
+
+.btn-custom-white-background{
+  height: auto;
+  border: gray solid 1px;
+  min-height: var(--chakra-sizes-12) !important;
+  font-size: var(--chakra-fontSizes-lg) !important;
+  background-color: white !important;
+  color:black !important;
   border-radius: 10px !important;
   padding: 15px 20px !important;
 }

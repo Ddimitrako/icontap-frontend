@@ -101,7 +101,7 @@ export default function EditLink(props) {
                 </div>
                 <div>
                     <div className="jss499">
-                        <label style={{ maxWidth: '220px', paddingBottom: '10px' }}>Select photo here or drag and drop one in place of current
+                        <label style={{ maxWidth: '220px', paddingBottom: '10px' }}>Select photo here
                             <input type="file" style={{ display: 'none' }} onChange={(e) => readURL(e, setimg)} />
                         </label>
                     </div>
@@ -138,17 +138,18 @@ export default function EditLink(props) {
             </div>
 
             <div className="jss550">
-                <button onClick={() => { props.onClose(); }} className="MuiButtonBase-root MuiButton-root MuiButton-text jss560" tabIndex="0" type="button">
+                <button style={{borderRadius:'10px'}} onClick={() => { props.onClose(); }} className="MuiButtonBase-root MuiButton-root MuiButton-text jss560" tabIndex="0" type="button">
                     <span className="MuiButton-label">Cancel</span>
                     {/* <span className="MuiTouchRipple-root">
                     </span> */}
                 </button>
-                <button onClick={upsertSocials} className={`MuiButtonBase-root MuiButton-root MuiButton-contained jss565 MuiButton-containedPrimary ${ready ? '' : 'Mui-disabled'}`} type="button" disabled="">
+                <button style={{borderRadius:'10px'}} onClick={upsertSocials} className={`MuiButtonBase-root MuiButton-root MuiButton-contained jss565 MuiButton-containedPrimary ${ready ? '' : 'Mui-disabled'}`} type="button" disabled="">
                     <span className="MuiButton-label">{props.currSocial == undefined ? 'Add link' : 'Update link'}</span>
                 </button>
                 {props.currSocial !== undefined && <button onClick={deleteSocial} className={`MuiButtonBase-root MuiButton-root MuiButton-contained jss565`} style={{
                     color:'white',
-                    backgroundColor:'#c40303'
+                    backgroundColor:'#c40303',
+                    borderRadius:'10px'
                 }} type="button" disabled="">
                     <span className="MuiButton-label">Delete Link</span>
                 </button>}

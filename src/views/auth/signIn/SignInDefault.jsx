@@ -271,6 +271,7 @@ function SignIn() {
               onClick={postToApi}  
               isLoading={loading}
               loadingText={'Please wait...'}
+              className='btn-custom-dark-background'
               >
               Sign In
             </Button>
