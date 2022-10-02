@@ -312,35 +312,35 @@ function SignUp() {
               </InputRightElement>
             </InputGroup>
             <DisplayError errors={errors?.c_password} />
-            <Flex justifyContent='space-between' align='center' mb='24px'>
-              <FormControl display='flex' alignItems='start'>
-                <Checkbox
-                  id='remember-login'
-                  colorScheme='brandScheme'
-                  me='10px'
-                  mt='3px'
-                />
-                <FormLabel
-                  htmlFor='remember-login'
-                  mb='0'
-                  fontWeight='normal'
-                  color={textColor}
-                  fontSize='sm'>
-                  By creating an account means you agree to the{" "}
-                  <Link
-                    href='https://google.gr'
-                    fontWeight='500'>
-                    Terms and Conditions,
-                  </Link>{" "}
-                  and our{" "}
-                  <Link
-                    href='https://simmmple.com/privacy-policy'
-                    fontWeight='500'>
-                    Privacy Policy
-                  </Link>
-                </FormLabel>
-              </FormControl>
-            </Flex>
+            {/*<Flex justifyContent='space-between' align='center' mb='24px'>*/}
+            {/*  <FormControl display='flex' alignItems='start'>*/}
+            {/*    <Checkbox*/}
+            {/*      id='remember-login'*/}
+            {/*      colorScheme='brandScheme'*/}
+            {/*      me='10px'*/}
+            {/*      mt='3px'*/}
+            {/*    />*/}
+            {/*    <FormLabel*/}
+            {/*      htmlFor='remember-login'*/}
+            {/*      mb='0'*/}
+            {/*      fontWeight='normal'*/}
+            {/*      color={textColor}*/}
+            {/*      fontSize='sm'>*/}
+            {/*      By creating an account means you agree to the{" "}*/}
+            {/*      <Link*/}
+            {/*        href='https://google.gr'*/}
+            {/*        fontWeight='500'>*/}
+            {/*        Terms and Conditions,*/}
+            {/*      </Link>{" "}*/}
+            {/*      and our{" "}*/}
+            {/*      <Link*/}
+            {/*        href='https://simmmple.com/privacy-policy'*/}
+            {/*        fontWeight='500'>*/}
+            {/*        Privacy Policy*/}
+            {/*      </Link>*/}
+            {/*    </FormLabel>*/}
+            {/*  </FormControl>*/}
+            {/*</Flex>*/}
             <Button
               variant='brand'
               fontSize='14px'
