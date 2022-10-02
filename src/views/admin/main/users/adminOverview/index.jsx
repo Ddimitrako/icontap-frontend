@@ -176,7 +176,7 @@ export default function AdminUsersOverview(props) {
                 <Button colorScheme='teal' variant='outline'>Analytics</Button>
             }})
 
-            console.log(response.data.data)
+            // console.log(response.data.data)
             setUsersList((usersList) => [...usersList, tempUsers]);
             //check only the first time where is null
             if (currentCompanyUUID == null) {
