@@ -122,7 +122,10 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
 
     function CreateUser() {
         console.log(userData)
-
+        if (userName==undefined || userLastName==undefined || userEmail==undefined || userPassword==undefined){
+             setMyAlert({show:true,message:"One or more values where undefined",status:"error"})
+            return
+        }
         axios.post(
             hostName + '/user',
             userData,
@@ -134,7 +137,17 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
                     setRefreshUsersTable(true)
                 }
             }
-        ).catch(console.log);
+        ).catch(function (error) {
+               setMyAlert({show:true,message:error.response.data.data.email,status:"error"})
+            });
+        //reset user data
+        setUserName()
+        setUserLastName()
+        setUserEmail()
+        setUserPassword()
+        setUserRole('2')
+        setCompanyUUID()
+        setCompanyRole()
     }
 
     function AssignUsers() {

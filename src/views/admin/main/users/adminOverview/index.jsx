@@ -235,7 +235,7 @@ export default function AdminUsersOverview(props) {
     return (
         <Flex direction='column' pt={{ sm: "125px", lg: "75px" }}>
             <Card px='0px'>
-                {myAlert.show && <Alert status="success">
+                {myAlert.show && <Alert status={myAlert.status}>
                     <AlertIcon></AlertIcon>
                     <AlertDescription>{myAlert.message}</AlertDescription>
                 </Alert>}
