@@ -27,7 +27,7 @@ export const CustomEditBox = ({ caption, value, onChange }) => <div className="j
     </div>
 </div>
 
-export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, title, blobUrl, preview=false }) => {
+export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, base_url, title, blobUrl, preview=false }) => {
 
     const selectSocialSize = 30;
 
@@ -75,7 +75,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
             ...styles
         }}
 
-            onClick={() => { if (!editable) window.open(JSON.stringify(url)?.includes("http") ? url : `http://${url}`, "_blank"); }}
+            onClick={() => { if (!editable) window.open(base_url ? base_url+url : `http://${url}`, "_blank"); }}
         >
             {editable && <SelectImgButton />}
         </div>

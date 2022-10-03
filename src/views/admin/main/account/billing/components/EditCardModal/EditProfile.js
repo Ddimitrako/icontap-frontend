@@ -48,7 +48,7 @@ export default function EditProfile(props) {
     const pages = {
         // 'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
         'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} />,
-        'EditLink': <EditLink setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socials={socials} setsocials={setsocials} oldsocials={oldSocials} setoldsocials={setoldSocials} />
+        'EditLink': <EditLink setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} oldsocials={oldSocials} setoldsocials={setoldSocials} />
     }
 
     let { cardId } = useParams();
@@ -74,6 +74,10 @@ export default function EditProfile(props) {
 
     const [contentloading, setcontentloading]=useState(true);
     
+    useEffect(()=>{
+        console.log('socials', socials);
+    },[socials]);
+    
     function parseProfileContents() {
         // console.log('parsedSocials', card);
         let parsedSocials=[];
@@ -94,7 +98,7 @@ export default function EditProfile(props) {
             method: 'get',
             url: `${hostName}/contents`
         }).then((response) => {
-            // console.log(response);
+            console.log('getContents',response);
             setsocialDefaults(parseContents(response.data.data));
             // console.log('prof');
             // parseProfileContents();
