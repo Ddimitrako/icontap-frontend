@@ -171,7 +171,7 @@ export default function AdminUsersOverview(props) {
             console.log('response', response);
             let tempUsers=response.data.data.map((u,i)=>{return {...u, 
                 editCard:
-                <Button colorScheme='teal' variant='outline' onClick={() => redirectRouter(`/admin/cardsList/card/${u.id}`, { user: deepCopy(u) }, props.history)}> {u.id} Edit Card</Button>,
+                <Button colorScheme='teal' variant='outline' onClick={() => redirectRouter(`/admin/cardsList/card/${u.id}`, { user: deepCopy(u) }, props.history)}>Cards</Button>,
                 analytics:
                 <Button colorScheme='teal' variant='outline'>Analytics</Button>
             }})

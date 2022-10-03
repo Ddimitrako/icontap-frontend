@@ -13,6 +13,9 @@ import { hostNameStorage } from "Helpers/App";
 import Cover from "views/admin/cards/cardProfile/components/Cover";
 import { arrOfObjToFormData } from "Helpers/Arrays";
 
+import { Draggable } from "react-drag-reorder";
+import { deepCopy } from "Helpers/Arrays";
+
 //The container modal
 
 export default function EditProfile(props) {
@@ -232,6 +235,21 @@ export default function EditProfile(props) {
         })
     }
 
+    const getChangedPos = (currentPos, newPos) => {
+        console.log(currentPos, newPos );
+        let tempSocials=deepCopy(socials);
+        console.log('tempSocials', tempSocials );
+        tempSocials.move(currentPos, newPos);
+        tempSocials=tempSocials.map((sc,i)=>{return {...sc, order:i}});
+        console.log('tempSocials 1', tempSocials );
+        setsocials(tempSocials);
+      };
+
+      const socialContainer=React.createRef();
+
+      useEffect(()=>{console.log('socialContainer', socialContainer, socialContainer?.current?.state?.divs?.map((el,i)=>{return el.key}))},[socialContainer]);
+    
+
     const ProfileData= loading ?
         <Button isLoading
             loadingText="Please wait"
@@ -272,19 +290,22 @@ export default function EditProfile(props) {
                 </Button>
             </div>
 
-            <div 
+            <div
                 className='social-btn-container'
             >
-                {socials?.map((social, index) =>
-                    { 
+
+                <Draggable ref={socialContainer} onPosChange={getChangedPos} key={socials.length} >
+                    {socials?.map((social, index) => {
                         // console.log(social);
-                    return <SocialButton editable blobUrl={social.imgUrl.blobUrl} imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
-                        setcurrSocial(index);
-                        settempSocialData(social);
-                        setPage('EditLink');
-                        onOpen();
-                    }} key={index} />}
-                )}
+                        return <SocialButton editable blobUrl={social.imgUrl.blobUrl} imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
+                            setcurrSocial(index);
+                            settempSocialData(social);
+                            setPage('EditLink');
+                            onOpen();
+                        }} key={index} />
+                    }
+                    )}
+                </Draggable>
 
             </div>
 
