@@ -26,10 +26,6 @@ export default function EditLink(props) {
     const [title, setTitle] = useState(props?.tempSocialData?.title ?? (props.socials[props.currSocial]?.title ?? ''));
     const [imgUrl, setimgUrl] = useState(props?.tempSocialData?.imgUrl ?? (props.socials[props.currSocial]?.imgUrl ?? 'custom.svg'));
 
-    useEffect(()=>{
-        console.log('props', props);
-    },[]);
-
     useEffect(() => {
 
         let urlReady = url != '';
@@ -42,11 +38,11 @@ export default function EditLink(props) {
 
     function upsertSocials() {
         let tempSocials = deepCopy(props.socials);
-        console.log(tempSocials);
-        console.log(props?.tempSocialData);
-        console.log(props.currSocial);
+        // console.log(tempSocials);
+        // console.log(props?.tempSocialData);
+        // console.log(props.currSocial);
         let tempCurrSocialData = {...props?.tempSocialData, url: url, title: title, imgUrl: img?.blob?{blob:img.blob, blobUrl:img.url, url:imgUrl}:imgUrl };
-        console.log('tempCurrSocialData', tempCurrSocialData);
+        // console.log('tempCurrSocialData', tempCurrSocialData);
 
         if (props.currSocial !== undefined) {
             tempSocials[props.currSocial] = tempCurrSocialData;
@@ -54,7 +50,7 @@ export default function EditLink(props) {
             tempSocials.push(tempCurrSocialData);
         }
 
-        // console.log(tempSocials,props);
+        console.log(tempSocials,props);
 
         props.setsocials(tempSocials);
         props.onClose();

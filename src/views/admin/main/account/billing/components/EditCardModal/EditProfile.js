@@ -77,10 +77,6 @@ export default function EditProfile(props) {
 
     const [contentloading, setcontentloading]=useState(true);
     
-    useEffect(()=>{
-        console.log('socials', socials);
-    },[socials]);
-    
     function parseProfileContents() {
         // console.log('parsedSocials', card);
         let parsedSocials=[];
@@ -145,7 +141,6 @@ export default function EditProfile(props) {
     }, [card]);
 
     useEffect(()=>{
-        console.log('props.name, props.bio', props.name, props.bio);
         props.setCard({...card, profile:{name:props.name, bio:props.bio}, images:{img_cover:props.cover, img_profile:props.avatar}});
     },[props.name, props.bio, props.avatar, props.cover]);
 
@@ -235,22 +230,25 @@ export default function EditProfile(props) {
         })
     }
 
-    const getChangedPos = (currentPos, newPos) => {
-        console.log(currentPos, newPos );
-        let tempSocials=deepCopy(socials);
-        console.log('tempSocials', tempSocials );
-        tempSocials.move(currentPos, newPos);
-        tempSocials=tempSocials.map((sc,i)=>{return {...sc, order:i}});
-        console.log('tempSocials 1', tempSocials );
-        setsocials(tempSocials);
-      };
+    // const getChangedPos = (currentPos, newPos) => {
+    //     console.log(currentPos, newPos );
+    //     let tempSocials=deepCopy(socials);
+    //     console.log('tempSocials', tempSocials );
+    //     tempSocials.move(currentPos, newPos);
+    //     tempSocials = tempSocials.map((sc, i) => { return { ...sc, order: i } });
+    //     console.log('tempSocials 1', tempSocials);
+    //     setsocials(tempSocials);
+    // };
 
-      const socialContainer=React.createRef();
+    const [draggablesKey, setDraggablesKey] = useState(Math.random());
 
-      useEffect(()=>{console.log('socialContainer', socialContainer, socialContainer?.current?.state?.divs?.map((el,i)=>{return el.key}))},[socialContainer]);
-    
+    useEffect(() => {
+        console.log('socials', socials);
+    }, [socials]);
 
-    const ProfileData= loading ?
+    const socialContainer = React.createRef();
+
+    const ProfileData = loading ?
         <Button isLoading
             loadingText="Please wait"
             variant="transparent-with-icon"
@@ -293,20 +291,27 @@ export default function EditProfile(props) {
             <div
                 className='social-btn-container'
             >
+                <div className='wrap' style={{
+                    display: 'flex',
+                    listStyle: 'none',
+                    height: '100%',
+                    width: '100%'
+                }}>
+                    {/* <Draggable ref={socialContainer} onPosChange={getChangedPos} key={draggablesKey} style={{backgroundColor:'blue'}}> */}
 
-                <Draggable ref={socialContainer} onPosChange={getChangedPos} key={socials.length} >
-                    {socials?.map((social, index) => {
-                        // console.log(social);
-                        return <SocialButton editable blobUrl={social.imgUrl.blobUrl} imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
-                            setcurrSocial(index);
-                            settempSocialData(social);
-                            setPage('EditLink');
-                            onOpen();
-                        }} key={index} />
-                    }
-                    )}
-                </Draggable>
+                        {socials?.map((social, index) => {
+                            // console.log(social);
+                            return <SocialButton editable blobUrl={social.imgUrl.blobUrl} imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
+                                setcurrSocial(index);
+                                settempSocialData(social);
+                                setPage('EditLink');
+                                onOpen();
+                            }} key={index} />
+                        }
+                        )}
+                    {/* </Draggable> */}
 
+                </div>
             </div>
 
             <hr style={{ 'margin': '20px 0' }} />

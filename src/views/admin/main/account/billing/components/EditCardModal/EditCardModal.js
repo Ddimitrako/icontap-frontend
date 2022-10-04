@@ -57,7 +57,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
     >
     </div>
 
-    return <div className={preview?"social-button-preview":"social-button"}>
+    return <div className={`cursor-grab ${preview?"social-button-preview":"social-button"}`}>
         <div style={{
             width: '100%',
             // height: '90px',
@@ -71,7 +71,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100%',
             backgroundImage: blobUrl?`url(${blobUrl})`:`url(${hostNameStorage}/${imgUrl})`,
-            cursor: editable ? 'default' : 'pointer',
+            cursor: editable ? 'grab' : 'pointer',
             ...styles
         }}
 
@@ -83,8 +83,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
         className='social-label'
         style={{
             width:'100%',
-            textAlign:'center',
-            whiteSpace: 'nowrap'
+            textAlign:'center'
         }}>{title}</div>
     </div>
 }

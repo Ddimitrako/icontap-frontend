@@ -4,18 +4,23 @@ body {
   font-family: "DM Sans", sans-serif;
 }
 
+.wrap    { 
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}  
+
 .social-button{
   width: 29%;
   margin:2%;
   padding: 3%;
-  float: left;
+  /* float: left; */
 }
 
 .social-button-preview{
   width: 28%;
   margin:2%;
   padding: 1%;
-  float: left;
+  /* float: left; */
 }
 
 .social-label{
@@ -92,6 +97,10 @@ body {
     padding-top: 0 !important;
 }
 
+}
+
+.cursor-grab > * {
+  cursor: grab;
 }
 
 @media only screen and (max-width: 400px) {

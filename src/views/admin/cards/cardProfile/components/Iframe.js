@@ -12,7 +12,7 @@ import { startOfDay } from '@fullcalendar/react';
 
 const CustomIframe = ({ card, avatar, setavatar, cover, setcover, name, bio, job, company, socials }) => {
     useEffect(()=>{
-        console.log('custom card', card);
+        // console.log('custom card', card);
     },[card]);
     return (
         <div className='hide-under-959'>

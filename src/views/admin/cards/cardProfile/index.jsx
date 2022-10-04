@@ -107,14 +107,8 @@ export default function Page() {
     ];
 
     useEffect(()=>{
-        if(!socials?.length!=0){
-            // setsocials(socialDummys);
-        }
+        console.log('parent socials', socials);
     },[socials]);
-
-    useEffect(()=>{
-        console.log('parent card', card);
-    },[card]);
 
     const profileIcon=<i className="fa-solid fa-user" style={{marginRight:'5px'}}></i>;
     const qrIcon=<i className="fa-solid fa-qrcode" style={{marginRight:'5px'}}></i>;

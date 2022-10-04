@@ -12,7 +12,7 @@ import Cover from './Cover';
 const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius = 70 }) => {
     
     useEffect(()=>{
-        console.log('profileView card', card);
+        // console.log('profileView card', card);
     },[card]);
     
     return card?.profile ? (
@@ -25,8 +25,8 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
         }}>
             <Cover minHeight={coverMinHeight} socialMaxW="60%" avatarRadius={avatarRadius} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={card?.images?.img_profile} cover={card?.images?.img_cover} socials={socials} />
             <Stack spacing={3}>
-                <Text focusBorderColor='none' style={{ width: '100%', textAlign: 'center', fontSize: '24px', fontWeight: '600' }}>{card.profile.name}</Text>
-                <Text focusBorderColor='none' style={{ width: '100%', textAlign: 'center' }}>{card.profile.bio}</Text>
+                <Text focusBorderColor='none' style={{ width: '100%', padding:'2% 12%', textAlign: 'center', fontSize: '24px', fontWeight: '600' }}>{card.profile.name}</Text>
+                <Text focusBorderColor='none' style={{ width: '100%', padding:'2% 12%', textAlign: 'center' }}>{card.profile.bio}</Text>
             </Stack>
             <Box
                 style={{
@@ -44,12 +44,19 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                 margin: '0 auto',
                 display: 'inline-block',
                 height: 'auto'
+            }}><div className='wrap' style={{
+                display:'flex',
+                listStyle:'none',
+                height:'100%',
+                width:'100%'
             }}>
-                {socials && socials.length>0 && socials?.map((social, index) => {
-                    console.log('social',social);
-                    return <SocialButton imgUrl={social.imgUrl} base_url={social.base_url} url={social.url} title={social.title} key={index} />
-                }
-                )}
+
+                    {socials && socials.length > 0 && socials?.map((social, index) => {
+                        // console.log('social', social);
+                        return <SocialButton imgUrl={social.imgUrl} blobUrl={social.imgUrl.blobUrl} base_url={social.base_url} url={social.url} title={social.title} key={index} />
+                    }
+                    )}
+                </div>
             </Box>
             <Box
                 style={{
