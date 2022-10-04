@@ -31,7 +31,7 @@ import companies from "../../../../../../assets/img/users/companies.png";
 import FakeLineGraph from "../../../../../../assets/img/users/FakeLineGraph.png";
 
 
-export default function AdminStatistics({
+export default function AdminStatistics({   companyName,
                                             companiesList,
                                             totalUsers,
                                             totalCompaniesNum,
@@ -70,10 +70,12 @@ export default function AdminStatistics({
             <MiniStatistics key='3'
                             endContent={
                                 <Flex me='-16px'>
+                                    {companyName}
                                     <FormLabel htmlFor='company'>
+
                                         <Avatar src={companies}/>
                                     </FormLabel>
-                                    TESLA
+
                                 </Flex>
                             }
             />
