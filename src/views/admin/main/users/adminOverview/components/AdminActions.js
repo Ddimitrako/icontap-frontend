@@ -51,6 +51,11 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
         onOpen: onOpenAssignUserModal,
         onClose: onCloseAssignUserModal
     } = useDisclosure()
+    const {
+        isOpen: isOpenAssignUserCardModal,
+        onOpen: onOpenAssignUserCardModal,
+        onClose: onCloseAssignUserCardModal
+    } = useDisclosure()
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
     // Chakra Color Mode
@@ -72,7 +77,8 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
     const [companyRole, setCompanyRole] = useState('2')
 
     const [compAssCheck, setCompAssCheck] = useState(false);
-
+    const [cardType, setCardType] = useState(true)
+    const [cardTitle, setCardTitle] = useState("My card")
     const handleChangeName = event => {
         setUserName(event.target.value);
     }
@@ -85,7 +91,9 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
     const handleChangePassword = event => {
         setUserPassword(event.target.value);
     }
-
+    const handleChangeCardTitle= event => {
+        setCardTitle(event.target.value);
+    }
     const config = {
         headers: {Authorization: `Bearer ${getAuth()}`}
     };
@@ -174,6 +182,30 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
             ).catch(console.log);
 
 
+    }
+
+    function AssignUserCard() {
+        var obj = {
+            "title": cardTitle,
+            "is_personal": cardType,
+            "owner": selectedUsers[0].user_id
+        }
+        axios.post(
+            hostName + '/card/',
+            obj,
+            config
+        ).then((response) => {
+                console.log(response)
+                if (response.status == 200) {
+                    setMyAlert({
+                        show: true,
+                        message: "A new card successfully assigned to selected user ",
+                        status: "success"
+                    })
+
+                }
+            }
+        ).catch(console.log);
     }
 
     // useEffect(() => {
@@ -368,6 +400,56 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
 
 
             </Modal>
+
+             <Modal id='assignUserCard'
+
+                   isOpen={isOpenAssignUserCardModal}
+                   onClose={onCloseAssignUserCardModal}
+            >
+                <ModalOverlay/>
+                <ModalContent>
+                    <ModalHeader>Assign card to selected user</ModalHeader>
+                    <ModalCloseButton/>
+                    <ModalBody pb={6}>
+                        <FormControl mt={4}>
+                            <FormLabel>Type Card title</FormLabel>
+                             <Input ref={initialRef} placeholder='Card title'
+                                   onChange={handleChangeCardTitle}/>
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Select Card Type</FormLabel>
+                            <Select defaultValue='true'
+                            onChange={(e) => {
+                                console.log(e.target.value)
+                                if (e.target.value=="true"){setCardType(true)}
+                                else{setCardType(false)}
+
+                            }}>
+                                <option value="true">personal</option>
+                                <option value="false">bussiness</option>
+                            </Select>
+                        </FormControl>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme='blue' mr={3} onClick={(e)=>{
+                                if (cardType===undefined) {
+                                    alert("Please select a card type");
+                                }else {
+                                    onCloseAssignUserCardModal()
+                                    AssignUserCard()
+                                }
+
+                        }}>
+                            Assign
+                        </Button>
+                        <Button onClick={onCloseAssignUserCardModal}>Cancel</Button>
+                    </ModalFooter>
+                </ModalContent>
+
+
+            </Modal>
+
             <Menu>
                 <MenuButton as={Button} colorScheme='purple' rightIcon={<ChevronDownIcon/>}>
                     Admin Actions
@@ -376,7 +458,12 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
                     <MenuItem onClick={onOpenCompanyModal}>Create company</MenuItem>
                     <MenuItem onClick={onOpenUserModal}>Create user/s</MenuItem>
                     <MenuItem>Deactivate selected user/s</MenuItem>
-                    <MenuItem>Assign card to selected user/s</MenuItem>
+                    <MenuItem onClick={()=>{
+                         if (selectedUsers.length==0 || selectedUsers.length>1){
+                            alert("Please select one user only");
+                        }else
+                        onOpenAssignUserCardModal()
+                    }} > Assign card to selected user/s</MenuItem>
                     <MenuItem onClick={()=>{
                         if (selectedUsers.length==0){
                             alert("Please select one or more users");
