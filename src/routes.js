@@ -63,6 +63,7 @@ import SignUpDefault from "views/auth/signUp/SignUpDefault.jsx";
 import VerificationDefault from "views/auth/verification/VerificationDefault.jsx";
 import Page from "views/admin/cards/cardProfile";
 import LogoutMid from "layouts/admin/Logout";
+import { NeedsEmailVerification } from "Helpers/Auth";
 
 const routes = [
     // --- Dashboards ---
@@ -171,6 +172,23 @@ const routes = [
             />
         ),
         onlyRoute:false
+
+    },
+    {
+        name: "Email Verification",
+        layout: "/admin",
+        path: "/email/verification",
+        exact: false,
+        component: NeedsEmailVerification,
+        icon: (
+            <Icon
+                as={AiOutlineUser}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+        onlyRoute:true
 
     },
     // {

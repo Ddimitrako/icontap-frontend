@@ -1,4 +1,4 @@
-import { ListItem, UnorderedList } from "@chakra-ui/react";
+import { Alert, AlertDescription, AlertIcon, AlertTitle, ListItem, UnorderedList } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
 import { createContext } from "react";
@@ -96,16 +96,22 @@ export function GetMeFromApi() {
     const [MeContextValue, setMeContextValue] = useContext(MeContext);
 
     useEffect(() => {
-        axios({
-            method: 'get',
-            url: `${hostName}/me`
-        }).then((response) => {
-            // console.log(response);
-            localStorage.setItem('me', JSON.stringify(response.data.data));
-            setMeContextValue(response.data.data);
-        }).catch((err) => {
-            console.log(err.response);
-        })
+        
+        if(localStorage.getItem('unverified')!= '1'){
+            axios({
+                method: 'get',
+                url: `${hostName}/me`
+            }).then((response) => {
+                // console.log(response);
+                localStorage.setItem('me', JSON.stringify(response.data.data));
+                setMeContextValue(response.data.data);
+            }).catch((err) => {
+                console.log(err.response);
+            })
+        }else{
+            localStorage.removeItem('unverified');
+        }
+
     }, []);
 
     return <></>;
@@ -121,3 +127,25 @@ export function hasRole(roleId) {
 }
 
 export const DisplayError=({errors})=>errors?.length>0?<UnorderedList style={{color:'red'}}>{errors.map((err, i)=><ListItem key={i}>{err}</ListItem>)}</UnorderedList>:<></>;
+
+
+export const NeedsEmailVerification=()=>{
+    return <Alert
+    status='warning'
+    variant='subtle'
+    flexDirection='column'
+    alignItems='center'
+    justifyContent='center'
+    textAlign='center'
+    height='400px'
+
+  >
+    <AlertIcon boxSize='40px' mr={0} />
+    <AlertTitle mt={4} mb={1} fontSize='lg'>
+      Needs verification
+    </AlertTitle>
+    <AlertDescription maxWidth='sm'>
+      Thanks for submitting your application. In order for your account to be active, your email needs to be verified. Please check your inbox and follow the provided instructions.
+    </AlertDescription>
+  </Alert>
+};

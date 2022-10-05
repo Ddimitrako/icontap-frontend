@@ -21,9 +21,17 @@ import {
   InputGroup,
   InputRightElement,
   ListItem,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Text,
   UnorderedList,
   useColorModeValue,
+  useDisclosure,
 } from "@chakra-ui/react";
 // Custom components
 import { HSeparator } from "components/separator/Separator";
@@ -34,6 +42,8 @@ import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { logIn } from "Helpers/Auth";
+import { useEffect } from "react";
+import { NeedsEmailVerification } from "Helpers/Auth";
 var hostName = process.env.REACT_APP_HOSTNAME.toString()
 function SignIn() {
   // Chakra color mode
@@ -89,15 +99,29 @@ function SignIn() {
       data:data
     }).then((response)=>{
       console.log(response);
-      logIn(response?.data?.data?.token);
-      window.location.href='/admin/cardsList/card';
+      if (response?.data?.data?.verified) {
+        logIn(response?.data?.data?.token);
+        window.location.href = '/admin/cardsList/card';
+      }
+      else {
+        localStorage.setItem('unverified', '1');
+        onOpen();
+      }
+
     }).catch((err)=>{
       console.log(err.response);
       seterrors({message:err.response.data.message, data:err.response.data.data});
-    }).finally(()=>{
+    }).finally(() => {
       setloading(false);
     })
   }
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+
+  useEffect(() => {
+    localStorage.clear();
+  },[]);
 
   const handleClick = () => setShow(!show);
   return (
@@ -277,6 +301,21 @@ function SignIn() {
           </Flex>
         </Flex>
       </Flex>
+      
+  <Modal isOpen={isOpen} onClose={onClose} style={{backgroundColor:'#FFF6DA'}}>
+    <ModalOverlay />
+    <ModalContent>
+      <ModalHeader>Attention</ModalHeader>
+      <ModalCloseButton />
+      <ModalBody>
+        <NeedsEmailVerification />
+      </ModalBody>
+
+      {/* <ModalFooter>
+        <Button variant='ghost' onClick={onClose}>Ok</Button>
+      </ModalFooter> */}
+    </ModalContent>
+  </Modal>
     </DefaultAuth>
   );
 }
