@@ -41,7 +41,19 @@ export default function EditLink(props) {
         // console.log(tempSocials);
         // console.log(props?.tempSocialData);
         // console.log(props.currSocial);
+        console.log('socialimgs', props.setsocialimgs, props.socialimgs, img);
         let tempCurrSocialData = {...props?.tempSocialData, url: url, title: title, imgUrl: img?.blob?{blob:img.blob, blobUrl:img.url, url:imgUrl}:imgUrl };
+        if(img?.blob){
+            let tempsocialimgs={};
+            
+            Object.keys(props.socialimgs).forEach((k, i) => {
+                tempsocialimgs[k]=props.socialimgs[k].slice();
+            });
+
+            tempsocialimgs[tempCurrSocialData?.id]=img.blob.slice();
+
+            props.setsocialimgs(tempsocialimgs);
+        }
         // console.log('tempCurrSocialData', tempCurrSocialData);
 
         if (props.currSocial !== undefined) {

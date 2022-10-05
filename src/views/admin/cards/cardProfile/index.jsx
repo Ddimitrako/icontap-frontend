@@ -50,7 +50,6 @@ export default function Page() {
     const [job, setjob] = useState('');
     const [company, setcompany] = useState('');
 
-    const [socials, setsocials] = useState([]);
 
     const socialDummys=[
         {
@@ -106,9 +105,12 @@ export default function Page() {
         }
     ];
 
+    const [socials, setsocials] = useState([]);
+    const [socialimgs, setsocialimgs] = useState({});
+
     useEffect(()=>{
-        console.log('parent socials', socials);
-    },[socials]);
+        console.log('parent socials', socials, socialimgs);
+    },[socials, socialimgs]);
 
     const profileIcon=<i className="fa-solid fa-user" style={{marginRight:'5px'}}></i>;
     const qrIcon=<i className="fa-solid fa-qrcode" style={{marginRight:'5px'}}></i>;
@@ -136,7 +138,7 @@ export default function Page() {
                             <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'>
                                 <FormControl>
                                     <Card className='edit-profile-container'>
-                                        <EditProfile socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
+                                        <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
                                     </Card>
                                 </FormControl>
                             </Flex>

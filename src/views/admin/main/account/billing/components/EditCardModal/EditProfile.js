@@ -51,7 +51,7 @@ export default function EditProfile(props) {
     const pages = {
         // 'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
         'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} />,
-        'EditLink': <EditLink setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} oldsocials={oldSocials} setoldsocials={setoldSocials} />
+        'EditLink': <EditLink socialimgs={props.socialimgs} setsocialimgs={props.setsocialimgs} setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} oldsocials={oldSocials} setoldsocials={setoldSocials} />
     }
 
     let { cardId } = useParams();
@@ -155,7 +155,7 @@ export default function EditProfile(props) {
             console.log(c);
             return {
             "content_id": c.content_id,
-            "image": c.imgUrl?.blob??c.imgUrl,
+            "image": props?.socialimgs[c.id]??c.imgUrl,
             "link": c.url,
             "title": c.title,
             "description": "",
