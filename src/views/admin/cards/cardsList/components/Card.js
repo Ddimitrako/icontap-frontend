@@ -119,38 +119,39 @@ export default function IcontapCard(props) {
   const [loading, setloading]=useState(false);
 
   useEffect(()=>{
-    // console.log(props.card);
+    console.log(props.card);
   },[]);
 
   useEffect(()=>{
     setactivationCode(`${pin1}${pin2}${pin3}${pin4}${pin5}${pin6}`);
   },[pin1,pin2,pin3,pin4,pin5,pin6]);
 
-  function activateCard() {
-    setloading(true);
-    axios({
-      method:'put',
-      url:`${hostName}/card/${props.card.code}/activate`,
-      data:{
-        activation_code:activationCode
-      }
-    }).then((response)=>{
-      console.log(response);
-      props?.getcards();
-    }).catch((err)=>{
-      console.log(err.response);
-    });
-  }
+  // ### Deprecated ### //
+  // function activateCard() {
+  //   setloading(true);
+  //   axios({
+  //     method:'put',
+  //     url:`${hostName}/card/${props.card.code}/activate`,
+  //     data:{
+  //       activation_code:activationCode
+  //     }
+  //   }).then((response)=>{
+  //     console.log(response);
+  //     props?.getcards();
+  //   }).catch((err)=>{
+  //     console.log(err.response);
+  //   });
+  // }
 
 
-  function deactivateCard() {
+  function activateCard(activate) {
     setloading(true);
     console.log('deactivating');
     axios({
       method:'put',
       url:`${hostName}/card/${props.card.code}/status`,
       data:{
-        is_active:false
+        is_active:activate
       }
     }).then((response)=>{
       console.log(response);
@@ -325,6 +326,7 @@ export default function IcontapCard(props) {
     <Card {...rest} p='44px' style={{boxShadow:'#cdcdcd 10px 10px 10px'}}>
       <Flex justify='space-between' mb='25px' align='center'>
         <Text
+        style={{filter: !props.card.is_active?'blur(2px)':'none'}}
           color={textColor}
           fontSize='xl'
           fontWeight='700'
@@ -333,7 +335,7 @@ export default function IcontapCard(props) {
         </Text>
 
       </Flex>
-      <Tabs>
+      <Tabs style={{filter: !props.card.is_active?'blur(3px)':'none'}}>
         <TabPanels mb='20px'>
           <TabPanel p='0px'>
             {/* <Image src={props?.card?.images?.img_profile?`${hostNameStorage}/${props?.card?.images?.img_profile}`:whitecard} /> */}
@@ -428,8 +430,8 @@ export default function IcontapCard(props) {
             Edit Card
           </Text>
         </Flex>:''}
-        {!props.card.is_active?activateCardBtnModal:''}
-        <Flex direction='column' align='center'>
+        {false&&!props.card.is_active?activateCardBtnModal:''}
+        {props.card.is_active?<Flex direction='column' align='center'>
           <IconButton onClick={onOpen}
             borderRadius='50%'
             bg={bgIconButton}
@@ -445,9 +447,27 @@ export default function IcontapCard(props) {
           <Text fontSize='sm' fontWeight='500' color={textColor}>
             Disable Card
           </Text>
+          </Flex>:''}
+        {!props.card.is_active ? <Flex direction='column' align='center'>
+          <IconButton onClick={()=>activateCard(true)}
+            borderRadius='50%'
+            bg={bgIconButton}
+            _hover={bgIconHover}
+            _active={bgIconFocus}
+            _focus={bgIconFocus}
+            w='56px'
+            h='56px'
+            mb='5px'
+            boxShadow={shadow}
+            icon={<Icon as={MdCheckCircle} color={greenIcon} w='24px' h='24px' />}
+          />
+          <Text fontSize='sm' fontWeight='500' color={textColor}>
+            Activate Card
+          </Text>
+        </Flex> : ''}
 
-          <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
             <ModalContent>
               <ModalHeader>Modal Title</ModalHeader>
               <ModalCloseButton />
@@ -456,7 +476,7 @@ export default function IcontapCard(props) {
               </ModalBody>
 
               <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={deactivateCard} isLoading={loading}>
+                <Button colorScheme='blue' mr={3} onClick={()=>activateCard(true)} isLoading={loading}>
                   Yes
                 </Button>
                 <Button variant='ghost' onClick={onClose}>No</Button>
@@ -464,7 +484,6 @@ export default function IcontapCard(props) {
             </ModalContent>
           </Modal>
         </Flex>
-      </Flex>
     </Card>
   );
 }

@@ -102,7 +102,7 @@ export function GetMeFromApi() {
                 method: 'get',
                 url: `${hostName}/me`
             }).then((response) => {
-                // console.log(response);
+                console.log(response);
                 localStorage.setItem('me', JSON.stringify(response.data.data));
                 setMeContextValue(response.data.data);
             }).catch((err) => {

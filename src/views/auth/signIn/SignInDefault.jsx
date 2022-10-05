@@ -99,11 +99,11 @@ function SignIn() {
       data:data
     }).then((response)=>{
       console.log(response);
-      if (response?.data?.data?.verified) {
+      if (response?.data?.data?.verified=='1') {
         logIn(response?.data?.data?.token);
         window.location.href = '/admin/cardsList/card';
       }
-      else {
+      else if (response?.data?.data?.verified=='0'){
         localStorage.setItem('unverified', '1');
         onOpen();
       }
