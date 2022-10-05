@@ -126,6 +126,10 @@ export function hasRole(roleId) {
     return getMe()?.role?.id==roleId;
 }
 
+export function hasCompanyRole(roleId) {
+    return getMe()?.role_company?.id==roleId;
+}
+
 export const DisplayError=({errors})=>errors?.length>0?<UnorderedList style={{color:'red'}}>{errors.map((err, i)=><ListItem key={i}>{err}</ListItem>)}</UnorderedList>:<></>;
 
 

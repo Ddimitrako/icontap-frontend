@@ -139,7 +139,7 @@ const routes = [
                 color='inherit'
             />
         ),
-        role:3
+        company_role:1
     },
     {
         name: "Edit Card",

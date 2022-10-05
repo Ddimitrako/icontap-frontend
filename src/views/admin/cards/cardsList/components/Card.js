@@ -404,7 +404,7 @@ export default function IcontapCard(props) {
       </Tabs>
 
       <Flex justify='space-between' w='100%'>
-        {props.card.is_active?<Flex
+        {true||props.card.is_active?<Flex
           direction='column'
           align='center'
           me={{ base: "16px", md: "0px", "2xl": "36px" }}
@@ -476,7 +476,7 @@ export default function IcontapCard(props) {
               </ModalBody>
 
               <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={()=>activateCard(true)} isLoading={loading}>
+                <Button colorScheme='blue' mr={3} onClick={()=>activateCard(false)} isLoading={loading}>
                   Yes
                 </Button>
                 <Button variant='ghost' onClick={onClose}>No</Button>

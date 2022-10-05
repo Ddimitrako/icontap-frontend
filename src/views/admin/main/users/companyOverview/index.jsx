@@ -77,12 +77,12 @@ export default function CompanyUsersOverview() {
     //First run
     useEffect(() => {
         // getMe().companies[0].uuid
-        if (getMe().role_company.code=="admin") {
+        if (getMe()?.role_company?.code=="admin") {
             getUsers(getMe().companies[0].uuid)
         }
-        console.log(getMe().companies[0].uuid)
-        console.log(getMe())
-        setCompanyName(getMe().companies[0].name)
+        // console.log(getMe().companies[0].uuid)
+        // console.log(getMe())
+        setCompanyName(getMe()?.companies[0]?.name)
     }, []);
     //Admin Actions create company BTN pressed
 
