@@ -142,6 +142,27 @@ export default function IcontapCard(props) {
     });
   }
 
+
+  function deactivateCard() {
+    setloading(true);
+    console.log('deactivating');
+    axios({
+      method:'put',
+      url:`${hostName}/card/${props.card.code}/status`,
+      data:{
+        is_active:false
+      }
+    }).then((response)=>{
+      console.log(response);
+      props?.getcards();
+    }).catch((err)=>{
+      console.log(err.response);
+    }).finally(()=>{
+      onClose();
+      setloading(false);
+    });
+  }
+
   const activateCardBtnModal = <Flex direction='column' align='center'>
     <IconButton onClick={() => {
       console.log(props.card);
@@ -435,7 +456,7 @@ export default function IcontapCard(props) {
               </ModalBody>
 
               <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={onClose}>
+                <Button colorScheme='blue' mr={3} onClick={deactivateCard} isLoading={loading}>
                   Yes
                 </Button>
                 <Button variant='ghost' onClick={onClose}>No</Button>
