@@ -1,6 +1,6 @@
 /**/
 import { CheckIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
-import {PasswordValidator} from "../../../components/PasswordValidator";
+import { PasswordValidator } from "../../../components/PasswordValidator";
 // Chakra imports
 import {
     Box,
@@ -15,22 +15,30 @@ import {
     InputGroup,
     InputRightElement,
     Link,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalHeader,
+    ModalOverlay,
     SimpleGrid,
     Text,
     useColorModeValue,
+    useDisclosure,
 } from "@chakra-ui/react";
 // Assets
 import illustration from "assets/img/auth/auth.png";
-import {HSeparator} from "components/separator/Separator";
+import { HSeparator } from "components/separator/Separator";
 import DefaultAuth from "layouts/auth/types/Default";
-import {NavLink} from "react-router-dom";
-import React, {useEffect} from "react";
-import {FcGoogle} from "react-icons/fc";
-import {MdOutlineRemoveRedEye} from "react-icons/md";
-import {RiEyeCloseLine} from "react-icons/ri";
-import {useState} from "react";
-import {DisplayError} from "Helpers/Auth";
+import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { RiEyeCloseLine } from "react-icons/ri";
+import { useState } from "react";
+import { DisplayError } from "Helpers/Auth";
 import { Grid, GridItem } from '@chakra-ui/react'
+import { NeedsEmailVerification } from 'Helpers/Auth';
 var hostName = process.env.REACT_APP_HOSTNAME.toString()
 
 function SignUp() {
@@ -43,12 +51,12 @@ function SignUp() {
     const googleBg = useColorModeValue("secondaryGray.300", "whiteAlpha.200");
     const googleText = useColorModeValue("navy.700", "white");
     const googleHover = useColorModeValue(
-        {bg: "gray.200"},
-        {bg: "whiteAlpha.300"}
+        { bg: "gray.200" },
+        { bg: "whiteAlpha.300" }
     );
     const googleActive = useColorModeValue(
-        {bg: "secondaryGray.300"},
-        {bg: "whiteAlpha.200"}
+        { bg: "secondaryGray.300" },
+        { bg: "whiteAlpha.200" }
     );
     const [show, setShow] = React.useState(false);
     const handleClick = () => setShow(!show);
@@ -76,12 +84,12 @@ function SignUp() {
 
     });
     useEffect(() => {
-            console.log(validLength,
-        hasNumber,
-        upperCase,
-        lowerCase,
-        specialChar)
-  },[validLength,
+        console.log(validLength,
+            hasNumber,
+            upperCase,
+            lowerCase,
+            specialChar)
+    }, [validLength,
         hasNumber,
         upperCase,
         lowerCase,
@@ -95,6 +103,13 @@ function SignUp() {
         c_password: cpass,
     }
 
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    function closeModal() {
+        onClose();
+        window.location.href = '/auth/sign-in';
+    }
+
     function postToApi(e) {
         setloading(true);
         axios({
@@ -103,7 +118,7 @@ function SignUp() {
             data: data
         }).then((response) => {
             console.log(response);
-            window.location.href = '/auth/sign-in';
+            onOpen();
         }).catch((err) => {
             console.log(err.response);
             console.log(err.response.data.data);
@@ -121,18 +136,18 @@ function SignUp() {
             <Flex
                 w='100%'
                 maxW='max-content'
-                mx={{base: "auto", lg: "0px"}}
+                mx={{ base: "auto", lg: "0px" }}
                 me='auto'
                 h='100%'
                 justifyContent='center'
-                mb={{base: "30px", md: "60px"}}
-                px={{base: "25px", md: "0px"}}
-                mt={{base: "40px", md: "8vh"}}
+                mb={{ base: "30px", md: "60px" }}
+                px={{ base: "25px", md: "0px" }}
+                mt={{ base: "40px", md: "8vh" }}
                 flexDirection='column'>
                 <Box me='auto'>
                     <Heading
                         color={textColor}
-                        fontSize={{base: "34px", lg: "36px"}}
+                        fontSize={{ base: "34px", lg: "36px" }}
                         mb='10px'>
                         Sign Up
                     </Heading>
@@ -148,13 +163,13 @@ function SignUp() {
                 <Flex
                     zIndex='2'
                     direction='column'
-                    w={{base: "100%", md: "420px"}}
+                    w={{ base: "100%", md: "420px" }}
                     maxW='100%'
                     background='transparent'
                     borderRadius='15px'
-                    mx={{base: "auto", lg: "unset"}}
+                    mx={{ base: "auto", lg: "unset" }}
                     me='auto'
-                    mb={{base: "20px", md: "auto"}}>
+                    mb={{ base: "20px", md: "auto" }}>
                     {/*<Button*/}
                     {/*  fontSize='sm'*/}
                     {/*  me='0px'*/}
@@ -172,18 +187,18 @@ function SignUp() {
                     {/*  Sign up with Google*/}
                     {/*</Button>*/}
                     <Flex align='center' mb='25px'>
-                        <HSeparator/>
+                        <HSeparator />
                         {/*<Text color={textColorSecondary} mx='14px'>*/}
                         {/*  or*/}
                         {/*</Text>*/}
-                        <HSeparator/>
+                        <HSeparator />
                     </Flex>
 
                     <form onSubmit={postToApi}>
                         <FormControl>
                             <SimpleGrid
-                                columns={{base: "1", md: "2"}}
-                                gap={{sm: "10px", md: "26px"}}>
+                                columns={{ base: "1", md: "2" }}
+                                gap={{ sm: "10px", md: "26px" }}>
                                 <Flex direction='column'>
                                     <FormLabel
                                         display='flex'
@@ -195,11 +210,11 @@ function SignUp() {
                                         First name<Text color={brandStars}>*</Text>
                                     </FormLabel>
                                     <Input
-                                        isRequired
+                                        
                                         isInvalid
                                         errorBorderColor='red.300'
                                         fontSize='sm'
-                                        ms={{base: "0px", md: "4px"}}
+                                        ms={{ base: "0px", md: "4px" }}
                                         placeholder='First name'
                                         variant='auth'
                                         mb='24px'
@@ -207,7 +222,7 @@ function SignUp() {
                                         onChange={(e) => setname(e.target.value)}
                                         value={name}
                                     />
-                                    <DisplayError errors={errors?.name}/>
+                                    <DisplayError errors={errors?.name} />
                                 </Flex>
                                 <Flex direction='column'>
                                     <FormLabel
@@ -220,7 +235,7 @@ function SignUp() {
                                         Last name<Text color={brandStars}>*</Text>
                                     </FormLabel>
                                     <Input
-                                        isRequired
+                                        
                                         variant='auth'
                                         fontSize='sm'
                                         placeholder='Last name'
@@ -229,7 +244,7 @@ function SignUp() {
                                         onChange={(e) => setlastname(e.target.value)}
                                         value={lastname}
                                     />
-                                    <DisplayError errors={errors?.last_name}/>
+                                    <DisplayError errors={errors?.last_name} />
                                 </Flex>
                             </SimpleGrid>
                             <FormLabel
@@ -242,7 +257,7 @@ function SignUp() {
                                 Email<Text color={brandStars}>*</Text>
                             </FormLabel>
                             <Input
-                                isRequired
+                                
                                 variant='auth'
                                 fontSize='sm'
                                 type='email'
@@ -252,22 +267,22 @@ function SignUp() {
                                 onChange={(e) => setemail(e.target.value)}
                                 value={email}
                             />
-                            <DisplayError errors={errors?.email}/>
+                            <DisplayError errors={errors?.email} />
                             <FormLabel
                                 ms='4px'
                                 fontSize='sm'
                                 fontWeight='500'
-                                isRequired
+                                
                                 color={textColor}
                                 display='flex'>
                                 Password<Text color={brandStars}>*</Text>
                             </FormLabel>
                             <InputGroup size='md'>
                                 <Input
-                                    isRequired
+                                    
                                     variant='auth'
                                     fontSize='sm'
-                                    ms={{base: "0px", md: "4px"}}
+                                    ms={{ base: "0px", md: "4px" }}
                                     placeholder='Min. 8 characters'
                                     mb='24px'
                                     size='lg'
@@ -283,13 +298,13 @@ function SignUp() {
                                 <InputRightElement display='flex' alignItems='center' mt='4px'>
                                     <Icon
                                         color={textColorSecondary}
-                                        _hover={{cursor: "pointer"}}
+                                        _hover={{ cursor: "pointer" }}
                                         as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
                                         onClick={handleClick}
                                     />
                                 </InputRightElement>
                             </InputGroup>
-                            <DisplayError errors={errors?.password}/>
+                            <DisplayError errors={errors?.password} />
                             <FormLabel
                                 ms='4px'
                                 fontSize='xs'
@@ -297,31 +312,31 @@ function SignUp() {
                                 color={textColor}
                                 display='flex'>
                                 <ul>
-      <li>
-          <Text >Valid Length: {validLength ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
-          <Text>Has a Number: {hasNumber ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
-          <Text>UpperCase: {upperCase ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
-          <Text> LowerCase: {lowerCase ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
-          <Text> Special Character:{" "} {specialChar ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
-      </li>
+                                    <li>
+                                        <Text >Valid Length: {validLength ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
+                                        <Text>Has a Number: {hasNumber ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
+                                        <Text>UpperCase: {upperCase ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
+                                        <Text> LowerCase: {lowerCase ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
+                                        <Text> Special Character:{" "} {specialChar ? <span><CheckIcon w={3} h={3} color="blue.500" /></span> : <span><WarningIcon w={3} h={3} color="red.500" /></span>}</Text>
+                                    </li>
 
-  </ul>
+                                </ul>
                             </FormLabel>
                             <FormLabel
                                 ms='4px'
                                 fontSize='sm'
                                 fontWeight='500'
-                                isRequired
+                                
                                 color={textColor}
                                 display='flex'>
                                 Repeat Password<Text color={brandStars}>*</Text>
                             </FormLabel>
                             <InputGroup size='md'>
                                 <Input
-                                    isRequired
+                                    
                                     variant='auth'
                                     fontSize='sm'
-                                    ms={{base: "0px", md: "4px"}}
+                                    ms={{ base: "0px", md: "4px" }}
                                     placeholder='Min. 8 characters'
                                     mb='24px'
                                     size='lg'
@@ -332,13 +347,13 @@ function SignUp() {
                                 <InputRightElement display='flex' alignItems='center' mt='4px'>
                                     <Icon
                                         color={textColorSecondary}
-                                        _hover={{cursor: "pointer"}}
+                                        _hover={{ cursor: "pointer" }}
                                         as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
                                         onClick={handleClick}
                                     />
                                 </InputRightElement>
                             </InputGroup>
-                            <DisplayError errors={errors?.c_password}/>
+                            <DisplayError errors={errors?.c_password} />
                             {/*<Flex justifyContent='space-between' align='center' mb='24px'>*/}
                             {/*  <FormControl display='flex' alignItems='start'>*/}
                             {/*    <Checkbox*/}
@@ -406,6 +421,21 @@ function SignUp() {
                     </Flex>
                 </Flex>
             </Flex>
+
+            <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={closeModal} style={{ backgroundColor: '#FFF6DA' }}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Attention</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <NeedsEmailVerification />
+                    </ModalBody>
+
+                    {/* <ModalFooter>
+        <Button variant='ghost' onClick={onClose}>Ok</Button>
+      </ModalFooter> */}
+                </ModalContent>
+            </Modal>
         </DefaultAuth>
     );
 }

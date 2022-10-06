@@ -63,7 +63,7 @@ export default function EditProfile(props) {
         // console.log('getProfile');
         axios({
             method: 'get',
-            url: `${hostName}/card/${cardId}`
+            url: `${hostName}/card/show/${cardId}`
         }).then((response) => {
             console.log(response);
             setcard(response.data.data);
