@@ -223,7 +223,7 @@ export default function Collection(props) {
 
         <Text>Add a new Card</Text>
         <Button
-          onClick={createCard}
+          // onClick={createCard}
           align='center'
           justifyContent='center'
           bg={bgButton}
