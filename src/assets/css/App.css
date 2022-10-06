@@ -72,7 +72,9 @@ body {
 
 @media only screen and (max-width: 500px) {
   .social-button{
-    padding: 1%;
+    width: 29%;
+    margin:2%;
+    padding: 3%;
   }
   .btn-custom-dark-background {
     font-size: 4vmin !important;
