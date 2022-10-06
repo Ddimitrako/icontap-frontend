@@ -18,10 +18,11 @@ import FakeLineGraph from "../../../../../assets/img/users/FakeLineGraph.png";
 import AdminStatistics from "./components/Statistics";
 import {getAuth, getMe} from "../../../../../Helpers/Auth";
 import axios from "axios";
-import {hostName} from "../../../../../Helpers/App";
+import {hostName, redirectRouter} from "../../../../../Helpers/App";
 import AdminActionsBtn from "./components/AdminActions";
+import { deepCopy } from "Helpers/Arrays";
 
-export default function CompanyUsersOverview() {
+export default function CompanyUsersOverview(props) {
     const [totalUsers, setTotalUsers] = useState(0)
     const [usersList, setUsersList] = useState([])
     const [totalCompaniesNum, setTotalCompaniesNum] = useState(0)
@@ -53,24 +54,21 @@ export default function CompanyUsersOverview() {
             url,
             config
         ).then((response) => {
-                // && response.data.data.length > 0
-                setUsersList([])
-                if (response.status == 200) {
-                    for (var key in response.data.data) {
-                    var obj = response.data.data[key];
-                          // console.log(obj)
-                              //append buttons inside user object
-                            response.data.data[key]["editCard"] = <Button colorScheme='teal' variant='outline'>Edit Card</Button>;
-                            response.data.data[key]["analytics"] = <Button colorScheme='teal' variant='outline'>Analytics</Button>;
-                    }
-                     // console.log(response.data.data)
-                    setUsersList((usersList) => [...usersList, response.data.data]);
-                    //check only the first time where is null
-                    if (currentCompanyUUID==null) {
-                        setTotalUsers(response.data.data.length)
-                    }
-                }
+            // && response.data.data.length > 0
+            setUsersList([])
+            let tempUsers=response.data.data.map((u,i)=>{return {...u, 
+                editCard:
+                <Button colorScheme='teal' variant='outline' onClick={() => redirectRouter(`/admin/cardsList/card/${u.id}`, { user: deepCopy(u) }, props.history)}>Cards</Button>,
+                analytics:
+                <Button colorScheme='teal' variant='outline'>Analytics</Button>
+            }})
+            // console.log(response.data.data)
+            setUsersList((usersList) => [...usersList, tempUsers]);
+            //check only the first time where is null
+            if (currentCompanyUUID == null) {
+                setTotalUsers(response.data.data.length)
             }
+        }
         ).catch(console.log);
     }
 

@@ -91,7 +91,7 @@ const routes = [
             />
         ),
         onlyRoute:true,
-        role:1
+        role:'admin'
     },
     {
         name: "Cards",
@@ -123,7 +123,7 @@ const routes = [
                 color='inherit'
             />
         ),
-        role:1
+        role:'admin'
     },
     {
         name: "Users Overview",
@@ -139,7 +139,7 @@ const routes = [
                 color='inherit'
             />
         ),
-        company_role:1
+        company_role:'admin'
     },
     {
         name: "Edit Card",

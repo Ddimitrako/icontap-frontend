@@ -122,12 +122,12 @@ export function getMe() {
     return JSON?.parse(localStorage.getItem('me'));
 }
 
-export function hasRole(roleId) {
-    return getMe()?.role?.id==roleId;
+export function hasRole(roleCode) {
+    return getMe()?.role?.code==roleCode;
 }
 
-export function hasCompanyRole(roleId) {
-    return getMe()?.role_company?.id==roleId;
+export function hasCompanyRole(roleCode) {
+    return getMe()?.role_company?.code==roleCode;
 }
 
 export const DisplayError=({errors})=>errors?.length>0?<UnorderedList style={{color:'red'}}>{errors.map((err, i)=><ListItem key={i}>{err}</ListItem>)}</UnorderedList>:<></>;
