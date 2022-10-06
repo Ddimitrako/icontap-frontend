@@ -75,7 +75,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
             ...styles
         }}
 
-            onClick={() => { if (!editable) window.open(base_url ? base_url+url : `http://${url}`, "_blank"); }}
+            onClick={() => { if (!editable) window.open(base_url ? base_url+url : url, "_blank"); }}
         >
             {editable && <SelectImgButton />}
         </div>
