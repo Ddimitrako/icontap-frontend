@@ -46,6 +46,7 @@ import {
   MdEdit,
   MdMoreHoriz,
   MdCheckCircle,
+  MdDeleteForever,
 } from "react-icons/md";
 import EditCardModal from "../../../main/account/billing/components/EditCardModal/EditCardModal";
 import { useHistory } from "react-router-dom";
@@ -53,9 +54,10 @@ import { useEffect } from "react";
 import axios from "axios";
 import { hostName } from "Helpers/App";
 import { hostNameStorage } from "Helpers/App";
+import { hasRole } from "Helpers/Auth";
 
 export default function IcontapCard(props) {
-  var clone = Object.assign({}, {a: 1, b: 2, c: 3});
+  var clone = Object.assign({}, { a: 1, b: 2, c: 3 });
   delete clone.getcards;
   const { ...rest } = clone;
 
@@ -95,10 +97,12 @@ export default function IcontapCard(props) {
 
   //Modal Handlers
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const deleteDisclosure=useDisclosure();
+  const { isDeleteOpen, onDeleteOpen, onDeleteClose } = {isDeleteOpen:deleteDisclosure.isOpen, onDeleteOpen:deleteDisclosure.onOpen, onDeleteClose:deleteDisclosure.onClose };
   const activateModalDisclosure = useDisclosure();
-  const isActOpen=activateModalDisclosure.isOpen;
-  const onActOpen=activateModalDisclosure.onOpen;
-  const onActClose=activateModalDisclosure.onClose;
+  const isActOpen = activateModalDisclosure.isOpen;
+  const onActOpen = activateModalDisclosure.onOpen;
+  const onActClose = activateModalDisclosure.onClose;
 
   // const textColor = useColorModeValue("navy.700", "white");
   const textColorDetails = useColorModeValue("navy.700", "secondaryGray.600");
@@ -108,23 +112,23 @@ export default function IcontapCard(props) {
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
-  const [pin1, setpin1]=useState(0);
-  const [pin2, setpin2]=useState(0);
-  const [pin3, setpin3]=useState(0);
-  const [pin4, setpin4]=useState(0);
-  const [pin5, setpin5]=useState(0);
-  const [pin6, setpin6]=useState(0);
-  const [activationCode, setactivationCode]=useState();
+  const [pin1, setpin1] = useState(0);
+  const [pin2, setpin2] = useState(0);
+  const [pin3, setpin3] = useState(0);
+  const [pin4, setpin4] = useState(0);
+  const [pin5, setpin5] = useState(0);
+  const [pin6, setpin6] = useState(0);
+  const [activationCode, setactivationCode] = useState();
 
-  const [loading, setloading]=useState(false);
+  const [loading, setloading] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(props.card);
-  },[]);
+  }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     setactivationCode(`${pin1}${pin2}${pin3}${pin4}${pin5}${pin6}`);
-  },[pin1,pin2,pin3,pin4,pin5,pin6]);
+  }, [pin1, pin2, pin3, pin4, pin5, pin6]);
 
   // ### Deprecated ### //
   // function activateCard() {
@@ -148,17 +152,34 @@ export default function IcontapCard(props) {
     setloading(true);
     console.log('deactivating');
     axios({
-      method:'put',
-      url:`${hostName}/card/${props.card.code}/status`,
-      data:{
-        is_active:activate
+      method: 'put',
+      url: `${hostName}/card/${props.card.code}/status`,
+      data: {
+        is_active: activate
       }
-    }).then((response)=>{
+    }).then((response) => {
       console.log(response);
       props?.getcards();
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err.response);
-    }).finally(()=>{
+    }).finally(() => {
+      onClose();
+      setloading(false);
+    });
+  }
+
+  function deleteCard() {
+    setloading(true);
+    console.log('deactivating');
+    axios({
+      method: 'delete',
+      url: `${hostName}/card/${props.card.code}`,
+    }).then((response) => {
+      console.log(response);
+      props?.getcards();
+    }).catch((err) => {
+      console.log(err.response);
+    }).finally(() => {
       onClose();
       setloading(false);
     });
@@ -171,162 +192,162 @@ export default function IcontapCard(props) {
       onActOpen();
     }}
       borderRadius='50%'
-    bg={bgIconButton}
-    _hover={bgIconHover}
-    _active={bgIconFocus}
-    _focus={bgIconFocus}
-    w='56px'
-    h='56px'
-    mb='5px'
-    boxShadow={shadow}
-    icon={<Icon as={MdCheckCircle} color={greenIcon} w='24px' h='24px' />}
-  />
-  <Text fontSize='sm' fontWeight='500' color={textColor}>
-    Activate Card
-  </Text>
+      bg={bgIconButton}
+      _hover={bgIconHover}
+      _active={bgIconFocus}
+      _focus={bgIconFocus}
+      w='56px'
+      h='56px'
+      mb='5px'
+      boxShadow={shadow}
+      icon={<Icon as={MdCheckCircle} color={greenIcon} w='24px' h='24px' />}
+    />
+    <Text fontSize='sm' fontWeight='500' color={textColor}>
+      Activate Card
+    </Text>
 
-  <Modal
-    initialFocusRef={initialRef}
-    finalFocusRef={finalRef}
-    isOpen={isActOpen}
-    onClose={onActClose}
-  >
-    <ModalOverlay />
-    <ModalContent>
-      <ModalHeader>Activate your Card </ModalHeader>
-      <ModalCloseButton />
+    <Modal
+      initialFocusRef={initialRef}
+      finalFocusRef={finalRef}
+      isOpen={isActOpen}
+      onClose={onActClose}
+    >
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Activate your Card </ModalHeader>
+        <ModalCloseButton />
 
-      <ModalBody pb={16}>
-        <Text> Card ID.</Text>
-
-        <FormControl>
-          <Flex justify='center'>
-            <Input size='lg' htmlSize={16} width='auto' value={props.card.code} readOnly />
-          </Flex>
-
-        </FormControl>
-        <hr></hr>
-        <Text> Please add your card activation code here.</Text>
-        <Flex
-          zIndex='2'
-          direction='column'
-          w={{ base: "100%", md: "395px" }}
-          maxW='100%'
-          background='transparent'
-          borderRadius='15px'
-          mx={{ base: "auto", lg: "unset" }}
-          me='auto'
-          mb={{ base: "20px", md: "auto" }}>
+        <ModalBody pb={16}>
+          <Text> Card ID.</Text>
 
           <FormControl>
             <Flex justify='center'>
-              <PinInput mx='auto' otp>
-                <PinInputField
-                  onChange={(e)=>setpin1(e.target.value)}
-                  value={pin1}
-                  fontSize='36px'
-                  color={textColor}
-                  borderRadius='16px'
-                  borderColor={borderColor}
-                  h={{ base: "63px", md: "95px" }}
-                  w={{ base: "63px", md: "95px" }}
-                  me='10px'
-                />
-                <PinInputField
-                  onChange={(e)=>setpin2(e.target.value)}
-                  value={pin2}
-                  fontSize='36px'
-                  color={textColor}
-                  borderRadius='16px'
-                  borderColor={borderColor}
-                  h={{ base: "63px", md: "95px" }}
-                  w={{ base: "63px", md: "95px" }}
-                  me='10px'
-                />
-                <PinInputField
-                  onChange={(e)=>setpin3(e.target.value)}
-                  value={pin3}
-                  fontSize='36px'
-                  color={textColor}
-                  borderRadius='16px'
-                  borderColor={borderColor}
-                  h={{ base: "63px", md: "95px" }}
-                  w={{ base: "63px", md: "95px" }}
-                  me='10px'
-                />
-                <PinInputField
-                  onChange={(e)=>setpin4(e.target.value)}
-                  value={pin4}
-                  fontSize='36px'
-                  color={textColor}
-                  borderRadius='16px'
-                  borderColor={borderColor}
-                  h={{ base: "63px", md: "95px" }}
-                  w={{ base: "63px", md: "95px" }}
-                  me='10px'
-                />
-                <PinInputField
-                  onChange={(e)=>setpin5(e.target.value)}
-                  value={pin5}
-                  fontSize='36px'
-                  color={textColor}
-                  borderRadius='16px'
-                  borderColor={borderColor}
-                  h={{ base: "63px", md: "95px" }}
-                  w={{ base: "63px", md: "95px" }}
-                  me='10px'
-                />
-                <PinInputField
-                  onChange={(e)=>setpin6(e.target.value)}
-                  value={pin6}
-                  fontSize='36px'
-                  color={textColor}
-                  borderRadius='16px'
-                  borderColor={borderColor}
-                  h={{ base: "63px", md: "95px" }}
-                  w={{ base: "63px", md: "95px" }}
-                />
-              </PinInput>
+              <Input size='lg' htmlSize={16} width='auto' value={props.card.code} readOnly />
             </Flex>
-            <Button
-              onClick={activateCard}
-              isLoading={loading}
-              fontSize='14px'
-              variant='brand'
-              borderRadius='16px'
-              fontWeight='500'
-              w='100%'
-              h='50'
-              mb='24px'
-              mt='12px'>
-              Activate Card
-            </Button>
+
           </FormControl>
-          <Text
-            color={textColorDetails}
-            fontWeight='400'
-            fontSize='14px'
+          <hr></hr>
+          <Text> Please add your card activation code here.</Text>
+          <Flex
+            zIndex='2'
+            direction='column'
+            w={{ base: "100%", md: "395px" }}
+            maxW='100%'
+            background='transparent'
+            borderRadius='15px'
             mx={{ base: "auto", lg: "unset" }}
-            textAlign={{ base: "center", lg: "left" }}>
-            Haven't received it?
-            <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
-              Resend a new code
+            me='auto'
+            mb={{ base: "20px", md: "auto" }}>
+
+            <FormControl>
+              <Flex justify='center'>
+                <PinInput mx='auto' otp>
+                  <PinInputField
+                    onChange={(e) => setpin1(e.target.value)}
+                    value={pin1}
+                    fontSize='36px'
+                    color={textColor}
+                    borderRadius='16px'
+                    borderColor={borderColor}
+                    h={{ base: "63px", md: "95px" }}
+                    w={{ base: "63px", md: "95px" }}
+                    me='10px'
+                  />
+                  <PinInputField
+                    onChange={(e) => setpin2(e.target.value)}
+                    value={pin2}
+                    fontSize='36px'
+                    color={textColor}
+                    borderRadius='16px'
+                    borderColor={borderColor}
+                    h={{ base: "63px", md: "95px" }}
+                    w={{ base: "63px", md: "95px" }}
+                    me='10px'
+                  />
+                  <PinInputField
+                    onChange={(e) => setpin3(e.target.value)}
+                    value={pin3}
+                    fontSize='36px'
+                    color={textColor}
+                    borderRadius='16px'
+                    borderColor={borderColor}
+                    h={{ base: "63px", md: "95px" }}
+                    w={{ base: "63px", md: "95px" }}
+                    me='10px'
+                  />
+                  <PinInputField
+                    onChange={(e) => setpin4(e.target.value)}
+                    value={pin4}
+                    fontSize='36px'
+                    color={textColor}
+                    borderRadius='16px'
+                    borderColor={borderColor}
+                    h={{ base: "63px", md: "95px" }}
+                    w={{ base: "63px", md: "95px" }}
+                    me='10px'
+                  />
+                  <PinInputField
+                    onChange={(e) => setpin5(e.target.value)}
+                    value={pin5}
+                    fontSize='36px'
+                    color={textColor}
+                    borderRadius='16px'
+                    borderColor={borderColor}
+                    h={{ base: "63px", md: "95px" }}
+                    w={{ base: "63px", md: "95px" }}
+                    me='10px'
+                  />
+                  <PinInputField
+                    onChange={(e) => setpin6(e.target.value)}
+                    value={pin6}
+                    fontSize='36px'
+                    color={textColor}
+                    borderRadius='16px'
+                    borderColor={borderColor}
+                    h={{ base: "63px", md: "95px" }}
+                    w={{ base: "63px", md: "95px" }}
+                  />
+                </PinInput>
+              </Flex>
+              <Button
+                onClick={activateCard}
+                isLoading={loading}
+                fontSize='14px'
+                variant='brand'
+                borderRadius='16px'
+                fontWeight='500'
+                w='100%'
+                h='50'
+                mb='24px'
+                mt='12px'>
+                Activate Card
+              </Button>
+            </FormControl>
+            <Text
+              color={textColorDetails}
+              fontWeight='400'
+              fontSize='14px'
+              mx={{ base: "auto", lg: "unset" }}
+              textAlign={{ base: "center", lg: "left" }}>
+              Haven't received it?
+              <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
+                Resend a new code
+              </Text>
             </Text>
-          </Text>
-        </Flex>
-      </ModalBody>
-      <ModalFooter>
-        <Button onClick={onActClose}>Cancel</Button>
-      </ModalFooter>
-    </ModalContent>
-  </Modal>
-</Flex>;
+          </Flex>
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={onActClose}>Cancel</Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  </Flex>;
 
   return (
-    <Card {...rest} p='44px' style={{boxShadow:'#cdcdcd 10px 10px 10px'}}>
+    <Card {...rest} p='44px' style={{ boxShadow: '#cdcdcd 10px 10px 10px' }}>
       <Flex justify='space-between' mb='25px' align='center'>
         <Text
-        style={{filter: !props.card.is_active?'blur(2px)':'none'}}
+          style={{ filter: !props.card.is_active ? 'blur(2px)' : 'none' }}
           color={textColor}
           fontSize='xl'
           fontWeight='700'
@@ -335,7 +356,7 @@ export default function IcontapCard(props) {
         </Text>
 
       </Flex>
-      <Tabs style={{filter: !props.card.is_active?'blur(3px)':'none'}}>
+      <Tabs style={{ filter: !props.card.is_active ? 'blur(3px)' : 'none' }}>
         <TabPanels mb='20px'>
           <TabPanel p='0px'>
             {/* <Image src={props?.card?.images?.img_profile?`${hostNameStorage}/${props?.card?.images?.img_profile}`:whitecard} /> */}
@@ -404,7 +425,7 @@ export default function IcontapCard(props) {
       </Tabs>
 
       <Flex justify='space-between' w='100%'>
-        {true||props.card.is_active?<Flex
+        {true || props.card.is_active ? <Flex
           direction='column'
           align='center'
           me={{ base: "16px", md: "0px", "2xl": "36px" }}
@@ -429,9 +450,10 @@ export default function IcontapCard(props) {
           <Text fontSize='sm' fontWeight='500' color={textColor}>
             Edit Card
           </Text>
-        </Flex>:''}
-        {false&&!props.card.is_active?activateCardBtnModal:''}
-        {props.card.is_active?<Flex direction='column' align='center'>
+        </Flex> : ''}
+        {false && !props.card.is_active ? activateCardBtnModal : ''}
+
+        {props.card.is_active ? <Flex direction='column' align='center'>
           <IconButton onClick={onOpen}
             borderRadius='50%'
             bg={bgIconButton}
@@ -447,9 +469,9 @@ export default function IcontapCard(props) {
           <Text fontSize='sm' fontWeight='500' color={textColor}>
             Disable Card
           </Text>
-          </Flex>:''}
+        </Flex> : ''}
         {!props.card.is_active ? <Flex direction='column' align='center'>
-          <IconButton onClick={()=>activateCard(true)}
+          <IconButton onClick={() => activateCard(true)}
             borderRadius='50%'
             bg={bgIconButton}
             _hover={bgIconHover}
@@ -468,22 +490,60 @@ export default function IcontapCard(props) {
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Modal Title</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <Text>Are you sure you want to disable your card visibility?</Text>
-              </ModalBody>
+          <ModalContent>
+            <ModalHeader>Alert</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Text>Are you sure you want to disable your card visibility?</Text>
+            </ModalBody>
 
-              <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={()=>activateCard(false)} isLoading={loading}>
-                  Yes
-                </Button>
-                <Button variant='ghost' onClick={onClose}>No</Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
+            <ModalFooter>
+              <Button colorScheme='blue' mr={3} onClick={() => activateCard(false)} isLoading={loading}>
+                Yes
+              </Button>
+              <Button variant='ghost' onClick={onClose}>No</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </Flex>
+
+      {hasRole('admin') ? <Flex justify='center' w='100%' style={{ borderTop: 'solid gray 1px', marginTop: '10px' }}>
+        <Flex direction='column' align='center'>
+          <IconButton onClick={onDeleteOpen}
+            borderRadius='50%'
+            bg={bgIconButton}
+            _hover={bgIconHover}
+            _active={bgIconFocus}
+            _focus={bgIconFocus}
+            w='56px'
+            h='56px'
+            mb='5px'
+            boxShadow={shadow}
+            icon={<Icon as={MdDeleteForever} color={redIcon} w='24px' h='24px' />}
+          />
+          <Text fontSize='sm' fontWeight='500' color={textColor}>
+            Delete Card
+          </Text>
         </Flex>
+      </Flex> : ''}
+
+      <Modal isOpen={isDeleteOpen} onClose={onDeleteClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Alert</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>Are you sure you want to delete this card permanently?</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={() => deleteCard()} isLoading={loading}>
+              Yes
+            </Button>
+            <Button variant='ghost' onClick={onDeleteClose}>No</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
     </Card>
   );
 }
