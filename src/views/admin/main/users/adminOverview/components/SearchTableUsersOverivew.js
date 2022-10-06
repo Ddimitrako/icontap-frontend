@@ -45,11 +45,12 @@ const columns = [
         name: 'Edit card/s',
         selector: row => row.editCard,
         sortable: false,
-    },{
-        name: 'Analytics',
-        selector: row => row.analytics,
-        sortable: false,
     },
+    // {
+    //     name: 'Analytics',
+    //     selector: row => row.analytics,
+    //     sortable: false,
+    // },
 ];
 
 
