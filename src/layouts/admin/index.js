@@ -104,7 +104,12 @@ export default function Dashboard(props) {
     // console.log('routes', routes);
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
-        let authorized=prop?.role?hasRole(prop.role):(prop?.role?hasCompanyRole(prop.company_role):true);
+        let authorized=prop?.role?hasRole(prop.role):true;
+        authorized=authorized && (prop?.company_role?hasCompanyRole(prop.company_role):true);
+        
+        if(!authorized){
+          console.log('getRoutes', props, prop?.role, hasRole(prop.role), hasCompanyRole(prop.company_role));
+        }
         return (
           authorized?
           <Route
