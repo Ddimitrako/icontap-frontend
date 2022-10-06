@@ -64,53 +64,53 @@ function SignIn() {
   );
   const [show, setShow] = React.useState(false);
 
-  
-  const [loading, setloading]=useState(false);
-  
+
+  const [loading, setloading] = useState(false);
+
   const axios = require('axios').default;
 
-  const [email, setemail]=useState('');
-  const [pass, setpass]=useState('');
+  const [email, setemail] = useState('');
+  const [pass, setpass] = useState('');
 
-  const [errors, seterrors]=useState({});
+  const [errors, seterrors] = useState({});
 
-  const errorMsgs={
-    USER_NOT_EXISTS:'This email does not belong to any user',
-    PASSWORD_INCORRECT:'The password is incorrect',
-    BLOCKED:'This account is blocked',
+  const errorMsgs = {
+    USER_NOT_EXISTS: 'This email does not belong to any user',
+    PASSWORD_INCORRECT: 'The password is incorrect',
+    BLOCKED: 'This account is blocked',
   }
 
-  const DisplayError = () => Object.keys(errors).length>0?<Alert status='error' style={{marginBottom:'20px'}}>
+  const DisplayError = () => Object.keys(errors).length > 0 ? <Alert status='error' style={{ marginBottom: '20px' }}>
     <AlertIcon />
     <AlertTitle>{errorMsgs[errors.message]}</AlertTitle>
     <AlertDescription>{errors.data}</AlertDescription>
-  </Alert>:<></>;
+  </Alert> : <></>;
 
-  const data={
-    email:email,
-    password:pass
+  const data = {
+    email: email,
+    password: pass
   }
 
   function postToApi() {
     setloading(true);
     axios({
-      method:'post',
-      url:hostName+`/login`,
-      data:data
-    }).then((response)=>{
+      method: 'post',
+      url: hostName + `/login`,
+      data: data
+    }).then((response) => {
       console.log(response);
-      if (response?.data?.data?.verified=='1') {
+      if (response?.data?.data?.verified == '1') {
         logIn(response?.data?.data?.token);
         window.location.href = '/admin/cardsList/card';
       }
-      else if (response?.data?.data?.verified=='0'){
+      else if (response?.data?.data?.verified == '0') {
         localStorage.setItem('unverified', '1');
         onOpen();
       }
 
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err.response);
-      seterrors({message:err.response.data.message, data:err.response.data.data});
+      seterrors({ message: err.response.data.message, data: err.response.data.data });
     }).finally(() => {
       setloading(false);
     })
@@ -121,7 +121,7 @@ function SignIn() {
 
   useEffect(() => {
     localStorage.clear();
-  },[]);
+  }, []);
 
   const handleClick = () => setShow(!show);
   return (
@@ -205,7 +205,7 @@ function SignIn() {
               mb='24px'
               fontWeight='500'
               size='lg'
-              onChange={(e)=>setemail(e.target.value)}
+              onChange={(e) => setemail(e.target.value)}
               value={email}
             />
             {/* <DisplayError err='email' /> */}
@@ -227,7 +227,7 @@ function SignIn() {
                 size='lg'
                 type={show ? "text" : "password"}
                 variant='auth'
-                onChange={(e)=>setpass(e.target.value)}
+                onChange={(e) => setpass(e.target.value)}
                 value={pass}
               />
               <InputRightElement display='flex' alignItems='center' mt='4px'>
@@ -272,11 +272,11 @@ function SignIn() {
               w='100%'
               h='50'
               mb='24px'
-              onClick={postToApi}  
+              onClick={postToApi}
               isLoading={loading}
               loadingText={'Please wait...'}
               className='btn-custom-dark-background'
-              >
+            >
               Sign In
             </Button>
           </FormControl>
@@ -301,21 +301,21 @@ function SignIn() {
           </Flex>
         </Flex>
       </Flex>
-      
-  <Modal isOpen={isOpen} onClose={onClose} style={{backgroundColor:'#FFF6DA'}}>
-    <ModalOverlay />
-    <ModalContent>
-      <ModalHeader>Attention</ModalHeader>
-      <ModalCloseButton />
-      <ModalBody>
-        <NeedsEmailVerification />
-      </ModalBody>
 
-      {/* <ModalFooter>
+      <Modal isOpen={isOpen} onClose={onClose} style={{ backgroundColor: '#FFF6DA' }}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Attention</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <NeedsEmailVerification />
+          </ModalBody>
+
+          {/* <ModalFooter>
         <Button variant='ghost' onClick={onClose}>Ok</Button>
       </ModalFooter> */}
-    </ModalContent>
-  </Modal>
+        </ModalContent>
+      </Modal>
     </DefaultAuth>
   );
 }
