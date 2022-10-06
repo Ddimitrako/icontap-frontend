@@ -16,6 +16,7 @@ import { MeContext } from "Helpers/Auth.js";
 import { GetMeFromApi } from "Helpers/Auth.js";
 import { TitleContext } from "Helpers/Context.js";
 import { hasRole } from "Helpers/Auth.js";
+import { hasCompanyRole } from "Helpers/Auth.js";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
@@ -103,7 +104,7 @@ export default function Dashboard(props) {
     // console.log('routes', routes);
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
-        let authorized=prop?.role?prop.role==hasRole(prop.role):true;
+        let authorized=prop?.role?hasRole(prop.role):(prop?.role?hasCompanyRole(prop.company_role):true);
         return (
           authorized?
           <Route
