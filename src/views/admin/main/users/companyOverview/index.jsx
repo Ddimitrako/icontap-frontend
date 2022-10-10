@@ -7,7 +7,7 @@ import {
 import {Avatar, Flex, FormLabel, Icon, Image, Select, SimpleGrid, Text} from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, {useEffect, useState} from "react";
-import UsersTable from "views/admin/main/users/adminOverview/components/SearchTableUsersOverivew";
+import UsersTable from "views/admin/main/users/companyOverview/components/SearchTableUsersOverivew";
 import {columnsDataUsersOverview} from "views/admin/main/users/companyOverview/variables/columnsDataUsersOverview";
 import tableDataUsersOverview from "views/admin/main/users/companyOverview/variables/tableDataUsersOverview.json";
 import MiniStatistics from "../../../../../components/card/MiniStatistics";
@@ -34,8 +34,8 @@ export default function CompanyUsersOverview(props) {
     const [companiesNamesUUIDsList, setCompaniesNamesUUIDsList] = useState([{}])
     const [selectedUsers,setSelectedUsers] = useState([])
 
-    const companyNameChange = (event) => setCompanyName(event.target.value)
-    const companyDescrChange = (event) => setCompanyDescript(event.target.value)
+    // const companyNameChange = (event) => setCompanyName(event.target.value)
+    // const companyDescrChange = (event) => setCompanyDescript(event.target.value)
 
 
     const config = {

@@ -202,7 +202,10 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
                         message: "A new card successfully assigned to selected user ",
                         status: "success"
                     })
-
+                    axios.post(
+                        hostName + '/card/'+response.data.data.code+'/profile',
+                        config
+                    ).catch((err)=>{console.log(err.response)})
                 }
             }
         ).catch(console.log);

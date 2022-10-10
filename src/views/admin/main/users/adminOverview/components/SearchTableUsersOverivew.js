@@ -33,7 +33,7 @@ const columns = [
     },
     {
         name: 'USER TYPE',
-        selector: row => row.userType,
+        selector: row => row.role_company.name,
         sortable: true,
     },
     {

@@ -33,7 +33,7 @@ const columns = [
     },
     {
         name: 'USER TYPE',
-        selector: row => row.userType,
+        selector: row => row.role_company.name,
         sortable: true,
     },
     {
@@ -45,11 +45,12 @@ const columns = [
         name: 'Edit card/s',
         selector: row => row.editCard,
         sortable: false,
-    },{
-        name: 'Analytics',
-        selector: row => row.analytics,
-        sortable: false,
     },
+    // {
+    //     name: 'Analytics',
+    //     selector: row => row.analytics,
+    //     sortable: false,
+    // },
 ];
 
 
