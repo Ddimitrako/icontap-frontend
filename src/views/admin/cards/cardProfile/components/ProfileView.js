@@ -12,7 +12,7 @@ import Cover from './Cover';
 const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius = 70 }) => {
     
     useEffect(()=>{
-        // console.log('profileView card', card);
+        console.log('profileView card', card);
     },[card]);
     
     return card?.profile ? (
@@ -34,7 +34,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                     marginBottom: '50px'
                 }}
             >
-                <a href={`${hostNameStorage}/${card.profile.vcard}`}
+                <a href={card?.profile?.vcard?`${hostNameStorage}/${card.profile.vcard}`:'#'}
                     className={'Icontap-black-btn'}
                 >Save Contact</a>
             </Box>
@@ -52,7 +52,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
             }}>
 
                     {socials && socials.length > 0 && socials?.map((social, index) => {
-                        console.log('social', social);
+                        // console.log('social', social);
                         return <SocialButton imgUrl={social?.imgUrl} blobUrl={social?.imgUrl.blobUrl} base_url={social?.content?.base_url??social?.base_url} url={social?.url} title={social?.title} key={index} />
                     }
                     )}

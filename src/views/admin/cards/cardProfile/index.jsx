@@ -108,9 +108,9 @@ export default function Page() {
     const [socials, setsocials] = useState([]);
     const [socialimgs, setsocialimgs] = useState({});
 
-    useEffect(()=>{
-        console.log('parent socials', socials, socialimgs);
-    },[socials, socialimgs]);
+    // useEffect(()=>{
+    //     console.log('parent socials', socials, socialimgs);
+    // },[socials, socialimgs]);
 
     const profileIcon=<i className="fa-solid fa-user" style={{marginRight:'5px'}}></i>;
     const qrIcon=<i className="fa-solid fa-qrcode" style={{marginRight:'5px'}}></i>;
@@ -147,6 +147,7 @@ export default function Page() {
                                 {card && <CustomIframe socials={socials} card={card}/>}
                                 <Stack direction='row' spacing={4}>
                                     <Button onClick={() => {
+                                        if(card.code!='demo')
                                         window.open(`${frontAddress}/card/${card.code}`, "_blank");
                                     }} rightIcon={<MdPreview />} colorScheme='black' variant='outline'>
                                         View Profile
@@ -156,11 +157,11 @@ export default function Page() {
                         </Grid>
                     </TabPanel>
                     {card.code && <TabPanel style={{ textAlign: 'center' }}>
-                        <Image style={{paddingTop:'50px', paddingRight:'20px', paddingLeft:'20px', paddingBottom:'100px', backgroundColor:'white', border:'none', borderRadius:'20px',boxShadow:'rgb(205 205 205) 10px 10px 10px' }} src={`${hostNameStorage}/${card?.qr_code}`} />
+                        <Image style={{paddingTop:'50px', paddingRight:'20px', paddingLeft:'20px', paddingBottom:'100px', backgroundColor:'white', border:'none', borderRadius:'20px',boxShadow:'rgb(205 205 205) 10px 10px 10px' }} src={card?.qr_code!='demo'?`${hostNameStorage}/${card?.qr_code}`:`/static/media/demo-qr.jpg`} />
                         <br />
                         <InputGroup>
                             <InputLeftAddon children='URL' />
-                            <Input value={`https://my.icontap.gr/card/${card.code}`} readOnly />
+                            <Input value={card.code!='demo'?`https://my.icontap.gr/card/${card.code}`:'demo-url'} readOnly />
                         </InputGroup>
                     </TabPanel>}
                 </TabPanels>

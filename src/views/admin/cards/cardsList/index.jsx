@@ -53,6 +53,7 @@ import { MeContext } from "Helpers/Auth";
 import { useState } from "react";
 import { hostName } from "Helpers/App";
 import { useParams } from "react-router-dom";
+import { demoCard } from "Helpers/Cards";
 export default function Collection(props) {
 
   const [Me, setMe] = useContext(MeContext);
@@ -80,6 +81,7 @@ export default function Collection(props) {
       {!loading && !(cards?.length!=0) &&
       <span>No available card physical card only link – click <a style={{fontWeight:'bold'}} href="https://icontap.gr/shop-2/">here</a> to buy </span>
       }
+      <IcontapCard card={demoCard}/>
       {!loading ? cards.map((card, index) =>
         <IcontapCard card={card} key={index} getcards={()=>getCards()} />
       ) : <Button isLoading
@@ -223,7 +225,7 @@ export default function Collection(props) {
 
         <Text>Add a new Card</Text>
         <Button
-          // onClick={createCard}
+          onClick={createCard}
           align='center'
           justifyContent='center'
           bg={bgButton}

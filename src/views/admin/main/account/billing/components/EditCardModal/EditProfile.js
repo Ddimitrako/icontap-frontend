@@ -15,6 +15,7 @@ import { arrOfObjToFormData } from "Helpers/Arrays";
 
 import { Draggable } from "react-drag-reorder";
 import { deepCopy } from "Helpers/Arrays";
+import { demoCard } from "Helpers/Cards";
 
 //The container modal
 
@@ -60,19 +61,24 @@ export default function EditProfile(props) {
 
     function getProfile() {
         setloading(true);
+        getContents();
         // console.log('getProfile');
-        axios({
-            method: 'get',
-            url: `${hostName}/card/show/${cardId}`
-        }).then((response) => {
-            console.log(response);
-            setcard(response.data.data);
-            getContents();
-        }).catch((err) => {
-            console.log(err.response);
-        }).finally(() => {
+        if(cardId=='demo'){
+            setcard(demoCard);
             setloading(false);
-        })
+        }else{
+            axios({
+                method: 'get',
+                url: `${hostName}/card/show/${cardId}`
+            }).then((response) => {
+                console.log(response);
+                setcard(response.data.data);
+            }).catch((err) => {
+                console.log(err.response);
+            }).finally(() => {
+                setloading(false);
+            })
+        }
     }
 
     const [contentloading, setcontentloading]=useState(true);
@@ -97,7 +103,7 @@ export default function EditProfile(props) {
             method: 'get',
             url: `${hostName}/contents`
         }).then((response) => {
-            console.log('getContents',response);
+            // console.log('getContents',response);
             setsocialDefaults(parseContents(response.data.data));
             // console.log('prof');
             // parseProfileContents();
@@ -126,8 +132,8 @@ export default function EditProfile(props) {
     const [TitleContextValue, setTitleContextValue] = useContext(TitleContext);
 
     useEffect(() => {
+        console.log(card);
         if (card.profile) {
-            // console.log(card);
             props.setname(card?.profile?.name ?? '');
             props.setbio(card?.profile?.bio ?? '');
             props.setjob(card?.profile?.job_title ?? '');
@@ -242,9 +248,9 @@ export default function EditProfile(props) {
 
     const [draggablesKey, setDraggablesKey] = useState(Math.random());
 
-    useEffect(() => {
-        console.log('socials', socials);
-    }, [socials]);
+    // useEffect(() => {
+    //     console.log('socials', socials);
+    // }, [socials]);
 
     const socialContainer = React.createRef();
 
@@ -325,7 +331,7 @@ export default function EditProfile(props) {
 
                     style={{boxShadow:'0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)'}}
 
-                    onClick={updateProfile}>
+                    onClick={()=>{if(cardId!='demo'){updateProfile()}}}>
                     Update
                 </Button>
 

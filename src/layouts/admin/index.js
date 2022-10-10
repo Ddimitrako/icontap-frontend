@@ -107,9 +107,9 @@ export default function Dashboard(props) {
         let authorized=prop?.role?hasRole(prop.role):true;
         authorized=authorized && (prop?.company_role?hasCompanyRole(prop.company_role):true);
         
-        if(!authorized){
-          console.log('getRoutes', props, prop?.role, hasRole(prop.role), hasCompanyRole(prop.company_role));
-        }
+        // if(!authorized){
+        //   console.log('getRoutes', props, prop?.role, hasRole(prop.role), hasCompanyRole(prop.company_role));
+        // }
         return (
           authorized?
           <Route

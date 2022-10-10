@@ -97,8 +97,8 @@ export default function IcontapCard(props) {
 
   //Modal Handlers
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const deleteDisclosure=useDisclosure();
-  const { isDeleteOpen, onDeleteOpen, onDeleteClose } = {isDeleteOpen:deleteDisclosure.isOpen, onDeleteOpen:deleteDisclosure.onOpen, onDeleteClose:deleteDisclosure.onClose };
+  const deleteDisclosure = useDisclosure();
+  const { isDeleteOpen, onDeleteOpen, onDeleteClose } = { isDeleteOpen: deleteDisclosure.isOpen, onDeleteOpen: deleteDisclosure.onOpen, onDeleteClose: deleteDisclosure.onClose };
   const activateModalDisclosure = useDisclosure();
   const isActOpen = activateModalDisclosure.isOpen;
   const onActOpen = activateModalDisclosure.onOpen;
@@ -150,39 +150,52 @@ export default function IcontapCard(props) {
 
   function activateCard(activate) {
     setloading(true);
-    console.log('deactivating');
-    axios({
-      method: 'put',
-      url: `${hostName}/card/${props.card.code}/status`,
-      data: {
-        is_active: activate
-      }
-    }).then((response) => {
-      console.log(response);
-      props?.getcards();
-    }).catch((err) => {
-      console.log(err.response);
-    }).finally(() => {
+    if (props.card.code != 'demo') {
+      console.log('deactivating');
+      axios({
+        method: 'put',
+        url: `${hostName}/card/${props.card.code}/status`,
+        data: {
+          is_active: activate
+        }
+      }).then((response) => {
+        console.log(response);
+        props?.getcards();
+      }).catch((err) => {
+        console.log(err.response);
+      }).finally(() => {
+        onClose();
+        setloading(false);
+      });
+    }
+    else {
       onClose();
       setloading(false);
-    });
+    }
+
   }
 
   function deleteCard() {
     setloading(true);
-    console.log('deactivating');
-    axios({
-      method: 'delete',
-      url: `${hostName}/card/${props.card.code}`,
-    }).then((response) => {
-      console.log(response);
-      props?.getcards();
-    }).catch((err) => {
-      console.log(err.response);
-    }).finally(() => {
+    if (props.card.code != 'demo') {
+      console.log('deactivating');
+      axios({
+        method: 'delete',
+        url: `${hostName}/card/${props.card.code}`,
+      }).then((response) => {
+        console.log(response);
+        props?.getcards();
+      }).catch((err) => {
+        console.log(err.response);
+      }).finally(() => {
+        onClose();
+        setloading(false);
+      });
+    }
+    else {
       onClose();
       setloading(false);
-    });
+    }
   }
 
   const activateCardBtnModal = <Flex direction='column' align='center'>
