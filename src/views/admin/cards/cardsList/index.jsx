@@ -15,6 +15,7 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  useDisclosure,
 } from "@chakra-ui/react";
 import IcontapCard from "./components/Card";
 // Custom components
@@ -54,6 +55,7 @@ import { useState } from "react";
 import { hostName } from "Helpers/App";
 import { useParams } from "react-router-dom";
 import { demoCard } from "Helpers/Cards";
+import { ActivateCardModal } from "Helpers/Cards";
 export default function Collection(props) {
 
   const [Me, setMe] = useContext(MeContext);
@@ -127,7 +129,6 @@ export default function Collection(props) {
       data: {
         "title": `Dummy card ${Math.random()}`,
         "is_personal": true,
-        "owner": getMe().id
       }
     }).then((response => {
       console.log(response);
@@ -135,7 +136,7 @@ export default function Collection(props) {
         method: 'post',
         url: `${hostName}/card/${response.data.data.code}/profile`
       }).then((response) => {
-        getCards();
+        props.getCards();
         console.log(response);
       }).catch((err) => {
         console.log(err.response);
@@ -155,6 +156,8 @@ export default function Collection(props) {
     { bg: "whiteAlpha.100" }
   );
   const iconColor = useColorModeValue("brand.500", "white");
+
+  const activateModalDisclosure = useDisclosure();
 
   // Chakra Color Mode
   return (
@@ -224,8 +227,25 @@ export default function Collection(props) {
         </Text>
 
         <Text>Add a new Card</Text>
-        <Button
+        {/* <Button
           onClick={createCard}
+          align='center'
+          justifyContent='center'
+          bg={bgButton}
+          _hover={bgHover}
+          _focus={bgFocus}
+          _active={bgFocus}
+          w='37px'
+          h='37px'
+          lineHeight='100%'
+          borderRadius='10px'
+          isLoading={loadingCreate}
+        >
+          <Icon as={MdAddCircle} color={'red'} w='24px' h='24px' />
+
+        </Button> */}
+        <Button
+          onClick={()=>activateModalDisclosure.onOpen()}
           align='center'
           justifyContent='center'
           bg={bgButton}
@@ -241,7 +261,7 @@ export default function Collection(props) {
           <Icon as={MdAddCircle} color={iconColor} w='24px' h='24px' />
 
         </Button>
-
+        <ActivateCardModal activateModalDisclosure={activateModalDisclosure} loading={loading} setloading={setloading} getcards={getCards} />
         <TabPanels>
           <TabPanel px='0px'>{panelCards}</TabPanel>
         </TabPanels>
