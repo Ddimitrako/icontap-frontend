@@ -79,6 +79,7 @@ export default function Settings({setShowAlert}) {
             setzipCode(getMe().data.zip_code)
             setStateLocation(getMe().data.state)
             setAddress(getMe().data.address)
+            setEmail(getMe().email)
         } catch (e) {
             console.log('Error')
         }
