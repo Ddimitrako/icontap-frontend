@@ -33,6 +33,8 @@ import { hostNameStorage } from 'Helpers/App';
 import { CustomEditBox } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
 import { frontAddress } from 'Helpers/App';
 import { useEffect } from 'react';
+import { downloadImage } from 'Helpers/App';
+import { copy2clip } from 'Helpers/App';
 
 export default function Page() {
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -41,17 +43,17 @@ export default function Page() {
     // Chakra Color Mode
 
     const [card, setCard] = useState({});
-    
-    const [avatar, setavatar] = useState({url:'/static/media/img.jpg'});
-    const [cover, setcover] = useState({url:'/static/media/img.jpg'});
-    
+
+    const [avatar, setavatar] = useState({ url: '/static/media/img.jpg' });
+    const [cover, setcover] = useState({ url: '/static/media/img.jpg' });
+
     const [name, setname] = useState('');
     const [bio, setbio] = useState('');
     const [job, setjob] = useState('');
     const [company, setcompany] = useState('');
 
 
-    const socialDummys=[
+    const socialDummys = [
         {
             "id": 19,
             "name": "Linktree",
@@ -112,14 +114,14 @@ export default function Page() {
     //     console.log('parent socials', socials, socialimgs);
     // },[socials, socialimgs]);
 
-    const profileIcon=<i className="fa-solid fa-user" style={{marginRight:'5px'}}></i>;
-    const qrIcon=<i className="fa-solid fa-qrcode" style={{marginRight:'5px'}}></i>;
+    const profileIcon = <i className="fa-solid fa-user" style={{ marginRight: '5px' }}></i>;
+    const qrIcon = <i className="fa-solid fa-qrcode" style={{ marginRight: '5px' }}></i>;
 
     return (
         <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
             {/* Main Fields */}
             <Tabs>
-                <TabList className='height-none' style={{border:'0', backgroundColor:'#f9f9f9'}}>
+                <TabList className='height-none' style={{ border: '0', backgroundColor: '#f9f9f9' }}>
                     <Tab _focus={{ boxShadow: "none", }} className='tab-custom'>{profileIcon} Profile</Tab>
                     {card.code && <Tab _focus={{ boxShadow: "none", }} className='tab-custom'>{qrIcon} QR Code</Tab>}
                 </TabList>
@@ -138,17 +140,17 @@ export default function Page() {
                             <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'>
                                 <FormControl>
                                     <Card className='edit-profile-container'>
-                                        <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover}/>
+                                        <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} />
                                     </Card>
                                 </FormControl>
                             </Flex>
                             <Flex flexDirection='column' alignItems='center' pt='10px'>
                                 <Heading className='hide-under-959' color={'black'} size='sm'>Profile Live Preview</Heading>
-                                {card && <CustomIframe socials={socials} card={card}/>}
+                                {card && <CustomIframe socials={socials} card={card} />}
                                 <Stack direction='row' spacing={4}>
                                     <Button onClick={() => {
-                                        if(card.code!='demo')
-                                        window.open(`${frontAddress}/card/${card.code}`, "_blank");
+                                        if (card.code != 'demo')
+                                            window.open(`${frontAddress}/card/${card.code}`, "_blank");
                                     }} rightIcon={<MdPreview />} colorScheme='black' variant='outline'>
                                         View Profile
                                     </Button>
@@ -156,13 +158,19 @@ export default function Page() {
                             </Flex>
                         </Grid>
                     </TabPanel>
-                    {card.code && <TabPanel style={{ textAlign: 'center' }}>
-                        <Image style={{paddingTop:'50px', paddingRight:'20px', paddingLeft:'20px', paddingBottom:'100px', backgroundColor:'white', border:'none', borderRadius:'20px',boxShadow:'rgb(205 205 205) 10px 10px 10px' }} src={card?.qr_code!='demo'?`${hostNameStorage}/${card?.qr_code}`:`/static/media/demo-qr.jpg`} />
+                    {card.code && <TabPanel style={{ textAlign: 'left' }}>
+                        <Image style={{ paddingTop: '50px', paddingRight: '20px', paddingLeft: '20px', paddingBottom: '100px', backgroundColor: 'white', border: 'none', borderRadius: '20px', boxShadow: 'rgb(205 205 205) 10px 10px 10px' }} src={card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`} />
+                        <button className='Icontap-black-btn' style={{ marginTop: '10px', marginBottom: '20px' }} onClick={() => { downloadImage(card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`, 'icontap-qr') }}>Download QR Code</button>
                         <br />
                         <InputGroup>
                             <InputLeftAddon children='URL' />
-                            <Input value={card.code!='demo'?`https://my.icontap.gr/card/${card.code}`:'demo-url'} readOnly />
+                            <Input value={card.code != 'demo' ? `https://my.icontap.gr/card/${card.code}` : 'demo-url'} readOnly />
                         </InputGroup>
+                        <button className='Icontap-white-btn' style={{ marginTop: '10px', marginBottom: '10px' }} onClick={(e) => { copy2clip(e.target, card.code != 'demo' ? `https://my.icontap.gr/card/${card.code}` : 'demo-url') }}>
+
+                            <span className="tooltiptext">Url copied</span>
+                            Copy URL
+                        </button>
                     </TabPanel>}
                 </TabPanels>
             </Tabs>
