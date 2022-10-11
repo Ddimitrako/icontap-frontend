@@ -65,11 +65,11 @@ const calculateImageButtonPosition = (avatarRadius) => {
 const Cover = ({avatar, setavatar, avatarRadius, cover, setcover, editable=false, minHeight='20%'}) => <div
 style={{
     top:0,
-    minHeight: `${avatarRadius*3}px`,
+    minHeight: `${avatarRadius*2.56}px`,
     paddingRight: '50px',
     borderBottomRightRadius: '0',
     borderBottomLeftRadius: '0',
-    marginBottom: `${avatarRadius + 50}px`,
+    marginBottom: `${avatarRadius + 10}px`,
     // background: 'white url(' + cover.url + ') center cover no-repeat',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',

@@ -19,19 +19,19 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
         <Box style={{
             height: '100%', width: '100%',
             // boxShadow: '4px 4px 10px grey',
-            paddingBottom: hideFooter?'30px':'300px',
+            paddingBottom: hideFooter?'30px':'50px',
             position: 'relative',
             textAlign: 'center'
         }}>
             <Cover minHeight={coverMinHeight} socialMaxW="60%" avatarRadius={avatarRadius} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={card?.images?.img_profile} cover={card?.images?.img_cover} socials={socials} />
-            <Stack spacing={3}>
+            <Stack spacing={1}>
                 <Text focusBorderColor='none' style={{ width: '100%', padding:'2% 12%', textAlign: 'center', fontSize: '24px', fontWeight: '600' }}>{card.profile.name}</Text>
                 <Text focusBorderColor='none' style={{ width: '100%', padding:'2% 12%', textAlign: 'center' }}>{card.profile.bio}</Text>
             </Stack>
             <Box
                 style={{
-                    marginTop: '50px',
-                    marginBottom: '50px'
+                    marginTop: '20px',
+                    marginBottom: '20px'
                 }}
             >
                 <a href={card?.profile?.vcard?`${hostNameStorage}/${card.profile.vcard}`:'#'}
@@ -39,7 +39,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                 >Save Contact</a>
             </Box>
             <Box style={{
-                width: '100%',
+                width: '90%',
                 maxWidth:'400px',
                 margin: '0 auto',
                 display: 'inline-block',
