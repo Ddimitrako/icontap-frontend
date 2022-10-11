@@ -32,8 +32,8 @@ const columns = [
         sortable: true,
     },
     {
-        name: 'USER TYPE',
-        selector: row => row.role_company.name,
+        name: 'COMPANY USER TYPE',
+        selector: row =>  row.role_company ? row.role_company.name : "Not a company member",
         sortable: true,
     },
     {
