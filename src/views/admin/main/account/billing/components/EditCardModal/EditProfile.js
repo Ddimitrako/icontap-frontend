@@ -1,5 +1,5 @@
-import { Button, FormControl, FormHelperText, FormLabel, Input, Stack, Textarea, useDisclosure } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Button, FormControl, FormHelperText, FormLabel, Input, ModalContent, Stack, Textarea, useDisclosure } from "@chakra-ui/react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AddContentContainer from "./AddContentContainer";
 import EditCardModal, { CustomEditBox, SocialButton } from "./EditCardModal";
@@ -12,10 +12,13 @@ import { TitleContext } from "Helpers/Context";
 import { hostNameStorage } from "Helpers/App";
 import Cover from "views/admin/cards/cardProfile/components/Cover";
 import { arrOfObjToFormData } from "Helpers/Arrays";
-
+import Cropper from 'react-easy-crop'
 import { Draggable } from "react-drag-reorder";
 import { deepCopy } from "Helpers/Arrays";
 import { demoCard } from "Helpers/Cards";
+import { Crop } from "./Crop/Crop";
+import getCroppedImg from "./Crop/cropImage";
+// import './styles.css'
 
 //The container modal
 
@@ -42,14 +45,23 @@ export default function EditProfile(props) {
     const setsocials = props.setsocials;
 
     const [currSocial, setcurrSocial] = useState();
-    
+
     const [socialDefaults, setsocialDefaults] = useState();
 
     const [tempSocialData, settempSocialData] = useState();
 
     const [oldSocials, setoldSocials] = useState([]);
 
+    const [isCroppable, setisCroppable]=useState(true);
+
     const pages = {
+        'Crop': <ModalContent style={{
+            padding: '0',
+            boxShadow: '0px 12px 40px rgb(0 0 0 / 20%)',
+            borderRadius: '30px'
+        }} w={'100%'} maxW={'900px'} h={'100%'} maxH={'660px'}
+        >
+        <Crop setisCroppable={setisCroppable} onClose={onClose} setCroppedImage={props.setavatar} cropShape={'round'} img={props.avatar.url}/></ModalContent>,
         // 'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
         'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} />,
         'EditLink': <EditLink socialimgs={props.socialimgs} setsocialimgs={props.setsocialimgs} setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} oldsocials={oldSocials} setoldsocials={setoldSocials} />
@@ -58,6 +70,31 @@ export default function EditProfile(props) {
     let { cardId } = useParams();
 
     const [loading, setloading] = useState(true);
+
+
+    useEffect(async () => {
+        console.log('AVATAR', props.avatar.url);
+        try {
+            await getCroppedImg(
+                props.avatar.url,
+                {width: 1, height: 1, x: 0, y: 0}
+            )
+        } catch (e) {
+            console.error(e)
+            return false;
+        }
+
+        if (isCroppable && props.avatar.url != '/static/media/img.jpg' && !props.avatar.url.includes(hostNameStorage)) {
+            console.log(props.avatar.url);
+            setPage('Crop');
+            onOpen();
+        }
+
+        if(!isCroppable){
+            setisCroppable(true);
+        }
+
+    }, [props.avatar]);
 
     function getProfile() {
         setloading(true);
@@ -143,7 +180,7 @@ export default function EditProfile(props) {
             props.setavatar({...props.avatar, url:card?.images?.img_profile?`${hostNameStorage}/${card?.images?.img_profile}`:'/static/media/img.jpg'});
             setsocials(parseProfileContents());
             props.setCard(card);
-        }
+        };
     }, [card]);
 
     useEffect(()=>{
