@@ -28,7 +28,7 @@ const columns = [
     // },
     {
         name: 'JOIN DATE',
-        selector: row => row.created_at,
+        selector: row => row.created_at.substring(0,10),
         sortable: true,
     },
     {
@@ -38,7 +38,7 @@ const columns = [
     },
     {
         name: 'ACTIVE',
-        selector: row => row.is_active,
+        selector: row => row.is_active ? "YES" : "NO",
         sortable: true,
     },
     {

@@ -53,7 +53,7 @@ export default function AdminStatistics({   companyName,
         // console.log(companiesList)
     }, [companiesList]);
     return (
-        <SimpleGrid columns={{base: 1, md: 2, xl: 4}} gap='20px' mb='20px'>
+        <SimpleGrid columns={{base: 1, md: 3, xl: 6}} gap='20px' mb='20px'>
             {/*<MiniStatistics key='1'*/}
             {/*    startContent={*/}
             {/*        <IconBox*/}
@@ -69,8 +69,10 @@ export default function AdminStatistics({   companyName,
 
             <MiniStatistics key='3'
                             endContent={
-                                <Flex me='-16px'>
-                                    {companyName}
+                                <Flex me='-8px'>
+                                    <FormLabel htmlFor='company'>
+                                        <Text fontSize='2xl'>{companyName}</Text>
+                                    </FormLabel>
                                     <FormLabel htmlFor='company'>
 
                                         <Avatar src={companies}/>
