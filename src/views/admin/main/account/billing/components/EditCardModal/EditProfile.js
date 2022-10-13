@@ -52,16 +52,24 @@ export default function EditProfile(props) {
 
     const [oldSocials, setoldSocials] = useState([]);
 
-    const [isCroppable, setisCroppable]=useState(true);
+    const [isAvatarCroppable, setisAvatarCroppable]=useState(true);
+    const [isCoverCroppable, setisCoverCroppable]=useState(true);
 
     const pages = {
-        'Crop': <ModalContent style={{
+        'CropAvatar': <ModalContent style={{
             padding: '0',
             boxShadow: '0px 12px 40px rgb(0 0 0 / 20%)',
             borderRadius: '30px'
         }} w={'100%'} maxW={'900px'} h={'100%'} maxH={'660px'}
         >
-        <Crop setisCroppable={setisCroppable} onClose={onClose} setCroppedImage={props.setavatar} cropShape={'round'} img={props.avatar.url}/></ModalContent>,
+        <Crop setisCroppable={setisAvatarCroppable} onClose={onClose} setCroppedImage={props.setavatar} cropShape={'round'} img={props.avatar.url}/></ModalContent>,
+        'CropCover': <ModalContent style={{
+            padding: '0',
+            boxShadow: '0px 12px 40px rgb(0 0 0 / 20%)',
+            borderRadius: '30px'
+        }} w={'100%'} maxW={'900px'} h={'100%'} maxH={'660px'}
+        >
+        <Crop setisCroppable={setisCoverCroppable} onClose={onClose} setCroppedImage={props.setcover} cropShape={'rect'} img={props.cover.url}/></ModalContent>,
         // 'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
         'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} />,
         'EditLink': <EditLink socialimgs={props.socialimgs} setsocialimgs={props.setsocialimgs} setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} oldsocials={oldSocials} setoldsocials={setoldSocials} />
@@ -84,17 +92,41 @@ export default function EditProfile(props) {
             return false;
         }
 
-        if (isCroppable && props.avatar.url != '/static/media/img.jpg' && !props.avatar.url.includes(hostNameStorage)) {
+        if (isAvatarCroppable && props.avatar.url != '/static/media/img.jpg' && !props.avatar.url.includes(hostNameStorage)) {
             console.log(props.avatar.url);
-            setPage('Crop');
+            setPage('CropAvatar');
             onOpen();
         }
 
-        if(!isCroppable){
-            setisCroppable(true);
+        if(!isAvatarCroppable){
+            setisAvatarCroppable(true);
         }
 
     }, [props.avatar]);
+
+    useEffect(async () => {
+        console.log('COVER', props.cover.url);
+        try {
+            await getCroppedImg(
+                props.cover.url,
+                {width: 1, height: 1, x: 0, y: 0}
+            )
+        } catch (e) {
+            console.error(e)
+            return false;
+        }
+
+        if (isCoverCroppable && props.cover.url != '/static/media/img.jpg' && !props.cover.url.includes(hostNameStorage)) {
+            console.log(props.cover.url);
+            setPage('CropCover');
+            onOpen();
+        }
+
+        if(!isCoverCroppable){
+            setisCoverCroppable(true);
+        }
+
+    }, [props.cover]);
 
     function getProfile() {
         setloading(true);
