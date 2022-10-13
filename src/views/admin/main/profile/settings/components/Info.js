@@ -80,11 +80,13 @@ export default function Settings({setShowAlert}) {
             setStateLocation(getMe().data.state)
             setAddress(getMe().data.address)
             setEmail(getMe().email)
+            setAccountType(getMe().role.code)
+            setCompany(getMe().companies[0].name)
         } catch (e) {
             console.log('Error')
         }
 
-        setEmail(getMe().email)
+
 
         setOpacity(1)
         setShowSpinner(false)
