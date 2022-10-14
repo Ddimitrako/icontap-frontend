@@ -1,4 +1,4 @@
-import { Button, FormControl, FormHelperText, FormLabel, Input, ModalContent, Stack, Textarea, useDisclosure } from "@chakra-ui/react";
+import { Button, FormControl, FormHelperText, FormLabel, Icon, Input, ModalContent, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Textarea, useDisclosure } from "@chakra-ui/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AddContentContainer from "./AddContentContainer";
@@ -18,6 +18,8 @@ import { deepCopy } from "Helpers/Arrays";
 import { demoCard } from "Helpers/Cards";
 import { Crop } from "./Crop/Crop";
 import getCroppedImg from "./Crop/cropImage";
+import { DraggableList } from "./Drag/Drag";
+import { MdGridView, MdList, MdViewModule } from "react-icons/md";
 // import './styles.css'
 
 //The container modal
@@ -52,8 +54,8 @@ export default function EditProfile(props) {
 
     const [oldSocials, setoldSocials] = useState([]);
 
-    const [isAvatarCroppable, setisAvatarCroppable]=useState(true);
-    const [isCoverCroppable, setisCoverCroppable]=useState(true);
+    const [isAvatarCroppable, setisAvatarCroppable] = useState(true);
+    const [isCoverCroppable, setisCoverCroppable] = useState(true);
 
     const pages = {
         'CropAvatar': <ModalContent style={{
@@ -62,14 +64,14 @@ export default function EditProfile(props) {
             borderRadius: '30px'
         }} w={'100%'} maxW={'900px'} h={'100%'} maxH={'660px'}
         >
-        <Crop setisCroppable={setisAvatarCroppable} onClose={onClose} setCroppedImage={props.setavatar} cropShape={'round'} img={props.avatar.url}/></ModalContent>,
+            <Crop setisCroppable={setisAvatarCroppable} onClose={onClose} setCroppedImage={props.setavatar} cropShape={'round'} img={props.avatar.url} /></ModalContent>,
         'CropCover': <ModalContent style={{
             padding: '0',
             boxShadow: '0px 12px 40px rgb(0 0 0 / 20%)',
             borderRadius: '30px'
         }} w={'100%'} maxW={'900px'} h={'100%'} maxH={'660px'}
         >
-        <Crop setisCroppable={setisCoverCroppable} onClose={onClose} setCroppedImage={props.setcover} cropShape={'rect'} img={props.cover.url}/></ModalContent>,
+            <Crop setisCroppable={setisCoverCroppable} onClose={onClose} setCroppedImage={props.setcover} cropShape={'rect'} img={props.cover.url} /></ModalContent>,
         // 'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
         'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} />,
         'EditLink': <EditLink socialimgs={props.socialimgs} setsocialimgs={props.setsocialimgs} setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} oldsocials={oldSocials} setoldsocials={setoldSocials} />
@@ -85,7 +87,7 @@ export default function EditProfile(props) {
         try {
             await getCroppedImg(
                 props.avatar.url,
-                {width: 1, height: 1, x: 0, y: 0}
+                { width: 1, height: 1, x: 0, y: 0 }
             )
         } catch (e) {
             console.error(e)
@@ -98,7 +100,7 @@ export default function EditProfile(props) {
             onOpen();
         }
 
-        if(!isAvatarCroppable){
+        if (!isAvatarCroppable) {
             setisAvatarCroppable(true);
         }
 
@@ -109,7 +111,7 @@ export default function EditProfile(props) {
         try {
             await getCroppedImg(
                 props.cover.url,
-                {width: 1, height: 1, x: 0, y: 0}
+                { width: 1, height: 1, x: 0, y: 0 }
             )
         } catch (e) {
             console.error(e)
@@ -122,7 +124,7 @@ export default function EditProfile(props) {
             onOpen();
         }
 
-        if(!isCoverCroppable){
+        if (!isCoverCroppable) {
             setisCoverCroppable(true);
         }
 
@@ -132,10 +134,10 @@ export default function EditProfile(props) {
         setloading(true);
         getContents();
         // console.log('getProfile');
-        if(cardId=='demo'){
+        if (cardId == 'demo') {
             setcard(demoCard);
             setloading(false);
-        }else{
+        } else {
             axios({
                 method: 'get',
                 url: `${hostName}/card/show/${cardId}`
@@ -150,21 +152,21 @@ export default function EditProfile(props) {
         }
     }
 
-    const [contentloading, setcontentloading]=useState(true);
-    
+    const [contentloading, setcontentloading] = useState(true);
+
     function parseProfileContents() {
         // console.log('parsedSocials', card);
-        let parsedSocials=[];
-        card.content.forEach((c,i)=>{
+        let parsedSocials = [];
+        card.content.forEach((c, i) => {
             // console.log('1',c,i);
-            c={...c, imgUrl:c?.image, title:c.title, url:c.link};
+            c = { ...c, imgUrl: c?.image, title: c.title, url: c.link };
             // console.log('2',c,i);
             parsedSocials.push(c);
         });
         // console.log('parsedSocials2', parsedSocials);
         return parsedSocials;
     }
-    
+
     function getContents() {
         setcontentloading(true);
         // console.log('getContents');
@@ -186,7 +188,7 @@ export default function EditProfile(props) {
         let contents = []
         Object.keys(categories).forEach((c, i) => {
             categories[c].forEach((con, i) => {
-                con={...con, content_id:con.id, imgUrl: con.image, title: con.name, url: ''}
+                con = { ...con, content_id: con.id, imgUrl: con.image, title: con.name, url: '' }
                 contents.push(con);
             });
         });
@@ -208,16 +210,16 @@ export default function EditProfile(props) {
             props.setjob(card?.profile?.job_title ?? '');
             props.setcompany(card?.profile?.company ?? '');
             setTitleContextValue(card.title);
-            props.setcover({...props.cover, url:card?.images?.img_cover?`${hostNameStorage}/${card?.images?.img_cover}`:'/static/media/img.jpg'});
-            props.setavatar({...props.avatar, url:card?.images?.img_profile?`${hostNameStorage}/${card?.images?.img_profile}`:'/static/media/img.jpg'});
+            props.setcover({ ...props.cover, url: card?.images?.img_cover ? `${hostNameStorage}/${card?.images?.img_cover}` : '/static/media/img.jpg' });
+            props.setavatar({ ...props.avatar, url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/img.jpg' });
             setsocials(parseProfileContents());
             props.setCard(card);
         };
     }, [card]);
 
-    useEffect(()=>{
-        props.setCard({...card, profile:{name:props.name, bio:props.bio}, images:{img_cover:props.cover, img_profile:props.avatar}});
-    },[props.name, props.bio, props.avatar, props.cover]);
+    useEffect(() => {
+        props.setCard({ ...card, profile: { name: props.name, bio: props.bio }, images: { img_cover: props.cover, img_profile: props.avatar } });
+    }, [props.name, props.bio, props.avatar, props.cover]);
 
     const [updating, setUpdating] = useState(false);
 
@@ -225,34 +227,35 @@ export default function EditProfile(props) {
     //     console.log('socialDefaults',socialDefaults);
     // },[socialDefaults]);
 
-    function updateContents(test=false) {
-        let parsedContents=socials.map((c,i)=>{
+    function updateContents(test = false) {
+        let parsedContents = socials.map((c, i) => {
             console.log(c);
             return {
-            "content_id": c.content_id,
-            "image": props?.socialimgs[c.id]??c.imgUrl,
-            "link": c.url,
-            "title": c.title,
-            "description": "",
-            "is_active": 1,
-            "order":i
-        }});
-        
+                "content_id": c.content_id,
+                "image": props?.socialimgs[c.id] ?? c.imgUrl,
+                "link": c.url,
+                "title": c.title,
+                "description": "",
+                "is_active": 1,
+                "order": i
+            }
+        });
+
         console.log('SOCIALS', arrOfObjToFormData(parsedContents, 'content'));
 
         // console.log('updateContents', parsedContents);
 
         setUpdating(true);
-        
+
         const formData = new FormData();
-        const formDataContents=arrOfObjToFormData(parsedContents, 'contents');
-        Object.keys(formDataContents).forEach((key, i)=>{
+        const formDataContents = arrOfObjToFormData(parsedContents, 'contents');
+        Object.keys(formDataContents).forEach((key, i) => {
             formData.append(key, formDataContents[key]);
         });
-        if(oldSocials && oldSocials.length>0)
-            oldSocials.forEach((o,i)=>{
+        if (oldSocials && oldSocials.length > 0)
+            oldSocials.forEach((o, i) => {
                 formData.append('old_contents[]', o);
-            });    
+            });
         axios({
             method: 'post',
             url: `${hostName}/card/${card.code}/contents`,
@@ -281,11 +284,11 @@ export default function EditProfile(props) {
         formData.append('company', props.company);
         formData.append('job_title', props.job);
 
-        if(props.avatar.blob)
-        formData.append('img_profile', props.avatar.blob);
-        if(props.cover.blob)
-        formData.append('img_cover', props.cover.blob);
-        
+        if (props.avatar.blob)
+            formData.append('img_profile', props.avatar.blob);
+        if (props.cover.blob)
+            formData.append('img_cover', props.cover.blob);
+
         // console.log('updateProfile');
         axios({
             method: 'post',
@@ -323,6 +326,14 @@ export default function EditProfile(props) {
 
     const socialContainer = React.createRef();
 
+    function openEditLink(index, social) {
+        console.log('editlink', index, social);
+        setcurrSocial(index);
+        settempSocialData(social);
+        setPage('EditLink');
+        onOpen();
+    }
+
     const ProfileData = loading ?
         <Button isLoading
             loadingText="Please wait"
@@ -345,7 +356,7 @@ export default function EditProfile(props) {
             </Stack>
 
             <div style={{
-                marginTop:'50px',
+                marginTop: '50px',
                 width: '100%',
                 textAlign: 'center'
             }}>
@@ -357,37 +368,45 @@ export default function EditProfile(props) {
                         onOpen();
                     }}
                     isLoading={contentloading}
-                    style={{boxShadow:'0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)'}}
-                    >
+                    style={{ boxShadow: '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)' }}
+                >
                     + Add links and Contact info
                 </Button>
-            </div>
-
-            <div
-                className='social-btn-container'
-            >
-                <div className='wrap' style={{
-                    display: 'flex',
-                    listStyle: 'none',
-                    height: '100%',
-                    width: '100%'
-                }}>
-                    {/* <Draggable ref={socialContainer} onPosChange={getChangedPos} key={draggablesKey} style={{backgroundColor:'blue'}}> */}
-
-                        {socials?.map((social, index) => {
-                            // console.log(social);
-                            return <SocialButton editable blobUrl={social.imgUrl.blobUrl} imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
-                                setcurrSocial(index);
-                                settempSocialData(social);
-                                setPage('EditLink');
-                                onOpen();
-                            }} key={index} />
-                        }
-                        )}
-                    {/* </Draggable> */}
-
-                </div>
-            </div>
+            </div> 
+            <Tabs isFitted style={{marginTop:'20px'}}>
+                <TabList mb='1em'>
+                    <Tab _focus={{ boxShadow: "none", }}><Icon as={MdGridView} color={'black'} w='24px' h='24px' /></Tab>
+                    <Tab _focus={{ boxShadow: "none", }}><Icon as={MdList} color={'black'} w='24px' h='24px' /></Tab>
+                </TabList>
+                <TabPanels>
+                    <TabPanel>
+                        <div
+                            className='social-btn-container'
+                        >
+                            <div className='wrap' style={{
+                                display: 'flex',
+                                listStyle: 'none',
+                                height: '100%',
+                                width: '100%'
+                            }}>
+                                {socials?.map((social, index) => {
+                                    // console.log(social);
+                                    return <SocialButton editable blobUrl={social.imgUrl.blobUrl} imgUrl={social.imgUrl} title={social.title} styles={{}} onClick={() => {
+                                        setcurrSocial(index);
+                                        settempSocialData(social);
+                                        setPage('EditLink');
+                                        onOpen();
+                                    }} key={index} />
+                                }
+                                )}
+                            </div>
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <DraggableList socials={socials} setsocials={setsocials} openEditLink={openEditLink} />
+                    </TabPanel>
+                </TabPanels>
+            </Tabs>
 
             <hr style={{ 'margin': '20px 0' }} />
             <div style={{ textAlign: 'center' }}>
@@ -398,9 +417,9 @@ export default function EditProfile(props) {
 
                     isLoading={updating}
 
-                    style={{boxShadow:'0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)'}}
+                    style={{ boxShadow: '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)' }}
 
-                    onClick={()=>{if(cardId!='demo'){updateProfile()}}}>
+                    onClick={() => { if (cardId != 'demo') { updateProfile() } }}>
                     Update
                 </Button>
 
