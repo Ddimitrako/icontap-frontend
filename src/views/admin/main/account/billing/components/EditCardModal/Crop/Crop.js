@@ -38,7 +38,7 @@ export const Crop = ({setCroppedImage, onClose, img, cropShape, setisCroppable})
           image={img}
           crop={crop}
           zoom={zoom}
-          aspect={1}
+          aspect={cropShape=='rect'?16/9:1}
           onCropChange={setCrop}
           onCropComplete={onCropComplete}
           onZoomChange={setZoom}
