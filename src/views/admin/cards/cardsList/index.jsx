@@ -77,15 +77,14 @@ export default function Collection(props) {
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
 
   const [cards, setCards] = useState([]);
-  const [emptycards, setemptyCards] = useState([]);
 
   let panelCards = (
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
-      {!loading && !(emptycards?.length!=0) &&
+      {!loading && !(cards?.length!=0) &&
       <span>No available card physical card only link – click <a style={{fontWeight:'bold'}} href="https://icontap.gr/shop-2/">here</a> to buy </span>
       }
-      <IcontapCard card={demoCard}/>
-      {!loading ? emptycards.map((card, index) =>
+      {/* <IcontapCard card={demoCard}/> */}
+      {!loading ? cards.map((card, index) =>
         <IcontapCard card={card} key={index} getcards={()=>getCards()} />
       ) : <Button isLoading
         loadingText="Please wait"
