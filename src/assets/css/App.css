@@ -115,6 +115,7 @@ body {
 
 }
 
+
 @media only screen and (max-width: 959px) {
 
   .hide-under-959 {
@@ -410,5 +411,18 @@ div.int-box {
     margin: 2.5%;
     width: 15%;
     padding-top: 15%;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .custom-tab-panel {
+    padding: 30px !important;
+    background-color: white !important;
+    border-radius: 30px !important;
+  }
+
+  .tab-cols {
+    height: 95vh;
+    overflow: auto;
   }
 }

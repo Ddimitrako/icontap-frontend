@@ -125,26 +125,34 @@ export default function Page() {
                     <Tab _focus={{ boxShadow: "none", }} className='tab-custom'>{profileIcon} Profile</Tab>
                     {card.code && <Tab _focus={{ boxShadow: "none", }} className='tab-custom'>{qrIcon} QR Code</Tab>}
                 </TabList>
-                <TabPanels>
-                    <TabPanel>
+                <TabPanels
+                    paddingTop={'30px'}
+                >
+                    <TabPanel
+                        className='custom-tab-panel'
+                    >
                         <Grid
                             mb='20px'
                             maxW='100%'
                             gridTemplateColumns={{
                                 base: "1fr",
-                                lg: "1fr 1fr",
-                                "2xl": "1fr 0.95fr",
+                                lg: "3fr 2fr",
+                                // "2xl": "2fr 0.95fr",
                             }}
                             gap={{ base: "20px", xl: "20px" }}
                             display={{ base: "block", lg: "grid" }}>
-                            <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'>
+                            <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'
+                                className='tab-cols'
+                            >
                                 <FormControl>
                                     <Card className='edit-profile-container'>
                                         <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} />
                                     </Card>
                                 </FormControl>
                             </Flex>
-                            <Flex flexDirection='column' alignItems='center' pt='10px'>
+                            <Flex flexDirection='column' alignItems='center' pt='10px'
+                                className='tab-cols'
+                            >
                                 <Heading className='hide-under-959' color={'black'} size='sm'>Profile Live Preview</Heading>
                                 {card && <CustomIframe socials={socials} card={card} />}
                                 <Stack direction='row' spacing={4}>
