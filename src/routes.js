@@ -91,7 +91,8 @@ const routes = [
             />
         ),
         onlyRoute:true,
-        role:'admin'
+        role:'admin',
+        company_role:'admin'
     },
     {
         name: "Cards",

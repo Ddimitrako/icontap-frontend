@@ -100,16 +100,28 @@ export default function Dashboard(props) {
     }
     return activeNavbar;
   };
+
+  function isRouteAuthorized(route) {
+
+    if(route.role && !route.company_role)
+      return hasRole(route.role);
+    
+    if(!route.role && route.company_role)
+      return hasCompanyRole(route.company_role);
+    
+    if(route.role && route.company_role)
+      return hasRole(route.role) || hasCompanyRole(route.company_role);
+
+    return true;
+    
+  }
+
   const getRoutes = (routes) => {
     // console.log('routes', routes);
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
-        let authorized=prop?.role?hasRole(prop.role):true;
-        authorized=authorized && (prop?.company_role?hasCompanyRole(prop.company_role):true);
-        
-        // if(!authorized){
-        //   console.log('getRoutes', props, prop?.role, hasRole(prop.role), hasCompanyRole(prop.company_role));
-        // }
+        let authorized=isRouteAuthorized(prop);
+
         return (
           authorized?
           <Route
