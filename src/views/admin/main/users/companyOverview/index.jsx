@@ -58,7 +58,7 @@ export default function CompanyUsersOverview(props) {
             setUsersList([])
             let tempUsers=response.data.data.map((u,i)=>{return {...u, 
                 editCard:
-                <Button colorScheme='teal' variant='outline' onClick={() => redirectRouter(`/admin/cardsList/card/${u.id}`, { user: deepCopy(u) }, props.history)}>Cards</Button>,
+                <Button colorScheme='teal' variant='outline' onClick={() => redirectRouter(`/u/cardsList/card/${u.id}`, { user: deepCopy(u) }, props.history)}>Cards</Button>,
                 analytics:
                 <Button colorScheme='teal' variant='outline'>Analytics</Button>
             }})

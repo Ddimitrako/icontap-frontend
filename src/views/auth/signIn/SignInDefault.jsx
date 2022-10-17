@@ -101,7 +101,7 @@ function SignIn() {
       console.log(response);
       if (response?.data?.data?.verified == '1') {
         logIn(response?.data?.data?.token);
-        window.location.href = '/admin/cardsList/card';
+        window.location.href = '/u/cardsList/card';
       }
       else if (response?.data?.data?.verified == '0') {
         localStorage.setItem('unverified', '1');

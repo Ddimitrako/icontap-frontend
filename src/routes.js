@@ -69,7 +69,7 @@ const routes = [
     // --- Dashboards ---
     // {
     //     name: "Main Dashboard",
-    //     layout: "/admin",
+    //     layout: "/u",
     //     path: "/dashboards/default",
     //     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
     //     component: DashboardsDefault,
@@ -78,7 +78,7 @@ const routes = [
     // --- NFTs ---
     {
         name: "Cards",
-        layout: "/admin",
+        layout: "/u",
         path: "/cardsList/card/:userId",
         component: NFTProfile,
         secondary: true,
@@ -96,7 +96,7 @@ const routes = [
     },
     {
         name: "Cards",
-        layout: "/admin",
+        layout: "/u",
         path: "/cardsList/card/",
         component: NFTProfile,
         secondary: true,
@@ -112,7 +112,7 @@ const routes = [
     },
     {
         name: "Admin Page",
-        layout: "/admin",
+        layout: "/u",
         path: "/main/users/admin-overview",
 
         component: AdminUsersOverview,
@@ -128,7 +128,7 @@ const routes = [
     },
     {
         name: "Users Overview",
-        layout: "/admin",
+        layout: "/u",
         path: "/main/users/users-overview",
 
         component: CompanyUsersOverview,
@@ -144,7 +144,7 @@ const routes = [
     },
     {
         name: "Edit Card",
-        layout: "/admin",
+        layout: "/u",
         path: "/cards/edit/:cardId",
         component: Page,
         onlyRoute:true
@@ -152,7 +152,7 @@ const routes = [
     },
     {
         name: "logout",
-        layout: "/admin",
+        layout: "/u",
         path: "/logout",
         component: LogoutMid,
         onlyRoute:true
@@ -160,7 +160,7 @@ const routes = [
     },
     {
         name: "Profile",
-        layout: "/admin",
+        layout: "/u",
         path: "/main/profile/settings",
         exact: false,
         component: ProfileSettings,
@@ -177,7 +177,7 @@ const routes = [
     },
     {
         name: "Email Verification",
-        layout: "/admin",
+        layout: "/u",
         path: "/email/verification",
         exact: false,
         component: NeedsEmailVerification,
@@ -194,7 +194,7 @@ const routes = [
     },
     // {
     //     name: "Card Settings",
-    //     layout: "/admin",
+    //     layout: "/u",
     //     path: "/cards/cardProfile",
     //     component: NFTPage,
     //     secondary: true,
@@ -212,7 +212,7 @@ const routes = [
 
     // {
     //     name: "New User",
-    //     layout: "/admin",
+    //     layout: "/u",
     //     path: "/main/users/new-user",
     //
     //     component: UserNew,
@@ -234,21 +234,21 @@ const routes = [
     //   items: [
     //     // {
     //     //   name: "Kanban",
-    //     //   layout: "/admin",
+    //     //   layout: "/u",
     //     //   path: "/main/applications/kanban",
     //     //   exact: false,
     //     //   component: ApplicationsKanban,
     //     // },
     //     {
     //       name: "Data Tables",
-    //       layout: "/admin",
+    //       layout: "/u",
     //       path: "/main/applications/data-tables",
     //       exact: false,
     //       component: ApplicationsDataTables,
     //     },
     //     {
     //       name: "Calendar",
-    //       layout: "/admin",
+    //       layout: "/u",
     //       path: "/main/applications/calendar",
     //       exact: false,
     //       component: ApplicationsCalendar,
@@ -257,7 +257,7 @@ const routes = [
     // },
     // {
     //     name: "Profile Overview",
-    //     layout: "/admin",
+    //     layout: "/u",
     //     path: "/main/profile/overview",
     //     exact: false,
     //     component: ProfileOverview,
@@ -273,7 +273,7 @@ const routes = [
     
     // {
     //   name: "News Feed",
-    //   layout: "/admin",
+    //   layout: "/u",
     //   path: "/main/profile/newsfeed",
     //   exact: false,
     //   component: ProfileNewsfeed,
@@ -286,7 +286,7 @@ const routes = [
     //     items: [
     //         {
     //             name: "Notifications",
-    //             layout: "/admin",
+    //             layout: "/u",
     //             path: "/main/others/notifications",
     //             exact: false,
     //             component: OthersNotifications,
@@ -300,7 +300,7 @@ const routes = [
     //         // },
     //         {
     //             name: "404",
-    //             layout: "/admin",
+    //             layout: "/u",
     //             path: "/main/others/404",
     //             exact: false,
     //             component: OthersError,

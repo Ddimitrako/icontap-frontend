@@ -43,7 +43,7 @@ export function PrivateRoute({ children, ...rest }) {
 export function catchError(error) {
 
     if (error.response.status == 401) {
-        window.location.href = '/admin/logout';
+        window.location.href = '/u/logout';
     }
 
     if (error.response.status == 403) {
@@ -77,11 +77,11 @@ export function setAxiosErrorInterceptor() {
         return response;
     }, function (error) {
         if (error.response.status == 401) {
-            window.location.href = '/admin/logout';
+            window.location.href = '/u/logout';
         }
         
         if (error.response.status == 403) {
-            window.location.href = '/admin/logout';
+            window.location.href = '/u/logout';
         }
 
         return Promise.reject(error);

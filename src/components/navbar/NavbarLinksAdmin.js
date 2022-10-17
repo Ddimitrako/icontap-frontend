@@ -244,7 +244,7 @@ export default function HeaderLinks(props) {
                             borderRadius='8px'
                             px='14px'
                             onClick={() => {
-                                history.push('/admin/logout');
+                                history.push('/u/logout');
                             }}
                         >
                             <Text fontSize='sm'>Log out</Text>

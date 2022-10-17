@@ -29,7 +29,7 @@ export default function Dashboard(props) {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   // functions for changing the states from components
   const getRoute = () => {
-    return window.location.pathname !== "/admin/full-screen-maps";
+    return window.location.pathname !== "/u/full-screen-maps";
   };
   const getActiveRoute = (routes) => {
     let activeRoute = "Default Brand Text";
@@ -119,7 +119,7 @@ export default function Dashboard(props) {
   const getRoutes = (routes) => {
     // console.log('routes', routes);
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/u") {
         let authorized=isRouteAuthorized(prop);
 
         return (
@@ -202,7 +202,7 @@ export default function Dashboard(props) {
 
                 {getRoutes(routes)}
 
-                <Redirect from='/' to='/admin/cardsList/card' />
+                <Redirect from='/' to='/u/cardsList/card' />
 
               </Switch>
             </Box>

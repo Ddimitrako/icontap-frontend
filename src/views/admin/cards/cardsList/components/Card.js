@@ -101,7 +101,6 @@ export default function IcontapCard(props) {
   const { isDeleteOpen, onDeleteOpen, onDeleteClose } = { isDeleteOpen: deleteDisclosure.isOpen, onDeleteOpen: deleteDisclosure.onOpen, onDeleteClose: deleteDisclosure.onClose };
   
 
-  // const textColor = useColorModeValue("navy.700", "white");
 
   const [loading, setloading] = useState(false);
 
@@ -268,7 +267,7 @@ export default function IcontapCard(props) {
           align='center'
           me={{ base: "16px", md: "0px", "2xl": "36px" }}
           onClick={() => {
-            history.push(`/admin/cards/edit/${props.card.code}`);
+            history.push(`/u/cards/edit/${props.card.code}`);
           }}
         >
           <IconButton

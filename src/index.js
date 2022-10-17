@@ -36,11 +36,11 @@ ReactDOM.render(
             <Route path={`/services`} component={AuthLayout} />
           </PrivateRoute>
 
-          <PrivateRoute path={`/admin`} isPublic={false}>
-            <Route path={`/admin`} component={AdminLayout} />
+          <PrivateRoute path={`/u`} isPublic={false}>
+            <Route path={`/u`} component={AdminLayout} />
           </PrivateRoute>
 
-          <Redirect from='/' to='/admin' />
+          <Redirect from='/' to='/u' />
         </Switch>
       </BrowserRouter>
     </React.StrictMode>
