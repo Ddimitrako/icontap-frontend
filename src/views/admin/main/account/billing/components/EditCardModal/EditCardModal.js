@@ -69,7 +69,7 @@ export const SocialButton = ({ imgUrl, bgColor, onClick, styles, editable, url, 
             boxShadow: '4px 4px 10px grey',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            backgroundSize: '100%',
+            backgroundSize: '110%',
             backgroundImage: blobUrl?`url(${blobUrl})`:`url(${hostNameStorage}/${imgUrl})`,
             cursor: editable ? 'grab' : 'pointer',
             ...styles
