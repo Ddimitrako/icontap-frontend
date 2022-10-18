@@ -118,9 +118,14 @@ function SignIn() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [emailVerified, setemailVerified]=useState(false);
 
   useEffect(() => {
-    localStorage.clear();
+    if(localStorage.getItem('email_verified')==1)
+      setemailVerified(true);
+    setTimeout(() => {
+      localStorage.clear(); 
+    }, 100);
   }, []);
 
   const handleClick = () => setShow(!show);
@@ -184,6 +189,11 @@ function SignIn() {
             {/*</Text>*/}
             <HSeparator />
           </Flex>
+          {emailVerified && <Alert status='success' style={{ marginBottom: '20px' }}>
+            <AlertIcon />
+            <AlertTitle>Success!</AlertTitle>
+            <AlertDescription>Email Verified Successfully!</AlertDescription>
+          </Alert>}
           <DisplayError />
           <FormControl>
             <FormLabel

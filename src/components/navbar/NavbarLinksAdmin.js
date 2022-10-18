@@ -55,12 +55,13 @@ export default function HeaderLinks(props) {
 
     useEffect(() => {
 
-        try {
-            setLastName(getMe().last_name)
-            setFirstName(getMe().name)
-        } catch (e) {
-            console.log('Error')
-        }
+        let inter=setInterval(() => {
+            setLastName(getMe()?.last_name);
+            setFirstName(getMe()?.name);
+            if(firstName && lastName){
+                clearInterval(inter);
+            }
+        }, 500);
 
     }, []);
 
@@ -199,7 +200,7 @@ export default function HeaderLinks(props) {
                         _hover={{cursor: "pointer"}}
                         color='white'
                         name={firstName + " " + lastName}
-                        bg='#11047A'
+                        bg='black'
                         size='sm'
                         w='40px'
                         h='40px'
