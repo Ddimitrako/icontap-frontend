@@ -83,7 +83,7 @@ export default function Collection(props) {
       {!loading && !(cards?.length!=0) &&
       <span>No available card physical card only link – click <a style={{fontWeight:'bold'}} href="https://icontap.gr/shop-2/">here</a> to buy </span>
       }
-      {/* <IcontapCard card={demoCard}/> */}
+      {/*<IcontapCard card={demoCard}/>*/}
       {!loading ? cards.map((card, index) =>
         <IcontapCard card={card} key={index} getcards={()=>getCards()} />
       ) : <Button isLoading
