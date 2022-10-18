@@ -168,7 +168,7 @@ export default function HeaderLinks(props) {
                     <Image src={navImage} borderRadius='16px' mb='28px'/>
                     <Flex flexDirection='column'>
                         <Link w='100%' href='https://icontap.gr'>
-                            <Button w='100%' h='44px' mb='10px' variant='brand'>
+                            <Button w='100%' h='44px' mb='10px' className="btn-custom-dark-background">
                                 Go to icontap.gr
                             </Button>
                         </Link>
@@ -177,7 +177,7 @@ export default function HeaderLinks(props) {
                 </MenuList>
             </Menu>
 
-            <Button
+            {/* <Button
                 variant='no-hover'
                 bg='transparent'
                 p='0px'
@@ -193,7 +193,7 @@ export default function HeaderLinks(props) {
                     color={navbarIcon}
                     as={colorMode === "light" ? IoMdMoon : IoMdSunny}
                 />
-            </Button>
+            </Button> */}
             <Menu>
                 <MenuButton p='0px'>
                     <Avatar

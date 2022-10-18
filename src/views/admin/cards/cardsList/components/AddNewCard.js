@@ -169,7 +169,7 @@ export function AddNewCard() {
                                     Add Card
                                 </Button>
                             </FormControl>
-                            <Text
+                            {/* <Text
                                 color={textColorDetails}
                                 fontWeight='400'
                                 fontSize='14px'
@@ -179,7 +179,7 @@ export function AddNewCard() {
                                 <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
                                     Resend a new code
                                 </Text>
-                            </Text>
+                            </Text> */}
                         </Flex>
                     </ModalBody>
                     <ModalFooter>

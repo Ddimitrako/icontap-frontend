@@ -18,7 +18,7 @@ function AuthCentered(props) {
       overflow='hidden'
       mx={{ base: "10px", lg: "0px" }}
       minH='100vh'>
-      <FixedPlugin />
+      {/* <FixedPlugin /> */}
       <Box
         position='absolute'
         minH={{ base: "50vh", md: "50vh" }}

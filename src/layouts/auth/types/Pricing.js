@@ -67,7 +67,7 @@ function AuthPricing(props) {
         {children}
       </Flex>
       <Footer />
-      <FixedPlugin />
+      {/* <FixedPlugin /> */}
     </Flex>
   );
 }
