@@ -14,7 +14,7 @@ export default function HoursSpent(props) {
 
   // Chakra Color Mode
   const borderColor = useColorModeValue("transparent", "whiteAlpha.100");
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <Card
       border='1px solid'

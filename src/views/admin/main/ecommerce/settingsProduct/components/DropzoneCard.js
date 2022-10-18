@@ -11,7 +11,7 @@ import { MdOutlineCloudUpload } from "react-icons/md";
 
 export default function DropzoneCard(props) {
   const { mb, ...rest } = props;
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const brand = useColorModeValue("brand.500", "brand.400");
 
   return (

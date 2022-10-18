@@ -12,7 +12,7 @@ export default function Conversion(props) {
   const { ...rest } = props;
 
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const brandColor = useColorModeValue("brand.500", "white");
   const dashColor = useColorModeValue("brand.500", "whiteAlpha.500");
   const shadow = useColorModeValue(

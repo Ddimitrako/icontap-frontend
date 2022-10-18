@@ -39,7 +39,7 @@ export default function HeaderLinks(props) {
     // Chakra Color Mode
     const navbarIcon = useColorModeValue("gray.400", "white");
     let menuBg = useColorModeValue("white", "navy.800");
-    const textColor = useColorModeValue("secondaryGray.900", "white");
+    const textColor = '#3A3A3A';
     const textColorBrand = useColorModeValue("brand.700", "brand.400");
     const ethColor = useColorModeValue("gray.700", "white");
     const borderColor = useColorModeValue("#E6ECFA", "rgba(135, 140, 189, 0.3)");

@@ -392,6 +392,7 @@ function SignUp() {
                                 mb='24px'
                                 type='submit'
                                 isLoading={loading}
+                                className='btn-custom-dark-background'
                                 loadingText={'Please wait...'}
                             >
 

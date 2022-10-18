@@ -8,7 +8,7 @@ import error from "assets/img/others/error.png";
 import React from "react";
 
 function Alerts() {
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const brandColor = useColorModeValue("brand.500", "brand.400");
 
   return (

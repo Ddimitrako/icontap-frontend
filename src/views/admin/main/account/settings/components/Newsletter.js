@@ -12,7 +12,7 @@ import React from "react";
 
 export default function Newsletter(props) {
   const { ...rest } = props;
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   // Chakra Color Mode
   return (
     <FormControl>

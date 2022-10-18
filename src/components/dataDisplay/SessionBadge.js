@@ -6,7 +6,7 @@ import { Flex, Badge, Text, useColorModeValue } from "@chakra-ui/react";
 export default function SessionBadge(props) {
   const { detail, name, status, color, ...rest } = props;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <Flex justifyContent='space-between' alignItems='center' w='100%' {...rest}>
       <Text color={textColor} fontSize='md' me='6px' fontWeight='500'>

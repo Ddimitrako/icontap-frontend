@@ -7,7 +7,7 @@ import React from "react";
 export default function Information(props) {
   const { title, value, ...rest } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const textColorSecondary = "gray.400";
   const bg = useColorModeValue("white", "navy.700");
   return (

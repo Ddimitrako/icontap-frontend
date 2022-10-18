@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react'
 import {useEffect} from "react";
 export default function Settings() {
-    const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+    const textColorPrimary = '#3A3A3A';
     const textColorSecondary = "secondaryGray.600";
     const [showAlert, setShowAlert] = useState(false)
 

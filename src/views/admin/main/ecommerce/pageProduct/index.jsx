@@ -29,7 +29,7 @@ export default function ProductPage() {
   const [currentImage, setCurrentImage] = useState(
     "https://i.ibb.co/Y8V1gLW/2212121212-1.jpg"
   );
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const borderColor = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
   const Chair1 =
     "https://images.unsplash.com/photo-1527005980469-e172416c200b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80";

@@ -5,7 +5,7 @@ import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
 export default function Event(props) {
   const { time, name, ...rest } = props;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const brandBg = useColorModeValue("brand.500", "brand.400");
   return (
     <Flex

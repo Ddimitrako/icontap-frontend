@@ -12,7 +12,7 @@ import TextField from "components/fields/TextField";
 import React from "react";
 export default function Settings() {
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const textColorSecondary = "secondaryGray.600";
   return (
     <FormControl>

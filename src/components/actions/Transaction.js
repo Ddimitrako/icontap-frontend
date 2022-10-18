@@ -9,7 +9,7 @@ import IconBox from "components/icons/IconBox";
 export default function Transaction(props) {
   const { date, sum, icon, name, ...rest } = props;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const iconBoxBg = useColorModeValue("secondaryGray.300", "navy.700");
   return (
     <Flex justifyContent='center' alignItems='center' w='100%' {...rest}>

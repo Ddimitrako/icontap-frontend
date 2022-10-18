@@ -40,7 +40,7 @@ function MostVisitedTable(props) {
   const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow } =
     tableInstance;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const textColorSecondary = useColorModeValue("secondaryGray.600", "white");
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
 

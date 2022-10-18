@@ -64,7 +64,7 @@ export default function Collection(props) {
   const [loading, setloading] = useState(true);
   const [loadingCreate, setloadingCreate] = useState(true);
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const buttonBg = useColorModeValue("transparent", "navy.800");
   const hoverButton = useColorModeValue(
     { bg: "gray.100" },

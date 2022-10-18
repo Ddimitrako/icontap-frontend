@@ -12,7 +12,7 @@ export default function ProfitEstimation(props) {
   const { ...rest } = props;
 
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const cardColor = useColorModeValue("white", "navy.700");
   return (
     <Card p='20px' align='center' direction='column' w='100%' {...rest}>

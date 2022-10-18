@@ -14,7 +14,7 @@ export default function Consumption(props) {
   const { ...rest } = props;
 
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const textColorSecondary = "secondaryGray.600";
   return (
     <Card align='center' p='30px' direction='column' w='100%' {...rest}>

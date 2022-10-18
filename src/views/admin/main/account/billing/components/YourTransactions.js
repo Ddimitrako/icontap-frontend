@@ -26,7 +26,7 @@ export default function YourTransactions(props) {
   const redIcon = useColorModeValue("red.500", "white");
   const blueIcon = useColorModeValue("blue.500", "white");
   const yellowIcon = useColorModeValue("yellow.500", "white");
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <Card {...rest} p='34px'>
       <Text fontSize='xl' color={textColor} fontWeight='700' mb='34px'>

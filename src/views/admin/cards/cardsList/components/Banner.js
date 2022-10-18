@@ -25,7 +25,7 @@ export default function Banner(props) {
     "white !important",
     "#0b1437 !important"
   );
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const textColorLink = useColorModeValue("blue.500", "white");
   return (
     <Flex justifyContent='center' align='center' direction='column' w='100%'>

@@ -21,7 +21,7 @@ import { useEffect } from "react";
 
 export default function Settings() {
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  // const textColorPrimary = '#3A3A3A';
   const textColorSecondary = "secondaryGray.600";
 
   const [oldpsw, setoldpsw] = useState('');
@@ -85,7 +85,7 @@ export default function Settings() {
     <FormControl>
       <Card>
         <Flex direction='column' mb='40px' ms='10px'>
-          <Text fontSize='xl' color={textColorPrimary} fontWeight='bold'>
+          <Text fontSize='xl' color={'#3A3A3A'} fontWeight='bold'>
             Change password
           </Text>
           <Text fontSize='md' color={textColorSecondary}>
@@ -179,7 +179,8 @@ export default function Settings() {
         </FormControl>
         <Button
           isLoading={loading}
-          variant='brand'
+          // variant='brand'
+          className='btn-custom-dark-background'
           minW='183px'
           fontSize='sm'
           fontWeight='500'

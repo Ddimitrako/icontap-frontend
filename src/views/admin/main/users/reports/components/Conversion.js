@@ -10,7 +10,7 @@ export default function Conversion(props) {
   const { ...rest } = props;
 
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const cardColor = useColorModeValue("white", "navy.700");
   return (
     <Card p='20px' py='30px' align='center' direction='column' w='100%' {...rest}>

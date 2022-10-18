@@ -10,7 +10,7 @@ export default function Statistics(props) {
   const { illustration, focused, title, value, detail, ...rest } = props;
 
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const textColorSecondary = useColorModeValue(
     "secondaryGray.600",
     "secondaryGray.500"

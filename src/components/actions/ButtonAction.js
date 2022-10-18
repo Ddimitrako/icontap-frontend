@@ -6,7 +6,7 @@ import { Flex, Button, Text, useColorModeValue } from "@chakra-ui/react";
 export default function ButtonAction(props) {
   const { date, sum, icon, name, action, actionName, ...rest } = props;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <Flex justifyContent='center' alignItems='center' w='100%' {...rest}>
       <Flex direction='column' align='start' me='auto'>

@@ -31,7 +31,7 @@ import React, { useRef, useState } from "react";
 import { MdOutlineCloudUpload } from "react-icons/md";
 
 export default function NewProduct() {
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const [activeBullets, setActiveBullets] = useState({
     product: true,
     media: false,

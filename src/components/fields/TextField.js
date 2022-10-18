@@ -12,7 +12,7 @@ import React from "react";
 export default function Default(props) {
   const { mb, id, label, extra, placeholder, ...rest } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const bgPrimary = useColorModeValue("transparent", "navy.800");
   const borderPrimary = useColorModeValue(
     "secondaryGray.100",

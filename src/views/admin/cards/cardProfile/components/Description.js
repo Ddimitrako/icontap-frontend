@@ -11,7 +11,7 @@ import { MdVerified } from "react-icons/md";
 
 export default function Banner(props) {
   const { creator, desc } = props;
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const textColorLink = useColorModeValue("blue.500", "white");
   // Chakra Color Mode
   return (

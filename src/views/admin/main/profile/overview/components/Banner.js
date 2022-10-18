@@ -6,7 +6,7 @@ import React from "react";
 export default function Banner(props) {
   const { banner, avatar, name, job, posts, followers, following } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const textColorSecondary = "gray.400";
   const borderColor = useColorModeValue(
     "white !important",

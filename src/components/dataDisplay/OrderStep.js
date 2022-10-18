@@ -6,7 +6,7 @@ import { MdCheck, MdClose, MdTimer } from "react-icons/md";
 export default function OrderStep(props) {
   const { date, sum, icon, status, name, ...rest } = props;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const iconColor = useColorModeValue("secondaryGray.600", "white");
   return (
     <Flex

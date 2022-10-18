@@ -18,7 +18,7 @@ import { MdVerified, MdOutlineMonetizationOn } from "react-icons/md";
 export default function Auction(props) {
   // Chakra Color Mode
   const { name, price, creator, creatorAvatar, bid } = props;
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const shadow = useColorModeValue(
     " 0px 50px 40px -34px rgba(112, 144, 176, 0.16)",
     "unset"

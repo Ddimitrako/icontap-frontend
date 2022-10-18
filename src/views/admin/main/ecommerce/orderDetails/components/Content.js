@@ -11,7 +11,7 @@ import tableDataReceipt from "views/admin/main/ecommerce/orderDetails/variables/
 export default function Content(props) {
   const { ...rest } = props;
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   let paid = 0;
   let total = 0;
   for (let i = 0; i < tableDataReceipt.length; i++) {

@@ -17,7 +17,7 @@ import Dropzone from "views/admin/main/profile/overview/components/Dropzone";
 export default function Upload(props) {
   const { used, total, ...rest } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const brandColor = useColorModeValue("brand.500", "white");
   const textColorSecondary = "gray.400";
   return (

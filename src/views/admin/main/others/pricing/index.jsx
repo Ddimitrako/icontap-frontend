@@ -30,7 +30,7 @@ function Pricing() {
     yearly: false,
   });
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <PricingLayout
       image={"linear-gradient(135deg, #868CFF 0%, #4318FF 100%)"}

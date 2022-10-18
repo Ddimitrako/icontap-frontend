@@ -9,7 +9,7 @@ import Information from "views/admin/main/profile/overview/components/Informatio
 export default function GeneralInformation(props) {
   const { ...rest } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const textColorSecondary = "gray.400";
   return (
     <Card mb={{ base: "0px", "2xl": "20px" }} {...rest}>

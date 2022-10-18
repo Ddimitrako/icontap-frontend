@@ -13,7 +13,7 @@ import Events from "views/admin/main/applications/calendar/components/Events";
 
 export default function Default() {
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <Grid
       pt={{ base: "130px", md: "80px", xl: "80px" }}

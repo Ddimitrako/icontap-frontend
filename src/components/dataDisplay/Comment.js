@@ -13,7 +13,7 @@ import React from "react";
 export default function Comment(props) {
   const { avatar, name, text, tags, time, ...rest } = props;
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const textColorSecondary = useColorModeValue("secondaryGray.600", "white");
   const textGray = useColorModeValue("#68769F", "secondaryGray.600");
   return (

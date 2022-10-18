@@ -11,7 +11,7 @@ import React from "react";
 
 export default function Delete(props) {
   const { ...rest } = props;
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const textColorSecondary = "secondaryGray.600";
   // Chakra Color Mode
   return (

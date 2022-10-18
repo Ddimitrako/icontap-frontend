@@ -12,7 +12,7 @@ import React from "react";
 
 export default function Connected(props) {
   const { ...rest } = props;
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const borderColor = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
   // Chakra Color Mode
   return (

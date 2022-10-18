@@ -46,7 +46,7 @@ export default function ColumnsTable(props) {
   } = tableInstance;
   initialState.pageSize = 5;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
   return (
     <Card
