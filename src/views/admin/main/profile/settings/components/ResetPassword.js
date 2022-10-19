@@ -24,7 +24,7 @@ import illustration from "assets/img/auth/auth.png";
 var hostName = process.env.REACT_APP_HOSTNAME.toString()
 export default function ResetPassword({ reset }) {
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const textColorSecondary = "secondaryGray.600";
 
   const [newpsw, setnewpsw] = useState();

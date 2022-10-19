@@ -59,8 +59,8 @@ export default function AdminStatistics({
                     <IconBox
                         w='56px'
                         h='56px'
-                        bg={boxBg}
-                        icon={<Icon w='32px' h='32px' as={MdPerson} color={brandColor}/>}
+                        bg='linear-gradient(90deg, #000000 0%, #5f5f5f 100%)'
+                        icon={<Icon w='28px' h='28px' as={MdPerson} color='white'/>}
                     />
                 }
                 name='Total  Users'
@@ -117,7 +117,7 @@ export default function AdminStatistics({
                     <IconBox
                         w='56px'
                         h='56px'
-                        bg='linear-gradient(90deg, #4481EB 0%, #04BEFE 100%)'
+                        bg='linear-gradient(90deg, #000000 0%, #5f5f5f 100%)'
                         icon={<Icon w='28px' h='28px' as={MdPerson} color='white'/>}
                     />
                 }

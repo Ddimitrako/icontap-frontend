@@ -20,7 +20,7 @@ import { VSeparator } from "components/separator/Separator";
 
 export default function CourseInfo(props) {
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const brandColor = useColorModeValue("brand.500", "brand.400");
   const bgBar = useColorModeValue("secondaryGray.100", "whiteAlpha.100");
   const bg = useColorModeValue("secondaryGray.300", "navy.700");

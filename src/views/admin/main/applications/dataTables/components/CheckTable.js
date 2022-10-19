@@ -47,7 +47,7 @@ export default function CheckTable(props) {
   } = tableInstance;
   initialState.pageSize = 11;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
   return (
     <Card

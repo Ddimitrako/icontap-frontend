@@ -15,7 +15,7 @@ import React from "react";
 
 export default function Default(props) {
   const { startContent, endContent, name, growth, value } = props;
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const textColorSecondary = "secondaryGray.600";
 
   return (

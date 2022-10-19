@@ -8,6 +8,7 @@ import {
   ModalBody,
   ModalCloseButton,
   FormControl,
+  FormLabel,
   Input,
   PinInput,
   PinInputField,
@@ -47,6 +48,7 @@ import {
   MdMoreHoriz,
   MdCheckCircle,
   MdDeleteForever,
+  MdDriveFileRenameOutline,
 } from "react-icons/md";
 import EditCardModal from "../../../main/account/billing/components/EditCardModal/EditCardModal";
 import { useHistory } from "react-router-dom";
@@ -93,12 +95,16 @@ export default function IcontapCard(props) {
     "18px 17px 40px 4px rgba(112, 144, 176, 0.1)",
     "unset"
   );
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
 
   //Modal Handlers
   const { isOpen, onOpen, onClose } = useDisclosure();
   const deleteDisclosure = useDisclosure();
   const { isDeleteOpen, onDeleteOpen, onDeleteClose } = { isDeleteOpen: deleteDisclosure.isOpen, onDeleteOpen: deleteDisclosure.onOpen, onDeleteClose: deleteDisclosure.onClose };
+  
+  const [rename, setrename]=useState(props?.card?.title);
+  const renameDisclosure = useDisclosure();
+  const { isrenameOpen, onrenameOpen, onrenameClose } = { isrenameOpen: renameDisclosure.isOpen, onrenameOpen: renameDisclosure.onOpen, onrenameClose: renameDisclosure.onClose };
   
 
 
@@ -130,6 +136,33 @@ export default function IcontapCard(props) {
     }
     else {
       onClose();
+      setloading(false);
+    }
+
+  }
+
+  function renameCard() {
+    setloading(true);
+    if (props.card.code != 'demo') {
+      console.log('deactivating');
+      axios({
+        method: 'put',
+        url: `${hostName}/card/${props.card.code}`,
+        data: {
+          title: rename
+        }
+      }).then((response) => {
+        console.log(response);
+        props?.getcards();
+      }).catch((err) => {
+        console.log(err.response);
+      }).finally(() => {
+        onrenameClose();
+        setloading(false);
+      });
+    }
+    else {
+      onrenameClose();
       setloading(false);
     }
 
@@ -291,6 +324,24 @@ export default function IcontapCard(props) {
         {false && !props.card.is_active ? activateCardBtnModal : ''}
 
         {props.card.is_active ? <Flex direction='column' align='center'>
+          <IconButton onClick={onrenameOpen}
+            borderRadius='50%'
+            bg={bgIconButton}
+            _hover={bgIconHover}
+            _active={bgIconFocus}
+            _focus={bgIconFocus}
+            w='56px'
+            h='56px'
+            mb='5px'
+            boxShadow={shadow}
+            icon={<Icon as={MdDriveFileRenameOutline} color={'blue'} w='24px' h='24px' />}
+          />
+          <Text fontSize='sm' fontWeight='500' color={textColor}>
+            Rename Card
+          </Text>
+        </Flex> : ''}
+
+        {props.card.is_active ? <Flex direction='column' align='center'>
           <IconButton onClick={onOpen}
             borderRadius='50%'
             bg={bgIconButton}
@@ -363,6 +414,25 @@ export default function IcontapCard(props) {
           </Text>
         </Flex>
       </Flex> : ''}
+
+      <Modal isOpen={isrenameOpen} onClose={onrenameClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Rename card</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl>
+              <FormLabel color={'#000000'}>Name</FormLabel>
+              <Input focusBorderColor='none' backgroundColor={'#f7f7f7'} placeholder={'Name'} caption={'Name'} value={rename} onChange={(e) => setrename(e.target.value)} />
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={renameCard} isLoading={loading}>
+              OK
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       <Modal isOpen={isDeleteOpen} onClose={onDeleteClose}>
         <ModalOverlay />

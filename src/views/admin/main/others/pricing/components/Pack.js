@@ -16,7 +16,7 @@ import { BsCircleFill } from "react-icons/bs";
 
 export default function Pack(props) {
   const { title, desc, button, price, details, benefits, highlighted } = props;
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <Card
       p='20px'

@@ -72,7 +72,7 @@ function UserReportsTable(props) {
   };
 
   const { pageIndex, pageSize } = state;
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
   const brandColor = useColorModeValue("brand.500", "brand.400");
   return (

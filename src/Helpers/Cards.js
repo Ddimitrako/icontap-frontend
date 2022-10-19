@@ -233,6 +233,7 @@ export function ActivateCardModal(props) {
                         <Button
                             onClick={activateCard}
                             isLoading={props.loading}
+                            className='btn-custom-dark-background'
                             fontSize='14px'
                             variant='brand'
                             borderRadius='16px'
@@ -244,7 +245,7 @@ export function ActivateCardModal(props) {
                             Activate Card
                         </Button>
                     </FormControl>
-                    <Text
+                    {/* <Text
                         color={textColorDetails}
                         fontWeight='400'
                         fontSize='14px'
@@ -254,8 +255,7 @@ export function ActivateCardModal(props) {
                         <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
                             Resend a new code
                         </Text>
-                    </Text>
-                    {activationCode}
+                    </Text> */}
                     {error&&<Alert status='error'>
                         <AlertIcon />
                         <AlertTitle>Error</AlertTitle>

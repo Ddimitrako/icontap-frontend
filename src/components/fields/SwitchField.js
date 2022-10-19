@@ -22,7 +22,7 @@ export default function Default(props) {
     fontSize,
     ...rest
   } = props;
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   return (
     <Box w='100%' fontWeight='500' {...rest}>
       {reversed ? (

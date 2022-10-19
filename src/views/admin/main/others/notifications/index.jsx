@@ -17,7 +17,7 @@ import Card from "components/card/Card";
 import React from "react";
 
 function Alerts() {
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
 
   return (
     <Flex direction='column' pt={{ sm: "125px", lg: "75px" }}>

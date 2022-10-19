@@ -10,7 +10,7 @@ export default function CircularProgress() {
     "#F4F7FE",
     "rgba(255,255,255,0.1)"
   );
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const cardBg = useColorModeValue("white", "navy.700");
   // Chakra Color Mode
   return (

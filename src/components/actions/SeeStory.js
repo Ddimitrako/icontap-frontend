@@ -27,7 +27,7 @@ export default function SeeStory(props) {
   const { username, sum, avatar, name, action, image, ...rest } = props;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const borderColor = useColorModeValue(
     "white !important",
     "#111c44 !important"

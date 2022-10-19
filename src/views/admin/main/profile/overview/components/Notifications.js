@@ -8,7 +8,7 @@ import Menu from "components/menu/MainMenu";
 export default function Notifications(props) {
   const { ...rest } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   return (
     <Card mb='20px' {...rest}>
       <Flex align='center' w='100%' justify='space-between' mb='30px'>

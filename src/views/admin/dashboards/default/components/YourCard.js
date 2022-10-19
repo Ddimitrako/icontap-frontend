@@ -70,7 +70,7 @@ export default function YourCard(props) {
     "18px 17px 40px 4px rgba(112, 144, 176, 0.1)",
     "unset"
   );
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <Card {...rest}>
       <Flex justify='space-between' px='10px' pt='5px' mb='25px' align='center'>

@@ -39,7 +39,7 @@ export default function HeaderLinks(props) {
     // Chakra Color Mode
     const navbarIcon = useColorModeValue("gray.400", "white");
     let menuBg = useColorModeValue("white", "navy.800");
-    const textColor = useColorModeValue("secondaryGray.900", "white");
+    const textColor = '#3A3A3A';
     const textColorBrand = useColorModeValue("brand.700", "brand.400");
     const ethColor = useColorModeValue("gray.700", "white");
     const borderColor = useColorModeValue("#E6ECFA", "rgba(135, 140, 189, 0.3)");
@@ -55,12 +55,13 @@ export default function HeaderLinks(props) {
 
     useEffect(() => {
 
-        try {
-            setLastName(getMe().last_name)
-            setFirstName(getMe().name)
-        } catch (e) {
-            console.log('Error')
-        }
+        let inter=setInterval(() => {
+            setLastName(getMe()?.last_name);
+            setFirstName(getMe()?.name);
+            if(firstName && lastName){
+                clearInterval(inter);
+            }
+        }, 500);
 
     }, []);
 
@@ -167,7 +168,7 @@ export default function HeaderLinks(props) {
                     <Image src={navImage} borderRadius='16px' mb='28px'/>
                     <Flex flexDirection='column'>
                         <Link w='100%' href='https://icontap.gr'>
-                            <Button w='100%' h='44px' mb='10px' variant='brand'>
+                            <Button w='100%' h='44px' mb='10px' className="btn-custom-dark-background">
                                 Go to icontap.gr
                             </Button>
                         </Link>
@@ -176,7 +177,7 @@ export default function HeaderLinks(props) {
                 </MenuList>
             </Menu>
 
-            <Button
+            {/* <Button
                 variant='no-hover'
                 bg='transparent'
                 p='0px'
@@ -192,14 +193,14 @@ export default function HeaderLinks(props) {
                     color={navbarIcon}
                     as={colorMode === "light" ? IoMdMoon : IoMdSunny}
                 />
-            </Button>
+            </Button> */}
             <Menu>
                 <MenuButton p='0px'>
                     <Avatar
                         _hover={{cursor: "pointer"}}
                         color='white'
                         name={firstName + " " + lastName}
-                        bg='#11047A'
+                        bg='black'
                         size='sm'
                         w='40px'
                         h='40px'

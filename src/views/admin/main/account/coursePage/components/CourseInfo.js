@@ -27,7 +27,7 @@ export default function CourseInfo(props) {
   let [tabState, setTabState] = useState("notes");
 
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const textColorSecondary = useColorModeValue("secondaryGray.700", "white");
   const textColorTertiary = useColorModeValue(
     "secondaryGray.600",

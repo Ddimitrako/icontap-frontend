@@ -6,7 +6,7 @@ import { Flex, Button, Text, useColorModeValue } from "@chakra-ui/react";
 export default function Setup(props) {
   const { value, name, action, actionName, ...rest } = props;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <Flex justifyContent='space-between' flexDirection={{ base: "column", md: "row" }} alignItems='center' w='100%' {...rest}>
       <Text color={textColor} fontSize='md' me='6px' fontWeight='700' mb={{ base: "10px", md: "0px" }}>

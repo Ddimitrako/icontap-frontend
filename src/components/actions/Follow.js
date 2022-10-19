@@ -12,7 +12,7 @@ import {
 export default function Transaction(props) {
   const { username, sum, avatar, name, action, ...rest } = props;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const brandColor = useColorModeValue("brand.500", "white");
   return (
     <Flex justifyContent='center' alignItems='center' w='100%' {...rest}>

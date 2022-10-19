@@ -64,7 +64,7 @@ export default function Collection(props) {
   const [loading, setloading] = useState(true);
   const [loadingCreate, setloadingCreate] = useState(true);
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const buttonBg = useColorModeValue("transparent", "navy.800");
   const hoverButton = useColorModeValue(
     { bg: "gray.100" },
@@ -248,17 +248,18 @@ export default function Collection(props) {
           onClick={()=>activateModalDisclosure.onOpen()}
           align='center'
           justifyContent='center'
-          bg={bgButton}
-          _hover={bgHover}
-          _focus={bgFocus}
-          _active={bgFocus}
+          // bg={bgButton}
+          _hover={{bgColor:'black'}}
+          // _focus={bgFocus}
+          // _active={bgFocus}
+          bgColor={'black'}
           w='37px'
           h='37px'
           lineHeight='100%'
           borderRadius='10px'
           isLoading={loadingCreate}
         >
-          <Icon as={MdAddCircle} color={iconColor} w='24px' h='24px' />
+          <Icon as={MdAddCircle} color={'white'} w='24px' h='24px' />
 
         </Button>
         <ActivateCardModal activateModalDisclosure={activateModalDisclosure} loading={loading} setloading={setloading} getcards={getCards} />

@@ -37,9 +37,9 @@ import { downloadImage } from 'Helpers/App';
 import { copy2clip } from 'Helpers/App';
 
 export default function Page() {
-    const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+    const textColorPrimary = '#3A3A3A';
     const textColorSecondary = "secondaryGray.600";
-    const textColor = useColorModeValue("secondaryGray.900", "white");
+    const textColor = '#3A3A3A';
     // Chakra Color Mode
 
     const [card, setCard] = useState({});

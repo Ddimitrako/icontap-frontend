@@ -424,5 +424,12 @@ div.int-box {
   .tab-cols {
     height: 95vh;
     overflow: auto;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+  }
+
+  .tab-cols::-webkit-scrollbar {
+    display: none;
   }
 }
+

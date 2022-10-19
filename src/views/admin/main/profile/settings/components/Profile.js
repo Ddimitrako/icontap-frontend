@@ -13,7 +13,7 @@ import React from "react";
 export default function Settings(props) {
   const { name, avatar, banner } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const textColorSecondary = "secondaryGray.600";
   return (
     <Card mb='20px' align='center'>

@@ -32,7 +32,7 @@ import { VSeparator } from "components/separator/Separator";
 export default function Courses() {
   let [tabState, setTabState] = useState("all");
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   let panelExample = (
     <SimpleGrid columns='1' gap='20px'>
       <Course

@@ -11,7 +11,7 @@ import Project from "views/admin/main/profile/overview/components/Project";
 
 export default function Projects(props) {
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
   const textColorSecondary = "gray.400";
   return (
     <Card mb={{ base: "0px", "2xl": "20px" }}>

@@ -9,7 +9,7 @@ import { RiArrowUpSFill, RiArrowDownSFill } from "react-icons/ri";
 export default function Stock(props) {
   const { sum, icon, name, chart, growth, ...rest } = props;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   return (
     <Flex
       justifyContent='center'

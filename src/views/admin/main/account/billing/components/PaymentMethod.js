@@ -14,7 +14,7 @@ export default function PaymentMethod(props) {
   const { ...rest } = props;
   // Chakra Color Mode
   const textColorSecondary = useColorModeValue("secondaryGray.500", "white");
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const iconColor = useColorModeValue("#4318FF", "white");
   const borderColor = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
   return (

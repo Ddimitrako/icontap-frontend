@@ -8,7 +8,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 export default function CircProgress(props) {
   const { title, percentage } = props;
-  let textColor = useColorModeValue("secondaryGray.900", "white");
+  let textColor = '#3A3A3A';
   let stylesColorMode = useColorModeValue(
     {
       rotation: 0.25,
@@ -47,7 +47,7 @@ export default function CircProgress(props) {
 
 export function CircProgressMini(props) {
   const { step, percentage } = props;
-  let textColor = useColorModeValue("secondaryGray.900", "white");
+  let textColor = '#3A3A3A';
   let stylesColorMode = useColorModeValue(
     {
       rotation: 0.25,

@@ -125,6 +125,7 @@ function ForgotPassword() {
               onClick={postToApi}  
               isLoading={loading}
               loadingText={'Please wait...'}
+              className='btn-custom-dark-background'
               >
               Email password reset link
             </Button>

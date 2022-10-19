@@ -40,9 +40,9 @@ export default function Settings({setShowAlert}) {
     var hostName = process.env.REACT_APP_HOSTNAME.toString()
     const [MeContextValue, setMeContextValue] = useContext(MeContext);
 
-    const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+    const textColorPrimary = '#3A3A3A';
     const textColorSecondary = "secondaryGray.600";
-    const textColor = useColorModeValue("secondaryGray.900", "white");
+    const textColor = '#3A3A3A';
     const [showSpinner, setShowSpinner] = React.useState(true);
 
     const [opacity, setOpacity] = useState(0.1)
@@ -258,7 +258,8 @@ export default function Settings({setShowAlert}) {
                     </Flex>
                     <Flex justify='space-between' mt='24px'>
                         <Button
-                            variant='darkBrand'
+                            // variant='darkBrand'
+                            className="btn-custom-dark-background"
                             fontSize='sm'
                             borderRadius='16px'
                             w={{base: "128px", md: "148px"}}

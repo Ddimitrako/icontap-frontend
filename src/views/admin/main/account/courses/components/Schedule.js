@@ -13,7 +13,7 @@ export default function Schedule(props) {
   const { ...rest } = props;
 
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const brandColor = useColorModeValue("brand.500", "white");
   const borderColor = useColorModeValue("transparent", "whiteAlpha.100");
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");

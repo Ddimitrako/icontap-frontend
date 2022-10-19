@@ -21,7 +21,7 @@ import InputField from "components/fields/InputField";
 import TextField from "components/fields/TextField";
 import React, { useRef, useState } from "react";
 export default function NewUser() {
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const [activeBullets, setActiveBullets] = useState({
     user: true,
     address: false,

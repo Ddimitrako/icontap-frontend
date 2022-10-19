@@ -12,7 +12,7 @@ import React from "react";
 export default function Default(props) {
   const { id, label, extra, placeholder, type, mb, ...rest } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorPrimary = '#3A3A3A';
 
   return (
     <Flex direction='column' mb={mb ? mb : "30px"}>

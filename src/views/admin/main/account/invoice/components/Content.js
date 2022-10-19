@@ -14,7 +14,7 @@ import { HSeparator } from "components/separator/Separator";
 
 export default function Content(props) {
   // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = '#3A3A3A';
   const bgCard = useColorModeValue("white", "navy.700");
   let paid = 0;
   let total = 0;
