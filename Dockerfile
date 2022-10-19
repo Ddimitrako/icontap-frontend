@@ -13,10 +13,22 @@ COPY package-lock.json /
 RUN npm install --force
 #RUN npm install react-scripts@3.4.1 -g --silent
 
+
+
 # add app
 COPY . ./
 
-EXPOSE 3000
 
 # start app
-CMD ["npm", "start"]
+#CMD ["npm", "start"]
+#CMD ["npm", "run","build"]
+#CMD ["serve", "-s","build"]
+RUN npm run build --production
+# In your Dockerfile.
+RUN npm install -g serve
+# Run serve when the image is run.
+CMD serve -s build
+# Let Docker know about the port that serve runs on.
+
+EXPOSE 3000
+
