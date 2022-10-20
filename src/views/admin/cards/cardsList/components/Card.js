@@ -91,10 +91,7 @@ export default function IcontapCard(props) {
     { bg: "whiteAlpha.100" }
   );
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
-  const shadow = useColorModeValue(
-    "18px 17px 40px 4px rgba(112, 144, 176, 0.1)",
-    "unset"
-  );
+  const shadow = 'rgb(205, 205, 205) 10px 10px 10px';
   const textColor = '#3A3A3A';
 
   //Modal Handlers
@@ -314,7 +311,7 @@ export default function IcontapCard(props) {
             mb='5px'
             boxShadow={shadow}
             icon={
-              <Icon as={MdEdit} color={greenIcon} w='24px' h='24px' />
+              <Icon as={MdEdit} color={'black'} w='24px' h='24px' />
             }
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
@@ -334,7 +331,7 @@ export default function IcontapCard(props) {
             h='56px'
             mb='5px'
             boxShadow={shadow}
-            icon={<Icon as={MdDriveFileRenameOutline} color={'blue'} w='24px' h='24px' />}
+            icon={<Icon as={MdDriveFileRenameOutline} color={'black'} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
             Rename Card
@@ -352,7 +349,7 @@ export default function IcontapCard(props) {
             h='56px'
             mb='5px'
             boxShadow={shadow}
-            icon={<Icon as={MdDisabledVisible} color={redIcon} w='24px' h='24px' />}
+            icon={<Icon as={MdDisabledVisible} color={'black'} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
             Disable Card
