@@ -44,7 +44,7 @@ export default function ResetPassword({ reset }) {
   const { token } = useParams();
 
   useEffect(() => {
-    console.log(email, token);
+    // console.log(email, token);
   }, []);
 
   function postToApi() {
@@ -61,7 +61,7 @@ export default function ResetPassword({ reset }) {
         "password_confirmation": conf
       }
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
       setsuccess('Password changed succesfully');
       setTimeout(() => {
         window.location.href = '/auth/sign-in';

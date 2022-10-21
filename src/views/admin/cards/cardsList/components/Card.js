@@ -111,13 +111,13 @@ export default function IcontapCard(props) {
   const [loading, setloading] = useState(false);
 
   useEffect(() => {
-    console.log(props.card);
+    // console.log(props.card);
   }, []);
 
   function activateCard(activate) {
     setloading(true);
     if (props.card.code != 'demo') {
-      console.log('deactivating');
+      // console.log('deactivating');
       axios({
         method: 'put',
         url: `${hostName}/card/${props.card.code}/status`,
@@ -125,7 +125,7 @@ export default function IcontapCard(props) {
           is_active: activate
         }
       }).then((response) => {
-        console.log(response);
+        // console.log(response);
         props?.getcards();
       }).catch((err) => {
         console.log(err.response);
@@ -144,7 +144,7 @@ export default function IcontapCard(props) {
   function renameCard() {
     setloading(true);
     if (props.card.code != 'demo') {
-      console.log('deactivating');
+      // console.log('deactivating');
       axios({
         method: 'put',
         url: `${hostName}/card/${props.card.code}`,
@@ -152,7 +152,7 @@ export default function IcontapCard(props) {
           title: rename
         }
       }).then((response) => {
-        console.log(response);
+        // console.log(response);
         props?.getcards();
       }).catch((err) => {
         console.log(err.response);
@@ -176,7 +176,7 @@ export default function IcontapCard(props) {
         method: 'delete',
         url: `${hostName}/card/${props.card.code}`,
       }).then((response) => {
-        console.log(response);
+        // console.log(response);
         props?.getcards();
       }).catch((err) => {
         console.log(err.response);
@@ -193,8 +193,8 @@ export default function IcontapCard(props) {
 
   const activateCardBtnModal = <Flex direction='column' align='center'>
     <IconButton onClick={() => {
-      console.log(props.card);
-      console.log(props.card.activation_code);
+      // console.log(props.card);
+      // console.log(props.card.activation_code);
     }}
       borderRadius='50%'
       bg={bgIconButton}

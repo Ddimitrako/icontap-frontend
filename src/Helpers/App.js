@@ -8,7 +8,7 @@ storageTemp.pop();
 storageTemp = storageTemp.join('/');
 export const hostNameStorage = `${storageTemp}/storage`;
 export function redirectRouter(url, state, history) {
-    console.log(url, state);
+    // console.log(url, state);
     history.push({
         pathname: url,
         state: state
@@ -16,7 +16,7 @@ export function redirectRouter(url, state, history) {
 }
 
 export function downloadImage(url, name){
-    console.log(url, name);
+    // console.log(url, name);
     fetch(url)
       .then(resp => resp.blob())
       .then(blob => {

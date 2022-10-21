@@ -156,14 +156,14 @@ export default function AdminActionsBtn({
     }, [compAssCheck]);
 
     function CreateUser() {
-        console.log(userData)
+        // console.log(userData)
 
         axios.post(
             hostName + '/user',
             userData,
             config
         ).then((response) => {
-                console.log(response)
+                // console.log(response)
                 if (response.status == 200) {
                     ///Todo//Show green alert when a user is created.
                 }

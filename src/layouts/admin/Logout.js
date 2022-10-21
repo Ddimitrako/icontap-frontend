@@ -16,7 +16,7 @@ export default function LogoutMid(props) {
             method: 'put',
             url: hostName + `/me/logout`,
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
         }).catch((err) => {
             console.log(err.response);
             catchError(err);

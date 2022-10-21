@@ -12,7 +12,7 @@ import Cover from './Cover';
 const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius = 70 }) => {
     
     useEffect(()=>{
-        console.log('profileView card', card);
+        // console.log('profileView card', card);
     },[card]);
     
     return card?.profile ? (

@@ -103,7 +103,7 @@ export default function Collection(props) {
       method: 'get',
       url: `${hostName}/user/${currUserId}/cards`
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
       setCards(response.data.data);
     }).catch((err) => {
       console.log(err.response);
@@ -131,13 +131,13 @@ export default function Collection(props) {
         "is_personal": true,
       }
     }).then((response => {
-      console.log(response);
+      // console.log(response);
       axios({
         method: 'post',
         url: `${hostName}/card/${response.data.data.code}/profile`
       }).then((response) => {
         props.getCards();
-        console.log(response);
+        // console.log(response);
       }).catch((err) => {
         console.log(err.response);
       })

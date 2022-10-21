@@ -13,6 +13,6 @@ export function arrOfObjToFormData(arr, prefix){
             formData[`${prefix}[${i}][${k}]`]= item[k];
         })
     });
-    console.log(formData);
+    // console.log(formData);
     return formData;
 }

@@ -83,7 +83,7 @@ export default function EditProfile(props) {
 
 
     useEffect(async () => {
-        console.log('AVATAR', props.avatar.url);
+        // console.log('AVATAR', props.avatar.url);
         try {
             await getCroppedImg(
                 props.avatar.url,
@@ -95,7 +95,7 @@ export default function EditProfile(props) {
         }
 
         if (isAvatarCroppable && props.avatar.url != '/static/media/img.jpg' && !props.avatar.url.includes(hostNameStorage)) {
-            console.log(props.avatar.url);
+            // console.log(props.avatar.url);
             setPage('CropAvatar');
             onOpen();
         }
@@ -107,7 +107,7 @@ export default function EditProfile(props) {
     }, [props.avatar]);
 
     useEffect(async () => {
-        console.log('COVER', props.cover.url);
+        // console.log('COVER', props.cover.url);
         try {
             await getCroppedImg(
                 props.cover.url,
@@ -119,7 +119,7 @@ export default function EditProfile(props) {
         }
 
         if (isCoverCroppable && props.cover.url != '/static/media/img.jpg' && !props.cover.url.includes(hostNameStorage)) {
-            console.log(props.cover.url);
+            // console.log(props.cover.url);
             setPage('CropCover');
             onOpen();
         }
@@ -142,7 +142,7 @@ export default function EditProfile(props) {
                 method: 'get',
                 url: `${hostName}/card/show/${cardId}`
             }).then((response) => {
-                console.log(response);
+                // console.log(response);
                 setcard(response.data.data);
             }).catch((err) => {
                 console.log(err.response);
@@ -203,7 +203,7 @@ export default function EditProfile(props) {
     const [TitleContextValue, setTitleContextValue] = useContext(TitleContext);
 
     useEffect(() => {
-        console.log(card);
+        // console.log(card);
         if (card.profile) {
             props.setname(card?.profile?.name ?? '');
             props.setbio(card?.profile?.bio ?? '');
@@ -229,7 +229,7 @@ export default function EditProfile(props) {
 
     function updateContents(test = false) {
         let parsedContents = socials.map((c, i) => {
-            console.log(c);
+            // console.log(c);
             return {
                 "content_id": c.content_id,
                 "image": props?.socialimgs[c.id] ?? c.imgUrl,
@@ -241,7 +241,7 @@ export default function EditProfile(props) {
             }
         });
 
-        console.log('SOCIALS', arrOfObjToFormData(parsedContents, 'content'));
+        // console.log('SOCIALS', arrOfObjToFormData(parsedContents, 'content'));
 
         // console.log('updateContents', parsedContents);
 
@@ -265,7 +265,7 @@ export default function EditProfile(props) {
                 'Content-Type': 'multipart/form-data'
             }
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
         }).catch((err) => {
             console.log(err.response);
         }).finally(() => {
@@ -299,7 +299,7 @@ export default function EditProfile(props) {
                 'Content-Type': 'multipart/form-data'
             }
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             updateContents();
         }).catch((err) => {
             console.log(err.response);
@@ -327,7 +327,7 @@ export default function EditProfile(props) {
     const socialContainer = React.createRef();
 
     function openEditLink(index, social) {
-        console.log('editlink', index, social);
+        // console.log('editlink', index, social);
         setcurrSocial(index);
         settempSocialData(social);
         setPage('EditLink');

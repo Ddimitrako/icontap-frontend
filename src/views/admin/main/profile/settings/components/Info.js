@@ -70,7 +70,7 @@ export default function Settings({setShowAlert}) {
 
     useEffect(() => {
         try {
-            console.log(getMe())
+            // console.log(getMe())
             setFirstName(getMe().name)
             setLastName(getMe().last_name)
             setProfession(getMe().data.profession)

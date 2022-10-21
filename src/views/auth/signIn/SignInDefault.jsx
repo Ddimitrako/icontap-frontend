@@ -98,7 +98,7 @@ function SignIn() {
       url: hostName + `/login`,
       data: data
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
       if (response?.data?.data?.verified == '1') {
         logIn(response?.data?.data?.token);
         window.location.href = '/u/cardsList/card';

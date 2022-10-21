@@ -29,7 +29,7 @@ export default function VerifyEmail(props) {
                 hash:hash
             }
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             localStorage.setItem('email_verified', 1);
             window.location.href='/auth/sign-in';
         }).catch((err) => {
@@ -40,7 +40,7 @@ export default function VerifyEmail(props) {
     }
     
     useEffect(()=>{
-        console.log(expires);
+        // console.log(expires);
         postToApi();
     },[]);
 

@@ -68,7 +68,7 @@ export default function Settings() {
         "c_password": conf
       }
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
       setsuccess('Password changed succesfully');
       seterror(null);
     }).catch((err) => {

@@ -117,7 +117,7 @@ function SignUp() {
             url: hostName + `/register`,
             data: data
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             onOpen();
         }).catch((err) => {
             console.log(err.response);
