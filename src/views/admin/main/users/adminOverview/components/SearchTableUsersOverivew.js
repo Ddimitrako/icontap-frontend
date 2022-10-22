@@ -5,6 +5,8 @@ import {Button} from "@chakra-ui/react";
 import differenceBy from 'lodash/differenceBy';
 import AdminActionsBtn from "./AdminActions";
 import {useEffect} from "react";
+import {Backdrop} from "@material-ui/core";
+import styled from 'styled-components';
 const columns = [
     {
         name: 'F.Name',
@@ -52,9 +54,36 @@ const columns = [
     //     sortable: false,
     // },
 ];
+const TextField = styled.input`
+	height: 32px;
+	width: 200px;
+	border-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border: 1px solid #e5e5e5;
+	padding: 0 32px 0 16px;
 
-
-
+	&:hover {
+		cursor: pointer;
+	}
+`;
+const FilterComponent = ({ filterText, onFilter, onClear }) => (
+	<>
+		<TextField
+			id="search"
+			type="text"
+			placeholder="Filter By Name"
+			aria-label="Search Input"
+		    value={filterText}
+			onChange={onFilter}
+		/>
+		<Button type="button" onClick={onClear}>
+			X
+		</Button>
+	</>
+);
 
 function UsersTable({usersList,setSelectedUsers,refreshUsersTable,setRefreshUsersTable}) {
 
@@ -62,6 +91,27 @@ function UsersTable({usersList,setSelectedUsers,refreshUsersTable,setRefreshUser
     const [selectedRows, setSelectedRows] = React.useState([]);
     const [toggleCleared, setToggleCleared] = React.useState(false);
     // const [data, setData] = React.useState(usersList);
+
+    //****************************************************************************
+
+    const [filterText, setFilterText] = React.useState('');
+	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
+	const [filteredItems,setFilteredItems] = React.useState(usersList);
+
+	const subHeaderComponentMemo = React.useMemo(() => {
+		const handleClear = () => {
+			if (filterText) {
+				setResetPaginationToggle(!resetPaginationToggle);
+				setFilterText('');
+			}
+		};
+
+		return (
+			<FilterComponent onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
+		);
+	}, [filterText, resetPaginationToggle]);
+
+    //****************************************************************************
 
     const handleRowSelected = React.useCallback(state => {
         setSelectedRows(state.selectedRows);
@@ -79,8 +129,21 @@ function UsersTable({usersList,setSelectedUsers,refreshUsersTable,setRefreshUser
 
 
     useEffect(() => {
+    }, [filteredItems]);
+
+    useEffect(() => {
+        setFilteredItems(usersList)
+        setFilterText('')
     }, [usersList]);
 
+    useEffect(() => {
+        if ( usersList !==undefined){
+        setFilteredItems(usersList.filter(
+		item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
+	))
+        console.log(filteredItems)
+    }
+    }, [filterText]);
     // React.useEffect(() => {
     //
 	// }, []);
@@ -117,15 +180,17 @@ function UsersTable({usersList,setSelectedUsers,refreshUsersTable,setRefreshUser
 
             title="Users List"
             columns={columns}
-            data={usersList}
+            data={filteredItems}
             selectableRows
             // contextActions={contextActions}
             onSelectedRowsChange={handleRowSelected}
             clearSelectedRows={toggleCleared}
             pagination
+            // paginationResetDefaultPage={resetPaginationToggle}
             // progressPending={pending}
             defaultSortFieldId={1}
-
+            subHeader
+            subHeaderComponent={subHeaderComponentMemo}
         /></div>
     );
 };
