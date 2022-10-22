@@ -1,4 +1,3 @@
-/**/
 
 import React from "react";
 // Chakra imports
@@ -15,10 +14,8 @@ import YourCard from "views/admin/dashboards/default/components/YourCard";
 import YourTransfers from "views/admin/dashboards/default/components/YourTransfers";
 import { tableColumnsMostVisited } from "views/admin/dashboards/default/variables/tableColumnsMostVisited";
 import tableDataMostVisited from "views/admin/dashboards/default/variables/tableDataMostVisited.json";
-import Banner from "../../main/profile/overview/components/Banner";
-import banner from "../../../../assets/img/auth/banner.png";
-import avatar from "../../../../assets/img/avatars/avatar4.png";
-import { getAuth } from "Helpers/Auth";
+import Map from "./components/Map";
+
 export default function Default() {
   // Chakra Color Mode
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
@@ -35,7 +32,9 @@ export default function Default() {
           <Flex gridArea={{ base: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
             <OverallRevenue />
           </Flex>
-
+          <Flex gridArea={{ base: "2 / 1 / 3 / 3", "2xl": "1 / 2 / 2 / 3" }}>
+            <DailyTraffic />
+          </Flex>
         </Grid>
         <Grid
           gap='20px'
@@ -48,17 +47,27 @@ export default function Default() {
             "2xl": "1fr",
           }}
           mb='20px'>
-          <Flex gridArea={{ md: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
-             <MostVisitedTable
-              tableData={tableDataMostVisited}
-              columnsData={tableColumnsMostVisited}
-            />
+          <Flex gridArea={{ md: "1 / 1 / 2 / 2", "2xl": "1 / 1 / 2 / 2" }}>
+            <YourTransfers />
+          </Flex>
+          <Flex gridArea={{ md: "1 / 2 / 2 / 3", "2xl": "1 / 2 / 2 / 3" }}>
+
+          </Flex>
+          <Flex gridArea={{ md: " 2 / 1 / 3 / 3", "2xl": "1 / 3 / 2 / 4" }}>
+
           </Flex>
         </Grid>
         <Grid
           templateColumns={{ base: "repeat(2, 1fr)", "2xl": "350fr 720fr" }}
           gap='20px'
           display={{ base: "block", lg: "grid" }}>
+          <Flex gridArea={{ base: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
+          <Map/>
+
+          </Flex>
+          <Flex gridArea={{ base: "2 / 1 / 3 / 3", "2xl": "1 / 2 / 2 / 3" }}>
+
+          </Flex>
         </Grid>
       </Flex>
       <VSeparator
@@ -66,26 +75,6 @@ export default function Default() {
         bg={paleGray}
         display={{ base: "none", xl: "flex" }}
       />
-
-      <Banner
-          gridArea='1 / 1 / 2 / 2'
-          banner={banner}
-          avatar={avatar}
-          name='John Kehas'
-          job='Product Designer'
-          posts='17'
-          followers='9.7k'
-          following='274'
-        />
-        <YourCard
-        maxW={{ base: "100%", xl: "400px" }}
-        maxH={{ base: "100%", xl: "1100px", "2xl": "100%" }}
-      />
     </Flex>
-
-
-
-
-
   );
 }

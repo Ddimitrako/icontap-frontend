@@ -3,37 +3,15 @@
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 [![GitHub issues open](https://img.shields.io/github/issues/horizon-ui/horizon-ui-chakra-pro.svg?maxAge=2592000)](https://github.com/horizon-ui/horizon-ui-chakra-pro/issues?q=is%3Aopen+is%3Aissue)
 [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/horizon-ui/horizon-ui-chakra-pro.svg?maxAge=2592000)](https://github.com/horizon-ui/horizon-ui-chakra-pro/issues?q=is%3Aissue+is%3Aclosed)
-
-Get started and build your dream web app with Horizon UI PRO, the most trendiest &
-innovative Premium Admin Template for Chakra UI & React!
-
 ---
 
 ### Introduction
 
-Designed for those who like modern UI elements and beautiful websites. Made of
-hundred of elements, designed blocks and fully coded pages, Horizon UI is ready
-to help you create stunning websites and webapps.
-
-Save hundreds of hours trying to create and develop a dashboard from scratch.
-The fastest, most responsive & trendiest dashboard is here. Seriously.
-
-With Horizon UI PRO you will find many examples for pages like NFTs Pages,
-Authentication Pages, Profile and so on. Just choose between a Basic Design or a
-cover and you are good to go!
 
 <p>&nbsp;</p>
-
 [<img alt="Horizon UI PRO" src="https://i.ibb.co/R6jFKRM/introduction-image-1.png" /> ](https://github.com/horizon-ui/horizon-ui-chakra-pro)
-
 <p>&nbsp;</p>
 
-### Documentation
-
-Each element is well presented in a very complex documentation. You can read
-more about the
-<a href="https://horizon-ui.com/docs?ref=readme-horizon-pro" target="_blank">documentation
-here.</a>
 
 ### Quick Start
 
@@ -48,22 +26,17 @@ Install Horizon UI PRO by running either of the following:
   (NOTE: Product only works with LTS version)
 
 Run in terminal this command:
-
 ```bash
 npm install
 ```
-
 Then run this command to start your local server
-
 ```bash
 npm start
 ```
 
 ### Example Pages
 
-If you want to get inspiration or just show something directly to your clients,
-you can jump start your development with our pre-built example pages. You will
-be able to quickly set up the basic structure for your web project. View
+If you want to get inspiration view
 <a href="https://horizon-ui.com/chakra-pro/?ref=readme-horizon-pro" target="_blank">example pages here.</a>
 
 ### Versions

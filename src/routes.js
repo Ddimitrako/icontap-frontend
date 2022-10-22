@@ -67,14 +67,15 @@ import { NeedsEmailVerification } from "Helpers/Auth";
 
 const routes = [
     // --- Dashboards ---
-    // {
-    //     name: "Main Dashboard",
-    //     layout: "/u",
-    //     path: "/dashboards/default",
-    //     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
-    //     component: DashboardsDefault,
-    //
-    // },
+    {
+        name: "Main Dashboard",
+        layout: "/u",
+        path: "/dashboards/default",
+        icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
+        component: DashboardsDefault,
+        role:'admin',
+
+    },
     // --- NFTs ---
     {
         name: "Cards",
