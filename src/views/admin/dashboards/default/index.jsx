@@ -15,8 +15,10 @@ import YourTransfers from "views/admin/dashboards/default/components/YourTransfe
 import { tableColumnsMostVisited } from "views/admin/dashboards/default/variables/tableColumnsMostVisited";
 import tableDataMostVisited from "views/admin/dashboards/default/variables/tableDataMostVisited.json";
 import Map from "./components/Map";
+import {useEffect} from "react";
 
 export default function Default() {
+
   // Chakra Color Mode
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
   return (

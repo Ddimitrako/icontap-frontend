@@ -13,7 +13,7 @@ import { hostNameStorage } from 'Helpers/App';
 import Cover from 'views/admin/cards/cardProfile/components/Cover';
 import { SocialButton } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
 import Profile from 'views/admin/main/account/settings/components/Profile';
-
+import ReactGA from 'react-ga';
 
 export const ShowCard = () => {
 
@@ -58,7 +58,10 @@ export const ShowCard = () => {
     }
 
     useEffect(() => {
+        ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_IDENTIFIER.toString())
+        ReactGA.pageview('/card')
         getProfile();
+
     }, []);
 
     // return <DefaultAuth noIllustration>
