@@ -23,19 +23,24 @@ const columns = [
         selector: row => row.email,
         sortable: true,
     },
-    // {
-    //     name: 'Company',
-    //     selector: row => row.company.name,
-    //     sortable: true,
-    // },
+    {
+        name: 'Company',
+        selector: row => row.company[0] ? row.company[0].name : "-",
+        sortable: true,
+    },
     {
         name: 'JOIN DATE',
         selector: row => row.created_at,
         sortable: true,
     },
     {
-        name: 'COMPANY USER TYPE',
+        name: 'COMPANY ROLE',
         selector: row =>  row.role_company ? row.role_company.name : "Not a company member",
+        sortable: true,
+    },
+    {
+        name: 'SYSTEM ROLE',
+        selector: row =>  row.role.code ? row.role.code : "error",
         sortable: true,
     },
     {
