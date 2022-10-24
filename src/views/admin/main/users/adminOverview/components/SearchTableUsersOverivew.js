@@ -115,10 +115,16 @@ function UsersTable({usersList,setSelectedUsers,refreshUsersTable,setRefreshUser
 
     const handleRowSelected = React.useCallback(state => {
         setSelectedRows(state.selectedRows);
+        console.log(state.selectedRows)
         var userslist =[]
         setSelectedUsers([])
-        state.selectedRows.map(({id})=>{
-            let obj = {user_id: id}
+        state.selectedRows.map(({id,company})=>{
+            if (company.length!=0){
+                var obj = {user_id: id, company_id : company[0].id}
+            }
+            else{
+                var obj = {user_id: id}
+            }
             userslist.push(obj)
 
         })
