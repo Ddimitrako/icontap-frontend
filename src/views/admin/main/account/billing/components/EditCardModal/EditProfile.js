@@ -228,6 +228,8 @@ export default function EditProfile(props) {
     // },[socialDefaults]);
 
     function updateContents(test = false) {
+        console.log('socialimgs, socials', props?.socialimgs, socials);
+
         let parsedContents = socials.map((c, i) => {
             console.log(c);
             return {
