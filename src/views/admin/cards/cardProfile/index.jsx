@@ -139,7 +139,7 @@ export default function Page() {
                                 lg: "3fr 2fr",
                                 // "2xl": "2fr 0.95fr",
                             }}
-                            gap={{ base: "20px", xl: "20px" }}
+                            gap={{ base: "20px", xl: "200px" }}
                             display={{ base: "block", lg: "grid" }}>
                             <Flex flexDirection='column' gridArea='1 / 1 / 2 / 2'
                                 className='tab-cols'

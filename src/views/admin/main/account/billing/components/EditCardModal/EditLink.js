@@ -36,13 +36,21 @@ export default function EditLink(props) {
 
     }, [url, title]);
 
+    function generateId(id) {
+        let count=0;
+        while(props.socialimgs[`${id}-${count}`]){
+            count++;
+        }
+        return `${id}-${count}`;
+    } 
+
     function upsertSocials() {
         let tempSocials = deepCopy(props.socials);
         // console.log(tempSocials);
         // console.log(props?.tempSocialData);
         // console.log(props.currSocial);
         console.log('socialimgs', props.setsocialimgs, props.socialimgs, img);
-        let tempCurrSocialData = {...props?.tempSocialData, url: url, title: title, imgUrl: img?.blob?{blob:img.blob, blobUrl:img.url, url:imgUrl}:imgUrl };
+        let tempCurrSocialData = {...props?.tempSocialData, id:generateId(props.tempSocialData.id), url: url, title: title, imgUrl: img?.blob?{blob:img.blob, blobUrl:img.url, url:imgUrl}:imgUrl };
         if(img?.blob){
             let tempsocialimgs={};
             
