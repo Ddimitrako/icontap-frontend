@@ -215,17 +215,7 @@ export default function IcontapCard(props) {
 
   return (
     <Card {...rest} p='44px' style={{ boxShadow: '#cdcdcd 10px 10px 10px' }}>
-      <Flex justify='space-between' mb='25px' align='center'>
-        <Text
-          style={{ filter: !props.card.is_active ? 'blur(2px)' : 'none' }}
-          color={textColor}
-          fontSize='xl'
-          fontWeight='700'
-          lineHeight='100%'>
-          {props.card.title}
-        </Text>
-
-      </Flex>
+      
       <Tabs style={{ filter: !props.card.is_active ? 'blur(3px)' : 'none' }}>
         <TabPanels mb='20px'>
           <TabPanel p='0px'>
@@ -293,6 +283,17 @@ export default function IcontapCard(props) {
           </Flex>
         </TabList>
       </Tabs>
+      <Flex justify='center' mb='25px' align='center'>
+        <Text
+          style={{ filter: !props.card.is_active ? 'blur(2px)' : 'none' }}
+          color={textColor}
+          fontSize='xl'
+          fontWeight='700'
+          lineHeight='100%'>
+          {props.card.title}
+        </Text>
+
+      </Flex>
 
       <Flex justify='space-between' w='100%'>
         {true || props.card.is_active ? <Flex

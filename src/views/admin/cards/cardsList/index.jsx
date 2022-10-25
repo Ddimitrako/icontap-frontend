@@ -45,6 +45,8 @@ import {
   MdFormatPaint,
   MdAccessTime,
   MdOutlineLocalOffer,
+  MdGridView,
+  MdVisibility,
 } from "react-icons/md";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { useEffect } from "react";
@@ -226,7 +228,6 @@ export default function Collection(props) {
           fontWeight='700'>{(statedUser && statedUser?.id!=Me.id)?`${statedUser?.name} ${statedUser?.last_name}'s`:'Your'} Cards
         </Text>
 
-        <Text>Add a new Card</Text>
         {/* <Button
           onClick={createCard}
           align='center'
@@ -253,14 +254,34 @@ export default function Collection(props) {
           // _focus={bgFocus}
           // _active={bgFocus}
           bgColor={'black'}
-          w='37px'
+          h='37px'
+          lineHeight='100%'
+          borderRadius='10px'
+          isLoading={loadingCreate}
+          color={'white'}
+          >
+          <Icon as={MdAddCircle} color={'white'} w='24px' h='24px' />
+          <span style={{paddingLeft:'5px'}}>Add a new Card</span>
+        </Button>
+        <Button
+          float={'right'}
+          onClick={()=>activateModalDisclosure.onOpen()}
+          align='center'
+          justifyContent='center'
+          ml={'10px'}
+          // bg={bgButton}
+          _hover={{bgColor:'black'}}
+          // _focus={bgFocus}
+          // _active={bgFocus}
+          color={'white'}
+          bgColor={'black'}
           h='37px'
           lineHeight='100%'
           borderRadius='10px'
           isLoading={loadingCreate}
         >
-          <Icon as={MdAddCircle} color={'white'} w='24px' h='24px' />
-
+          <Icon as={MdVisibility} color={'white'} w='24px' h='24px' ml={'5px'} />
+          <span style={{paddingLeft:'5px'}}>View Demo</span>
         </Button>
         <ActivateCardModal activateModalDisclosure={activateModalDisclosure} loading={loading} setloading={setloading} getcards={getCards} />
         <TabPanels>
