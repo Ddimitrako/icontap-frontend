@@ -22,7 +22,9 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
             paddingBottom: hideFooter?'30px':'50px',
             position: 'relative',
             textAlign: 'center'
-        }}>
+        }}
+        className={hideFooter?'':'zoomed'}
+        >
             <Cover minHeight={coverMinHeight} socialMaxW="60%" avatarRadius={avatarRadius} name={card.profile.name} bio={card.profile.bio} job={card.profile.job} company={card.profile.company} card={card} avatar={card?.images?.img_profile} cover={card?.images?.img_cover} socials={socials} />
             <Stack spacing={1}>
                 <Text focusBorderColor='none' style={{ width: '100%', padding:'2% 12%', textAlign: 'center', fontSize: '24px', fontWeight: '600' }}>{card.profile.name}</Text>

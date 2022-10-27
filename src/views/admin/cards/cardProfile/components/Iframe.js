@@ -17,7 +17,7 @@ const CustomIframe = ({ card, avatar, setavatar, cover, setcover, name, bio, job
     return (
         <div className='hide-under-959'>
             <div id="wrapper">
-                <Flex className="phone view_3 hide-scrollbar" id="phone" style={{position:'relative', zoom: 0.8, width: 350, height: 650, overflow: 'auto' }}>
+                <Flex className="phone view_3 hide-scrollbar" id="phone" style={{position:'relative', zoom: 0.85, width: 350, height: 650, overflow: 'auto' }}>
                     <ProfileView hideFooter name={name} bio={bio} job={job} company={company} card={card} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} socials={socials} />
                 </Flex>
             </div>

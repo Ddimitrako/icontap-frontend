@@ -145,7 +145,7 @@ export default function Page() {
                                 className='tab-cols'
                             >
                                 <FormControl>
-                                    <Card className='edit-profile-container'>
+                                    <Card className='edit-profile-container zoomed'>
                                         <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} />
                                     </Card>
                                 </FormControl>
@@ -159,7 +159,7 @@ export default function Page() {
                                     <Button onClick={() => {
                                         if (card.code != 'demo')
                                             window.open(`${frontAddress}/card/${card.code}`, "_blank");
-                                    }} rightIcon={<MdPreview />} colorScheme='black' variant='outline'>
+                                    }} rightIcon={<MdPreview />} colorScheme='black' variant='outline' className={'view-profile-btn'}>
                                         View Profile
                                     </Button>
                                 </Stack>
