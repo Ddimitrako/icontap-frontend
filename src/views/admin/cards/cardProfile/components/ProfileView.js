@@ -61,12 +61,14 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
             <Box
                 style={{
                     marginTop: '50px',
-                    marginBottom: '50px'
+                    marginBottom: '50px',
+                    paddingBottom: hideFooter?'100px':''
                 }}
             >
                 <a href={`https://icontap.gr/shop-2/`}
                     className={'Icontap-white-btn'}
                 >Buy your icontap</a>
+
             </Box>
             <Box
                 style={{

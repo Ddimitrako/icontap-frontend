@@ -263,9 +263,9 @@ export default function Collection(props) {
           <Icon as={MdAddCircle} color={'white'} w='24px' h='24px' />
           <span style={{paddingLeft:'5px'}}>Add a new Card</span>
         </Button>
-        <Button
+        {!(cards?.length!=0)?<Button
           float={'right'}
-          onClick={()=>activateModalDisclosure.onOpen()}
+          onClick={()=>props.history.push({pathname:'/u/cards/edit/demo'})}
           align='center'
           justifyContent='center'
           ml={'10px'}
@@ -282,7 +282,7 @@ export default function Collection(props) {
         >
           <Icon as={MdVisibility} color={'white'} w='24px' h='24px' ml={'5px'} />
           <span style={{paddingLeft:'5px'}}>View Demo</span>
-        </Button>
+        </Button>:''}
         <ActivateCardModal activateModalDisclosure={activateModalDisclosure} loading={loading} setloading={setloading} getcards={getCards} />
         <TabPanels>
           <TabPanel px='0px'>{panelCards}</TabPanel>

@@ -312,7 +312,7 @@ export default function IcontapCard(props) {
             mb='5px'
             boxShadow={shadow}
             icon={
-              <Icon as={MdEdit} color={'black'} w='24px' h='24px' />
+              <Icon as={MdEdit} color={'green'} w='24px' h='24px' />
             }
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
@@ -332,7 +332,7 @@ export default function IcontapCard(props) {
             h='56px'
             mb='5px'
             boxShadow={shadow}
-            icon={<Icon as={MdDriveFileRenameOutline} color={'black'} w='24px' h='24px' />}
+            icon={<Icon as={MdDriveFileRenameOutline} color={'blue'} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
             Rename Card
@@ -350,7 +350,7 @@ export default function IcontapCard(props) {
             h='56px'
             mb='5px'
             boxShadow={shadow}
-            icon={<Icon as={MdDisabledVisible} color={'black'} w='24px' h='24px' />}
+            icon={<Icon as={MdDisabledVisible} color={redIcon} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
             Disable Card
