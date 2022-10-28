@@ -57,11 +57,13 @@ import axios from "axios";
 import { hostName } from "Helpers/App";
 import { hostNameStorage } from "Helpers/App";
 import { hasRole } from "Helpers/Auth";
+import Cover from "../../cardProfile/components/Cover";
 
 export default function IcontapCard(props) {
   var clone = Object.assign({}, { a: 1, b: 2, c: 3 });
   delete clone.getcards;
   const { ...rest } = clone;
+  const card=props.card;
 
   let [tabState, setTabState] = useState("card1");
 
@@ -210,76 +212,10 @@ export default function IcontapCard(props) {
 
   </Flex>;
 
-  return (
+  return card?(
     <Card {...rest} p='44px' style={{ boxShadow: '#cdcdcd 10px 10px 10px' }}>
       
-      <Tabs style={{ filter: !props.card.is_active ? 'blur(3px)' : 'none' }}>
-        <TabPanels mb='20px'>
-          <TabPanel p='0px'>
-            {/* <Image src={props?.card?.images?.img_profile?`${hostNameStorage}/${props?.card?.images?.img_profile}`:whitecard} /> */}
-            <Image src={whitecard} />
-          </TabPanel>
-          <TabPanel p='0px'>
-            {/* <Image src={props?.card?.images?.img_cover?`${hostNameStorage}/${props?.card?.images?.img_cover}`:blackCard} /> */}
-            <Image src={blackCard} />
-          </TabPanel>
-        </TabPanels>
-        <TabList
-          mb='20px'
-          mx={{ base: "10px", lg: "30px" }}
-          overflowX={{ sm: "unset", lg: "unset" }}
-          border='0px solid transparent'>
-          <Flex justify='center' w='100%'>
-            <Tab
-              p='0px'
-              flexDirection='column'
-              onClick={function () {
-                setTabState("card1");
-              }}
-              me='18px'
-              bg='unset'
-              _selected={{
-                bg: "none",
-              }}
-              _focus={{ border: "none" }}
-              border='0px solid transparent !important'
-              _active={{ bg: "none" }}
-              minW='max-content'>
-              <Box
-                w='8px'
-                height='8px'
-                transition='0.1s linear'
-                bg={tabState === "card1" ? "brand.500" : "secondaryGray.500"}
-                borderRadius='50%'
-              />
-            </Tab>
-            <Tab
-              p='0px'
-              flexDirection='column'
-              onClick={function () {
-                setTabState("card2");
-              }}
-              me='18px'
-              bg='unset'
-              _selected={{
-                bg: "none",
-              }}
-              _focus={{ border: "none" }}
-              border='0px solid transparent !important'
-              _active={{ bg: "none" }}
-              minW='max-content'>
-              <Box
-                w='8px'
-                height='8px'
-                transition='0.1s linear'
-                bg={tabState === "card2" ? "brand.500" : "secondaryGray.500"}
-                borderRadius='50%'
-              />
-            </Tab>
-
-          </Flex>
-        </TabList>
-      </Tabs>
+      <Cover minHeight={100} socialMaxW="60%" avatarRadius={50} avatar={{url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/img.jpg'}} cover={{url: card?.images?.img_cover ? `${hostNameStorage}/${card?.images?.img_cover}` : '/static/media/img.jpg'}} />
       <Flex justify='center' mb='25px' align='center'>
         <Text
           style={{ filter: !props.card.is_active ? 'blur(2px)' : 'none' }}
@@ -450,5 +386,5 @@ export default function IcontapCard(props) {
       </Modal>
 
     </Card>
-  );
+  ):'';
 }

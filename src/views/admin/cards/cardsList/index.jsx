@@ -163,7 +163,7 @@ export default function Collection(props) {
 
   // Chakra Color Mode
   return (
-    <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
+    <Box pt={{ base: "180px", md: "80px", xl: "80px" }} className='zoomed'>
       {/* Main Fields */}
       <Box mb='20px' display={{ base: "block", lg: "grid" }}>
 
