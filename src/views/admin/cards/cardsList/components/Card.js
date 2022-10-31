@@ -207,7 +207,7 @@ export default function IcontapCard(props) {
       icon={<Icon as={MdCheckCircle} color={greenIcon} w='24px' h='24px' />}
     />
     <Text fontSize='sm' fontWeight='500' color={textColor}>
-      Activate Card
+      Activate
     </Text>
 
   </Flex>;
@@ -252,7 +252,7 @@ export default function IcontapCard(props) {
             }
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
-            Edit Card
+            Edit
           </Text>
         </Flex> : ''}
         {false && !props.card.is_active ? activateCardBtnModal : ''}
@@ -271,7 +271,7 @@ export default function IcontapCard(props) {
             icon={<Icon as={MdDriveFileRenameOutline} color={'blue'} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
-            Rename Card
+            Rename
           </Text>
         </Flex> : ''}
 
@@ -289,7 +289,7 @@ export default function IcontapCard(props) {
             icon={<Icon as={MdDisabledVisible} color={redIcon} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
-            Disable Card
+            Disable
           </Text>
         </Flex> : ''}
         {!props.card.is_active ? <Flex direction='column' align='center'>
@@ -306,7 +306,7 @@ export default function IcontapCard(props) {
             icon={<Icon as={MdCheckCircle} color={greenIcon} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
-            Activate Card
+            Activate
           </Text>
         </Flex> : ''}
 
@@ -344,7 +344,7 @@ export default function IcontapCard(props) {
             icon={<Icon as={MdDeleteForever} color={redIcon} w='24px' h='24px' />}
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
-            Delete Card
+            Delete
           </Text>
         </Flex>
       </Flex> : ''}
