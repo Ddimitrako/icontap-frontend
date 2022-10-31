@@ -145,7 +145,7 @@ export default function Page() {
                                 className='tab-cols'
                             >
                                 <FormControl>
-                                    <Card className='edit-profile-container'>
+                                    <Card className='edit-profile-container zoomed'>
                                         <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} />
                                     </Card>
                                 </FormControl>
@@ -159,7 +159,7 @@ export default function Page() {
                                     <Button onClick={() => {
                                         if (card.code != 'demo')
                                             window.open(`${frontAddress}/card/${card.code}`, "_blank");
-                                    }} rightIcon={<MdPreview />} colorScheme='black' variant='outline'>
+                                    }} rightIcon={<MdPreview />} colorScheme='black' variant='outline' className={'view-profile-btn'}>
                                         View Profile
                                     </Button>
                                 </Stack>
@@ -168,7 +168,7 @@ export default function Page() {
                     </TabPanel>
                     {card.code && <TabPanel style={{ textAlign: 'left' }}>
                         <Image style={{ paddingTop: '50px', paddingRight: '20px', paddingLeft: '20px', paddingBottom: '100px', backgroundColor: 'white', border: 'none', borderRadius: '20px', boxShadow: 'rgb(205 205 205) 10px 10px 10px' }} src={card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`} />
-                        <button className='Icontap-black-btn' style={{ marginTop: '10px', marginBottom: '20px' }} onClick={() => { downloadImage(card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`, 'icontap-qr') }}>Download QR Code</button>
+                        {/* <button className='Icontap-black-btn' style={{ marginTop: '10px', marginBottom: '20px' }} onClick={() => { downloadImage(card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`, 'icontap-qr') }}>Download QR Code</button> */}
                         <br />
                         <InputGroup>
                             <InputLeftAddon children='URL' />
