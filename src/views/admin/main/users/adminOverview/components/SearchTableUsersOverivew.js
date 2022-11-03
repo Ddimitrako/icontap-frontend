@@ -25,7 +25,7 @@ const columns = [
     },
     // {
     //     name: 'Company',
-    //     selector: row => row.company.name,
+    //     selector: row => row.company[0] ? row.company[0].name : "-",
     //     sortable: true,
     // },
     {
@@ -34,8 +34,13 @@ const columns = [
         sortable: true,
     },
     {
-        name: 'COMPANY USER TYPE',
+        name: 'COMPANY ROLE',
         selector: row =>  row.role_company ? row.role_company.name : "Not a company member",
+        sortable: true,
+    },
+    {
+        name: 'SYSTEM ROLE',
+        selector: row =>  row.role ? row.role.code : "error",
         sortable: true,
     },
     {
@@ -115,10 +120,16 @@ function UsersTable({usersList,setSelectedUsers,refreshUsersTable,setRefreshUser
 
     const handleRowSelected = React.useCallback(state => {
         setSelectedRows(state.selectedRows);
+        console.log(state.selectedRows)
         var userslist =[]
         setSelectedUsers([])
-        state.selectedRows.map(({id})=>{
-            let obj = {user_id: id}
+        state.selectedRows.map(({id,company})=>{
+            if (company.length!=0){
+                var obj = {user_id: id, company_id : company[0].id}
+            }
+            else{
+                var obj = {user_id: id}
+            }
             userslist.push(obj)
 
         })

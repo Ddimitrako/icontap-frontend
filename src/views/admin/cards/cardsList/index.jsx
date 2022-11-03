@@ -45,6 +45,7 @@ import {
   MdFormatPaint,
   MdAccessTime,
   MdOutlineLocalOffer,
+  MdVisibility,
 } from "react-icons/md";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { useEffect } from "react";
@@ -161,7 +162,7 @@ export default function Collection(props) {
 
   // Chakra Color Mode
   return (
-    <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
+    <Box pt={{ base: "180px", md: "80px", xl: "80px" }} className='zoomed'>
       {/* Main Fields */}
       <Box mb='20px' display={{ base: "block", lg: "grid" }}>
 
@@ -253,15 +254,35 @@ export default function Collection(props) {
           // _focus={bgFocus}
           // _active={bgFocus}
           bgColor={'black'}
-          w='37px'
+          h='37px'
+          lineHeight='100%'
+          borderRadius='10px'
+          isLoading={loadingCreate}
+          color={'white'}
+          >
+          <Icon as={MdAddCircle} color={'white'} w='24px' h='24px' />
+          <span style={{paddingLeft:'5px'}}>Add a new Card</span>
+        </Button>
+        {!(cards?.length!=0)?<Button
+          float={'right'}
+          onClick={()=>props.history.push({pathname:'/u/cards/edit/demo'})}
+          align='center'
+          justifyContent='center'
+          ml={'10px'}
+          // bg={bgButton}
+          _hover={{bgColor:'black'}}
+          // _focus={bgFocus}
+          // _active={bgFocus}
+          color={'white'}
+          bgColor={'black'}
           h='37px'
           lineHeight='100%'
           borderRadius='10px'
           isLoading={loadingCreate}
         >
-          <Icon as={MdAddCircle} color={'white'} w='24px' h='24px' />
-
-        </Button>
+          <Icon as={MdVisibility} color={'white'} w='24px' h='24px' ml={'5px'} />
+          <span style={{paddingLeft:'5px'}}>View Demo</span>
+        </Button>:''}
         <ActivateCardModal activateModalDisclosure={activateModalDisclosure} loading={loading} setloading={setloading} getcards={getCards} />
         <TabPanels>
           <TabPanel px='0px'>{panelCards}</TabPanel>

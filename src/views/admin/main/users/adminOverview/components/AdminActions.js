@@ -185,11 +185,24 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
     }
 
     function AssignUserCard() {
-        var obj = {
+
+        if (selectedUsers[0].company_id!=undefined){
+             var obj = {
             "title": cardTitle,
             "is_personal": cardType,
-            "owner": selectedUsers[0].user_id
+            "owner": selectedUsers[0].user_id,
+            "company_id": selectedUsers[0].company_id,
+            }
         }
+        else {
+            var obj = {
+            "title": cardTitle,
+            "is_personal": cardType,
+            "owner": selectedUsers[0].user_id,
+            }
+        }
+
+
         axios.post(
             hostName + '/card/',
             obj,
@@ -429,7 +442,7 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
 
                             }}>
                                 <option value="true">personal</option>
-                                <option value="false">bussiness</option>
+                                <option value="false">business</option>
                             </Select>
                         </FormControl>
                     </ModalBody>
