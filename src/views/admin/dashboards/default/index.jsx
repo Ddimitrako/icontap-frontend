@@ -16,9 +16,40 @@ import { tableColumnsMostVisited } from "views/admin/dashboards/default/variable
 import tableDataMostVisited from "views/admin/dashboards/default/variables/tableDataMostVisited.json";
 import Map from "./components/Map";
 import {useEffect} from "react";
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 
 export default function Default() {
-
+  const data = {
+  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(203,17,53,0.2)',
+        'rgba(25,112,170,0.2)',
+        'rgba(198,149,22,0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
   // Chakra Color Mode
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
   return (
@@ -53,7 +84,7 @@ export default function Default() {
             <YourTransfers />
           </Flex>
           <Flex gridArea={{ md: "1 / 2 / 2 / 3", "2xl": "1 / 2 / 2 / 3" }}>
-
+  <Doughnut data={data}/>
           </Flex>
           <Flex gridArea={{ md: " 2 / 1 / 3 / 3", "2xl": "1 / 3 / 2 / 4" }}>
 
