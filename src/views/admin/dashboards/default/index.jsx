@@ -16,8 +16,37 @@ import { tableColumnsMostVisited } from "views/admin/dashboards/default/variable
 import tableDataMostVisited from "views/admin/dashboards/default/variables/tableDataMostVisited.json";
 import Map from "./components/Map";
 import {useEffect} from "react";
+import axios from "axios";
+
 
 export default function Default() {
+    //TODO rangeslider or calendar to select the last 365 days of data to show
+    //TODO go to dashboard page from admin page (pass the card id parameter
+    const [cardsList, setCardsList] = useState()
+    useEffect(() => {
+        getAllCards()
+
+    }, []);
+
+    function getAllCards() {
+        console.log('getAllCards');
+
+        axios({
+            method: 'get',
+            url: `${hostName}/card`
+        }).then((response) => {
+            console.log(response.data.data);
+            for (var obj in response.data.data) {
+                console.log(response.data.data[obj].code);
+                console.log(response.data.data[obj].owner.last_name + " " + response.data.data[obj].owner.name);
+            }
+
+        }).catch((err) => {
+            console.log(err.response);
+        }).finally(() => {
+
+        })
+    }
 
   // Chakra Color Mode
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
