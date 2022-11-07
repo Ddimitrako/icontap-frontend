@@ -10,6 +10,7 @@ import {
     MdPerson,
     MdCreditCard,
     MdSupervisorAccount,
+    MdOutlineAppRegistration,
 } from "react-icons/md";
 import { AiOutlineIdcard,AiOutlineUser,AiOutlineTeam,AiTwotoneSetting, AiFillProfile, AiFillIdcard } from "react-icons/ai";
 // Admin Imports
@@ -64,6 +65,7 @@ import VerificationDefault from "views/auth/verification/VerificationDefault.jsx
 import Page from "views/admin/cards/cardProfile";
 import LogoutMid from "layouts/admin/Logout";
 import { NeedsEmailVerification } from "Helpers/Auth";
+import EditSocials from "views/admin/dashboards/editSocials/EditSocials";
 
 const routes = [
     // --- Dashboards ---
@@ -141,6 +143,22 @@ const routes = [
             />
         ),
         company_role:'admin'
+    },
+    {
+        name: "Edit Socials",
+        layout: "/u",
+        path: "/main/edit-socials",
+
+        component: EditSocials,
+        icon: (
+            <Icon
+                as={MdOutlineAppRegistration}
+                width='20px'
+                height='20px'
+                color='inherit'
+            />
+        ),
+        role:'admin'
     },
     {
         name: "Edit Card",
