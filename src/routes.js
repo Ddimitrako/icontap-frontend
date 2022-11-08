@@ -9,7 +9,7 @@ import {
     MdHistoryToggleOff,
     MdPerson,
     MdCreditCard,
-    MdSupervisorAccount,
+    MdSupervisorAccount, MdInsights,
 } from "react-icons/md";
 import { AiOutlineIdcard,AiOutlineUser,AiOutlineTeam,AiTwotoneSetting, AiFillProfile, AiFillIdcard } from "react-icons/ai";
 // Admin Imports
@@ -68,10 +68,10 @@ import { NeedsEmailVerification } from "Helpers/Auth";
 const routes = [
     // --- Dashboards ---
     {
-        name: "Main Dashboard",
+        name: "Insights",
         layout: "/u",
         path: "/dashboards/default",
-        icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
+        icon: <Icon as={MdInsights} width='20px' height='20px' color='inherit'/>,
         component: DashboardsDefault,
         role:'admin',
 

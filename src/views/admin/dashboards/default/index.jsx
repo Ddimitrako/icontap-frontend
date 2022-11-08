@@ -22,6 +22,8 @@ import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js';
 import { Select } from '@chakra-ui/react';
 import {useParams} from "react-router-dom";
 import { getMe } from "Helpers/Auth";
+import OveralCardViews from "./components/OveralCardViews";
+import { Text } from '@chakra-ui/react';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
@@ -105,7 +107,7 @@ export default function Default() {
 
             <Flex direction='column' width='stretch'>
                 <Flex>
-                    <text>Select card to preview Statistics</text>
+                    <Text>Select card to preview Statistics</Text>
                 <Select  width="20%" onChange={(e) => {
                                 setSelectedCard({
                                     name: cardsList[e.target.value].name,
@@ -123,7 +125,7 @@ export default function Default() {
                     gap='20px'
                     display={{base: "block", lg: "grid"}}>
                     <Flex gridArea={{base: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2"}}>
-                        <OverallRevenue/>
+                        <OveralCardViews/>
                     </Flex>
                     <Flex gridArea={{base: "2 / 1 / 3 / 3", "2xl": "1 / 2 / 2 / 3"}}>
                         <DailyTraffic/>
