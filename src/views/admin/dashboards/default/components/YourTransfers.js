@@ -23,7 +23,7 @@ export default function YourTransfers(props) {
     <Card
       justifyContent='center'
       direction='column'
-      w='100%'
+      w='70%'
       mb={{ base: "20px", lg: "0px" }}
       pb='20px'
       {...rest}>
@@ -33,34 +33,34 @@ export default function YourTransfers(props) {
         fontWeight='700'
         lineHeight='100%'
         mb='26px'>
-        Your Transfers
+        Total views/url
       </Text>
       <Transfer
         mb='20px'
-        name='From Alex Manda'
-        date='Today, 16:36'
-        sum='+$50'
+        name='Facebook'
+
+        sum='50'
         avatar={avatar1}
       />
       <Transfer
         mb='20px'
-        name='To Laura Santos'
-        date='Today, 08:49'
-        sum='-$27'
+        name='Twitter'
+
+        sum='27'
         avatar={avatar2}
       />
       <Transfer
         mb='20px'
-        name='From Jadon S.'
-        date='Yesterday, 14:36'
-        sum='+$157'
+        name='Instagram'
+
+        sum='157'
         avatar={avatar3}
       />
       <Transfer
         mb='20px'
-        name='From Esthera J.'
-        date='Yesterday, 09:42'
-        sum='+$92'
+        name='Youtube'
+
+        sum='92'
         avatar={avatar4}
       />
 

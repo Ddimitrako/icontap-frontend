@@ -13,7 +13,7 @@ import { hostNameStorage } from 'Helpers/App';
 import Cover from 'views/admin/cards/cardProfile/components/Cover';
 import { SocialButton } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
 import Profile from 'views/admin/main/account/settings/components/Profile';
-
+import ReactGA from 'react-ga';
 
 export const ShowCard = () => {
 
@@ -25,6 +25,7 @@ export const ShowCard = () => {
 
     function getProfile() {
         console.log('getProfile');
+        console.log(window.location.pathname)
         axios({
             method: 'get',
             url: `${hostName}/card/${cardId}`
@@ -48,6 +49,11 @@ export const ShowCard = () => {
         // console.log('parsedSocials', card);
         let parsedSocials = [];
         card.content.forEach((c, i) => {
+            ReactGA.event({
+                category: window.location.pathname.toString(),
+                action: c.link,
+                label: c.title,
+            })
             // console.log('1',c,i);
             c = { ...c, imgUrl: c?.image, title: c.title, url: c.link };
             // console.log('2',c,i);
@@ -58,7 +64,10 @@ export const ShowCard = () => {
     }
 
     useEffect(() => {
+        ReactGA.initialize('UA-246553882-3',{ debug: true })
+        ReactGA.pageview(window.location.pathname)
         getProfile();
+
     }, []);
 
     // return <DefaultAuth noIllustration>

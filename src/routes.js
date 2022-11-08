@@ -11,6 +11,7 @@ import {
     MdCreditCard,
     MdSupervisorAccount,
     MdOutlineAppRegistration,
+    MdInsights,
 } from "react-icons/md";
 import { AiOutlineIdcard,AiOutlineUser,AiOutlineTeam,AiTwotoneSetting, AiFillProfile, AiFillIdcard } from "react-icons/ai";
 // Admin Imports
@@ -69,14 +70,15 @@ import EditSocials from "views/admin/dashboards/editSocials/EditSocials";
 
 const routes = [
     // --- Dashboards ---
-    // {
-    //     name: "Main Dashboard",
-    //     layout: "/u",
-    //     path: "/dashboards/default",
-    //     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit'/>,
-    //     component: DashboardsDefault,
-    //
-    // },
+    {
+        name: "Insights",
+        layout: "/u",
+        path: "/dashboards/default",
+        icon: <Icon as={MdInsights} width='20px' height='20px' color='inherit'/>,
+        component: DashboardsDefault,
+        role:'admin',
+
+    },
     // --- NFTs ---
     {
         name: "Cards",

@@ -115,10 +115,10 @@ export const lineChartDataOverallRevenue = [
     name: "Revenue",
     data: [50, 64, 48, 66, 49, 68],
   },
-  {
-    name: "Profit",
-    data: [30, 40, 24, 46, 20, 46],
-  },
+  // {
+  //   name: "Profit",
+  //   data: [30, 40, 24, 46, 20, 46],
+  // },
 ];
 
 export const lineChartOptionsOverallRevenue = {
