@@ -107,7 +107,7 @@ export default function Collection(props) {
       // console.log(response);
       setCards(response.data.data);
     }).catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     }).finally(() => {
       setloading(false);
       setloadingCreate(false);
@@ -140,10 +140,10 @@ export default function Collection(props) {
         props.getCards();
         // console.log(response);
       }).catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
       })
     })).catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     })
   }
 
@@ -227,24 +227,6 @@ export default function Collection(props) {
           fontWeight='700'>{(statedUser && statedUser?.id!=Me.id)?`${statedUser?.name} ${statedUser?.last_name}'s`:'Your'} Cards
         </Text>
 
-        <Text>Add a new Card</Text>
-        {/* <Button
-          onClick={createCard}
-          align='center'
-          justifyContent='center'
-          bg={bgButton}
-          _hover={bgHover}
-          _focus={bgFocus}
-          _active={bgFocus}
-          w='37px'
-          h='37px'
-          lineHeight='100%'
-          borderRadius='10px'
-          isLoading={loadingCreate}
-        >
-          <Icon as={MdAddCircle} color={'red'} w='24px' h='24px' />
-
-        </Button> */}
         <Button
           onClick={()=>activateModalDisclosure.onOpen()}
           align='center'
@@ -259,6 +241,9 @@ export default function Collection(props) {
           borderRadius='10px'
           isLoading={loadingCreate}
           color={'white'}
+          style={{
+            boxShadow: '4px 4px 10px grey'
+          }}
           >
           <Icon as={MdAddCircle} color={'white'} w='24px' h='24px' />
           <span style={{paddingLeft:'5px'}}>Add a new Card</span>

@@ -106,7 +106,7 @@ export function GetMeFromApi() {
                 localStorage.setItem('me', JSON.stringify(response.data.data));
                 setMeContextValue(response.data.data);
             }).catch((err) => {
-                console.log(err.response);
+                // console.log(err.response);
             })
         }else{
             localStorage.removeItem('unverified');

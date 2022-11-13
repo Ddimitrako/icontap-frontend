@@ -72,8 +72,8 @@ export default function Settings() {
       setsuccess('Password changed succesfully');
       seterror(null);
     }).catch((err) => {
-      console.log(err);
-      console.log(err.response);
+      // console.log(err);
+      // console.log(err.response);
       catchError(err);
       seterror(<ErrorDisplay error={err.response.data} />);
     }).finally(() => {

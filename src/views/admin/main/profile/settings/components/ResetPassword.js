@@ -68,7 +68,7 @@ export default function ResetPassword({ reset }) {
         setloading(false);
       }, 3000);
     }).catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
       catchError(err);
       seterror("Error!")
       setloading(false);

@@ -130,7 +130,7 @@ export default function IcontapCard(props) {
         // console.log(response);
         props?.getcards();
       }).catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
       }).finally(() => {
         onClose();
         setloading(false);
@@ -157,7 +157,7 @@ export default function IcontapCard(props) {
         // console.log(response);
         props?.getcards();
       }).catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
       }).finally(() => {
         onrenameClose();
         setloading(false);
@@ -173,7 +173,7 @@ export default function IcontapCard(props) {
   function deleteCard() {
     setloading(true);
     if (props.card.code != 'demo') {
-      console.log('deactivating');
+      // console.log('deactivating');
       axios({
         method: 'delete',
         url: `${hostName}/card/${props.card.code}`,
@@ -181,7 +181,7 @@ export default function IcontapCard(props) {
         // console.log(response);
         props?.getcards();
       }).catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
       }).finally(() => {
         onClose();
         setloading(false);
@@ -217,8 +217,9 @@ export default function IcontapCard(props) {
 
   return card?(
     <Card {...rest} p='44px' style={{ boxShadow: '#cdcdcd 10px 10px 10px' }}>
-      
-      <Cover minHeight={100} socialMaxW="60%" avatarRadius={50} avatar={{url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/img.jpg'}} cover={{url: card?.images?.img_cover ? `${hostNameStorage}/${card?.images?.img_cover}` : '/static/media/img.jpg'}} />
+      <Box w='100%' style={{ filter: !props.card.is_active ? 'blur(2px)' : 'none' }}>
+        <Cover minHeight={100} socialMaxW="60%" avatarRadius={50} avatar={{url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/img.jpg'}} cover={{url: card?.images?.img_cover ? `${hostNameStorage}/${card?.images?.img_cover}` : '/static/media/img.jpg'}} />
+      </Box>
       <Flex justify='center' mb='25px' align='center'>
         <Text
           style={{ filter: !props.card.is_active ? 'blur(2px)' : 'none' }}

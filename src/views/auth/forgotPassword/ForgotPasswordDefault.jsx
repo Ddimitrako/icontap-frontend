@@ -47,7 +47,7 @@ function ForgotPassword() {
       // console.log(response);
       window.location.href='/auth/sign-in';
     }).catch((err)=>{
-      console.log(err.response);
+      // console.log(err.response);
     }).finally(()=>{
       setloading(false);
     })
