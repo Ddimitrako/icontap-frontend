@@ -93,10 +93,7 @@ export default function IcontapCard(props) {
     { bg: "whiteAlpha.100" }
   );
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
-  const shadow = useColorModeValue(
-    "18px 17px 40px 4px rgba(112, 144, 176, 0.1)",
-    "unset"
-  );
+  const shadow = "4px 4px 10px grey";
   const textColor = '#3A3A3A';
 
   //Modal Handlers
