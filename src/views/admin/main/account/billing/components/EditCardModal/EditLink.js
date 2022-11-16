@@ -49,7 +49,7 @@ export default function EditLink(props) {
         // console.log(tempSocials);
         // console.log(props?.tempSocialData);
         // console.log(props.currSocial);
-        console.log('socialimgs', props.setsocialimgs, props.socialimgs, img);
+        // console.log('socialimgs', props.setsocialimgs, props.socialimgs, img);
         let tempCurrSocialData = {...props?.tempSocialData, id:generateId(props.tempSocialData.id), url: url, title: title, imgUrl: img?.blob?{blob:img.blob, blobUrl:img.url, url:imgUrl}:imgUrl };
         if(img?.blob){
             let tempsocialimgs={};
@@ -70,14 +70,14 @@ export default function EditLink(props) {
             tempSocials.push(tempCurrSocialData);
         }
 
-        console.log(tempSocials,props);
+        // console.log(tempSocials,props);
 
         props.setsocials(tempSocials);
         props.onClose();
     }
     
     function deleteSocial() {
-        console.log(props.currSocial, props.socials[props.currSocial]);
+        // console.log(props.currSocial, props.socials[props.currSocial]);
         let tempSocials = deepCopy(props.socials);
         tempSocials.splice(props.currSocial, 1);
         props.setsocials(tempSocials);

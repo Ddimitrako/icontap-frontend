@@ -145,7 +145,7 @@ export default function EditProfile(props) {
                 // console.log(response);
                 setcard(response.data.data);
             }).catch((err) => {
-                console.log(err.response);
+                // console.log(err.response);
             }).finally(() => {
                 setloading(false);
             })
@@ -180,7 +180,7 @@ export default function EditProfile(props) {
             // parseProfileContents();
             setcontentloading(false);
         }).catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
         })
     }
 
@@ -211,7 +211,7 @@ export default function EditProfile(props) {
             props.setcompany(card?.profile?.company ?? '');
             setTitleContextValue(card.title);
             props.setcover({ ...props.cover, url: card?.images?.img_cover ? `${hostNameStorage}/${card?.images?.img_cover}` : '/static/media/img.jpg' });
-            props.setavatar({ ...props.avatar, url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/img.jpg' });
+            props.setavatar({ ...props.avatar, url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/img.svg' });
             setsocials(parseProfileContents());
             props.setCard(card);
         };
@@ -228,7 +228,7 @@ export default function EditProfile(props) {
     // },[socialDefaults]);
 
     function updateContents(test = false) {
-        console.log('socialimgs, socials', props?.socialimgs, socials);
+        // console.log('socialimgs, socials', props?.socialimgs, socials);
 
         let parsedContents = socials.map((c, i) => {
             // console.log(c);
@@ -269,7 +269,7 @@ export default function EditProfile(props) {
         }).then((response) => {
             // console.log(response);
         }).catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
         }).finally(() => {
             setoldSocials([]);
             setUpdating(false);
@@ -304,7 +304,7 @@ export default function EditProfile(props) {
             // console.log(response);
             updateContents();
         }).catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
         }).finally(() => {
             setUpdating(false);
         })

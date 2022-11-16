@@ -112,11 +112,11 @@ export function ActivateCardModal(props) {
                 activation_code: activationCode
             }
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             props?.getcards();
             onActClose();
         }).catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
             if(err.response.status==404){
                 seterror('Card not found');
             }else{

@@ -30,7 +30,7 @@ export const ShowCard = () => {
             method: 'get',
             url: `${hostName}/card/${cardId}`
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             let tempCard=response.data.data;
             if(!tempCard?.images)
                 tempCard.images={};
@@ -39,7 +39,7 @@ export const ShowCard = () => {
             setcard(tempCard);
             setsocials(parseProfileContents(tempCard));
         }).catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
         }).finally(() => {
             setloaded(true);
         })

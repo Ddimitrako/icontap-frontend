@@ -150,7 +150,7 @@ export default function AdminUsersOverview(props) {
     //###############################################################################################
 
     function redirectRouter(url, state, history) {
-        console.log(url, state);
+        // console.log(url, state);
         history.push({
             pathname:url,
             state: state
@@ -168,7 +168,7 @@ export default function AdminUsersOverview(props) {
             config
         ).then((response) => {
             setUsersList([])
-            console.log('response', response);
+            // console.log('response', response);
             let tempUsers=response.data.data.map((u,i)=>{return {...u, 
                 editCard:
                 <Button bgGradient={'linear-gradient(90deg, #000000 0%, #5f5f5f 100%)'} _hover={{color:'white'}} color={'white'} onClick={() => redirectRouter(`/u/cardsList/card/${u.id}`, { user: deepCopy(u) }, props.history)}>Cards</Button>,
@@ -176,7 +176,7 @@ export default function AdminUsersOverview(props) {
                 <Button bgGradient={'linear-gradient(90deg, #000000 0%, #5f5f5f 100%)'} _hover={{color:'white'}} color={'white'}>Analytics</Button>
             }})
 
-            console.log(response.data.data);
+            // console.log(response.data.data);
             setUsersList((usersList) => [...usersList, tempUsers]);
             //check only the first time where is null
             if (currentCompanyUUID == null) {
@@ -203,7 +203,7 @@ export default function AdminUsersOverview(props) {
     //Admin Actions create company BTN pressed
     useEffect(() => {
         if (createCompanyBtn === true) {
-            console.log(companyName)
+            // console.log(companyName)
             if (companyName != "") {
                 CreateCompany()
             } else {

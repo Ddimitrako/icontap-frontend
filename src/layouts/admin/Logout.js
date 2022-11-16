@@ -18,7 +18,7 @@ export default function LogoutMid(props) {
         }).then((response) => {
             // console.log(response);
         }).catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
             catchError(err);
         }).finally(() => {
             setloading(false);

@@ -83,7 +83,7 @@ export default function Settings({setShowAlert}) {
             setAccountType(getMe().role.code)
             setCompany(getMe().companies[0].name)
         } catch (e) {
-            console.log('Error')
+            // console.log('Error')
         }
 
 
@@ -122,7 +122,7 @@ export default function Settings({setShowAlert}) {
                         localStorage.setItem('me', JSON.stringify(response.data.data));
                         setMeContextValue(response.data.data);
                     }).catch((err) => {
-                        console.log(err.response);
+                        // console.log(err.response);
                     })
                     setShowAlert(true)
 

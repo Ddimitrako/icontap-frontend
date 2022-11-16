@@ -33,7 +33,7 @@ export default function VerifyEmail(props) {
             localStorage.setItem('email_verified', 1);
             window.location.href='/auth/sign-in';
         }).catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
         }).finally(() => {
             setloading(false);
         })

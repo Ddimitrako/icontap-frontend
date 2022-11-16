@@ -15,14 +15,14 @@ export const Crop = ({setCroppedImage, onClose, img, cropShape, setisCroppable})
   }, [])
 
   const showCroppedImage = useCallback(async () => {
-    console.log(img, croppedAreaPixels);
+    // console.log(img, croppedAreaPixels);
     try {
       const croppedImage = await getCroppedImg(
         img,
         croppedAreaPixels,
         rotation
       )
-      console.log('donee', { croppedImage })
+      // console.log('donee', { croppedImage })
       setisCroppable(false)
       setCroppedImage(croppedImage)
       onClose()

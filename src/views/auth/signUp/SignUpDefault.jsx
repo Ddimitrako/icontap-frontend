@@ -84,11 +84,11 @@ function SignUp() {
 
     });
     useEffect(() => {
-        console.log(validLength,
-            hasNumber,
-            upperCase,
-            lowerCase,
-            specialChar)
+        // console.log(validLength,
+        //     hasNumber,
+        //     upperCase,
+        //     lowerCase,
+        //     specialChar)
     }, [validLength,
         hasNumber,
         upperCase,
@@ -120,8 +120,8 @@ function SignUp() {
             // console.log(response);
             onOpen();
         }).catch((err) => {
-            console.log(err.response);
-            console.log(err.response.data.data);
+            // console.log(err.response);
+            // console.log(err.response.data.data);
             seterrors(err.response.data.data);
         }).finally(() => {
             setloading(false);
