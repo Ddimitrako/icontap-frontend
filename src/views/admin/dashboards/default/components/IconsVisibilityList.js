@@ -13,7 +13,7 @@ import avatar3 from "assets/img/avatars/avatar3.png";
 import avatar4 from "assets/img/avatars/avatar4.png";
 import { BsArrowRight } from "react-icons/bs";
 
-export default function YourTransfers(props) {
+export default function IconsVisibilityList(props) {
   const { ...rest } = props;
 
   // Chakra Color Mode
@@ -24,7 +24,7 @@ export default function YourTransfers(props) {
       justifyContent='center'
       direction='column'
       w='70%'
-      mb={{ base: "20px", lg: "0px" }}
+      mb={{ base: "10px", lg: "0px" }}
       pb='20px'
       {...rest}>
       <Text
@@ -32,65 +32,65 @@ export default function YourTransfers(props) {
         fontSize='lg'
         fontWeight='700'
         lineHeight='100%'
-        mb='26px'>
+        mb='20px'>
         Total views/url
       </Text>
       <Transfer
-        mb='20px'
+        mb='10px'
         name='Facebook'
 
         sum='50'
-        avatar={avatar1}
+        // avatar={avatar1}
       />
       <Transfer
-        mb='20px'
+        mb='10px'
         name='Twitter'
 
         sum='27'
-        avatar={avatar2}
+        // avatar={avatar2}
       />
       <Transfer
-        mb='20px'
+        mb='10px'
         name='Instagram'
 
         sum='157'
-        avatar={avatar3}
+        // avatar={avatar3}
       />
       <Transfer
-        mb='20px'
+        mb='10px'
         name='Youtube'
 
         sum='92'
-        avatar={avatar4}
+        // avatar={avatar4}
       />
 
-      <Button
-        p='0px'
-        ms='auto'
-        variant='no-hover'
-        bg='transparent'
-        my={{ sm: "1.5rem", lg: "0px" }}>
-        <Text
-          fontSize='sm'
-          color={brandColor}
-          fontWeight='bold'
-          cursor='pointer'
-          transition='all .3s ease'
-          my={{ sm: "1.5rem", lg: "0px" }}
-          _hover={{ me: "4px" }}>
-          View all
-        </Text>
-        <Icon
-          as={BsArrowRight}
-          w='18px'
-          h='18px'
-          color={brandColor}
-          transition='all .3s ease'
-          ms='.3rem'
-          cursor='pointer'
-          _hover={{ transform: "translate(4px)" }}
-        />
-      </Button>
+      {/*<Button*/}
+      {/*  p='0px'*/}
+      {/*  ms='auto'*/}
+      {/*  variant='no-hover'*/}
+      {/*  bg='transparent'*/}
+      {/*  my={{ sm: "1.5rem", lg: "0px" }}>*/}
+      {/*  <Text*/}
+      {/*    fontSize='sm'*/}
+      {/*    color={brandColor}*/}
+      {/*    fontWeight='bold'*/}
+      {/*    cursor='pointer'*/}
+      {/*    transition='all .3s ease'*/}
+      {/*    my={{ sm: "1.5rem", lg: "0px" }}*/}
+      {/*    _hover={{ me: "4px" }}>*/}
+      {/*    View all*/}
+      {/*  </Text>*/}
+      {/*  <Icon*/}
+      {/*    as={BsArrowRight}*/}
+      {/*    w='18px'*/}
+      {/*    h='18px'*/}
+      {/*    color={brandColor}*/}
+      {/*    transition='all .3s ease'*/}
+      {/*    ms='.3rem'*/}
+      {/*    cursor='pointer'*/}
+      {/*    _hover={{ transform: "translate(4px)" }}*/}
+      {/*  />*/}
+      {/*</Button>*/}
     </Card>
   );
 }

@@ -6,11 +6,10 @@ import Balance from "views/admin/dashboards/default/components/Balance";
 import DailyTraffic from "views/admin/dashboards/default/components/DailyTraffic";
 import MostVisitedTable from "views/admin/dashboards/default/components/MostVisitedTable";
 import {VSeparator} from "components/separator/Separator";
-import OverallRevenue from "views/admin/dashboards/default/components/OverallRevenue";
 import ProfitEstimation from "views/admin/dashboards/default/components/ProfitEstimation";
 import ProjectStatus from "views/admin/dashboards/default/components/ProjectStatus";
 import YourCard from "views/admin/dashboards/default/components/YourCard";
-import YourTransfers from "views/admin/dashboards/default/components/YourTransfers";
+import IconsVisibilityList from "views/admin/dashboards/default/components/IconsVisibilityList";
 import {tableColumnsMostVisited} from "views/admin/dashboards/default/variables/tableColumnsMostVisited";
 import tableDataMostVisited from "views/admin/dashboards/default/variables/tableDataMostVisited.json";
 import Map from "./components/Map";
@@ -68,6 +67,7 @@ export default function Default() {
 
     useEffect(() => {
         getAllCards()
+        getInsights()
     }, []);
 
     function getAllCards() {
@@ -88,6 +88,29 @@ export default function Default() {
                 objlist.push(cardObj);
             }
             setCardsList(objlist);
+
+        }).catch((err) => {
+            console.log(err.response);
+        }).finally(() => {
+
+        })
+    }
+
+    function getInsights() {
+
+        axios({
+            method: 'get',
+            url: `${hostName}/stats/dashboard`,
+            params: {
+                date_from:'2022-08-10',
+                date_to:'2022-10-10',
+
+            }
+        }).then((response) => {
+            console.log(response.data.data);
+            for (var obj in response.data.data) {
+                console.log(response.data.data[obj]);
+            }
 
         }).catch((err) => {
             console.log(err.response);
@@ -143,7 +166,7 @@ export default function Default() {
                     }}
                     mb='20px'>
                     <Flex gridArea={{md: "1 / 1 / 2 / 2", "2xl": "1 / 1 / 2 / 2"}}>
-                        <YourTransfers/>
+                        <IconsVisibilityList/>
                     </Flex>
                     <Flex gridArea={{md: "1 / 2 / 2 / 3", "2xl": "1 / 2 / 2 / 3"}}>
                         <Doughnut data={data}/>
