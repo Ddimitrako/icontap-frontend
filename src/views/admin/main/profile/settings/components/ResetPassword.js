@@ -21,6 +21,7 @@ import { useLocation, useParams } from "react-router-dom";
 import DefaultAuth from "layouts/auth/types/Default";
 
 import illustration from "assets/img/auth/auth.png";
+import {imageDirectory} from "../../../../../../Helpers/App";
 var hostName = process.env.REACT_APP_HOSTNAME.toString()
 export default function ResetPassword({ reset }) {
   // Chakra Color Mode
@@ -79,7 +80,7 @@ export default function ResetPassword({ reset }) {
   const textColor = useColorModeValue("navy.700", "white");
 
   return (
-    <DefaultAuth illustrationBackground={illustration} image={illustration}>
+    <DefaultAuth illustrationBackground={require('assets/img' + imageDirectory +'/auth.png')} >
       <Flex
         w='100%'
         maxW='max-content'
