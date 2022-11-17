@@ -20,13 +20,13 @@ import DefaultAuth from "layouts/auth/types/Default";
 
 // Assets
 import illustration from "assets/img/auth/auth.png";
-
+import {imageDirectory} from "../../../Helpers/App";
 function ForgotPassword() {
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");
   const brandStars = useColorModeValue("brand.500", "brand.400");
   return (
-    <DefaultAuth illustrationBackground={illustration} image={illustration}>
+    <DefaultAuth illustrationBackground={require('assets/img' + imageDirectory +'/auth.png')} >
       <Flex
         w='100%'
         maxW='max-content'
