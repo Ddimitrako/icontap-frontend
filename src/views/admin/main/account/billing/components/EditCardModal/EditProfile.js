@@ -94,7 +94,7 @@ export default function EditProfile(props) {
             return false;
         }
 
-        if (isAvatarCroppable && props.avatar.url != '/static/media/img.jpg' && !props.avatar.url.includes(hostNameStorage)) {
+        if (isAvatarCroppable && props.avatar.url != '/static/media/profile.svg' && !props.avatar.url.includes(hostNameStorage)) {
             // console.log(props.avatar.url);
             setPage('CropAvatar');
             onOpen();
@@ -211,7 +211,7 @@ export default function EditProfile(props) {
             props.setcompany(card?.profile?.company ?? '');
             setTitleContextValue(card.title);
             props.setcover({ ...props.cover, url: card?.images?.img_cover ? `${hostNameStorage}/${card?.images?.img_cover}` : '/static/media/img.jpg' });
-            props.setavatar({ ...props.avatar, url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/img.svg' });
+            props.setavatar({ ...props.avatar, url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/profile.svg' });
             setsocials(parseProfileContents());
             props.setCard(card);
         };
