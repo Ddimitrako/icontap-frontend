@@ -45,7 +45,7 @@ export default function Page() {
     const [card, setCard] = useState({});
 
     const [avatar, setavatar] = useState({ url: '/static/media/profile.svg' });
-    const [cover, setcover] = useState({ url: '/static/media/img.jpg' });
+    const [cover, setcover] = useState({ url: '/static/media/cover.svg' });
 
     const [name, setname] = useState('');
     const [bio, setbio] = useState('');
