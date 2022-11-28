@@ -8,10 +8,7 @@ import { SidebarContext } from "contexts/SidebarContext";
 import React, { useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import sidebarRoutes from "routes.js";
-import adminRoutes from "./adminRoutes.js"
 import "mapbox-gl/dist/mapbox-gl.css";
-import Page from "views/admin/cards/cardProfile";
-import EditCardModal2 from "views/admin/main/account/billing/components/EditCardModal/EditCardModal2";
 import { MeContext } from "Helpers/Auth.js";
 import { GetMeFromApi } from "Helpers/Auth.js";
 import { TitleContext } from "Helpers/Context.js";
