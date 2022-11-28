@@ -50,7 +50,7 @@ export const Crop = ({setCroppedImage, onClose, img, cropShape, setisCroppable})
         <input
           type="range"
           value={zoom}
-          min={1}
+          min={0.1}
           max={3}
           step={0.1}
           aria-labelledby="Zoom"
