@@ -79,7 +79,7 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
 		<TextField
 			id="search"
 			type="text"
-			placeholder="Filter By Name"
+			placeholder="Filter By Last Name"
 			aria-label="Search Input"
 		    value={filterText}
 			onChange={onFilter}
@@ -150,7 +150,7 @@ function UsersTable({usersList,setSelectedUsers,refreshUsersTable,setRefreshUser
     useEffect(() => {
         if ( usersList !==undefined){
         setFilteredItems(usersList.filter(
-		item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
+		item => item.last_name && item.last_name.toLowerCase().includes(filterText.toLowerCase()),
 	))
         console.log(filteredItems)
     }
