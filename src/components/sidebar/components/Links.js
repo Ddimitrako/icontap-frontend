@@ -44,7 +44,7 @@ export function SidebarLinks(props) {
 
   // this function creates the links and collapses that appear in the sidebar (left menu)
   const createLinks = (routes) => {
-    return routes.filter((filter,index)=>{return (!filter?.onlyRoute && (filter?.role?hasRole(filter.role):true) && (filter?.company_role?hasCompanyRole(filter.company_role):true))}).map((route, key) => {
+    return routes.filter((filter,index)=>{return (filter?.show) &&(!filter?.onlyRoute && (filter?.role?hasRole(filter.role):true) && (filter?.company_role?hasCompanyRole(filter.company_role):true))}).map((route, key) => {
       if (route.collapse) {
         return (
           <Accordion allowToggle key={key}>

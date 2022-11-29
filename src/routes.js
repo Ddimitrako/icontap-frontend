@@ -1,5 +1,5 @@
 import React from "react";
-
+import { showInsights } from 'Helpers/App';
 import {Icon} from "@chakra-ui/react";
 import {
     MdDashboard,
@@ -77,7 +77,7 @@ const routes = [
         icon: <Icon as={MdInsights} width='20px' height='20px' color='inherit'/>,
         component: DashboardsDefault,
         role:'admin',
-
+        show:showInsights,
     },
     // --- NFTs ---
     {
@@ -96,7 +96,8 @@ const routes = [
         ),
         onlyRoute:true,
         role:'admin',
-        company_role:'admin'
+        company_role:'admin',
+        show:true,
     },
     {
         name: "Cards",
@@ -112,6 +113,7 @@ const routes = [
                 color='inherit'
             />
         ),
+        show:true,
 
     },
     {
@@ -128,7 +130,8 @@ const routes = [
                 color='inherit'
             />
         ),
-        role:'admin'
+        role:'admin',
+        show:true,
     },
     {
         name: "Users Overview",
@@ -144,7 +147,8 @@ const routes = [
                 color='inherit'
             />
         ),
-        company_role:'admin'
+        company_role:'admin',
+        show:true,
     },
     {
         name: "Edit Socials",
@@ -160,14 +164,16 @@ const routes = [
                 color='inherit'
             />
         ),
-        role:'admin'
+        role:'admin',
+        show:true,
     },
     {
         name: "Edit Card",
         layout: "/u",
         path: "/cards/edit/:cardId",
         component: Page,
-        onlyRoute:true
+        onlyRoute:true,
+        show:true,
 
     },
     {
@@ -175,7 +181,8 @@ const routes = [
         layout: "/u",
         path: "/logout",
         component: LogoutMid,
-        onlyRoute:true
+        onlyRoute:true,
+        show:true,
 
     },
     {
@@ -192,7 +199,9 @@ const routes = [
                 color='inherit'
             />
         ),
-        onlyRoute:false
+        onlyRoute:false,
+        show:true,
+
 
     },
     {
@@ -209,7 +218,8 @@ const routes = [
                 color='inherit'
             />
         ),
-        onlyRoute:true
+        onlyRoute:true,
+        show:true,
 
     },
     // {

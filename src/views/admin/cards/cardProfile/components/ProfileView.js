@@ -1,18 +1,18 @@
 import { Box, Button, Flex, FormHelperText, FormLabel, Input, InputGroup, Stack, Text, Textarea } from '@chakra-ui/react';
 import Footer from 'components/footer/FooterAdmin';
 import { hostName } from 'Helpers/App';
-import { hostNameStorage } from 'Helpers/App';
-import React from 'react'
-import { useEffect } from 'react';
+import { hostNameStorage,showBuyButton } from 'Helpers/App';
+import React from 'react';
+import { useEffect ,useState} from 'react';
 import { Link } from 'react-router-dom';
 import { SocialButton } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
 import Cover from './Cover';
 
 // const ProfileView = ({ card, getCard, avatar, setavatar, avatarRadius = 70, cover, setcover, name, bio, job, company, socials && socials.length>0 && , socialMaxW = '100%' }) => {
 const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius = 70 }) => {
-    
+
     useEffect(()=>{
-        // console.log('profileView card', card);
+         // console.log('test',hideBuyButton);
     },[card]);
     
     return card?.profile ? (
@@ -60,7 +60,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                     )}
                 </div>
             </Box>
-            <Box
+            {showBuyButton && <Box
                 style={{
                     marginTop: '50px',
                     marginBottom: '50px',
@@ -71,7 +71,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                     className={'Icontap-white-btn'}
                 >Buy your icontap</a>
 
-            </Box>
+            </Box>}
             <Box
                 style={{
                     position: 'absolute',

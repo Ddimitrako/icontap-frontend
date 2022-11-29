@@ -28,6 +28,7 @@ import {
 } from "@chakra-ui/react";
 // Assets
 import illustration from "assets/img/auth/auth.png";
+import {imageDirectory} from "../../../Helpers/App";
 import { HSeparator } from "components/separator/Separator";
 import DefaultAuth from "layouts/auth/types/Default";
 import { NavLink } from "react-router-dom";
@@ -37,9 +38,9 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { useState } from "react";
 import { DisplayError } from "Helpers/Auth";
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react';
 import { NeedsEmailVerification } from 'Helpers/Auth';
-var hostName = process.env.REACT_APP_HOSTNAME.toString()
+var hostName = process.env.REACT_APP_HOSTNAME.toString();
 
 function SignUp() {
     // Chakra color mode
@@ -132,7 +133,7 @@ function SignUp() {
 
 
     return (
-        <DefaultAuth illustrationBackground={illustration} image={illustration}>
+        <DefaultAuth illustrationBackground={require('assets/img' + imageDirectory +'/auth.png')} >
             <Flex
                 w='100%'
                 maxW='max-content'

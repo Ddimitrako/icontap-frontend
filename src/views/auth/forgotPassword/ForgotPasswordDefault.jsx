@@ -14,7 +14,7 @@ import {
   useColorModeValue,
   Text,
 } from "@chakra-ui/react";
-
+import {imageDirectory} from "../../../Helpers/App";
 // Custom components
 import DefaultAuth from "layouts/auth/types/Default";
 
@@ -54,7 +54,7 @@ function ForgotPassword() {
   }
 
   return (
-    <DefaultAuth illustrationBackground={illustration} image={illustration}>
+    <DefaultAuth illustrationBackground={require('assets/img' + imageDirectory +'/auth.png')}>
       <Flex
         w='100%'
         maxW='max-content'
