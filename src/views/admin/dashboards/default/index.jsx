@@ -18,11 +18,12 @@ import axios from "axios";
 import {hostName} from "../../../../Helpers/App";
 import {Doughnut} from 'react-chartjs-2';
 import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js';
-import { Select } from '@chakra-ui/react';
+import {Select} from '@chakra-ui/react';
 import {useParams} from "react-router-dom";
-import { getMe } from "Helpers/Auth";
+import {getMe} from "Helpers/Auth";
 import OveralCardViews from "./components/OveralCardViews";
-import { Text } from '@chakra-ui/react';
+import {Text, Box} from '@chakra-ui/react';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
@@ -55,39 +56,58 @@ export default function Default() {
     };
     //TODO rangeslider or calendar to select the last 365 days of data to show
     //TODO go to dashboard page from admin page (pass the card id parameter
-    const [selectedCard, setSelectedCard] = useState();
+    const [selectedCard, setSelectedCard] = useState({cardID: 'None'});
     const [cardsList, setCardsList] = useState([]);
-    let { userId } = useParams();
+    const [showStatistics, setShowStatistics] = useState(false);
+    let {userId} = useParams();
     const listcards = cardsList.map((option, index) => (
         <option key={option.code} value={option.code}>
             {option.title}
         </option>
     ));
-    const currUserId=getMe().id;
+
+    const currUserId = getMe().id;
 
     useEffect(() => {
         getAllCards()
-        getInsights()
+        // getInsights()
+        console.log()
     }, []);
 
+    useEffect(() => {
+        if (selectedCard.cardID!="None"){
+            getInsights(selectedCard.cardID)
+            setShowStatistics(true)
+        }
+        else {
+            setShowStatistics(false)
+        }
+    }, [selectedCard]);
+
     function getAllCards() {
-        var objlist =[]
+        var objlist = []
         axios({
             method: 'get',
             url: `${hostName}/user/${currUserId}/cards`
         }).then((response) => {
-            console.log(response.data.data);
+            // console.log(response.data.data);
             // setCardsList([response.data.data]);
+
             for (var obj in response.data.data) {
-                let cardObj= {};
-                console.log(response.data.data[obj].code);
-                console.log(response.data.data[obj].title);
-                console.log(response.data.data[obj].owner.last_name + " " + response.data.data[obj].owner.name);
-                cardObj['title']=response.data.data[obj].title;
-                cardObj['code']=response.data.data[obj].code;
+                let cardObj = {};
+                // console.log(response.data.data[obj].code);
+                // console.log(response.data.data[obj].title);
+                // console.log(response.data.data[obj].owner.last_name + " " + response.data.data[obj].owner.name);
+                cardObj['title'] = response.data.data[obj].title;
+                cardObj['code'] = response.data.data[obj].code;
                 objlist.push(cardObj);
             }
             setCardsList(objlist);
+            // console.log(objlist)
+            // if (objlist != []) {
+            //     getInsights(objlist[0].code)
+            // }
+
 
         }).catch((err) => {
             console.log(err.response);
@@ -96,14 +116,14 @@ export default function Default() {
         })
     }
 
-    function getInsights() {
+    function getInsights(card) {
 
         axios({
             method: 'get',
             url: `${hostName}/stats/dashboard`,
             params: {
-                date_from:'2022-08-10',
-                date_to:'2022-10-10',
+                date_from: '2022-08-10',
+                date_to: '2022-10-10',
 
             }
         }).then((response) => {
@@ -130,63 +150,72 @@ export default function Default() {
 
             <Flex direction='column' width='stretch'>
                 <Flex>
-                    <Text>Select card to preview Statistics</Text>
-                <Select  width="20%" onChange={(e) => {
-                                setSelectedCard({
-                                    name: cardsList[e.target.value].name,
-                                    uuid: cardsList[e.target.value].uuid
-                                })
-                            }}
-                                    id='company'
-                            >
-                                <option value='None'> None</option>
-                                {listcards}
-                            </Select></Flex>
-                <Grid
-                    mb='20px'
-                    gridTemplateColumns={{base: "repeat(2, 1fr)", "2xl": "720fr 350fr"}}
-                    gap='20px'
-                    display={{base: "block", lg: "grid"}}>
-                    <Flex gridArea={{base: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2"}}>
-                        <OveralCardViews/>
-                    </Flex>
-                    <Flex gridArea={{base: "2 / 1 / 3 / 3", "2xl": "1 / 2 / 2 / 3"}}>
-                        <DailyTraffic/>
-                    </Flex>
-                </Grid>
-                <Grid
-                    gap='20px'
-                    gridTemplateColumns={{
-                        md: "repeat(2, 1fr)",
-                        "2xl": "repeat(3, 1fr)",
+                    <Text>Select product</Text>
+                    <Select width="20%" onChange={(e) => {
+                        console.log(e.target)
+                        setSelectedCard({
+                            cardID: e.target.value
+                            // name: cardsList[e.target.value].name,
+                            // uuid: cardsList[e.target.value].uuid
+                        })
                     }}
-                    gridTemplateRows={{
-                        md: "repeat(2, 1fr)",
-                        "2xl": "1fr",
-                    }}
-                    mb='20px'>
-                    <Flex gridArea={{md: "1 / 1 / 2 / 2", "2xl": "1 / 1 / 2 / 2"}}>
-                        <IconsVisibilityList/>
-                    </Flex>
-                    <Flex gridArea={{md: "1 / 2 / 2 / 3", "2xl": "1 / 2 / 2 / 3"}}>
-                        <Doughnut data={data}/>
-                    </Flex>
-                    <Flex gridArea={{md: " 2 / 1 / 3 / 3", "2xl": "1 / 3 / 2 / 4"}}>
+                            id='company'
+                    >
+                        <option value='None'> None</option>
+                        {listcards}
+                    </Select></Flex>
+                {!showStatistics && <Box bg="tomato" w="100%" p={4} color="white">
+                    Please select a product first to preview it's Insights
+                </Box>}
+                {showStatistics && <div>
+                    <Grid
+                        mb='20px'
+                        gridTemplateColumns={{base: "repeat(2, 1fr)", "2xl": "720fr 350fr"}}
+                        gap='20px'
+                        display={{base: "block", lg: "grid"}}>
+                        <Flex gridArea={{base: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2"}}>
+                            <OveralCardViews/>
+                        </Flex>
+                        <Flex gridArea={{base: "2 / 1 / 3 / 3", "2xl": "1 / 2 / 2 / 3"}}>
+                            <DailyTraffic/>
+                        </Flex>
+                    </Grid>
 
-                    </Flex>
-                </Grid>
-                <Grid
-                    templateColumns={{base: "repeat(2, 1fr)", "2xl": "350fr 720fr"}}
-                    gap='20px'
-                    display={{base: "block", lg: "grid"}}>
-                    <Flex gridArea={{base: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2"}}>
-                        {/*<Map/>*/}
+                    <Grid
+                        gap='20px'
+                        gridTemplateColumns={{
+                            md: "repeat(2, 1fr)",
+                            "2xl": "repeat(3, 1fr)",
+                        }}
+                        gridTemplateRows={{
+                            md: "repeat(2, 1fr)",
+                            "2xl": "1fr",
+                        }}
+                        mb='20px'>
+                        <Flex gridArea={{md: "1 / 1 / 2 / 2", "2xl": "1 / 1 / 2 / 2"}}>
+                            <IconsVisibilityList/>
+                        </Flex>
+                        <Flex gridArea={{md: "1 / 2 / 2 / 3", "2xl": "1 / 2 / 2 / 3"}}>
+                            <Doughnut data={data}/>
+                        </Flex>
+                        <Flex gridArea={{md: " 2 / 1 / 3 / 3", "2xl": "1 / 3 / 2 / 4"}}>
 
-                    </Flex>
-                    <Flex gridArea={{base: "2 / 1 / 3 / 3", "2xl": "1 / 2 / 2 / 3"}}>
+                        </Flex>
+                    </Grid>
+                    <Grid
+                        templateColumns={{base: "repeat(2, 1fr)", "2xl": "350fr 720fr"}}
+                        gap='20px'
+                        display={{base: "block", lg: "grid"}}>
+                        <Flex gridArea={{base: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2"}}>
+                            {/*<Map/>*/}
 
-                    </Flex>
-                </Grid>
+                        </Flex>
+                        <Flex gridArea={{base: "2 / 1 / 3 / 3", "2xl": "1 / 2 / 2 / 3"}}>
+
+                        </Flex>
+                    </Grid>
+                </div>}
+
             </Flex>
             <VSeparator
                 mx='20px'
