@@ -8,7 +8,13 @@ import {
   Select,
   Text,
   useColorModeValue,
+  useDisclosure
 } from "@chakra-ui/react";
+import { hostName } from "Helpers/App";
+import react from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 import LineChart from "components/charts/LineChart";
 
 // Custom components
@@ -23,6 +29,29 @@ import { RiArrowUpSFill } from "react-icons/ri";
 
 export default function OveralCardViews(props) {
   const { ...rest } = props;
+
+  const [loading, setloading] = useState(false);
+  const [stats, setStats] = useState({});
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  function getContents() {
+    setloading(true);
+    onClose();
+    axios({
+        method: 'get',
+        url: `${hostName}/stats/dashboard`
+    }).then((response) => {
+        console.log('getDashboard', response);
+        setStats(response.data.data);
+        setloading(false);
+    }).catch((err) => {
+        console.log(err.response);
+    })
+  }
+
+  useEffect(() => {
+    getContents();
+  }, []);
 
   // Chakra Color Mode
   const textColor = '#3A3A3A';

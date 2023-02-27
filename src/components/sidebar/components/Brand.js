@@ -13,7 +13,7 @@ export function SidebarBrand() {
 
   return (
     <Flex align='center' direction='column'>
-      <Image w='210px' h='110px' borderRadius='16px' src={require('assets/img' + imageDirectory +'/logo.png')}></Image>
+      <Image w='210px' h='100px' borderRadius='16px' src={require('assets/img' + imageDirectory +'/logo.png')}></Image>
       {/*<IcontapLogo h='26px' w='175px' my='32px' color={logoColor} />*/}
       <HSeparator mb='20px' />
     </Flex>
