@@ -2,17 +2,9 @@ import React from "react";
 // Chakra imports
 import {Flex, Grid, useColorModeValue} from "@chakra-ui/react";
 // Custom components
-import Balance from "views/admin/dashboards/default/components/Balance";
 import DailyTraffic from "views/admin/dashboards/default/components/DailyTraffic";
-import MostVisitedTable from "views/admin/dashboards/default/components/MostVisitedTable";
 import {VSeparator} from "components/separator/Separator";
-import ProfitEstimation from "views/admin/dashboards/default/components/ProfitEstimation";
-import ProjectStatus from "views/admin/dashboards/default/components/ProjectStatus";
-import YourCard from "views/admin/dashboards/default/components/YourCard";
 import IconsVisibilityList from "views/admin/dashboards/default/components/IconsVisibilityList";
-import {tableColumnsMostVisited} from "views/admin/dashboards/default/variables/tableColumnsMostVisited";
-import tableDataMostVisited from "views/admin/dashboards/default/variables/tableDataMostVisited.json";
-import Map from "./components/Map";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {hostName} from "../../../../Helpers/App";
@@ -25,7 +17,6 @@ import OveralCardViews from "./components/OveralCardViews";
 import {Text, Box} from '@chakra-ui/react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
 
 export default function Default() {
     const data = {
@@ -75,7 +66,7 @@ export default function Default() {
     }, []);
 
     useEffect(() => {
-        if (selectedCard.cardID!="None"){
+        if (selectedCard.cardID != "None"){
             getInsights(selectedCard.cardID)
             setShowStatistics(true)
         }
@@ -90,25 +81,13 @@ export default function Default() {
             method: 'get',
             url: `${hostName}/user/${currUserId}/cards`
         }).then((response) => {
-            // console.log(response.data.data);
-            // setCardsList([response.data.data]);
-
             for (var obj in response.data.data) {
                 let cardObj = {};
-                // console.log(response.data.data[obj].code);
-                // console.log(response.data.data[obj].title);
-                // console.log(response.data.data[obj].owner.last_name + " " + response.data.data[obj].owner.name);
                 cardObj['title'] = response.data.data[obj].title;
                 cardObj['code'] = response.data.data[obj].code;
                 objlist.push(cardObj);
             }
             setCardsList(objlist);
-            // console.log(objlist)
-            // if (objlist != []) {
-            //     getInsights(objlist[0].code)
-            // }
-
-
         }).catch((err) => {
             console.log(err.response);
         }).finally(() => {
@@ -117,23 +96,32 @@ export default function Default() {
     }
 
     function getInsights(card) {
+        // get date
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        
+        today =  dd + '/' + mm + '/' + yyyy;
 
         axios({
             method: 'get',
             url: `${hostName}/stats/dashboard`,
             params: {
-                date_from: '2022-08-10',
-                date_to: '2022-10-10',
-
+                date_from: '10/08/2022',
+                date_to: today,
+                dimensions: 'ga:eventCategory, ga:eventLabel, ga:day, ga:month, ga:year, ga:country, ga:region',
+                metrics: 'ga:sessions, ga:pageviews, ga:totalEvents, ga:sessionsWithEvent',
+                card_code: selectedCard.cardID
             }
         }).then((response) => {
             console.log(response.data.data);
             for (var obj in response.data.data) {
-                console.log(response.data.data[obj]);
+                // console.log(response.data.data[obj]);
             }
 
         }).catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
         }).finally(() => {
 
         })
@@ -146,7 +134,6 @@ export default function Default() {
         <Flex
             direction={{base: "column", xl: "row"}}
             pt={{base: "130px", md: "80px", xl: "80px"}}>
-
 
             <Flex direction='column' width='stretch'>
                 <Flex>

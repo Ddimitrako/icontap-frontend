@@ -29,6 +29,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "chart.js": "^3.9.1",
+    "echarts": "^5.4.1",
     "framer-motion": "^4.1.17",
     "mapbox-gl": "^2.10.0",
     "react": "17.0.2",
