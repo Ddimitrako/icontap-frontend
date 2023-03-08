@@ -150,7 +150,7 @@ function SignUp() {
                         color={textColor}
                         fontSize={{ base: "34px", lg: "36px" }}
                         mb='10px'>
-                        Sign Up
+                        Register
                     </Heading>
                     <Text
                         mb='36px'
@@ -171,27 +171,8 @@ function SignUp() {
                     mx={{ base: "auto", lg: "unset" }}
                     me='auto'
                     mb={{ base: "20px", md: "auto" }}>
-                    {/*<Button*/}
-                    {/*  fontSize='sm'*/}
-                    {/*  me='0px'*/}
-                    {/*  mb='26px'*/}
-                    {/*  py='15px'*/}
-                    {/*  h='50px'*/}
-                    {/*  borderRadius='16px'*/}
-                    {/*  bg={googleBg}*/}
-                    {/*  color={googleText}*/}
-                    {/*  fontWeight='500'*/}
-                    {/*  _hover={googleHover}*/}
-                    {/*  _active={googleActive}*/}
-                    {/*  _focus={googleActive}>*/}
-                    {/*  <Icon as={FcGoogle} w='20px' h='20px' me='10px' />*/}
-                    {/*  Sign up with Google*/}
-                    {/*</Button>*/}
                     <Flex align='center' mb='25px'>
                         <HSeparator />
-                        {/*<Text color={textColorSecondary} mx='14px'>*/}
-                        {/*  or*/}
-                        {/*</Text>*/}
                         <HSeparator />
                     </Flex>
 
@@ -208,10 +189,9 @@ function SignUp() {
                                         fontWeight='500'
                                         color={textColor}
                                         mb='8px'>
-                                        First name<Text color={brandStars}>*</Text>
+                                        First name<Text color={brandStars}></Text>
                                     </FormLabel>
                                     <Input
-                                        
                                         isInvalid
                                         errorBorderColor='red.300'
                                         fontSize='sm'
@@ -233,10 +213,9 @@ function SignUp() {
                                         fontWeight='500'
                                         color={textColor}
                                         mb='8px'>
-                                        Last name<Text color={brandStars}>*</Text>
+                                        Last name<Text color={brandStars}></Text>
                                     </FormLabel>
                                     <Input
-                                        
                                         variant='auth'
                                         fontSize='sm'
                                         placeholder='Last name'
@@ -262,7 +241,7 @@ function SignUp() {
                                 variant='auth'
                                 fontSize='sm'
                                 type='email'
-                                placeholder='mail@simmmple.com'
+                                placeholder='email@gmail.com'
                                 mb='24px'
                                 size='lg'
                                 onChange={(e) => setemail(e.target.value)}

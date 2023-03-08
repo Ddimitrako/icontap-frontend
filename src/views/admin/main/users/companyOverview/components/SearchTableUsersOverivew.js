@@ -115,7 +115,7 @@ function UsersTable({usersList,selectedUsers,setSelectedUsers}) {
 
         <DataTable className="τεστ"
 
-            title="Users List"
+            title="Users"
             columns={columns}
             data={usersList}
             selectableRows

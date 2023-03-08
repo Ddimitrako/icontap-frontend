@@ -149,7 +149,7 @@ export default function Default() {
 
 
             <Flex direction='column' width='stretch'>
-                <Flex>
+                <Flex direction='column'>
                     <Text>Select product</Text>
                     <Select width="20%" onChange={(e) => {
                         console.log(e.target)
@@ -163,7 +163,9 @@ export default function Default() {
                     >
                         <option value='None'> None</option>
                         {listcards}
-                    </Select></Flex>
+                    </Select>
+                </Flex>
+                <br/>
                 {!showStatistics && <Box bg="tomato" w="100%" p={4} color="white">
                     Please select a product first to preview it's Insights
                 </Box>}

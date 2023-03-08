@@ -1,7 +1,5 @@
-/**/
-import { Link } from 'react-router-dom';
-import { MdBuild, MdCall, MdPreview } from "react-icons/md";
-import { Stack, HStack, VStack, FormLabel, Input, InputGroup, InputLeftAddon, Heading } from '@chakra-ui/react';
+import { MdPreview } from "react-icons/md";
+import { Stack, HStack, Input, InputGroup, InputLeftAddon, Heading } from '@chakra-ui/react';
 import React from "react";
 import CustomIframe from "./components/Iframe";
 // Chakra imports
@@ -9,28 +7,13 @@ import {
     Box,
     Flex,
     Grid,
-    Text,
-    useColorModeValue,
-    SimpleGrid, Button, FormControl, Image,
+    Button, FormControl, Image,
 } from "@chakra-ui/react";
-
-// Custom components
-import Banner from "views/admin/cards/cardProfile/components/Banner";
-import TableLastOffer from "views/admin/cards/cardProfile/components/TableLastOffer";
-import Auction from "views/admin/cards/cardProfile/components/Auction";
-import Description from "views/admin/cards/cardProfile/components/Description";
-import NFT from "components/card/NFT";
 import Card from "components/card/Card.js";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import tableDataLastOffer from "views/admin/cards/cardProfile/variables/tableDataLastOffer.json";
-import { tableColumnsLastOffer } from "views/admin/cards/cardProfile/variables/tableColumnsLastOffer";
-import Notifications from "../../main/profile/overview/components/Notifications";
-import InputField from "../../../../components/fields/InputField";
-import TextField from "../../../../components/fields/TextField";
 import EditProfile from 'views/admin/main/account/billing/components/EditCardModal/EditProfile';
 import { useState } from 'react';
 import { hostNameStorage } from 'Helpers/App';
-import { CustomEditBox } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
 import { frontAddress } from 'Helpers/App';
 import { useEffect } from 'react';
 import { downloadImage } from 'Helpers/App';
@@ -153,7 +136,7 @@ export default function Page() {
                             <Flex flexDirection='column' alignItems='center' pt='10px'
                                 className='tab-cols'
                             >
-                                <Heading className='hide-under-959' color={'black'} size='sm'>Profile Live Preview</Heading>
+                                <Heading className='hide-under-959' color={'black'} size='sm'>Live Preview</Heading>
                                 {card && <CustomIframe socials={socials} card={card} />}
                                 <Stack direction='row' spacing={4}>
                                     <Button onClick={() => {

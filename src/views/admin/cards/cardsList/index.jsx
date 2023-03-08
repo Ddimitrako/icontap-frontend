@@ -82,7 +82,7 @@ export default function Collection(props) {
   let panelCards = (
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
       {!loading && !(cards?.length!=0) &&
-      <span>No available card physical card only link – click <a style={{fontWeight:'bold'}} href="https://icontap.gr/shop-2/">here</a> to buy </span>
+      <span>No available card physical card only link – Click <a style={{fontWeight:'bold'}} href="https://icontap.gr/shop-2/">here</a> to buy </span>
       }
       {/*<IcontapCard card={demoCard}/>*/}
       {!loading ? cards.map((card, index) =>
@@ -246,7 +246,7 @@ export default function Collection(props) {
           }}
           >
           <Icon as={MdAddCircle} color={'white'} w='24px' h='24px' />
-          <span style={{paddingLeft:'5px'}}>Add a new Card</span>
+          <span style={{paddingLeft:'5px'}}>Add a new card</span>
         </Button>
         {!(cards?.length!=0)?<Button
           float={'right'}
@@ -266,7 +266,7 @@ export default function Collection(props) {
           isLoading={loadingCreate}
         >
           <Icon as={MdVisibility} color={'white'} w='24px' h='24px' ml={'5px'} />
-          <span style={{paddingLeft:'5px'}}>View Demo</span>
+          <span style={{paddingLeft:'5px'}}>View demo</span>
         </Button>:''}
         <ActivateCardModal activateModalDisclosure={activateModalDisclosure} loading={loading} setloading={setloading} getcards={getCards} />
         <TabPanels>

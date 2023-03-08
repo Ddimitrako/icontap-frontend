@@ -124,7 +124,7 @@ export default function EditSocials() {
                     mb='36px'
                     fontSize='2xl'
                     ms='24px'
-                    fontWeight='700'> Edit Socials
+                    fontWeight='700'> Socials
                 </Text>
                 <Button onClick={()=>{
                     setname('');
@@ -135,7 +135,7 @@ export default function EditSocials() {
                     onOpen();
                 }}
                 className={'btn-custom-dark-background'}
-                >Create New</Button>
+                >🔨 Create New</Button>
 
                 {Object.keys(socials).map((category, i) =>
                     <div style={{ overflow: 'auto', marginTop:'20px' }} key={i}>

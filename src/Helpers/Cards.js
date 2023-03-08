@@ -28,9 +28,9 @@ export const demoCard = {
     "profile": {
         "id": 0,
         "card_id": 0,
-        "title": "Demo Card",
-        "name": "Demo Name",
-        "bio": "Demo Bio Demo Bio Demo Bio Demo Bio Demo Bio Demo Bio Demo Bio Demo Bio Demo Bio Demo Bio Demo Bio Demo Bio.",
+        "title": "John's Card #1",
+        "name": "John Doe",
+        "bio": "My bio from John Doe",
         "job_title": null,
         "company": null,
         "vcard": "demo",
@@ -135,19 +135,19 @@ export function ActivateCardModal(props) {
     >
         <ModalOverlay />
         <ModalContent>
-            <ModalHeader>Activate your Card </ModalHeader>
+            <ModalHeader>Activate your Card</ModalHeader>
             <ModalCloseButton />
 
-            <ModalBody pb={16}>
-                <Text> Card ID.</Text>
-
+            <ModalBody>
+                <Text>Card ID:</Text>
                 <FormControl>
-                    <Flex justify='center'>
-                        <Input size='lg' htmlSize={16} width='auto' value={cardCode} onChange={(e)=>{setcardCode(e.target.value)}} />
+                    <Flex justify='left'>
+                        <Input size='md' htmlSize={48} width='auto' value={cardCode} onChange={(e)=>{setcardCode(e.target.value)}} />
                     </Flex>
-
                 </FormControl>
+                <br/>
                 <hr></hr>
+                <br/>
                 <Text> Please add your card activation code here.</Text>
                 <Flex
                     zIndex='2'

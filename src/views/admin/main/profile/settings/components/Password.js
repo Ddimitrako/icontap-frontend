@@ -187,7 +187,7 @@ export default function Settings() {
           ms='auto'
           onClick={postToApi}
         >
-          Change Password
+          🔑 Change Password
         </Button>
       </Card>
     </FormControl>

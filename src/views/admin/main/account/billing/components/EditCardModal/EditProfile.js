@@ -12,9 +12,6 @@ import { TitleContext } from "Helpers/Context";
 import { hostNameStorage } from "Helpers/App";
 import Cover from "views/admin/cards/cardProfile/components/Cover";
 import { arrOfObjToFormData } from "Helpers/Arrays";
-import Cropper from 'react-easy-crop'
-import { Draggable } from "react-drag-reorder";
-import { deepCopy } from "Helpers/Arrays";
 import { demoCard } from "Helpers/Cards";
 import { Crop } from "./Crop/Crop";
 import getCroppedImg from "./Crop/cropImage";

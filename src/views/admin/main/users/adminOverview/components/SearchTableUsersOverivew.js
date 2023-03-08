@@ -9,12 +9,12 @@ import {Backdrop} from "@material-ui/core";
 import styled from 'styled-components';
 const columns = [
     {
-        name: 'F.Name',
+        name: 'First Name',
         selector: row => row.name,
         sortable: true,
     },
     {
-        name: 'L.Name',
+        name: 'Last Name',
         selector: row => row.last_name,
         sortable: true,
     },
@@ -23,28 +23,23 @@ const columns = [
         selector: row => row.email,
         sortable: true,
     },
-    // {
-    //     name: 'Company',
-    //     selector: row => row.company[0] ? row.company[0].name : "-",
-    //     sortable: true,
-    // },
     {
-        name: 'JOIN DATE',
+        name: 'Start Date',
         selector: row => row.created_at,
         sortable: true,
     },
     {
-        name: 'COMPANY ROLE',
+        name: 'Company Role',
         selector: row =>  row.role_company ? row.role_company.name : "Not a company member",
         sortable: true,
     },
     {
-        name: 'SYSTEM ROLE',
+        name: 'System Role',
         selector: row =>  row.role ? row.role.code : "error",
         sortable: true,
     },
     {
-        name: 'ACTIVE',
+        name: 'Status',
         selector: row => row.is_active,
         sortable: true,
     },
@@ -53,11 +48,6 @@ const columns = [
         selector: row => row.editCard,
         sortable: false,
     },
-    // {
-    //     name: 'Analytics',
-    //     selector: row => row.analytics,
-    //     sortable: false,
-    // },
 ];
 const TextField = styled.input`
 	height: 32px;
@@ -189,7 +179,7 @@ function UsersTable({usersList,setSelectedUsers,refreshUsersTable,setRefreshUser
 
         <DataTable className="τεστ"
 
-            title="Users List"
+            title="Users"
             columns={columns}
             data={filteredItems}
             selectableRows

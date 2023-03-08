@@ -1,56 +1,25 @@
 import React, { useState } from "react";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  FormControl,
-  FormLabel,
-  Input,
-  PinInput,
-  PinInputField,
-} from '@chakra-ui/react';
-// Chakra imports
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, FormLabel, Input, } from '@chakra-ui/react';
 import {
   Flex,
   Box,
   Button,
-  Image,
   IconButton,
   Icon,
   Text,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
 
 // Custom components
 import Card from "components/card/Card.js";
-import Mastercard from "components/card/Mastercard";
-// Assets
-import whitecard from "assets/img/cards/white-card.png";
-import blackCard from "assets/img/cards/black-card.png";
 import {
-  MdAddCircle,
-  MdCached,
-  MdAdd,
-  MdAttachMoney,
-  MdEditNote,
   MdDisabledVisible,
   MdEdit,
-  MdMoreHoriz,
   MdCheckCircle,
   MdDeleteForever,
   MdDriveFileRenameOutline,
 } from "react-icons/md";
-import EditCardModal from "../../../main/account/billing/components/EditCardModal/EditCardModal";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
@@ -226,7 +195,6 @@ export default function IcontapCard(props) {
           lineHeight='100%'>
           {props.card.title}
         </Text>
-
       </Flex>
 
       <Flex justify='space-between' w='100%'>
@@ -269,14 +237,35 @@ export default function IcontapCard(props) {
             h='56px'
             mb='5px'
             boxShadow={shadow}
-            icon={<Icon as={MdDriveFileRenameOutline} color={'blue'} w='24px' h='24px' />}
+            icon={
+              <Icon as={MdDriveFileRenameOutline} color={'blue'} w='24px' h='24px' />
+            }
           />
           <Text fontSize='sm' fontWeight='500' color={textColor}>
             Rename
           </Text>
         </Flex> : ''}
 
-        {props.card.is_active ? <Flex direction='column' align='center'>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Alert</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Text>Are you sure you want to disable your card visibility?</Text>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme='blue' mr={3} onClick={() => activateCard(false)} isLoading={loading}>
+                Yes
+              </Button>
+              <Button variant='ghost' onClick={onClose}>No</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </Flex>
+
+      {props.card.is_active ? <Flex direction='column' align='center'>
           <IconButton onClick={onOpen}
             borderRadius='50%'
             bg={bgIconButton}
@@ -310,25 +299,6 @@ export default function IcontapCard(props) {
             Activate
           </Text>
         </Flex> : ''}
-
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Alert</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Text>Are you sure you want to disable your card visibility?</Text>
-            </ModalBody>
-
-            <ModalFooter>
-              <Button colorScheme='blue' mr={3} onClick={() => activateCard(false)} isLoading={loading}>
-                Yes
-              </Button>
-              <Button variant='ghost' onClick={onClose}>No</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </Flex>
 
       {hasRole('admin') ? <Flex justify='center' w='100%' style={{ borderTop: 'solid gray 1px', marginTop: '10px' }}>
         <Flex direction='column' align='center'>

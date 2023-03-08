@@ -1,34 +1,18 @@
 // Chakra imports
 import {
     Select,
-    Box,
-    useDisclosure,
-    Button,
     Flex,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuList,
     Text,
     SimpleGrid,
     useColorModeValue, Icon, Avatar, Image
 } from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
-import {ChevronDownIcon} from "@chakra-ui/icons";
-import {
-    Modal, FormControl,
-    ModalOverlay, FormLabel, Input,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
+import {FormLabel
 } from '@chakra-ui/react';
 import MiniStatistics from "../../../../../../components/card/MiniStatistics";
 import IconBox from "../../../../../../components/icons/IconBox";
 import {MdPerson} from "react-icons/md";
 import companies from "../../../../../../assets/img/users/companies.png";
-import FakeLineGraph from "../../../../../../assets/img/users/FakeLineGraph.png";
 
 
 export default function AdminStatistics({
@@ -109,7 +93,7 @@ export default function AdminStatistics({
                                     </Select>
                                 </Flex>
                             }
-                            name='Current Company'
+                            name='Company'
                             value={currentCompany.name}
             />
             <MiniStatistics key='4'

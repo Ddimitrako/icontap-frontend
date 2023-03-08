@@ -1,21 +1,11 @@
-/**/
-
-// Chakra imports
 import {Box, Flex, Select, SimpleGrid, Text, useColorModeValue} from "@chakra-ui/react";
-// Assets
-import banner from "assets/img/auth/banner.png";
-import profile from "assets/img/avatars/memberIcon.png";
 import React, {useState} from "react";
 // Custom components
 import Info from "views/admin/main/profile/settings/components/Info";
 import Password from "views/admin/main/profile/settings/components/Password";
-import Profile from "views/admin/main/profile/settings/components/Profile";
-import Delete from "../../account/settings/components/Delete";
 import {
     Alert,
     AlertIcon,
-    AlertTitle,
-    AlertDescription,
 } from '@chakra-ui/react'
 import {useEffect} from "react";
 export default function Settings() {
@@ -47,12 +37,7 @@ export default function Settings() {
                 {/* Column Left */}
                 <Flex direction='column'>
                     {/*<Profile name='Vlad Mihalache' avatar={profile} banner={banner} />*/}
-                    <Info setShowAlert={setShowAlert}/>
-                </Flex>
-                {/* Column Right */}
-                <Flex direction='column'>
-                    <Password/>
-                    {/*<Delete/>*/}
+                    <Accordion />
                 </Flex>
             </SimpleGrid>
         </Box>

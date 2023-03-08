@@ -468,7 +468,7 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
 
             <Menu>
                 <MenuButton as={Button} className='btn-custom-dark-background' rightIcon={<ChevronDownIcon/>}>
-                    Admin Actions
+                ⚙️ Admin Actions
                 </MenuButton>
                 <MenuList>
                     <MenuItem onClick={onOpenCompanyModal}>Create company</MenuItem>

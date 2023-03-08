@@ -45,7 +45,7 @@ export function AddNewCard() {
     const iconColor = useColorModeValue("brand.500", "white");
     return (
         <>
-            <Text>Add a new Card</Text>
+            <Text>Add a new card</Text>
             <Button
                 onClick={onOpen}
                 align='center'
