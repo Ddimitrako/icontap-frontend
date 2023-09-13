@@ -56,6 +56,11 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
         onOpen: onOpenAssignUserCardModal,
         onClose: onCloseAssignUserCardModal
     } = useDisclosure()
+    const {
+        isOpen: isOpenMassUserModal,
+        onOpen: onOpenMassUserModal,
+        onClose: onCloseMassUserModal
+    } = useDisclosure()
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
     // Chakra Color Mode
@@ -79,6 +84,9 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
     const [compAssCheck, setCompAssCheck] = useState(false);
     const [cardType, setCardType] = useState(true)
     const [cardTitle, setCardTitle] = useState("My card")
+
+    const [file, setSelectedFile] = useState()
+
     const handleChangeName = event => {
         setUserName(event.target.value);
     }
@@ -94,6 +102,12 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
     const handleChangeCardTitle= event => {
         setCardTitle(event.target.value);
     }
+
+    const handleFileSelect = (event) => {
+        setSelectedFile(event.target.files[0])
+      }
+
+
     const config = {
         headers: {Authorization: `Bearer ${getAuth()}`}
     };
@@ -158,8 +172,39 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
         setCompanyRole()
     }
 
+    function MassStoreUsers() {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('company_id', (selectedCompany) ? selectedCompany.uuid : '');
+        axios.post(
+            hostName + '/user/bulk/store',
+            formData,
+            {
+                headers: {
+                    Authorization: `Bearer ${getAuth()}`,
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+        ).then((response) => {
+                if (response.status == 200) {
+                    setMyAlert({show:true,message:"Your request has been uploaded successfully. You will receive an email with the result.",status:"success"})
+                    setRefreshUsersTable(true)
+                }
+            }
+        ).catch(function (error) {
+                let msg = 'Error uploading file. Try again.';
+                if(error.response.data.data === 'Missing headers'){
+                    msg = 'Missing or incorrect headers in file';
+                }
+                if((error.response.data.message) && (error.response.data.message !== '')){
+                    msg = 'Error validating file: ' + error.response.data.message;
+                }
+               setMyAlert({show:true,message:msg,status:"error"})
+            });
+    }
+
     function AssignUsers() {
-            console.log("companyRole-->",companyRole)
+            //console.log("companyRole-->",companyRole)
             let userslist = []
             for (var key in selectedUsers) {
                 selectedUsers[key].company_role_id = companyRole
@@ -173,7 +218,7 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
                 obj,
                 config
             ).then((response) => {
-                    console.log(response)
+                    //console.log(response)
                     if (response.status == 200) {
                         setMyAlert({show:true,message:"User successfully assigned to "+selectedCompany.name,status:"success"})
 
@@ -271,8 +316,6 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
                     </ModalFooter>
                 </ModalContent>
             </Modal>
-
-
             <Modal id='createUser'
                    initialFocusRef={initialRef}
                    finalFocusRef={finalRef}
@@ -416,7 +459,6 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
 
 
             </Modal>
-
              <Modal id='assignUserCard'
 
                    isOpen={isOpenAssignUserCardModal}
@@ -465,6 +507,50 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
 
 
             </Modal>
+            <Modal id='massUser'
+                   initialFocusRef={initialRef}
+                   finalFocusRef={finalRef}
+                   isOpen={isOpenMassUserModal}
+                   onClose={onCloseMassUserModal}
+            >
+                <ModalOverlay/>
+                <ModalContent>
+                    <ModalHeader>Mass store users</ModalHeader>
+                    <ModalCloseButton/>
+                    <ModalBody pb={6}>
+                        <FormControl mt={4}>
+                            <FormLabel>Select Company (optional)</FormLabel>
+                            <Select id='company' onChange={(e) => {
+                                setSelectedCompany({
+                                    name: companiesList[e.target.value].name,
+                                    uuid: companiesList[e.target.value].uuid
+                                })
+                            }}>
+                                <option value=''> None</option>
+                                {listCompanies}
+                            </Select>
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Select file (xls, csv)</FormLabel>
+                            <input accept=".xls,.xlsx,.csv" type="file" name="file" id="file" onChange={handleFileSelect} />
+                        </FormControl>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button onClick={() => {
+                            if (file === undefined){
+                                alert("Please select a file");
+                            } else {
+                                MassStoreUsers()
+                                onCloseMassUserModal()
+                            }
+                        }} colorScheme='blue' mr={3}>
+                            Upload
+                        </Button>
+                        <Button onClick={onCloseMassUserModal}>Cancel</Button>
+                    </ModalFooter>
+                </ModalContent>
+                </Modal>
 
             <Menu>
                 <MenuButton as={Button} className='btn-custom-dark-background' rightIcon={<ChevronDownIcon/>}>
@@ -486,6 +572,7 @@ export default function AdminActionsBtn({setMyAlert,companiesList,setCreateCompa
                         }else
                         onOpenAssignUserModal()
                     }}>Assign user/s to company</MenuItem>
+                    <MenuItem onClick={onOpenMassUserModal}>Mass users store</MenuItem>
                 </MenuList>
             </Menu>
         </div>
