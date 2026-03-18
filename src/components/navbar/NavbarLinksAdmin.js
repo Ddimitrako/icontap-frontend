@@ -19,7 +19,7 @@ import {SidebarResponsive} from "components/sidebar/Sidebar";
 import PropTypes from "prop-types";
 import React, {useEffect, useState} from "react";
 // Assets
-import navImage from "assets/img/layout/Navbar.png";
+
 import {MdNotificationsNone, MdInfoOutline} from "react-icons/md";
 import routes from "routes.js";
 import {useHistory, useLocation, useParams} from "react-router-dom";
@@ -101,7 +101,7 @@ export default function HeaderLinks(props) {
                     mt='22px'
                     minW={{base: "unset"}}
                     maxW={{base: "360px", md: "unset"}}>
-                    <Image src={navImage} borderRadius='16px' mb='28px'/>
+
                     <Flex flexDirection='column'>
                         <Link w='100%' href='https://performance.gr'>
                             <Button w='100%' h='44px' mb='10px' className="btn-custom-dark-background">
