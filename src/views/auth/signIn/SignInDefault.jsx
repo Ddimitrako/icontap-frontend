@@ -45,7 +45,7 @@ import { RiEyeCloseLine } from "react-icons/ri";
 import { logIn } from "Helpers/Auth";
 import { useEffect } from "react";
 import { NeedsEmailVerification } from "Helpers/Auth";
-var hostName = process.env.REACT_APP_HOSTNAME.toString()
+var hostName = String(process.env.REACT_APP_HOSTNAME || '')
 function SignIn() {
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");
@@ -79,6 +79,7 @@ function SignIn() {
     USER_NOT_EXISTS: 'This email does not belong to any user',
     PASSWORD_INCORRECT: 'The password is incorrect',
     BLOCKED: 'This account is blocked',
+    NETWORK_ERROR: 'Cannot reach the backend API',
   }
 
   const DisplayError = () => Object.keys(errors).length > 0 ? <Alert status='error' style={{ marginBottom: '20px' }}>
@@ -110,8 +111,13 @@ function SignIn() {
       }
 
     }).catch((err) => {
-      // console.log(err.response);
-      seterrors({ message: err.response.data.message, data: err.response.data.data });
+      const apiMessage = err?.response?.data?.message;
+      const apiData = err?.response?.data?.data;
+
+      seterrors({
+        message: apiMessage || 'NETWORK_ERROR',
+        data: apiData || 'Check that the backend is running and REACT_APP_HOSTNAME points to the correct API base URL.',
+      });
     }).finally(() => {
       setloading(false);
     })

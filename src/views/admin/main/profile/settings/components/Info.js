@@ -17,7 +17,7 @@ import { Spinner } from '@chakra-ui/react'
 import { getMe } from "Helpers/Auth";
 
 export default function Settings({setShowAlert}) {
-    var hostName = process.env.REACT_APP_HOSTNAME.toString()
+    var hostName = String(process.env.REACT_APP_HOSTNAME || '')
     const [MeContextValue, setMeContextValue] = useContext(MeContext);
 
     const textColorPrimary = '#3A3A3A';

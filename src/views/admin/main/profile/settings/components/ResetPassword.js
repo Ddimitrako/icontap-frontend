@@ -22,7 +22,7 @@ import DefaultAuth from "layouts/auth/types/Default";
 
 import illustration from "assets/img/auth/auth.png";
 import {imageDirectory} from "../../../../../../Helpers/App";
-var hostName = process.env.REACT_APP_HOSTNAME.toString()
+var hostName = String(process.env.REACT_APP_HOSTNAME || '')
 export default function ResetPassword({ reset }) {
   // Chakra Color Mode
   const textColorPrimary = '#3A3A3A';

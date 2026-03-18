@@ -57,6 +57,7 @@ import { hostName } from "Helpers/App";
 import { useParams } from "react-router-dom";
 import { demoCard } from "Helpers/Cards";
 import { ActivateCardModal } from "Helpers/Cards";
+import { hasRole } from "Helpers/Auth";
 export default function Collection(props) {
 
   const [Me, setMe] = useContext(MeContext);
@@ -97,6 +98,8 @@ export default function Collection(props) {
   let { userId } = useParams();
   const statedUser=props?.history?.location?.state?.user;
   const currUserId=userId??Me.id;
+  const isOwnCardsPage = !userId || Number(userId) === Number(Me.id);
+  const canAdminCreateOwnedCard = hasRole('admin') && isOwnCardsPage;
 
   function getCards() {
     setloading(true);
@@ -130,6 +133,7 @@ export default function Collection(props) {
       data: {
         "title": `Dummy card ${Math.random()}`,
         "is_personal": true,
+        "owner": Me.id,
       }
     }).then((response => {
       // console.log(response);
@@ -137,13 +141,16 @@ export default function Collection(props) {
         method: 'post',
         url: `${hostName}/card/${response.data.data.code}/profile`
       }).then((response) => {
-        props.getCards();
+        getCards();
         // console.log(response);
       }).catch((err) => {
         // console.log(err.response);
+      }).finally(() => {
+        setloadingCreate(false);
       })
     })).catch((err) => {
       // console.log(err.response);
+      setloadingCreate(false);
     })
   }
 
@@ -228,7 +235,7 @@ export default function Collection(props) {
         </Text>
 
         <Button
-          onClick={()=>activateModalDisclosure.onOpen()}
+          onClick={() => canAdminCreateOwnedCard ? createCard() : activateModalDisclosure.onOpen()}
           align='center'
           justifyContent='center'
           // bg={bgButton}

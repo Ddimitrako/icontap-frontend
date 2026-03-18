@@ -2,7 +2,7 @@ import { catchError } from "Helpers/Auth";
 import { getAuth } from "Helpers/Auth";
 import React, { useEffect, useState } from "react";
 
-var hostName = process.env.REACT_APP_HOSTNAME.toString()
+var hostName = String(process.env.REACT_APP_HOSTNAME || '')
 export default function LogoutMid(props) {
 
     const [loading, setloading] = useState(false);

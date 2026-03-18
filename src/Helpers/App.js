@@ -1,11 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 
-export const frontAddress = process.env.REACT_APP_FRONTADDRESS.toString();
-export const hostName = process.env.REACT_APP_HOSTNAME.toString();
-export const showBuyButton = (process.env.REACT_APP_SHOW_BUYYOURICONTAP.toString() === 'true');
-export const showInsights = (process.env.REACT_APP_SHOW_INSIGHTS.toString() === 'true');
-export const imageDirectory = process.env.REACT_APP_USE_IMAGEDIRECTORY.toString();
+const envString = (value, fallback = "") => String(value ?? fallback);
+
+export const frontAddress = envString(process.env.REACT_APP_FRONTADDRESS);
+export const hostName = envString(process.env.REACT_APP_HOSTNAME);
+export const showBuyButton = (envString(process.env.REACT_APP_SHOW_BUYYOURICONTAP, "false") === 'true');
+export const showInsights = (envString(process.env.REACT_APP_SHOW_INSIGHTS, "false") === 'true');
+export const imageDirectory = envString(process.env.REACT_APP_USE_IMAGEDIRECTORY);
 let storageTemp = hostName.split('/');
 storageTemp.pop();
 storageTemp = storageTemp.join('/');

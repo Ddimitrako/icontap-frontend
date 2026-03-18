@@ -20,7 +20,7 @@ import DefaultAuth from "layouts/auth/types/Default";
 
 // Assets
 import illustration from "assets/img/auth/auth.png";
-var hostName = process.env.REACT_APP_HOSTNAME.toString()
+var hostName = String(process.env.REACT_APP_HOSTNAME || '')
 function ForgotPassword() {
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");

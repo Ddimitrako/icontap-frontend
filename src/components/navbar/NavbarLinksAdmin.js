@@ -26,7 +26,7 @@ import {useHistory, useLocation, useParams} from "react-router-dom";
 import {getMe} from "../../Helpers/Auth";
 
 export default function HeaderLinks(props) {
-    var hostName = process.env.REACT_APP_HOSTNAME.toString()
+    var hostName = String(process.env.REACT_APP_HOSTNAME || '')
     const {secondary} = props;
     const {colorMode, toggleColorMode} = useColorMode();
     const history = useHistory();

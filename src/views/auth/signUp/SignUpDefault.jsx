@@ -40,7 +40,7 @@ import { useState } from "react";
 import { DisplayError } from "Helpers/Auth";
 import { Grid, GridItem } from '@chakra-ui/react';
 import { NeedsEmailVerification } from 'Helpers/Auth';
-var hostName = process.env.REACT_APP_HOSTNAME.toString();
+var hostName = String(process.env.REACT_APP_HOSTNAME || '');
 
 function SignUp() {
     // Chakra color mode
