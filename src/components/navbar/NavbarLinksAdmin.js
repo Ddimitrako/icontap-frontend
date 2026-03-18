@@ -26,7 +26,6 @@ import {useHistory, useLocation, useParams} from "react-router-dom";
 import {getMe} from "../../Helpers/Auth";
 
 export default function HeaderLinks(props) {
-    var hostName = String(process.env.REACT_APP_HOSTNAME || '')
     const {secondary} = props;
     const {colorMode, toggleColorMode} = useColorMode();
     const history = useHistory();
@@ -104,9 +103,9 @@ export default function HeaderLinks(props) {
                     maxW={{base: "360px", md: "unset"}}>
                     <Image src={navImage} borderRadius='16px' mb='28px'/>
                     <Flex flexDirection='column'>
-                        <Link w='100%' href='https://icontap.gr'>
+                        <Link w='100%' href='https://performance.gr'>
                             <Button w='100%' h='44px' mb='10px' className="btn-custom-dark-background">
-                                Go to icontap.gr
+                                Go to performance.gr
                             </Button>
                         </Link>
 

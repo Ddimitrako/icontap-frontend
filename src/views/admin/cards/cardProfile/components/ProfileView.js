@@ -37,7 +37,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                 }}
             >
                 <a href={card?.profile?.vcard?`${hostNameStorage}/${card.profile.vcard}`:'#'}
-                    className={'Icontap-black-btn'}
+                    className={'Performance-black-btn'}
                 >Save Contact</a>
             </Box>
             <Box style={{
@@ -67,9 +67,9 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                     paddingBottom: hideFooter?'100px':''
                 }}
             >
-                <a href={`https://icontap.gr/shop-2/`}
-                    className={'Icontap-white-btn'}
-                >Buy your icontap</a>
+                <a href={`https://performance.gr/shop-2/`}
+                    className={'Performance-white-btn'}
+                >Buy your Performance</a>
 
             </Box>}
             <Box
@@ -81,7 +81,7 @@ const ProfileView = ({ card, socials, hideFooter, coverMinHeight, avatarRadius =
                     width:'100%'
                 }}
             >
-                {!hideFooter && <p className='Icontap-copyright'>Icontap © 2022</p>}
+                {!hideFooter && <p className='Performance-copyright'>Performance © 2022</p>}
             </Box>
         </Box>
     ) : <></>;

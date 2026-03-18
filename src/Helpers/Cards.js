@@ -19,7 +19,7 @@ export const demoCard = {
     "is_active": 1,
     "is_personal": 1,
     "activated_at": "2022-09-30 19:27:06",
-    "activated_by": "demo@icontap.gr",
+    "activated_by": "demo@performance.gr",
     "owner": 1,
     "views": 288,
     "qr_code": "demo",

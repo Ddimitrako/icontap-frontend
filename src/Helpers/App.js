@@ -5,7 +5,7 @@ const envString = (value, fallback = "") => String(value ?? fallback);
 
 export const frontAddress = envString(process.env.REACT_APP_FRONTADDRESS);
 export const hostName = envString(process.env.REACT_APP_HOSTNAME);
-export const showBuyButton = (envString(process.env.REACT_APP_SHOW_BUYYOURICONTAP, "false") === 'true');
+export const showBuyButton = (envString(process.env.REACT_APP_SHOW_BUYYOURPERFORMANCE, "false") === 'true');
 export const showInsights = (envString(process.env.REACT_APP_SHOW_INSIGHTS, "false") === 'true');
 export const imageDirectory = envString(process.env.REACT_APP_USE_IMAGEDIRECTORY);
 let storageTemp = hostName.split('/');

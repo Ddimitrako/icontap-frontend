@@ -151,13 +151,13 @@ export default function Page() {
                     </TabPanel>
                     {card.code && card.qr_code && <TabPanel style={{ textAlign: 'left' }}>
                         <Image style={{ paddingTop: '50px', paddingRight: '20px', paddingLeft: '20px', paddingBottom: '100px', backgroundColor: 'white', border: 'none', borderRadius: '20px', boxShadow: 'rgb(205 205 205) 10px 10px 10px' }} src={card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`} />
-                        {/* <button className='Icontap-black-btn' style={{ marginTop: '10px', marginBottom: '20px' }} onClick={() => { downloadImage(card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`, 'icontap-qr') }}>Download QR Code</button> */}
+                        {/* <button className='Performance-black-btn' style={{ marginTop: '10px', marginBottom: '20px' }} onClick={() => { downloadImage(card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`, 'performance-qr') }}>Download QR Code</button> */}
                         <br />
                         <InputGroup>
                             <InputLeftAddon children='URL' />
-                            <Input value={card.code != 'demo' ? `https://my.icontap.gr/card/${card.code}` : 'demo-url'} readOnly />
+                            <Input value={card.code != 'demo' ? `https://my.performance.gr/card/${card.code}` : 'demo-url'} readOnly />
                         </InputGroup>
-                        <button className='Icontap-white-btn' style={{ marginTop: '10px', marginBottom: '10px' }} onClick={(e) => { copy2clip(e.target, card.code != 'demo' ? `https://my.icontap.gr/card/${card.code}` : 'demo-url') }}>
+                        <button className='Performance-white-btn' style={{ marginTop: '10px', marginBottom: '10px' }} onClick={(e) => { copy2clip(e.target, card.code != 'demo' ? `https://my.performance.gr/card/${card.code}` : 'demo-url') }}>
 
                             <span className="tooltiptext">Url copied</span>
                             Copy URL

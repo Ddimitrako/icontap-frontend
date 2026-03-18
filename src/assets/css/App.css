@@ -215,7 +215,7 @@ option {
   height: '20%';
 }
 
-.Icontap-black-btn {
+.Performance-black-btn {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -277,7 +277,7 @@ option {
   width: 80%;
 }
 
-.Icontap-white-btn {
+.Performance-white-btn {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -331,7 +331,7 @@ option {
   font-size: 16px;
 }
 
-.Icontap-copyright {
+.Performance-copyright {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-weight: 400;

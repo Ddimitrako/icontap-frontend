@@ -28,7 +28,7 @@ import { hostNameStorage } from "Helpers/App";
 import { hasRole } from "Helpers/Auth";
 import Cover from "../../cardProfile/components/Cover";
 
-export default function IcontapCard(props) {
+export default function PerformanceCard(props) {
   var clone = Object.assign({}, { a: 1, b: 2, c: 3 });
   delete clone.getcards;
   const { ...rest } = clone;

@@ -17,7 +17,7 @@ import {
   TabPanel,
   useDisclosure,
 } from "@chakra-ui/react";
-import IcontapCard from "./components/Card";
+import PerformanceCard from "./components/Card";
 // Custom components
 import Banner from "views/admin/cards/cardsList/components/Banner";
 import NFT from "components/card/NFT";
@@ -25,15 +25,7 @@ import { SearchBar } from "views/admin/cards/cardsList/components/Search";
 import { HSeparator } from "components/separator/Separator";
 import YourCard from "views/admin/main/account/billing/components/YourCard";
 // Assets
-import Nft2 from "assets/img/cards/Nft2.png";
-import Nft4 from "assets/img/cards/Nft4.png";
-import Nft5 from "assets/img/cards/Nft5.png";
-import Nft6 from "assets/img/cards/Nft6.png";
-import NftBanner3 from "assets/img/cards/NftBanner3.png";
-import AvatarSimmmple from "assets/img/avatars/avatarSimmmple.png";
-import Avatar1 from "assets/img/avatars/avatar1.png";
-import Avatar2 from "assets/img/avatars/avatar2.png";
-import Avatar3 from "assets/img/avatars/avatar3.png";
+
 import Avatar4 from "assets/img/avatars/avatar4.png";
 import axios from "axios";
 
@@ -83,11 +75,11 @@ export default function Collection(props) {
   let panelCards = (
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
       {!loading && !(cards?.length!=0) &&
-      <span>No available card physical card only link – Click <a style={{fontWeight:'bold'}} href="https://icontap.gr/shop-2/">here</a> to buy </span>
+      <span>No available physical card, only link. </span>
       }
-      {/*<IcontapCard card={demoCard}/>*/}
+      {/*<PerformanceCard card={demoCard}/>*/}
       {!loading ? cards.map((card, index) =>
-        <IcontapCard card={card} key={index} getcards={()=>getCards()} />
+        <PerformanceCard card={card} key={index} getcards={()=>getCards()} />
       ) : <Button isLoading
         loadingText="Please wait"
         variant="transparent-with-icon"

@@ -459,8 +459,8 @@ export const SpotifyLogo = createIcon({
   ),
 });
 
-export const IcontapLogo = createIcon({
-  displayName: "IcontapLogo",
+export const PerformanceLogo = createIcon({
+  displayName: "PerformanceLogo",
   viewBox: "0 0 177 26",
   path: (
     <g fill='none' xmlns='http://www.w3.org/2000/svg'>

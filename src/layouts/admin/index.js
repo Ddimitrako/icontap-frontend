@@ -176,7 +176,7 @@ export default function Dashboard(props) {
             <Box>
               <Navbar
                 onOpen={onOpen}
-                logoText={"Icontap"}
+                logoText={"Performance"}
                 // brandText={'getActiveRoute(routes)'}
                 brandText={TitleContextValue}
                 secondary={getActiveNavbar(routes)}

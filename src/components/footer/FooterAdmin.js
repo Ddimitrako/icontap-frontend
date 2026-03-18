@@ -39,7 +39,7 @@ export default function Footer() {
         {" "}
         &copy; {1900 + new Date().getYear()}
         <Text as='span' fontWeight='500' ms='4px'>
-          icontap. All Rights Reserved.
+          performance. All Rights Reserved.
         </Text>
       </Text>
       <List display='flex'>
@@ -51,7 +51,7 @@ export default function Footer() {
           <Link
             fontWeight='500'
             color={textColor}
-            href='mailto:icontapgreece@gmail.com'>
+            href='mailto:performancegreece@gmail.com'>
             Support
           </Link>
         </ListItem>

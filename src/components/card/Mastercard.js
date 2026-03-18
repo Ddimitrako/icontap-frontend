@@ -29,7 +29,7 @@ export default function Banner(props) {
       <Flex direction='column' color='white' h='100%' w='100%'>
         <Flex justify='space-between' align='center' mb='37px'>
           <Text fontSize='2xl' fontWeight='bold'>
-            Icontap Logo.
+            Performance Logo.
           </Text>
           <Icon as={RiMastercardFill} w='48px' h='auto' color='white' />
         </Flex>

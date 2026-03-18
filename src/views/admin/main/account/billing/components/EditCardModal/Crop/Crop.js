@@ -65,7 +65,7 @@ export const Crop = ({setCroppedImage, onClose, img, cropShape, setisCroppable})
             onClick={showCroppedImage}
             variant="contained"
             color="primary"
-            className={'Icontap-black-btn'}
+            className={'Performance-black-btn'}
           >
             Show Result
           </button>
