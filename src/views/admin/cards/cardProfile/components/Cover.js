@@ -62,7 +62,7 @@ const calculateImageButtonPosition = (avatarRadius) => {
     return (avatarRadius - result) + selectImgButtonRadius;
 }
 
-const Cover = ({avatar, setavatar, avatarRadius, cover, setcover, editable=false, minHeight='20%'}) => <div
+const Cover = ({avatar, setavatar, avatarRadius, cover, setcover, background, setbackground, editable=false, minHeight='20%'}) => <div
 style={{
     top:0,
     minHeight: `${avatarRadius*2.56}px`,
@@ -87,6 +87,7 @@ className={'Cover-el'}
 {/* {!editable && JSON.stringify(cover)} */}
 <Avatar avatarRadius={avatarRadius} styles={{ bottom: `-${avatarRadius}px`, left: `calc(50% - ${avatarRadius}px)` }} avatar={avatar} />
 {editable && <SelectImgButton setter={setavatar} styles={{ bottom: `-${calculateImageButtonPosition(avatarRadius)}px`, right: `calc(50% - ${calculateImageButtonPosition(avatarRadius)}px)` }} />}
+{editable && setbackground && <SelectImgButton setter={setbackground} styles={{ bottom: '-20px', left: '20px' }} />}
 
 </div>;
 

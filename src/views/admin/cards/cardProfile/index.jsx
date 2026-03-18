@@ -29,6 +29,7 @@ export default function Page() {
 
     const [avatar, setavatar] = useState({ url: '/static/media/profile.svg' });
     const [cover, setcover] = useState({ url: '/static/media/cover.svg' });
+    const [background, setbackground] = useState({ url: '' });
 
     const [name, setname] = useState('');
     const [bio, setbio] = useState('');
@@ -129,7 +130,7 @@ export default function Page() {
                             >
                                 <FormControl>
                                     <Card className='edit-profile-container zoomed'>
-                                        <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} />
+                                        <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} background={background} setbackground={setbackground} />
                                     </Card>
                                 </FormControl>
                             </Flex>

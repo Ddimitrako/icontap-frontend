@@ -53,6 +53,7 @@ export default function EditProfile(props) {
 
     const [isAvatarCroppable, setisAvatarCroppable] = useState(true);
     const [isCoverCroppable, setisCoverCroppable] = useState(true);
+    const [isBackgroundCroppable, setisBackgroundCroppable] = useState(true);
 
     const pages = {
         'CropAvatar': <ModalContent style={{
@@ -69,6 +70,13 @@ export default function EditProfile(props) {
         }} w={'100%'} maxW={'900px'} h={'100%'} maxH={'660px'}
         >
             <Crop setisCroppable={setisCoverCroppable} onClose={onClose} setCroppedImage={props.setcover} cropShape={'rect'} img={props.cover.url} /></ModalContent>,
+        'CropBackground': <ModalContent style={{
+            padding: '0',
+            boxShadow: '0px 12px 40px rgb(0 0 0 / 20%)',
+            borderRadius: '30px'
+        }} w={'100%'} maxW={'900px'} h={'100%'} maxH={'660px'}
+        >
+            <Crop setisCroppable={setisBackgroundCroppable} onClose={onClose} setCroppedImage={props.setbackground} cropShape={'rect'} img={props.background.url} /></ModalContent>,
         // 'EditProfileContainer': <EditProfileContainer {...props} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socials={socials} setsocials={setsocials} />,
         'AddContentContainer': <AddContentContainer onClose={onClose} setPage={setPage} settempSocialData={settempSocialData} setcurrSocial={setcurrSocial} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} />,
         'EditLink': <EditLink socialimgs={props.socialimgs} setsocialimgs={props.setsocialimgs} setPage={setPage} onClose={onClose} currSocial={currSocial} tempSocialData={tempSocialData} socialDefaults={socialDefaults} socials={socials} setsocials={setsocials} oldsocials={oldSocials} setoldsocials={setoldSocials} />
@@ -126,6 +134,32 @@ export default function EditProfile(props) {
         }
 
     }, [props.cover]);
+
+    useEffect(async () => {
+        if (!props.background?.url) {
+            return;
+        }
+
+        try {
+            await getCroppedImg(
+                props.background.url,
+                { width: 1, height: 1, x: 0, y: 0 }
+            )
+        } catch (e) {
+            console.error(e)
+            return false;
+        }
+
+        if (isBackgroundCroppable && !props.background.url.includes(hostNameStorage)) {
+            setPage('CropBackground');
+            onOpen();
+        }
+
+        if (!isBackgroundCroppable) {
+            setisBackgroundCroppable(true);
+        }
+
+    }, [props.background]);
 
     function getProfile() {
         setloading(true);
@@ -209,14 +243,18 @@ export default function EditProfile(props) {
             setTitleContextValue(card.title);
             props.setcover({ ...props.cover, url: card?.images?.img_cover ? `${hostNameStorage}/${card?.images?.img_cover}` : '/static/media/cover.svg' });
             props.setavatar({ ...props.avatar, url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/profile.svg' });
+            props.setbackground((currentBackground) => ({
+                ...currentBackground,
+                url: card?.images?.img_background ? `${hostNameStorage}/${card?.images?.img_background}` : (currentBackground?.url ?? '')
+            }));
             setsocials(parseProfileContents());
             props.setCard(card);
         };
     }, [card]);
 
     useEffect(() => {
-        props.setCard({ ...card, profile: { name: props.name, bio: props.bio }, images: { img_cover: props.cover, img_profile: props.avatar } });
-    }, [props.name, props.bio, props.avatar, props.cover]);
+        props.setCard({ ...card, profile: { name: props.name, bio: props.bio }, images: { img_cover: props.cover, img_profile: props.avatar, img_background: props.background } });
+    }, [props.name, props.bio, props.avatar, props.cover, props.background]);
 
     const [updating, setUpdating] = useState(false);
 
@@ -287,6 +325,8 @@ export default function EditProfile(props) {
             formData.append('img_profile', props.avatar.blob);
         if (props.cover.blob)
             formData.append('img_cover', props.cover.blob);
+        if (props.background?.blob)
+            formData.append('img_background', props.background.blob);
 
         // console.log('updateProfile');
         axios({
@@ -341,7 +381,7 @@ export default function EditProfile(props) {
         : <div style={{
             paddingBottom: '100px',
         }}>
-            <Cover avatarRadius={80} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} editable />
+            <Cover avatarRadius={80} avatar={props.avatar} setavatar={props.setavatar} cover={props.cover} setcover={props.setcover} background={props.background} setbackground={props.setbackground} editable />
 
             <Stack spacing={3}>
                 <FormControl>
