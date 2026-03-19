@@ -27,8 +27,8 @@ RUN npm run build --production
 # In your Dockerfile.
 RUN npm install -g serve
 # Run serve when the image is run.
-CMD serve -s build
+CMD serve -s build -l 3030
 # Let Docker know about the port that serve runs on.
 
-EXPOSE 3000
+EXPOSE 3030
 
