@@ -19,6 +19,7 @@ export const demoCard = {
         "bio": "My bio from John Doe",
         "job_title": null,
         "company": null,
+        "layout_key": "default",
         "vcard": "demo",
         "created_at": "2022-09-30T16:27:06.000000Z",
         "updated_at": "2022-10-07T08:47:25.000000Z"

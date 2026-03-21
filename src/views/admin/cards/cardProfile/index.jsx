@@ -1,5 +1,5 @@
 import { MdPreview } from "react-icons/md";
-import { Stack, HStack, Input, InputGroup, InputLeftAddon, Heading } from '@chakra-ui/react';
+import { Stack, Input, InputGroup, InputLeftAddon, Heading } from '@chakra-ui/react';
 import React from "react";
 import CustomIframe from "./components/Iframe";
 // Chakra imports
@@ -15,15 +15,10 @@ import EditProfile from 'views/admin/main/account/billing/components/EditCardMod
 import { useState } from 'react';
 import { hostNameStorage } from 'Helpers/App';
 import { frontAddress } from 'Helpers/App';
-import { useEffect } from 'react';
-import { downloadImage } from 'Helpers/App';
 import { copy2clip } from 'Helpers/App';
 
 export default function Page() {
     const textColorPrimary = '#3A3A3A';
-    const textColorSecondary = "secondaryGray.600";
-    const textColor = '#3A3A3A';
-    // Chakra Color Mode
 
     const [card, setCard] = useState({});
 
@@ -35,68 +30,10 @@ export default function Page() {
     const [bio, setbio] = useState('');
     const [job, setjob] = useState('');
     const [company, setcompany] = useState('');
-
-
-    const socialDummys = [
-        {
-            "id": 19,
-            "name": "Linktree",
-            "image": "contents/linktree.svg",
-            "category_id": 2,
-            "created_at": "2022-09-20T16:53:21.000000Z",
-            "updated_at": "2022-09-20T16:53:21.000000Z",
-            "category": {
-                "id": 2,
-                "name": "Social media",
-                "created_at": "2022-09-20T16:53:20.000000Z",
-                "updated_at": "2022-09-20T16:53:20.000000Z"
-            },
-            "imgUrl": "contents/linktree.svg",
-            "title": "Linktree",
-            "url": "fdas"
-        },
-        {
-            "id": 31,
-            "name": "Tiktok",
-            "image": "contents/tiktok.svg",
-            "category_id": 2,
-            "created_at": "2022-09-20T16:53:21.000000Z",
-            "updated_at": "2022-09-20T16:53:21.000000Z",
-            "category": {
-                "id": 2,
-                "name": "Social media",
-                "created_at": "2022-09-20T16:53:20.000000Z",
-                "updated_at": "2022-09-20T16:53:20.000000Z"
-            },
-            "imgUrl": "contents/tiktok.svg",
-            "title": "Tiktok",
-            "url": "fdasds"
-        },
-        {
-            "id": 30,
-            "name": "Telegram",
-            "image": "contents/telegram.svg",
-            "category_id": 1,
-            "created_at": "2022-09-20T16:53:21.000000Z",
-            "updated_at": "2022-09-20T16:53:21.000000Z",
-            "category": {
-                "id": 1,
-                "name": "Contact info",
-                "created_at": "2022-09-20T16:53:20.000000Z",
-                "updated_at": "2022-09-20T16:53:20.000000Z"
-            },
-            "imgUrl": "contents/telegram.svg",
-            "title": "Telegram",
-            "url": "fdasfsd"
-        }
-    ];
+    const [layoutKey, setlayoutKey] = useState('default');
 
     const [socials, setsocials] = useState([]);
     const [socialimgs, setsocialimgs] = useState({});
-
-    // useEffect(()=>{
-    //     console.log('parent socials', socials, socialimgs);
-    // },[socials, socialimgs]);
 
     const profileIcon = <i className="fa-solid fa-user" style={{ marginRight: '5px' }}></i>;
     const qrIcon = <i className="fa-solid fa-qrcode" style={{ marginRight: '5px' }}></i>;
@@ -132,7 +69,7 @@ export default function Page() {
                             >
                                 <FormControl>
                                     <Card className='edit-profile-container zoomed'>
-                                        <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} background={background} setbackground={setbackground} />
+                                        <EditProfile socialimgs={socialimgs} setsocialimgs={setsocialimgs} socials={socials} setsocials={setsocials} name={name} setname={setname} bio={bio} setbio={setbio} job={job} setjob={setjob} company={company} setcompany={setcompany} layoutKey={layoutKey} setlayoutKey={setlayoutKey} setCard={setCard} avatar={avatar} setavatar={setavatar} cover={cover} setcover={setcover} background={background} setbackground={setbackground} />
                                     </Card>
                                 </FormControl>
                             </Flex>
@@ -143,7 +80,7 @@ export default function Page() {
                                 {card && <CustomIframe socials={socials} card={card} />}
                                 <Stack direction='row' spacing={4}>
                                     <Button onClick={() => {
-                                        if (card.code != 'demo')
+                                        if (card.code !== 'demo')
                                             window.open(`${frontAddress}/card/${card.code}`, "_blank");
                                     }} rightIcon={<MdPreview />} colorScheme='black' variant='outline' className={'view-profile-btn'}>
                                         View Profile
@@ -164,9 +101,9 @@ export default function Page() {
                         <br />
                         <InputGroup>
                             <InputLeftAddon children='URL' />
-                            <Input value={card.code != 'demo' ? `${frontAddress}/card/${card.code}` : 'demo-url'} readOnly />
+                            <Input value={card.code !== 'demo' ? `${frontAddress}/card/${card.code}` : 'demo-url'} readOnly />
                         </InputGroup>
-                        <button className='Performance-white-btn' style={{ marginTop: '10px', marginBottom: '10px' }} onClick={(e) => { copy2clip(e.target, card.code != 'demo' ? `${frontAddress}/card/${card.code}` : 'demo-url') }}>
+                        <button className='Performance-white-btn' style={{ marginTop: '10px', marginBottom: '10px' }} onClick={(e) => { copy2clip(e.target, card.code !== 'demo' ? `${frontAddress}/card/${card.code}` : 'demo-url') }}>
 
                             <span className="tooltiptext">Url copied</span>
                             Copy URL

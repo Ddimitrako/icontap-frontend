@@ -1,4 +1,4 @@
-import { Button, FormControl, FormHelperText, FormLabel, Icon, Input, ModalContent, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Textarea, useDisclosure } from "@chakra-ui/react";
+import { Button, FormControl, FormHelperText, FormLabel, Icon, Input, ModalContent, Select, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Textarea, useDisclosure } from "@chakra-ui/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AddContentContainer from "./AddContentContainer";
@@ -17,6 +17,7 @@ import { Crop } from "./Crop/Crop";
 import getCroppedImg from "./Crop/cropImage";
 import { DraggableList } from "./Drag/Drag";
 import { MdGridView, MdList, MdViewModule } from "react-icons/md";
+import { CARD_LAYOUTS } from "views/admin/cards/cardProfile/components/layouts/layoutUtils";
 // import './styles.css'
 
 //The container modal
@@ -240,6 +241,7 @@ export default function EditProfile(props) {
             props.setbio(card?.profile?.bio ?? '');
             props.setjob(card?.profile?.job_title ?? '');
             props.setcompany(card?.profile?.company ?? '');
+            props.setlayoutKey(card?.profile?.layout_key ?? 'default');
             setTitleContextValue(card.title);
             props.setcover({ ...props.cover, url: card?.images?.img_cover ? `${hostNameStorage}/${card?.images?.img_cover}` : '/static/media/cover.svg' });
             props.setavatar({ ...props.avatar, url: card?.images?.img_profile ? `${hostNameStorage}/${card?.images?.img_profile}` : '/static/media/profile.svg' });
@@ -253,8 +255,19 @@ export default function EditProfile(props) {
     }, [card]);
 
     useEffect(() => {
-        props.setCard({ ...card, profile: { name: props.name, bio: props.bio }, images: { img_cover: props.cover, img_profile: props.avatar, img_background: props.background } });
-    }, [props.name, props.bio, props.avatar, props.cover, props.background]);
+        props.setCard({
+            ...card,
+            profile: {
+                ...card.profile,
+                name: props.name,
+                bio: props.bio,
+                job_title: props.job,
+                company: props.company,
+                layout_key: props.layoutKey
+            },
+            images: { img_cover: props.cover, img_profile: props.avatar, img_background: props.background }
+        });
+    }, [props.name, props.bio, props.job, props.company, props.layoutKey, props.avatar, props.cover, props.background]);
 
     const [updating, setUpdating] = useState(false);
 
@@ -320,6 +333,7 @@ export default function EditProfile(props) {
         formData.append('bio', props.bio);
         formData.append('company', props.company);
         formData.append('job_title', props.job);
+        formData.append('layout_key', props.layoutKey);
 
         if (props.avatar.blob)
             formData.append('img_profile', props.avatar.blob);
@@ -391,6 +405,14 @@ export default function EditProfile(props) {
                 <FormControl color={'#000000'}>
                     <FormLabel>Bio</FormLabel>
                     <Textarea focusBorderColor='none' backgroundColor={'#f7f7f7'} placeholder={'Bio'} caption={'Bio'} value={props.bio} onChange={(e) => props.setbio(e.target.value)} />
+                </FormControl>
+                <FormControl color={'#000000'}>
+                    <FormLabel>Layout</FormLabel>
+                    <Select focusBorderColor='none' backgroundColor={'#f7f7f7'} value={props.layoutKey} onChange={(e) => props.setlayoutKey(e.target.value)}>
+                        {CARD_LAYOUTS.map((layout) => (
+                            <option key={layout.key} value={layout.key}>{layout.label}</option>
+                        ))}
+                    </Select>
                 </FormControl>
             </Stack>
 

@@ -1,80 +1,44 @@
-/**/
-import { AddNewCard } from "./components/AddNewCard";
-// Chakra imports
 import {
   Box,
   Button,
-  Flex,
   Icon,
   Text,
   useColorModeValue,
   SimpleGrid,
-  Select,
   Tabs,
-  TabList,
   TabPanels,
-  Tab,
   TabPanel,
 } from "@chakra-ui/react";
 import PerformanceCard from "./components/Card";
-// Custom components
-import Banner from "views/admin/cards/cardsList/components/Banner";
-import NFT from "components/card/NFT";
-import { SearchBar } from "views/admin/cards/cardsList/components/Search";
 import { HSeparator } from "components/separator/Separator";
-import YourCard from "views/admin/main/account/billing/components/YourCard";
-// Assets
-
-import Avatar4 from "assets/img/avatars/avatar4.png";
 import axios from "axios";
-
 import {
-  MdDashboard,
-  MdApps,
   MdAddCircle,
-  MdOutlineCollections,
-  MdFormatPaint,
-  MdAccessTime,
-  MdOutlineLocalOffer,
   MdVisibility,
 } from "react-icons/md";
-import { IoMdHeartEmpty } from "react-icons/io";
 import { useEffect } from "react";
-import { getMe } from "Helpers/Auth";
 import { useContext } from "react";
 import { MeContext } from "Helpers/Auth";
 import { useState } from "react";
 import { hostName } from "Helpers/App";
 import { useParams } from "react-router-dom";
-import { demoCard } from "Helpers/Cards";
 export default function Collection(props) {
 
-  const [Me, setMe] = useContext(MeContext);
+  const [Me] = useContext(MeContext);
 
   const [firstTime, setFirstTime] = useState(true);
   const [loading, setloading] = useState(true);
   const [loadingCreate, setloadingCreate] = useState(true);
 
-  const textColor = '#3A3A3A';
-  const buttonBg = useColorModeValue("transparent", "navy.800");
-  const hoverButton = useColorModeValue(
-    { bg: "gray.100" },
-    { bg: "whiteAlpha.100" }
-  );
-  const activeButton = useColorModeValue(
-    { bg: "gray.200" },
-    { bg: "whiteAlpha.200" }
-  );
   const paleGray = useColorModeValue("secondaryGray.400", "whiteAlpha.100");
 
   const [cards, setCards] = useState([]);
 
   let panelCards = (
     <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px'>
-      {!loading && !(cards?.length!=0) &&
+      {!loading && cards?.length === 0 &&
       <span>No available physical card, only link. </span>
       }
-      {/*<PerformanceCard card={demoCard}/>*/}
       {!loading ? cards.map((card, index) =>
         <PerformanceCard card={card} key={index} getcards={()=>getCards()} />
       ) : <Button isLoading
@@ -107,10 +71,9 @@ export default function Collection(props) {
   useEffect(() => {
     if (Me.id && firstTime) {
       setFirstTime(false);
-      // console.log(Me);
       getCards();
     }
-  }, [Me]);
+  }, [Me, firstTime]);
 
   function createCard() {
     if (!currUserId) {
@@ -145,82 +108,22 @@ export default function Collection(props) {
     })
   }
 
-  const bgButton = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
-  const bgHover = useColorModeValue(
-    { bg: "secondaryGray.400" },
-    { bg: "whiteAlpha.50" }
-  );
-  const bgFocus = useColorModeValue(
-    { bg: "secondaryGray.300" },
-    { bg: "whiteAlpha.100" }
-  );
-  const iconColor = useColorModeValue("brand.500", "white");
-
-  // Chakra Color Mode
   return (
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }} className='zoomed'>
-      {/* Main Fields */}
       <Box mb='20px' display={{ base: "block", lg: "grid" }}>
 
       </Box>
       <Tabs variant='soft-rounded' colorScheme='brandTabs'>
 
         <HSeparator mb='30px' bg={paleGray} mt='0px' />
-        {/*<Flex w='30%'>*/}
-        {/*  <Select*/}
-        {/*    fontSize='sm'*/}
-        {/*    id='edit_product'*/}
-        {/*    variant='main'*/}
-        {/*    h='44px'*/}
-        {/*    maxh='44px'*/}
-        {/*    me='20px'*/}
-        {/*    defaultValue='multiple'>*/}
-        {/*    <option value='multiple'>All Cards</option>*/}
-        {/*    <option value='single'>Business Cards</option>*/}
-        {/*    <option value='multiple'>Personal Cards</option>*/}
-
-        {/*  </Select>*/}
-
-        {/*  <Button*/}
-        {/*    me='20px'*/}
-        {/*    bg={buttonBg}*/}
-        {/*    border='1px solid'*/}
-        {/*    color='secondaryGray.600'*/}
-        {/*    borderColor={useColorModeValue(*/}
-        {/*      "secondaryGray.100",*/}
-        {/*      "whiteAlpha.100"*/}
-        {/*    )}*/}
-        {/*    borderRadius='16px'*/}
-        {/*    _placeholder={{ color: "secondaryGray.600" }}*/}
-        {/*    _hover={hoverButton}*/}
-        {/*    _active={activeButton}*/}
-        {/*    _focus={activeButton}>*/}
-        {/*    <Icon color={textColor} as={MdDashboard} />*/}
-        {/*  </Button>*/}
-        {/*  <Button*/}
-        {/*    bg={buttonBg}*/}
-        {/*    border='1px solid'*/}
-        {/*    color='secondaryGray.600'*/}
-        {/*    borderColor={useColorModeValue(*/}
-        {/*      "secondaryGray.100",*/}
-        {/*      "whiteAlpha.100"*/}
-        {/*    )}*/}
-        {/*    borderRadius='16px'*/}
-        {/*    _placeholder={{ color: "secondaryGray.600" }}*/}
-        {/*    _hover={hoverButton}*/}
-        {/*    _active={activeButton}*/}
-        {/*    _focus={activeButton}>*/}
-        {/*    <Icon color={textColor} as={MdApps} />*/}
-        {/*  </Button>*/}
-        {/*</Flex>*/}
 
         <Text
           mt='25px'
           mb='36px'
-          color={textColor}
+          color='#3A3A3A'
           fontSize='2xl'
           ms='24px'
-          fontWeight='700'>{(statedUser && statedUser?.id!=Me.id)?`${statedUser?.name} ${statedUser?.last_name}'s`:'Your'} Cards
+          fontWeight='700'>{(statedUser && statedUser?.id !== Me.id)?`${statedUser?.name} ${statedUser?.last_name}'s`:'Your'} Cards
         </Text>
 
         <Button
@@ -244,7 +147,7 @@ export default function Collection(props) {
           <Icon as={MdAddCircle} color={'white'} w='24px' h='24px' />
           <span style={{paddingLeft:'5px'}}>Add a new card</span>
         </Button>
-        {!(cards?.length!=0)?<Button
+        {cards?.length === 0 ? <Button
           float={'right'}
           onClick={()=>props.history.push({pathname:'/u/cards/edit/demo'})}
           align='center'
@@ -263,7 +166,7 @@ export default function Collection(props) {
         >
           <Icon as={MdVisibility} color={'white'} w='24px' h='24px' ml={'5px'} />
           <span style={{paddingLeft:'5px'}}>View demo</span>
-        </Button>:''}
+        </Button> : ''}
         <TabPanels>
           <TabPanel px='0px'>{panelCards}</TabPanel>
         </TabPanels>
