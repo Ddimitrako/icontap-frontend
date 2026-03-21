@@ -15,7 +15,6 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-  useDisclosure,
 } from "@chakra-ui/react";
 import PerformanceCard from "./components/Card";
 // Custom components
@@ -48,8 +47,6 @@ import { useState } from "react";
 import { hostName } from "Helpers/App";
 import { useParams } from "react-router-dom";
 import { demoCard } from "Helpers/Cards";
-import { ActivateCardModal } from "Helpers/Cards";
-import { hasRole } from "Helpers/Auth";
 export default function Collection(props) {
 
   const [Me, setMe] = useContext(MeContext);
@@ -90,8 +87,6 @@ export default function Collection(props) {
   let { userId } = useParams();
   const statedUser=props?.history?.location?.state?.user;
   const currUserId=userId??Me.id;
-  const isOwnCardsPage = !userId || Number(userId) === Number(Me.id);
-  const canAdminCreateOwnedCard = hasRole('admin') && isOwnCardsPage;
 
   function getCards() {
     setloading(true);
@@ -118,6 +113,10 @@ export default function Collection(props) {
   }, [Me]);
 
   function createCard() {
+    if (!currUserId) {
+      return;
+    }
+
     setloadingCreate(true);
     axios({
       method: 'post',
@@ -125,7 +124,7 @@ export default function Collection(props) {
       data: {
         "title": `Dummy card ${Math.random()}`,
         "is_personal": true,
-        "owner": Me.id,
+        "owner": currUserId,
       }
     }).then((response => {
       // console.log(response);
@@ -156,8 +155,6 @@ export default function Collection(props) {
     { bg: "whiteAlpha.100" }
   );
   const iconColor = useColorModeValue("brand.500", "white");
-
-  const activateModalDisclosure = useDisclosure();
 
   // Chakra Color Mode
   return (
@@ -227,7 +224,7 @@ export default function Collection(props) {
         </Text>
 
         <Button
-          onClick={() => canAdminCreateOwnedCard ? createCard() : activateModalDisclosure.onOpen()}
+          onClick={createCard}
           align='center'
           justifyContent='center'
           // bg={bgButton}
@@ -267,7 +264,6 @@ export default function Collection(props) {
           <Icon as={MdVisibility} color={'white'} w='24px' h='24px' ml={'5px'} />
           <span style={{paddingLeft:'5px'}}>View demo</span>
         </Button>:''}
-        <ActivateCardModal activateModalDisclosure={activateModalDisclosure} loading={loading} setloading={setloading} getcards={getCards} />
         <TabPanels>
           <TabPanel px='0px'>{panelCards}</TabPanel>
         </TabPanels>

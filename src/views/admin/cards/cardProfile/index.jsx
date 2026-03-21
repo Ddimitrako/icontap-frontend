@@ -7,7 +7,7 @@ import {
     Box,
     Flex,
     Grid,
-    Button, FormControl, Image,
+    Button, FormControl, Image, Text,
 } from "@chakra-ui/react";
 import Card from "components/card/Card.js";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
@@ -100,6 +100,8 @@ export default function Page() {
 
     const profileIcon = <i className="fa-solid fa-user" style={{ marginRight: '5px' }}></i>;
     const qrIcon = <i className="fa-solid fa-qrcode" style={{ marginRight: '5px' }}></i>;
+    const showQrTab = Boolean(card.code);
+    const hasQrImage = card?.qr_code && card?.qr_code !== 'demo';
 
     return (
         <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
@@ -107,7 +109,7 @@ export default function Page() {
             <Tabs>
                 <TabList className='height-none' style={{ border: '0', backgroundColor: '#f9f9f9' }}>
                     <Tab _focus={{ boxShadow: "none", }} className='tab-custom'>{profileIcon} Profile</Tab>
-                    {card.code && card.qr_code && <Tab _focus={{ boxShadow: "none", }} className='tab-custom'>{qrIcon} QR Code</Tab>}
+                    {showQrTab && <Tab _focus={{ boxShadow: "none", }} className='tab-custom'>{qrIcon} QR Code</Tab>}
                 </TabList>
                 <TabPanels
                     paddingTop={'30px'}
@@ -150,15 +152,21 @@ export default function Page() {
                             </Flex>
                         </Grid>
                     </TabPanel>
-                    {card.code && card.qr_code && <TabPanel style={{ textAlign: 'left' }}>
-                        <Image style={{ paddingTop: '50px', paddingRight: '20px', paddingLeft: '20px', paddingBottom: '100px', backgroundColor: 'white', border: 'none', borderRadius: '20px', boxShadow: 'rgb(205 205 205) 10px 10px 10px' }} src={card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`} />
+                    {showQrTab && <TabPanel style={{ textAlign: 'left' }}>
+                        {card?.qr_code ? (
+                            <Image style={{ paddingTop: '50px', paddingRight: '20px', paddingLeft: '20px', paddingBottom: '100px', backgroundColor: 'white', border: 'none', borderRadius: '20px', boxShadow: 'rgb(205 205 205) 10px 10px 10px' }} src={hasQrImage ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`} />
+                        ) : (
+                            <Box style={{ paddingTop: '50px', paddingRight: '20px', paddingLeft: '20px', paddingBottom: '50px', backgroundColor: 'white', border: 'none', borderRadius: '20px', boxShadow: 'rgb(205 205 205) 10px 10px 10px' }}>
+                                <Text color={textColorPrimary}>QR code is not available for this card yet.</Text>
+                            </Box>
+                        )}
                         {/* <button className='Performance-black-btn' style={{ marginTop: '10px', marginBottom: '20px' }} onClick={() => { downloadImage(card?.qr_code != 'demo' ? `${hostNameStorage}/${card?.qr_code}` : `/static/media/demo-qr.jpg`, 'performance-qr') }}>Download QR Code</button> */}
                         <br />
                         <InputGroup>
                             <InputLeftAddon children='URL' />
-                            <Input value={card.code != 'demo' ? `https://my.performance.gr/card/${card.code}` : 'demo-url'} readOnly />
+                            <Input value={card.code != 'demo' ? `${frontAddress}/card/${card.code}` : 'demo-url'} readOnly />
                         </InputGroup>
-                        <button className='Performance-white-btn' style={{ marginTop: '10px', marginBottom: '10px' }} onClick={(e) => { copy2clip(e.target, card.code != 'demo' ? `https://my.performance.gr/card/${card.code}` : 'demo-url') }}>
+                        <button className='Performance-white-btn' style={{ marginTop: '10px', marginBottom: '10px' }} onClick={(e) => { copy2clip(e.target, card.code != 'demo' ? `${frontAddress}/card/${card.code}` : 'demo-url') }}>
 
                             <span className="tooltiptext">Url copied</span>
                             Copy URL
