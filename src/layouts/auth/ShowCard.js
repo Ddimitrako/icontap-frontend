@@ -4,33 +4,26 @@ import axios from "axios";
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { hostName } from 'Helpers/App';
-import { Box, Button, Flex, Stack, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import DefaultAuth from "layouts/auth/types/Default";
-import illustration from "assets/img/auth/auth.png";
-import Footer from 'components/footer/FooterAdmin';
 import { hostNameStorage } from 'Helpers/App';
-import Cover from 'views/admin/cards/cardProfile/components/Cover';
-import { SocialButton } from 'views/admin/main/account/billing/components/EditCardModal/EditCardModal';
-import Profile from 'views/admin/main/account/settings/components/Profile';
 import ReactGA from 'react-ga';
 
 export const ShowCard = () => {
 
-    const [loaded, setloaded] = useState(false);
     const [card, setcard] = useState({});
-    const [socials, setsocials] = useState({});
+    const [socials, setsocials] = useState([]);
 
     let { cardId } = useParams();
 
-    function getProfile() {
-        console.log('getProfile');
-        console.log(window.location.pathname)
+    function getProfile(isMountedRef) {
         axios({
             method: 'get',
             url: `${hostName}/card/${cardId}`
         }).then((response) => {
-            // console.log(response);
+            if (!isMountedRef.current) {
+                return;
+            }
             let tempCard=response.data.data;
             if(!tempCard?.images)
                 tempCard.images={};
@@ -41,8 +34,6 @@ export const ShowCard = () => {
             setsocials(parseProfileContents(tempCard));
         }).catch((err) => {
             // console.log(err.response);
-        }).finally(() => {
-            setloaded(true);
         })
     }
 
@@ -65,11 +56,15 @@ export const ShowCard = () => {
     }
 
     useEffect(() => {
+        const isMountedRef = { current: true };
         ReactGA.initialize('UA-246553882-3',{ debug: true })
         ReactGA.pageview(window.location.pathname)
-        getProfile();
+        getProfile(isMountedRef);
 
-    }, []);
+        return () => {
+            isMountedRef.current = false;
+        };
+    }, [cardId]);
 
     // return <DefaultAuth noIllustration>
     //     

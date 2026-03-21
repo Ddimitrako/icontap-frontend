@@ -1,5 +1,7 @@
 import React from 'react';
+import CityProfileLayout from './layouts/CityProfileLayout';
 import DefaultLayout from './layouts/DefaultLayout';
+import ContactCardLayout from './layouts/ContactCardLayout';
 import EditorialLayout from './layouts/EditorialLayout';
 import ExecutiveLayout from './layouts/ExecutiveLayout';
 import IdentityLayout from './layouts/IdentityLayout';
@@ -14,6 +16,8 @@ const layoutComponents = {
     executive: ExecutiveLayout,
     editorial: EditorialLayout,
     identity: IdentityLayout,
+    "contact-card": ContactCardLayout,
+    "city-profile": CityProfileLayout,
 };
 
 const ProfileView = (props) => {
